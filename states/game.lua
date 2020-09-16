@@ -5,7 +5,7 @@ function st.init()
   st.canv = love.graphics.newCanvas(400,240)
   st.level = json.decode(helpers.read("bappy.json"))
   st.offset = st.level.offset
-  st.cbeat = -1-st.offset-st.level.increment
+  st.cbeat = -1-st.offset
   st.length = 42
   st.pt = 0
   st.on = true
@@ -16,6 +16,8 @@ function st.init()
   st.vfx = {}
   st.vfx.hom = false
   st.vfx.homint = 20000
+  st.lastsigbeat = math.floor(st.cbeat)
+
 
 end
 
@@ -39,53 +41,66 @@ function st.update()
   st.pt = st.pt + (st.level.bpm/60) * love.timer.getDelta()
 
 
-   if st.extend == 0 and st.cbeat%st.level.pdiv <=0.5 then
-     
-      st.extend = 10
-      flux.to(st,10,{extend=0}):ease("linear")
-    end
-    -- read the level
-    for i,v in ipairs(st.level.events) do
-      
-      
-      
-    -- preload events such as beats
-      if v.time <= st.cbeat+st.offset and v.played == false then
-        
 
-        if v.type == "beat" then
-          v.played = true
-          local newbeat = em.init("beat",200,120)
-          newbeat.angle = v.angle
-          newbeat.hb = v.time
-          pq = pq .. "    ".. "spawn here!"
-        end
-        
-      end
-      -- load other events on the beat
-      if v.time <= st.cbeat and v.played == false then
+
+   
+  -- read the level
+  for i,v in ipairs(st.level.events) do
+    
+    
+    
+  -- preload events such as beats
+    if v.time <= st.cbeat+st.offset and v.played == false then
+      
+
+      if v.type == "beat" then
         v.played = true
-        if v.type == "play" then
-          te.play(v.file,"stream")
-          pq = pq .. "    ".. "now playing ".. v.file
-        end
-        if v.type == "hom" then
-          st.vfx.hom = v.enable
-          st.vfx.homint = v.intensity
-          if st.vfx.hom then
-            pq = pq .. "    ".. "Hall Of Mirrors enabled"
-          else
-            pq = pq .. "    ".. "Hall Of Mirrors disabled"
-          end
-        end
-        if v.type == "circle" then
-          pq = pq .. "    ".. "circle spawned"
-          local nc = em.init("circlevfx",v.x,v.y)
-          nc.delt = v.delta
-        end
-        
+        local newbeat = em.init("beat",200,120)
+        newbeat.angle = v.angle
+        newbeat.hb = v.time
+        newbeat.smult = v.speedmult
+        pq = pq .. "    ".. "spawn here!"
       end
+      
     end
+    -- load other events on the beat
+    if v.time <= st.cbeat and v.played == false then
+      v.played = true
+      if v.type == "play" then
+        te.play(v.file,"stream")
+        pq = pq .. "    ".. "now playing ".. v.file
+      end
+      if v.type == "multipulse" then
+                pq = pq.. "    pulsing, generating other pulses"
+        st.extend = 10 
+        flux.to(st,10,{extend=0}):ease("linear")
+        for i=1,v.reps do
+          table.insert(st.level.events,{type="singlepulse",time=v.time+v.delay*i,played=false})
+
+        end
+      end
+      if v.type == "singlepulse" then
+        st.extend = 10
+        flux.to(st,10,{extend=0}):ease("linear")
+        pq = pq.. "    pulsing"
+      end
+      if v.type == "hom" then
+        st.vfx.hom = v.enable
+        st.vfx.homint = v.intensity
+        if st.vfx.hom then
+          pq = pq .. "    ".. "Hall Of Mirrors enabled"
+        else
+          pq = pq .. "    ".. "Hall Of Mirrors disabled"
+        end
+      end
+      if v.type == "circle" then
+        pq = pq .. "    ".. "circle spawned"
+        local nc = em.init("circlevfx",v.x,v.y)
+        nc.delt = v.delta
+      end
+      
+    end
+  end
 
   if maininput:pressed("back") then
     table.insert(st.level.events,{time=helpers.round((st.cbeat-0.25)/st.level.increment,true)*st.level.increment,type="placeholder"})
@@ -132,7 +147,7 @@ function st.draw()
   love.graphics.draw(st.canv)
   --push:finish()
   if pq ~= "" then
-    print(helpers.round(st.cbeat*4,true)/4 .. pq)
+    print(helpers.round(st.cbeat*12,true)/12 .. pq)
   end
   shuv.finish()
 end

@@ -1,6 +1,6 @@
 {
   "bpm": 130,
-  "offset": 12,
+  "offset": 4,
   "events": [
     {
       "type": "play",
@@ -10,6 +10,7 @@
     {"type": "beat","speedmult": 1,"angle": 0,   "time": 0},
     {"type": "beat","speedmult": 1,"angle": 0,   "time": 0.6666},
     {"type": "beat","speedmult": 1,"angle": 45,  "time": 1},
+    {"type": "multipulse", "delay": 3,"reps": 7,"time": 1},
     {"type": "beat","speedmult": 1,"angle": 0,   "time": 2},
     {"type": "beat","speedmult": 1,"angle": 90,  "time": 3},
     {"type": "beat","speedmult": 1,"angle": 180, "time": 4},
@@ -43,7 +44,7 @@
     {"type": "beat","speedmult": 1,"angle": 30,  "time": 23}
   ],
   "file": "bappy.ogg",
-  "increment": 1,
+
   "pdiv": 2,
-  "speed": 30,
+  "speed": 60,
 }

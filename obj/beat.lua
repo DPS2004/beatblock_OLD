@@ -5,6 +5,7 @@ local obj = {
   y=120,
   angle=0,
   hb=0,
+  smult=1,
   spr = love.graphics.newImage("assets/game/square.png")
 }
 obj.ox = obj.x
@@ -13,7 +14,7 @@ obj.oy = obj.y
 
 function obj.update(dt)
   obj.angle = obj.angle % 360
-  local p1 = helpers.rotate((obj.hb - cs.cbeat)*cs.level.speed+cs.extend+cs.length,obj.angle,obj.ox,obj.oy)
+  local p1 = helpers.rotate((obj.hb - cs.cbeat)*cs.level.speed*obj.smult+cs.extend+cs.length,obj.angle,obj.ox,obj.oy)
   obj.x = p1[1]
   obj.y = p1[2]
   if (obj.hb - cs.cbeat) < 0 then
