@@ -5,7 +5,7 @@ function love.load()
   ismobile = false
   pressed = 0
   mx,my = 0,0
-  ispush = true
+  ispush = false
   -- font is https://tepokato.itch.io/axolotl-font
   font = love.graphics.newFont("assets/Axolotl.ttf", 16)
   font:setFilter("nearest", "nearest",0)
@@ -21,6 +21,8 @@ function love.load()
   if not ismobile then
     baton = require "lib.baton"
   end
+  shuv = require "lib.shuv"
+  shuv.init()
   -- custom functions, snippets, etc
   helpers = require "lib.helpers"
   -- push, graphics helper, makes screen resolution stuff easy
@@ -98,6 +100,9 @@ function love.load()
         x = {"key:x"},
         a = {"key:a"},
         c = {"key:c"},
+        k1 = {"key:1"},
+        k2 = {"key:2"},
+        k3 = {"key:3"},
         
       },
       pairs = {
@@ -130,6 +135,7 @@ function love.load()
 end
 function love.update(d)
   cs = gs.current()
+  shuv.check()
   if not acdelt then
     dt = 1
   else

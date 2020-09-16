@@ -17,7 +17,7 @@ function obj.update(dt)
     obj.cmode = not obj.cmode
   end
   if obj.cmode then
-    obj.angle = 0-math.deg(math.atan2(obj.y - love.mouse.getY(), love.mouse.getX() - obj.x)) +90
+    obj.angle = 0-math.deg(math.atan2(obj.y - love.mouse.getY()/shuv.scale, love.mouse.getX()/shuv.scale - obj.x)) +90
    -- print(math.atan2(obj.y - love.mouse.getY(), love.mouse.getX() - obj.x))
   else
     if maininput:down("left") then

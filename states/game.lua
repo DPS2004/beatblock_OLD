@@ -110,6 +110,7 @@ function st.update()
 end
 function st.draw()
   --push:start()
+  shuv.start()
 
   love.graphics.rectangle("fill",0,0,400,240)
   love.graphics.setCanvas(st.canv)
@@ -124,12 +125,13 @@ function st.draw()
       end
     end
     em.draw()
-  love.graphics.setCanvas()
+  love.graphics.setCanvas(shuv.canvas)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.draw(st.canv)
   --push:finish()
     if st.on then
     print(pq)
   end
+  shuv.finish()
 end
 return st
