@@ -7,9 +7,12 @@ function st.init()
   st.offset = st.level.offset
   st.cbeat = -1-st.offset-st.level.increment
   st.length = 42
-  st.lastsigbeat=-1-st.offset-st.level.increment
+  st.pt = 0
   st.on = true
   st.extend = 0
+  for i,v in ipairs(st.level.events) do
+    v.played = false
+  end
   st.vfx = {}
   st.vfx.hom = false
   st.vfx.homint = 20000
@@ -33,19 +36,11 @@ function st.update()
   maininput:update()
   lovebird.update()
   st.cbeat = st.cbeat + (st.level.bpm/60) * love.timer.getDelta()
-  if math.floor(st.cbeat / st.level.increment)*st.level.increment ~= st.lastsigbeat then
-    st.lastsigbeat = math.floor(st.cbeat / st.level.increment)*st.level.increment
-    st.on = true
-    
-    pq = pq .. st.lastsigbeat
-  else
-    st.on = false
-  end
-  if st.on then
-    if st.lastsigbeat == 0 then
-      te.play(st.level.file,"stream")
-    end
-    if st.lastsigbeat/st.level.pdiv == math.floor(st.lastsigbeat/st.level.pdiv) then
+  st.pt = st.pt + (st.level.bpm/60) * love.timer.getDelta()
+
+
+   if st.extend == 0 and st.cbeat%st.level.pdiv <=0.5 then
+     
       st.extend = 10
       flux.to(st,10,{extend=0}):ease("linear")
     end
@@ -55,17 +50,25 @@ function st.update()
       
       
     -- preload events such as beats
-      if v.time == st.lastsigbeat+st.offset then
+      if v.time <= st.cbeat+st.offset and v.played == false then
+        
+
         if v.type == "beat" then
+          v.played = true
           local newbeat = em.init("beat",200,120)
           newbeat.angle = v.angle
-          newbeat.hb = st.lastsigbeat+st.offset
+          newbeat.hb = v.time
           pq = pq .. "    ".. "spawn here!"
         end
         
       end
       -- load other events on the beat
-      if v.time == st.lastsigbeat then
+      if v.time <= st.cbeat and v.played == false then
+        v.played = true
+        if v.type == "play" then
+          te.play(v.file,"stream")
+          pq = pq .. "    ".. "now playing ".. v.file
+        end
         if v.type == "hom" then
           st.vfx.hom = v.enable
           st.vfx.homint = v.intensity
@@ -83,8 +86,7 @@ function st.update()
         
       end
     end
-    
-  end
+
   if maininput:pressed("back") then
     table.insert(st.level.events,{time=helpers.round((st.cbeat-0.25)/st.level.increment,true)*st.level.increment,type="placeholder"})
   end
@@ -129,8 +131,8 @@ function st.draw()
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.draw(st.canv)
   --push:finish()
-    if st.on then
-    print(pq)
+  if pq ~= "" then
+    print(helpers.round(st.cbeat*4,true)/4 .. pq)
   end
   shuv.finish()
 end

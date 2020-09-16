@@ -3,6 +3,11 @@
   "offset": 12,
   "events": [
     {
+      "type": "play",
+      "time": 0,
+      "file": "cannery.ogg"
+    },
+    {
       "type": "beat",
       "time": 0,
       "speedmult": 1,
@@ -484,7 +489,6 @@
       "intensity": 20000
     }
   ],
-  "file": "cannery.ogg",
   "increment": 0.5,
   "pdiv": 2,
   "speed": 20
