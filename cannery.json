@@ -1,0 +1,491 @@
+{
+  "bpm": 176,
+  "offset": 12,
+  "events": [
+    {
+      "type": "beat",
+      "time": 0,
+      "speedmult": 1,
+      "angle": 0
+    },
+    {
+      "type": "beat",
+      "time": 2,
+      "speedmult": 1,
+      "angle": 0
+    },
+    {
+      "type": "hom",
+      "time": 2,
+      "enable": true,
+      "intensity": 20000
+    },
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 2,
+      "y": 120,
+      "delta": 10
+    },
+    {
+      "type": "beat",
+      "time": 4,
+      "speedmult": 1,
+      "angle": 90
+    },
+    {
+      "type": "hom",
+      "time": 4,
+      "enable": false,
+      "intensity": 20000
+    },
+    {
+      "type": "beat",
+      "time": 6,
+      "speedmult": 1,
+      "angle": 90
+    },
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 6,
+      "y": 120,
+      "delta": -10
+    },
+    {
+      "type": "hom",
+      "time": 6,
+      "enable": true,
+      "intensity": 20000
+    },
+    {
+      "type": "beat",
+      "time": 8,
+      "speedmult": 1,
+      "angle": 180
+    },
+    {
+      "type": "hom",
+      "time": 8,
+      "enable": false,
+      "intensity": 20000
+    },
+    {
+      "type": "beat",
+      "time": 10,
+      "speedmult": 1,
+      "angle": 180
+    },
+    {
+      "type": "hom",
+      "time": 10,
+      "enable": true,
+      "intensity": 20000
+    },
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 10,
+      "y": 120,
+      "delta": 10
+    },
+    {
+      "type": "beat",
+      "time": 12,
+      "speedmult": 1,
+      "angle": 270
+    },
+    {
+      "type": "hom",
+      "time": 12,
+      "enable": false,
+      "intensity": 20000
+    },
+    {
+      "type": "beat",
+      "time": 14,
+      "speedmult": 1,
+      "angle": 270
+    },
+    {
+      "type": "hom",
+      "time": 14,
+      "enable": true,
+      "intensity": 20000
+    },
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 14,
+      "y": 120,
+      "delta": -10
+    },
+    {
+      "type": "beat",
+      "time": 16,
+      "speedmult": 1,
+      "angle": 0
+    },
+    {
+      "type": "hom",
+      "time": 16,
+      "enable": false,
+      "intensity": 20000
+    },
+    {
+      "type": "beat",
+      "time": 17,
+      "speedmult": 1,
+      "angle": -30
+    },
+    {
+      "type": "beat",
+      "time": 18,
+      "speedmult": 1,
+      "angle": 0
+    },
+    {
+      "type": "hom",
+      "time": 18,
+      "enable": true,
+      "intensity": 20000
+    },
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 18,
+      "y": 120,
+      "delta": 10
+    },
+    {
+      "type": "beat",
+      "time": 19,
+      "speedmult": 1,
+      "angle": 30
+    },
+    {
+      "type": "beat",
+      "time": 20,
+      "speedmult": 1,
+      "angle": 90
+    },
+    {
+      "type": "hom",
+      "time": 20,
+      "enable": false,
+      "intensity": 20000
+    },
+    {
+      "type": "beat",
+      "time": 21,
+      "speedmult": 1,
+      "angle": 60
+    },
+    {
+      "type": "hom",
+      "time": 22,
+      "enable": true,
+      "intensity": 20000
+    },
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 22,
+      "y": 120,
+      "delta": -10
+    },
+    {
+      "type": "beat",
+      "time": 22,
+      "speedmult": 1,
+      "angle": 90
+    },
+    {
+      "type": "hom",
+      "time": 22,
+      "enable": true,
+      "intensity": 20000
+    },
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 22,
+      "y": 120,
+      "delta": -10
+    },
+    {
+      "type": "beat",
+      "time": 23,
+      "speedmult": 1,
+      "angle": 120
+    },
+    {
+      "type": "beat",
+      "time": 24,
+      "speedmult": 1,
+      "angle": 180
+    },
+    {
+      "type": "hom",
+      "time": 24,
+      "enable": false,
+      "intensity": 20000
+    },
+    {
+      "type": "beat",
+      "time": 25,
+      "speedmult": 1,
+      "angle": 150
+    },
+    {
+      "type": "hom",
+      "time": 26,
+      "enable": true,
+      "intensity": 20000
+    },
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 26,
+      "y": 120,
+      "delta": 10
+    },
+    {
+      "type": "beat",
+      "time": 26,
+      "speedmult": 1,
+      "angle": 180
+    },
+    {
+      "type": "beat",
+      "time": 27,
+      "speedmult": 1,
+      "angle": 210
+    },
+    {
+      "type": "hom",
+      "time": 28,
+      "enable": false,
+      "intensity": 20000
+    },
+    {
+      "type": "beat",
+      "time": 28,
+      "speedmult": 1,
+      "angle": 270
+    },
+    {
+      "type": "beat",
+      "time": 29,
+      "speedmult": 1,
+      "angle": 240
+    },
+    {
+      "type": "hom",
+      "time": 30,
+      "enable": true,
+      "intensity": 20000
+    },
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 30,
+      "y": 120,
+      "delta": -10
+    },
+    {
+      "type": "beat",
+      "time": 30,
+      "speedmult": 1,
+      "angle": 270
+    },
+    {
+      "type": "beat",
+      "time": 31,
+      "speedmult": 1,
+      "angle": 300
+    },
+    {
+      "type": "hom",
+      "time": 32,
+      "enable": false,
+      "intensity": 20000
+    },
+    {
+      "type": "beat",
+      "time": 32,
+      "speedmult": 1,
+      "angle": 0
+    },
+    {
+      "type": "beat",
+      "time": 33,
+      "speedmult": 1,
+      "angle": 30
+    },
+    {
+      "type": "hom",
+      "time": 34,
+      "enable": true,
+      "intensity": 20000
+    },
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 34,
+      "y": 120,
+      "delta": 10
+    },
+    {
+      "type": "beat",
+      "time": 34,
+      "speedmult": 1,
+      "angle": 0
+    },
+    {
+      "type": "beat",
+      "time": 35,
+      "speedmult": 1,
+      "angle": -30
+    },
+    {
+      "type": "hom",
+      "time": 36,
+      "enable": false,
+      "intensity": 20000
+    },
+    {
+      "type": "beat",
+      "time": 36,
+      "speedmult": 1,
+      "angle": -90
+    },
+    {
+      "type": "beat",
+      "time": 37,
+      "speedmult": 1,
+      "angle": -60
+    },
+    {
+      "type": "hom",
+      "time": 38,
+      "enable": true,
+      "intensity": 20000
+    },
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 38,
+      "y": 120,
+      "delta": -10
+    },
+    {
+      "type": "beat",
+      "time": 38,
+      "speedmult": 1,
+      "angle": -90
+    },
+    {
+      "type": "beat",
+      "time": 39,
+      "speedmult": 1,
+      "angle": -120
+    },
+    {
+      "type": "hom",
+      "time": 40,
+      "enable": false,
+      "intensity": 20000
+    },
+    {
+      "type": "beat",
+      "time": 40,
+      "speedmult": 1,
+      "angle": -180
+    },
+    {
+      "type": "beat",
+      "time": 41,
+      "speedmult": 1,
+      "angle": -150
+    },
+    {
+      "type": "hom",
+      "time": 42,
+      "enable": true,
+      "intensity": 20000
+    },
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 42,
+      "y": 120,
+      "delta": 10
+    },
+    {
+      "type": "beat",
+      "time": 42,
+      "speedmult": 1,
+      "angle": -180
+    },
+    {
+      "type": "beat",
+      "time": 43,
+      "speedmult": 1,
+      "angle": -210
+    },
+    {
+      "type": "hom",
+      "time": 44,
+      "enable": false,
+      "intensity": 20000
+    },
+    {
+      "type": "beat",
+      "time": 44,
+      "speedmult": 1,
+      "angle": -270
+    },
+    {
+      "type": "beat",
+      "time": 45,
+      "speedmult": 1,
+      "angle": -240
+    },
+    {
+      "type": "hom",
+      "time": 46,
+      "enable": true,
+      "intensity": 20000
+    },
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 46,
+      "y": 120,
+      "delta": -10
+    },
+    {
+      "type": "beat",
+      "time": 46,
+      "speedmult": 1,
+      "angle": -270
+    },
+    {
+      "type": "beat",
+      "time": 47,
+      "speedmult": 1,
+      "angle": -300
+    },
+    {
+      "type": "hom",
+      "time": 48,
+      "enable": false,
+      "intensity": 20000
+    }
+  ],
+  "file": "cannery.ogg",
+  "increment": 0.5,
+  "pdiv": 2,
+  "speed": 20
+}

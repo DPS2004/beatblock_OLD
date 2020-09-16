@@ -1,0 +1,35 @@
+{
+  "bpm": 100,
+  "increment": 0.5,
+  "file": "100bpm.ogg",
+  "beats": {
+    "0": {
+      "angle": 0,
+      "type": 0
+    },
+    "3": {
+      "angle": 0,
+      "type": 0
+    },
+    "4": {
+      "angle": 180,
+      "type": 0
+    },
+    "6": {
+      "angle": 270,
+      "type": 0
+    },
+    "0.5": {
+      "angle": 0,
+      "type": 0
+    },
+    "1.5": {
+      "angle": 0,
+      "type": 0
+    },
+    "2.5": {
+      "angle": 90,
+      "type": 0
+    }
+  }
+}
