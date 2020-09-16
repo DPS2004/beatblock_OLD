@@ -88,14 +88,15 @@ function love.load()
   if not ismobile then
   maininput = baton.new {
       controls = {
-        left = {"key:left", "key:a", "axis:leftx-", "button:dpleft"},
-        right = {"key:right", "key:d", "axis:leftx+", "button:dpright"},
+        left = {"key:left",  "axis:leftx-", "button:dpleft"},
+        right = {"key:right",  "axis:leftx+", "button:dpright"},
         up = {"key:up", "key:w", "axis:lefty-", "button:dpup"},
         down = {"key:down", "key:s", "axis:lefty+", "button:dpdown"},
         accept = {"key:space", "button:a"},
         back = {"key:z", "button:b"},
         s = {"key:s"},
         x = {"key:x"},
+        a = {"key:a"},
         c = {"key:c"},
         
       },

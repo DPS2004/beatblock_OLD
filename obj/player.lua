@@ -8,12 +8,27 @@ local obj = {
   bobi=0,
   angle = 0,
   extend = 0,
+  cmode = true
 }
 
 
 function obj.update(dt)
-  obj.angle = helpers.clamp(helpers.round(love.mouse.getX(),true),0,720)
+  if maininput:pressed("a") then
+    obj.cmode = not obj.cmode
+  end
+  if obj.cmode then
+    obj.angle = 0-math.deg(math.atan2(obj.y - love.mouse.getY(), love.mouse.getX() - obj.x)) +90
+   -- print(math.atan2(obj.y - love.mouse.getY(), love.mouse.getX() - obj.x))
+  else
+    if maininput:down("left") then
+      obj.angle = obj.angle - 7
+    elseif maininput:down("right") then
+      obj.angle = obj.angle + 7
+    end
+  end
+      
   obj.bobi = obj.bobi + 0.05
+  
   
   
 end
