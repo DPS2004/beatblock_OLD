@@ -3,7 +3,7 @@ function st.init()
   st.p = em.init("player",200,120)
 
   st.canv = love.graphics.newCanvas(400,240)
-  st.level = json.decode(helpers.read("cannery.json"))
+  st.level = json.decode(helpers.read("bappy.json"))
   st.offset = st.level.offset
   st.cbeat = -1-st.offset-st.level.increment
   st.length = 42
