@@ -131,6 +131,7 @@ function love.load()
   }
 
   gs.registerEvents()
+  
   gs.switch(states.songselect)
   
 

@@ -42,6 +42,8 @@ function st.update()
     helpers.swap(states.game)
   end
   if st.move then
+    te.play("click.ogg","static")
+    st.move = false
     flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
   end
   

@@ -16,5 +16,11 @@
     "artist": "Captive Portal",
     "charter": "Rikri",
     "filename": "anexamplefor.json"
+  },
+  {
+    "songname": "startbeattest",
+    "artist": "starts slightly before beat 16",
+    "charter": "DPS2004",
+    "filename": "startbeattest.json"
   }
 ]

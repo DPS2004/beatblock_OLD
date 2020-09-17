@@ -11,7 +11,9 @@ function st.enter(prev)
   st.canv = love.graphics.newCanvas(400,240)
   st.level = json.decode(helpers.read(clevel))
   st.offset = st.level.offset
-  st.cbeat = -1-st.offset
+  st.startbeat = st.level.startbeat or 0
+  st.cbeat = 0-st.offset +st.startbeat
+  
   st.length = 42
   st.pt = 0
   st.on = true
@@ -29,7 +31,7 @@ function st.enter(prev)
 end
 function st.leave()
   entities = {}
-
+  st.source:stop()
   te.stop("music")
 end
 
@@ -79,7 +81,11 @@ function st.update()
     if v.time <= st.cbeat and v.played == false then
       v.played = true
       if v.type == "play" then
-        te.play(v.file,"stream","music")
+
+          st.source = love.audio.newSource(v.file,"stream")
+          st.source:play()
+          st.source:seek(((60/st.level.bpm)*st.cbeat))
+          
         pq = pq .. "    ".. "now playing ".. v.file
       end
       if v.type == "multipulse" then
