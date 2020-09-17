@@ -6,7 +6,7 @@ function em.init(en,x,y)
   if release then
     local path = "obj/" .. en .. ".lua"
     local code = love.filesystem.load(path)
-    local new = code()
+    new = code()
   else
     new = dofile("obj/" .. en .. ".lua")
   end

@@ -1,5 +1,6 @@
 function love.load()
   dt = 1
+  clevel = "cannery.json"
   gamename = "crank rhythm game"
   release = false
   ismobile = false
@@ -19,9 +20,9 @@ function love.load()
   -- gamestate, manages gamestates
   gs = require "lib.gamestate"
   -- baton, manages input handling
-  if not ismobile then
+
     baton = require "lib.baton"
-  end
+
   shuv = require "lib.shuv"
   shuv.init()
   -- custom functions, snippets, etc
@@ -88,7 +89,7 @@ function love.load()
     {1,0,0}
   }
   --setup input
-  if not ismobile then
+
   maininput = baton.new {
       controls = {
         left = {"key:left",  "axis:leftx-", "button:dpleft"},
@@ -111,7 +112,7 @@ function love.load()
       },
         joystick = love.joystick.getJoysticks()[1],
     }
-  end
+
   -- init global objects
   templates = {
     enemy = ez.newtemplate("game/rninja.png",8,10),

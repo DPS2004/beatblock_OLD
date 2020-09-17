@@ -1,21 +1,23 @@
 local shuv = {
-  scale = 1,
-  update = false}
+  scale = 2,
+  update = true}
 function shuv.init()
   shuv.canvas = love.graphics.newCanvas(400,240)
   
   
 end
 function shuv.check()
+  if not ismobile then
     if maininput:pressed("k1") then
-    shuv.scale = 1
-    shuv.update = true
-  elseif maininput:pressed("k2") then
-    shuv.scale = 2
-    shuv.update = true
-  elseif maininput:pressed("k3") then
-    shuv.scale = 3
-    shuv.update = true
+      shuv.scale = 1
+      shuv.update = true
+    elseif maininput:pressed("k2") then
+      shuv.scale = 2
+      shuv.update = true
+    elseif maininput:pressed("k3") then
+      shuv.scale = 3
+      shuv.update = true
+    end
   end
   if shuv.update then
     shuv.update = false
