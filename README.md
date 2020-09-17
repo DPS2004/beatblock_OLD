@@ -9,7 +9,7 @@ Game with crank and music. Some fancy rhythm game.
 5. Press play!
 
 ## To-Do
-- [x] SCRUBBING (HIGH PRIORITY)
+- [x] SCRUBBING
 - [ ] Add starting angle parameter for notes (thanks samario)
 - [ ] Show ranks on levels
 - [ ] Make more levels
