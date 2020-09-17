@@ -19,12 +19,13 @@ function love.load()
   -- import libraries
   -- gamestate, manages gamestates
   gs = require "lib.gamestate"
-  -- baton, manages input handling
 
-    baton = require "lib.baton"
+  -- baton, manages input handling
+  baton = require "lib.baton"
 
   shuv = require "lib.shuv"
   shuv.init()
+
   -- custom functions, snippets, etc
   helpers = require "lib.helpers"
   -- push, graphics helper, makes screen resolution stuff easy
@@ -34,32 +35,34 @@ function love.load()
     push = require "lib.pushstripped"
     love.window.setMode(400,240)
   end
+
   -- deeper, modification of deep, queue functions, now with even more queue
   deeper = require "lib.deeper"
+
   -- tesound, sound playback
   te = require"lib.tesound"
+
   -- json handler
   json = require "lib.json"
+
   -- lovebird,debugging console
   if not release then 
     lovebird = require "lib.lovebird"
   else
     lovebird = require "lib.lovebirdstripped"
   end
+
   -- entity manager
   em = require "lib.entityman"
+
   -- spritesheet manager
   ez = require "lib.ezanim"
+
   -- tween manager
   flux = require "lib.flux"
-  -- onscreen controls
-  faux = require "lib.fauxtroller"
+
   -- set size of window
-  if false then
-  screenWidth, screenHeight = love.window.getDesktopDimensions()
-  else
   windowWidth, windowHeight = 800, 480
-  end
   
   -- set rescaling filter
   love.graphics.setDefaultFilter("nearest", "nearest")
@@ -88,8 +91,8 @@ function love.load()
     {1,0,77/255},
     {1,0,0}
   }
-  --setup input
 
+  --setup input
   maininput = baton.new {
       controls = {
         left = {"key:left",  "axis:leftx-", "button:dpleft"},
@@ -113,7 +116,6 @@ function love.load()
         joystick = love.joystick.getJoysticks()[1],
     }
 
-
   entities = {}
   -- init states
   toswap = nil
@@ -121,15 +123,13 @@ function love.load()
   states = {
     songselect = require "states.songselect",
     game = require "states.game",
-    
   }
 
   gs.registerEvents()
-  
   gs.switch(states.songselect)
-  
-
 end
+
+
 function love.update(d)
   cs = gs.current()
   shuv.check()
@@ -142,6 +142,7 @@ function love.update(d)
     dt = 2
   end
 end
+
 
 function love.resize(w, h)
   push:resize(w, h)

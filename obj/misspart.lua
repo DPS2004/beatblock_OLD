@@ -18,9 +18,12 @@ function obj.update(dt)
   obj.y = p1[2]
 end
 
+
 function obj.draw()
   love.graphics.setColor(1,1,1,1)
   love.graphics.draw(obj.spr,obj.x,obj.y,0,1,1,8,8)
 
 end
+
+
 return obj

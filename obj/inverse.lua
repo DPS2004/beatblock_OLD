@@ -25,7 +25,6 @@ function obj.update(dt)
       if cs.beatsounds then
       te.play("click.ogg","static")
       end
-
     else
       local mp = em.init("misspart",200,120)
       mp.angle = obj.angle
@@ -33,14 +32,15 @@ function obj.update(dt)
       mp.update()
       obj.delete = true
       pq = pq .. "   player missed!"
-      
     end
   end
 end
 
+
 function obj.draw()
   love.graphics.setColor(1,1,1,1)
   love.graphics.draw(obj.spr,obj.x,obj.y,0,1,1,8,8)
-
 end
+
+
 return obj

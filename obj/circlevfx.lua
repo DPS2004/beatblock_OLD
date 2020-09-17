@@ -5,7 +5,6 @@ local obj = {
   y=120,
   rad=1,
   setup = false,
-
   delt = 5,
 }
 
@@ -25,10 +24,13 @@ function obj.update(dt)
   end
 end
 
+
 function obj.draw()
   love.graphics.setLineWidth(1)
   love.graphics.setColor(0,0,0,1)
   love.graphics.circle("line",obj.x,obj.y,obj.rad)
 
 end
+
+
 return obj

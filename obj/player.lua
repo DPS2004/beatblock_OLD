@@ -26,11 +26,8 @@ function obj.update(dt)
       obj.angle = obj.angle + 7
     end
   end
-      
+
   obj.bobi = obj.bobi + 0.05
-  
-  
-  
 end
 
 function obj.draw()
@@ -46,14 +43,10 @@ function obj.draw()
   love.graphics.line(p2[1],p2[2],p4[1],p4[2])
   helpers.color(1)
   love.graphics.draw(obj.spr1,p2[1],p2[2]+(math.sin(obj.bobi)*2),0,1,1,16,16)
-  
-  
-  
 
-  
+
   love.graphics.draw(obj.spr2,p1[1],p1[2],math.rad(obj.angle),1,1,24,14)
-
-
-
 end
+
+
 return obj

@@ -1,11 +1,14 @@
 local shuv = {
   scale = 2,
-  update = true}
+  update = true
+}
+
+
 function shuv.init()
   shuv.canvas = love.graphics.newCanvas(400,240)
-  
-  
 end
+
+
 function shuv.check()
   if not ismobile then
     if maininput:pressed("k1") then
@@ -19,25 +22,23 @@ function shuv.check()
       shuv.update = true
     end
   end
+
   if shuv.update then
     shuv.update = false
     love.window.setMode(400*shuv.scale, 240*shuv.scale)
-    
   end
 end
+
+
 function shuv.start()
   love.graphics.setCanvas(shuv.canvas)
-
 end
+
 
 function shuv.finish()
   love.graphics.setCanvas()
   love.graphics.draw(shuv.canvas,0,0,0,shuv.scale,shuv.scale)
   helpers.doswap()
 end
-
-
-
-
 
 return shuv

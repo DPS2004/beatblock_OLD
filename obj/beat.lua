@@ -33,10 +33,10 @@ function obj.update(dt)
       mp.update()
       obj.delete = true
       pq = pq .. "   player missed!"
-      
     end
   end
 end
+
 
 function obj.draw()
   love.graphics.setColor(1,1,1,1)
