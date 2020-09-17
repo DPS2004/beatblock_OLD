@@ -21,17 +21,11 @@ function helpers.color(c)
 end
 
 function helpers.read(path)
-    local file = io.open(path, "rb") -- r read mode and b binary mode
-    if not file then return nil end
-    local content = file:read "*a" -- *a or *all reads the whole file
-    file:close()
+    local content = love.filesystem.read(path) -- r read mode and b binary mode
     return content
 end
 function helpers.write(path, data)
-    local file = io.open(path, "w") -- r read mode and b binary mode
-    local content = file:write(data)
-    file:close()
-    return content
+  love.filesystem.write(path,data)
 end
 
 function helpers.round(i,fb)

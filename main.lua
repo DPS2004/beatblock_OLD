@@ -1,5 +1,6 @@
 function love.load()
   dt = 1
+  clevel = "cannery.json"
   gamename = "crank rhythm game"
   release = false
   ismobile = false
@@ -7,7 +8,8 @@ function love.load()
   mx,my = 0,0
   ispush = false
   -- font is https://tepokato.itch.io/axolotl-font
-  font = love.graphics.newFont("assets/Axolotl.ttf", 16)
+  -- https://www.dafont.com/digital-disco.font
+  font = love.graphics.newFont("assets/DigitalDisco-Thin.ttf", 16)
   font:setFilter("nearest", "nearest",0)
   love.graphics.setFont(font)
   -- accurate deltatime
@@ -18,9 +20,9 @@ function love.load()
   -- gamestate, manages gamestates
   gs = require "lib.gamestate"
   -- baton, manages input handling
-  if not ismobile then
+
     baton = require "lib.baton"
-  end
+
   shuv = require "lib.shuv"
   shuv.init()
   -- custom functions, snippets, etc
@@ -87,7 +89,7 @@ function love.load()
     {1,0,0}
   }
   --setup input
-  if not ismobile then
+
   maininput = baton.new {
       controls = {
         left = {"key:left",  "axis:leftx-", "button:dpleft"},
@@ -95,7 +97,7 @@ function love.load()
         up = {"key:up", "key:w", "axis:lefty-", "button:dpup"},
         down = {"key:down", "key:s", "axis:lefty+", "button:dpdown"},
         accept = {"key:space", "button:a"},
-        back = {"key:z", "button:b"},
+        back = {"key:escape", "button:b"},
         s = {"key:s"},
         x = {"key:x"},
         a = {"key:a"},
@@ -110,7 +112,7 @@ function love.load()
       },
         joystick = love.joystick.getJoysticks()[1],
     }
-  end
+
   -- init global objects
   templates = {
     enemy = ez.newtemplate("game/rninja.png",8,10),
@@ -123,13 +125,13 @@ function love.load()
   states = {
     bootscreen = require "states.bootscreen",
     menu = require "states.menu",
-    assault = require "states.assault",
+    songselect = require "states.songselect",
     game = require "states.game",
     
   }
 
   gs.registerEvents()
-  gs.switch(states.game)
+  gs.switch(states.songselect)
   
 
 end

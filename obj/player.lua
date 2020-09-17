@@ -44,7 +44,7 @@ function obj.draw()
 
   love.graphics.line(p2[1],p2[2],p3[1],p3[2])
   love.graphics.line(p2[1],p2[2],p4[1],p4[2])
-    helpers.color(1)
+  helpers.color(1)
   love.graphics.draw(obj.spr1,p2[1],p2[2]+(math.sin(obj.bobi)*2),0,1,1,16,16)
   
   
