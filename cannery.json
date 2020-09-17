@@ -1,6 +1,7 @@
 {
   "bpm": 176,
   "offset": 12,
+  "startbeat": 0,
   "events": [
     {
       "type": "play",
@@ -16,7 +17,7 @@
     {
       "type": "beat",
       "time": 2,
-      "speedmult": 1,
+      "speedmult": 1.5,
       "angle": 0
     },
     {
@@ -47,7 +48,7 @@
     {
       "type": "beat",
       "time": 6,
-      "speedmult": 1,
+      "speedmult": 1.5,
       "angle": 90
     },
     {
@@ -78,7 +79,7 @@
     {
       "type": "beat",
       "time": 10,
-      "speedmult": 1,
+      "speedmult": 1.5,
       "angle": 180
     },
     {
@@ -109,7 +110,7 @@
     {
       "type": "beat",
       "time": 14,
-      "speedmult": 1,
+      "speedmult": 1.5,
       "angle": 270
     },
     {
@@ -487,7 +488,110 @@
       "time": 48,
       "enable": false,
       "intensity": 20000
-    }
+    },
+    {
+      "type": "beat",
+      "time": 48,
+      "speedmult": 1,
+      "angle": 0
+    },
+    {
+      "type": "beat",
+      "time": 49.5,
+      "speedmult": 1,
+      "angle": 0
+    },
+    {
+      "type": "beat",
+      "time": 50,
+      "speedmult": 2,
+      "angle": -20
+    },
+    {
+      "type": "beat",
+      "time": 50.5,
+      "speedmult": 2,
+      "angle": -40
+    },
+    {
+      "type": "beat",
+      "time": 51,
+      "speedmult": 2,
+      "angle": -60
+    },
+    {
+      "type": "beat",
+      "time": 51.5,
+      "speedmult": 2,
+      "angle": -80
+    },
+    {
+      "type": "beat",
+      "time": 53.5,
+      "speedmult": 2,
+      "angle": 0
+    },
+    {
+      "type": "beat",
+      "time": 54,
+      "speedmult": 2,
+      "angle": 20
+    },
+    {
+      "type": "beat",
+      "time": 54.5,
+      "speedmult": 2,
+      "angle": 40
+    },
+    {
+      "type": "beat",
+      "time": 55,
+      "speedmult": 2,
+      "angle": 60
+    },
+    {
+      "type": "beat",
+      "time": 55.5,
+      "speedmult": 2,
+      "angle": 80
+    },
+    {
+      "type": "beat",
+      "time": 56,
+      "speedmult": 2,
+      "angle": 100
+    },
+    {
+      "type": "beat",
+      "time": 57.5,
+      "speedmult": 2,
+      "angle": 180
+    },
+    {
+      "type": "beat",
+      "time": 58,
+      "speedmult": 2,
+      "angle": 160
+    },
+    {
+      "type": "beat",
+      "time": 58.5,
+      "speedmult": 2,
+      "angle": 140
+    },
+    {
+      "type": "beat",
+      "time": 59,
+      "speedmult": 2,
+      "angle": 120
+    },
+    {
+      "type": "beat",
+      "time": 59.5,
+      "speedmult": 2,
+      "angle": 100
+    },
+
   ],
   "increment": 0.5,
   "pdiv": 2,
