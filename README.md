@@ -2,7 +2,7 @@
 Game with crank and music. Some fancy rhythm game.
 
 ## How to Play
-1. Download and install [LOVE](https://studio.zerobrane.com/) and [ZeroBrane Studio](https://studio.zerobrane.com/).
+1. Download and install [LOVE](https://love2d.org/) and [ZeroBrane Studio](https://studio.zerobrane.com/).
 2. Clone this repository: `git clone https://github.com/DPS2004/crankgame.git`, or click "Code > Download ZIP"
 3. Open ZeroBrane and put the game's master file into ZeroBrane's sidebar.
 4. On the top bar, click Project > Lua Interpreter > Love.
