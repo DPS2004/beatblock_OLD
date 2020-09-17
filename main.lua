@@ -113,18 +113,12 @@ function love.load()
         joystick = love.joystick.getJoysticks()[1],
     }
 
-  -- init global objects
-  templates = {
-    enemy = ez.newtemplate("game/rninja.png",8,10),
-    corpse = ez.newtemplate("game/dninja.png",10,4,false)
-    }
+
   entities = {}
   -- init states
   toswap = nil
   newswap = false
   states = {
-    bootscreen = require "states.bootscreen",
-    menu = require "states.menu",
     songselect = require "states.songselect",
     game = require "states.game",
     
