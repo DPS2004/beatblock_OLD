@@ -23,7 +23,11 @@ function obj.update(dt)
       obj.delete = true
       pq = pq .. "   player hit!"
       if cs.beatsounds then
-      te.play("click.ogg","static")
+        te.play("click.ogg","static")
+      end
+      if cs.p.cemotion == "miss" then
+        cs.p.emotimer = 0
+        cs.p.cemotion = "idle"
       end
     else
       local mp = em.init("misspart",200,120)
@@ -32,6 +36,8 @@ function obj.update(dt)
       mp.update()
       obj.delete = true
       pq = pq .. "   player missed!"
+      cs.p.emotimer = 100
+      cs.p.cemotion = "miss"
     end
   end
 end
