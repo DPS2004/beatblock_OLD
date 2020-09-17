@@ -95,5 +95,8 @@ function helpers.doswap()
   end
 end
 
+function helpers.lerp(a, b, t)
+  return a + (b - a) * t
+end
 
 return helpers
