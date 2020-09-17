@@ -3,13 +3,11 @@ local em = {
 }
 
 function em.init(en,x,y)
-  if release then
+
     local path = "obj/" .. en .. ".lua"
     local code = love.filesystem.load(path)
-    new = code()
-  else
-    new = dofile("obj/" .. en .. ".lua")
-  end
+    local new = code()
+
 
   new.x = x
   new.y = y
