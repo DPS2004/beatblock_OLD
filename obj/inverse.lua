@@ -4,6 +4,9 @@ local obj = {
   x=200,
   y=120,
   angle=0,
+  startangle=0,
+  endangle=0,
+  movetime=0,
   hb=0,
   smult=1,
   spr = love.graphics.newImage("assets/game/inverse.png")
@@ -13,7 +16,17 @@ obj.oy = obj.y
 
 
 function obj.update(dt)
-  obj.angle = obj.angle % 360
+  -- How long it takes to move from beat spawn to hitting the paddle
+  if obj.movetime == 0 then
+    obj.movetime = obj.hb - cs.cbeat
+  end
+
+  -- Progress is a number from 0 (spawn) to 1 (paddle)
+  local progress = 1 - ((obj.hb - cs.cbeat) / obj.movetime)
+
+  -- Interpolate angle between startangle and endangle based on progress. Beat should be at endangle when it hits the paddle.
+  obj.angle = helpers.clamp(helpers.lerp(obj.startangle, obj.endangle, progress), obj.startangle, obj.endangle) % 360
+  
   local p1 = helpers.rotate(((obj.hb - cs.cbeat)*cs.level.speed*obj.smult*-1)+cs.extend+cs.length-24,obj.angle,obj.ox,obj.oy)
   obj.x = p1[1]
   obj.y = p1[2]
