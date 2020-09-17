@@ -8,7 +8,11 @@ local obj = {
   bobi=0,
   angle = 0,
   extend = 0,
-  cmode = true
+  paddle_size = 200,
+  handle_size = 15,
+  paddle_width = 10,
+  paddle_distance = 30,
+  cmode = true,
 }
 
 
@@ -18,7 +22,6 @@ function obj.update(dt)
   end
   if obj.cmode then
     obj.angle = 0-math.deg(math.atan2(obj.y - love.mouse.getY()/shuv.scale, love.mouse.getX()/shuv.scale - obj.x)) +90
-   -- print(math.atan2(obj.y - love.mouse.getY(), love.mouse.getX() - obj.x))
   else
     if maininput:down("left") then
       obj.angle = obj.angle - 7
@@ -32,20 +35,45 @@ end
 
 function obj.draw()
   love.graphics.setLineWidth(2)
-  local p1 = helpers.rotate(cs.length - 12+cs.extend,obj.angle,obj.x,obj.y)
-  local p2 = helpers.rotate(2+cs.extend/2,obj.angle,obj.x,obj.y)
-  local p3 = helpers.rotate(cs.length - 12+cs.extend,obj.angle+16,obj.x,obj.y)
-  local p4 = helpers.rotate(cs.length - 12+cs.extend,obj.angle-16,obj.x,obj.y)
-
   helpers.color(2)
 
-  love.graphics.line(p2[1],p2[2],p3[1],p3[2])
-  love.graphics.line(p2[1],p2[2],p4[1],p4[2])
+  -- draw the paddle
+  love.graphics.push()
+    love.graphics.translate(obj.x, obj.y)
+    love.graphics.rotate((obj.angle - 90) * math.pi / 180)
+
+    -- draw the lines connecting the player to the paddle
+    love.graphics.line(
+      0, 0,
+      obj.paddle_distance * math.cos(obj.handle_size * math.pi / 180),
+      obj.paddle_distance * math.sin(obj.handle_size * math.pi / 180)
+    )
+    love.graphics.line(
+      0, 0,
+      obj.paddle_distance * math.cos(-obj.handle_size * math.pi / 180),
+      obj.paddle_distance * math.sin(-obj.handle_size * math.pi / 180)
+    )
+
+    -- draw the paddle
+    local paddle_angle = obj.paddle_size / 2 * math.pi / 180
+    love.graphics.arc('line', 'open', 0, 0, obj.paddle_distance, paddle_angle, -paddle_angle)
+    love.graphics.arc('line', 'open', 0, 0, obj.paddle_distance + obj.paddle_width, paddle_angle, -paddle_angle)
+    love.graphics.line(
+      obj.paddle_distance * math.cos(paddle_angle),
+      obj.paddle_distance * math.sin(paddle_angle),
+      (obj.paddle_distance + obj.paddle_width) * math.cos(paddle_angle),
+      (obj.paddle_distance + obj.paddle_width) * math.sin(paddle_angle)
+    )
+    love.graphics.line(
+      obj.paddle_distance * math.cos(-paddle_angle),
+      obj.paddle_distance * math.sin(-paddle_angle),
+      (obj.paddle_distance + obj.paddle_width) * math.cos(-paddle_angle),
+      (obj.paddle_distance + obj.paddle_width) * math.sin(-paddle_angle)
+    )
+  love.graphics.pop()
+
   helpers.color(1)
-  love.graphics.draw(obj.spr1,p2[1],p2[2]+(math.sin(obj.bobi)*2),0,1,1,16,16)
-
-
-  love.graphics.draw(obj.spr2,p1[1],p1[2],math.rad(obj.angle),1,1,24,14)
+  love.graphics.draw(obj.spr1,obj.x,obj.y+(math.sin(obj.bobi)*2),0,1,1,16,16)
 end
 
 
