@@ -3,12 +3,13 @@ function st.init()
   st.p = em.init("player",200,120)
 
   st.canv = love.graphics.newCanvas(400,240)
-  st.level = json.decode(helpers.read("bappy.json"))
+  st.level = json.decode(helpers.read("inversetest.json"))
   st.offset = st.level.offset
   st.cbeat = -1-st.offset
   st.length = 42
   st.pt = 0
   st.on = true
+  st.beatsounds = false
   st.extend = 0
   for i,v in ipairs(st.level.events) do
     v.played = false
@@ -60,6 +61,15 @@ function st.update()
         newbeat.hb = v.time
         newbeat.smult = v.speedmult
         pq = pq .. "    ".. "spawn here!"
+      end
+      if v.type == "inverse" then
+        v.played = true
+        local newbeat = em.init("inverse",200,120)
+        newbeat.angle = v.angle
+        newbeat.hb = v.time
+        newbeat.smult = v.speedmult
+        pq = pq .. "    ".. "inverse here!"
+        newbeat.update()
       end
       
     end
@@ -147,7 +157,7 @@ function st.draw()
   love.graphics.draw(st.canv)
   --push:finish()
   if pq ~= "" then
-    print(helpers.round(st.cbeat*12,true)/12 .. pq)
+    print(helpers.round(st.cbeat*6,true)/6 .. pq)
   end
   shuv.finish()
 end

@@ -15,6 +15,7 @@ function em.init(en,x,y)
   new.y = y
   new.name = en
   table.insert(entities,new)
+
   return entities[#entities]
 end
 function em.update(dt)
