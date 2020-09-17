@@ -3,11 +3,9 @@ local em = {
 }
 
 function em.init(en,x,y)
-
-    local path = "obj/" .. en .. ".lua"
-    local code = love.filesystem.load(path)
-    local new = code()
-
+  local path = "obj/" .. en .. ".lua"
+  local code = love.filesystem.load(path)
+  local new = code()
 
   new.x = x
   new.y = y
@@ -16,13 +14,17 @@ function em.init(en,x,y)
 
   return entities[#entities]
 end
+
+
 function em.update(dt)
   if not paused then
-  for i,v in ipairs(entities) do
-    em.deep.queue(v.uplayer, em.update2, v, dt)
-  end
+    for i,v in ipairs(entities) do
+      em.deep.queue(v.uplayer, em.update2, v, dt)
+    end
   end
 end
+
+
 function em.draw()
   for i, v in ipairs(entities) do
     em.deep.queue(v.layer, v.draw)
@@ -33,10 +35,12 @@ function em.draw()
       table.remove(entities, i)
     end
   end
-  
 end
+
+
 function em.update2(v,dt)
   v.update(dt)
 end
+
 
 return em

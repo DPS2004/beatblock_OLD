@@ -18,7 +18,7 @@ function obj.update(dt)
   obj.x = p1[1]
   obj.y = p1[2]
   if (obj.hb - cs.cbeat) < 0 then
-    if helpers.angdistance(obj.angle,cs.p.angle) <=35 then
+    if helpers.angdistance(obj.angle,cs.p.angle) <= cs.p.paddle_size / 2 then --TODO REPLACE WITH PLAYER PADDLE SIZE
       em.init("hitpart",obj.x,obj.y)
       obj.delete = true
       pq = pq .. "   player hit!"
@@ -33,10 +33,10 @@ function obj.update(dt)
       mp.update()
       obj.delete = true
       pq = pq .. "   player missed!"
-      
     end
   end
 end
+
 
 function obj.draw()
   love.graphics.setColor(1,1,1,1)
