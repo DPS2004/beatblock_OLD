@@ -8,10 +8,10 @@ local obj = {
   bobi=0,
   angle = 0,
   extend = 0,
-  paddle_size = 200,
+  paddle_size = 70,
   handle_size = 15,
   paddle_width = 10,
-  paddle_distance = 30,
+  paddle_distance = 25,
   cmode = true,
 }
 

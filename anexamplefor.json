@@ -7,7 +7,12 @@
       "time": 0,
       "file": "anexamplefor.ogg"
     },
-    {"type": "multipulse", "delay": 4,"reps": 100,"time": 0},
+    {
+      "type": "multipulse",
+      "delay": 4,
+      "reps": 100,
+      "time": 0
+    },
     
     {"type": "beat","speedmult": 1,"angle": -45,   "time": 0},
     {"type": "beat","speedmult": 1,"angle": 45,   "time": 0.5},
