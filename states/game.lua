@@ -1,9 +1,15 @@
 local st = {}
 function st.init()
+
+
+
+end
+
+function st.enter(prev)
   st.p = em.init("player",200,120)
 
   st.canv = love.graphics.newCanvas(400,240)
-  st.level = json.decode(helpers.read("inversetest.json"))
+  st.level = json.decode(helpers.read(clevel))
   st.offset = st.level.offset
   st.cbeat = -1-st.offset
   st.length = 42
@@ -19,16 +25,12 @@ function st.init()
   st.vfx.homint = 20000
   st.lastsigbeat = math.floor(st.cbeat)
 
-
-end
-
-function st.enter(prev)
-  
-
   
 end
 function st.leave()
-  
+  entities = {}
+
+  te.stop("music")
 end
 
 function st.resume()
@@ -77,7 +79,7 @@ function st.update()
     if v.time <= st.cbeat and v.played == false then
       v.played = true
       if v.type == "play" then
-        te.play(v.file,"stream")
+        te.play(v.file,"stream","music")
         pq = pq .. "    ".. "now playing ".. v.file
       end
       if v.type == "multipulse" then
@@ -112,18 +114,11 @@ function st.update()
     end
   end
 
+
   if maininput:pressed("back") then
-    table.insert(st.level.events,{time=helpers.round((st.cbeat-0.25)/st.level.increment,true)*st.level.increment,type="placeholder"})
+    helpers.swap(states.songselect)
   end
-  if maininput:pressed("x") then
-    table.insert(st.level.events,{time=helpers.round((st.cbeat-0.25)/st.level.increment,true)*st.level.increment,type="beat",angle=0,speedmult=1})
-  end
-  if maininput:pressed("c") then
-    table.insert(st.level.events,{time=helpers.round((st.cbeat-0.25)/st.level.increment,true)*st.level.increment,type="cirlce",delta=10,x=200,y=120})
-  end
-  if maininput:pressed("s") then
-    helpers.write("output.json",json.encode(st.level))
-  end
+
   
   
   flux.update(1)
@@ -138,7 +133,7 @@ end
 function st.draw()
   --push:start()
   shuv.start()
-
+  
   love.graphics.rectangle("fill",0,0,400,240)
   love.graphics.setCanvas(st.canv)
     if not st.vfx.hom then

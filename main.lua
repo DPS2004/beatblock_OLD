@@ -7,7 +7,8 @@ function love.load()
   mx,my = 0,0
   ispush = false
   -- font is https://tepokato.itch.io/axolotl-font
-  font = love.graphics.newFont("assets/Axolotl.ttf", 16)
+  -- https://www.dafont.com/digital-disco.font
+  font = love.graphics.newFont("assets/DigitalDisco-Thin.ttf", 16)
   font:setFilter("nearest", "nearest",0)
   love.graphics.setFont(font)
   -- accurate deltatime
@@ -95,7 +96,7 @@ function love.load()
         up = {"key:up", "key:w", "axis:lefty-", "button:dpup"},
         down = {"key:down", "key:s", "axis:lefty+", "button:dpdown"},
         accept = {"key:space", "button:a"},
-        back = {"key:z", "button:b"},
+        back = {"key:escape", "button:b"},
         s = {"key:s"},
         x = {"key:x"},
         a = {"key:a"},
@@ -123,13 +124,13 @@ function love.load()
   states = {
     bootscreen = require "states.bootscreen",
     menu = require "states.menu",
-    assault = require "states.assault",
+    songselect = require "states.songselect",
     game = require "states.game",
     
   }
 
   gs.registerEvents()
-  gs.switch(states.game)
+  gs.switch(states.songselect)
   
 
 end

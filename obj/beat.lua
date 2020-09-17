@@ -18,7 +18,7 @@ function obj.update(dt)
   obj.x = p1[1]
   obj.y = p1[2]
   if (obj.hb - cs.cbeat) < 0 then
-    if helpers.angdistance(obj.angle,cs.p.angle) <=42 then
+    if helpers.angdistance(obj.angle,cs.p.angle) <=35 then
       em.init("hitpart",obj.x,obj.y)
       obj.delete = true
       pq = pq .. "   player hit!"
