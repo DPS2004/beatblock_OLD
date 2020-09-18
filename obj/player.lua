@@ -29,16 +29,17 @@ function obj.update(dt)
   if maininput:pressed("a") then
     obj.cmode = not obj.cmode
   end
-  if obj.cmode then
-    obj.angle = 0-math.deg(math.atan2(obj.y - love.mouse.getY()/shuv.scale, love.mouse.getX()/shuv.scale - obj.x)) +90
-  else
-    if maininput:down("left") then
-      obj.angle = obj.angle - 7
-    elseif maininput:down("right") then
-      obj.angle = obj.angle + 7
+  if not cs.autoplay then
+    if obj.cmode then
+      obj.angle = 0-math.deg(math.atan2(obj.y - love.mouse.getY()/shuv.scale, love.mouse.getX()/shuv.scale - obj.x)) +90
+    else
+      if maininput:down("left") then
+        obj.angle = obj.angle - 7
+      elseif maininput:down("right") then
+        obj.angle = obj.angle + 7
+      end
     end
   end
-
   obj.bobi = obj.bobi + 0.03
 end
 
