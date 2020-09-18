@@ -1,7 +1,7 @@
 function love.load()
   dt = 1
   clevel = "cannery.json"
-  gamename = "crank rhythm game"
+  gamename = "BeatBlock"
   release = false
   ismobile = false
   pressed = 0
@@ -22,6 +22,9 @@ function love.load()
 
   -- baton, manages input handling
   baton = require "lib.baton"
+
+  -- lovebpm, syncs stuff to music
+  lovebpm = require "lib.lovebpm"
 
   shuv = require "lib.shuv"
   shuv.init()

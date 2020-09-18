@@ -22,6 +22,7 @@ local obj = {
 
 
 function obj.update(dt)
+  obj.angle = obj.angle % 360
   obj.emotimer = obj.emotimer - 1
   if obj.emotimer <= 0 then
     obj.cemotion = "idle"
