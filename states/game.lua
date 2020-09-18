@@ -45,13 +45,25 @@ function st.update()
   pq = ""
   maininput:update()
   lovebird.update()
-  st.cbeat = st.cbeat + (st.level.bpm/60) * love.timer.getDelta()
-  st.pt = st.pt + (st.level.bpm/60) * love.timer.getDelta()
+  if st.source == nil then
+    st.cbeat = st.cbeat + (st.level.bpm/60) * love.timer.getDelta()
+  else
+    st.source:update()
+    local b,sb = st.source:getBeat(1)
+    st.cbeat = b+sb
+    --print(b+sb)
+  end
 
   -- read the level
   for i,v in ipairs(st.level.events) do
   -- preload events such as beats
     if v.time <= st.cbeat+st.offset and v.played == false then
+      if v.type == "play" and st.sounddata == nil then
+        
+        st.sounddata = love.sound.newSoundData(v.file)
+       pq = pq .. "      loaded sounddata"
+
+      end
       if v.type == "beat" then
         v.played = true
         local newbeat = em.init("beat",200,120)
@@ -94,11 +106,16 @@ function st.update()
 
     -- load other events on the beat
     if v.time <= st.cbeat and v.played == false then
+      
       v.played = true
       if v.type == "play" then
-        st.source = love.audio.newSource(v.file,"stream")
-        st.source:play()
-        st.source:seek(((60/st.level.bpm)*st.cbeat))
+        st.source = lovebpm.newTrack()
+          :load(st.sounddata)
+          :setBPM(st.level.bpm)
+          :setLooping(false)
+          :play()
+        
+        st.source:setBeat(st.cbeat)
         pq = pq .. "    ".. "now playing ".. v.file
       end
       
