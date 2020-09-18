@@ -20,5 +20,5 @@ Game with crank and music. Some fancy rhythm game.
 - [X] Redo paddle graphics to allow for above
 - [X] Add better feedback for missing
 - [X] Confirm sync issues
-- [ ] fix them lol
+- [X] fix them lol
 - [ ] stop instant direction swapping
