@@ -19,5 +19,6 @@ Game with crank and music. Some fancy rhythm game.
 - [X] Change paddle size mid level
 - [X] Redo paddle graphics to allow for above
 - [X] Add better feedback for missing
-- [ ] Check if sync is even bad, if so fix it
+- [X] Confirm sync issues
+- [ ] fix them lol
 - [ ] stop instant direction swapping
