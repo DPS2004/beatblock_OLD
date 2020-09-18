@@ -9,13 +9,18 @@ local obj = {
   hb=0,
   movetime=0,
   smult=1,
+  inverse = false,
   spr = love.graphics.newImage("assets/game/square.png"),
+  spr2 = love.graphics.newImage("assets/game/inverse.png")
 }
 obj.ox = obj.x
 obj.oy = obj.y
 
 
 function obj.update(dt)
+  if obj.inverse then
+    obj.layer = 1
+  end
   -- How long it takes to move from beat spawn to hitting the paddle
   if obj.movetime == 0 then
     obj.movetime = obj.hb - cs.cbeat
@@ -26,12 +31,16 @@ function obj.update(dt)
 
   -- Interpolate angle between startangle and endangle based on progress. Beat should be at endangle when it hits the paddle.
   obj.angle = helpers.clamp(helpers.lerp(obj.startangle, obj.endangle, progress), obj.startangle, obj.endangle) % 360
-
-  local p1 = helpers.rotate((obj.hb - cs.cbeat)*cs.level.speed*obj.smult+cs.extend+cs.length,obj.angle,obj.ox,obj.oy)
+  local p1 = nil
+  if obj.inverse then
+    p1 = helpers.rotate(((obj.hb - cs.cbeat)*cs.level.speed*obj.smult*-1)+cs.extend+cs.length-24,obj.angle,obj.ox,obj.oy)
+  else
+    p1 = helpers.rotate((obj.hb - cs.cbeat)*cs.level.speed*obj.smult+cs.extend+cs.length,obj.angle,obj.ox,obj.oy)
+  end
   obj.x = p1[1]
   obj.y = p1[2]
   if (obj.hb - cs.cbeat) < 0 then
-    if helpers.angdistance(obj.angle,cs.p.angle) <= cs.p.paddle_size / 2 then --TODO REPLACE WITH PLAYER PADDLE SIZE
+    if helpers.angdistance(obj.angle,cs.p.angle) <= cs.p.paddle_size / 2 then 
       em.init("hitpart",obj.x,obj.y)
       obj.delete = true
       pq = pq .. "   player hit!"
@@ -60,7 +69,11 @@ end
 
 function obj.draw()
   love.graphics.setColor(1,1,1,1)
-  love.graphics.draw(obj.spr,obj.x,obj.y,0,1,1,8,8)
+  if obj.inverse then
+    love.graphics.draw(obj.spr2,obj.x,obj.y,0,1,1,8,8)
+  else
+    love.graphics.draw(obj.spr,obj.x,obj.y,0,1,1,8,8)
+  end
 
 end
 return obj

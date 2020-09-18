@@ -12,14 +12,15 @@ function st.enter(prev)
   st.offset = st.level.offset
   st.startbeat = st.level.startbeat or 0
   st.cbeat = 0-st.offset +st.startbeat
-
+  st.autoplay = false
   st.length = 42
   st.pt = 0
   st.on = true
-  st.beatsounds = false
+  st.beatsounds = true
   st.extend = 0
   for i,v in ipairs(st.level.events) do
     v.played = false
+    v.autoplayed = false
   end
   st.vfx = {}
   st.vfx.hom = false
@@ -64,16 +65,32 @@ function st.update()
 
       if v.type == "inverse" then
         v.played = true
-        local newbeat = em.init("inverse",200,120)
+        local newbeat = em.init("beat",200,120)
         newbeat.angle = v.angle
         newbeat.startangle = v.angle
-        newbeat.endangle = v.endangle or v.angle
+        newbeat.endangle = v.endangle or v.angle -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
         newbeat.hb = v.time
         newbeat.smult = v.speedmult
-        pq = pq .. "    ".. "inverse here!"
+        newbeat.inverse = true
+        pq = pq .. "    ".. "spawn here!"
         newbeat.update()
       end
+
     end
+          -- autoplay
+      if v.time-0.25 <= st.cbeat and st.autoplay and v.autoplayed == false then
+        if v.type == "beat" or v.type == "inverse" then
+          v.autoplayed = true
+          if st.ce ~= nil then
+            st.ce:stop()
+            st.ce = nil
+          end
+          st.ce = flux.to(st.p,15,{angle = v.angle}):ease("outExpo")
+          pq = pq..("     easing to "..v.angle)
+          
+        end
+      end
+
 
     -- load other events on the beat
     if v.time <= st.cbeat and v.played == false then
@@ -84,7 +101,14 @@ function st.update()
         st.source:seek(((60/st.level.bpm)*st.cbeat))
         pq = pq .. "    ".. "now playing ".. v.file
       end
+      
+      if v.type == "width" then
 
+        
+        flux.to(st.p,v.duration,{paddle_size=v.newwidth}):ease("linear")
+        pq = pq.. "    width set to " .. v.newwidth
+      end
+      
       if v.type == "multipulse" then
         pq = pq.. "    pulsing, generating other pulses"
         st.extend = 10

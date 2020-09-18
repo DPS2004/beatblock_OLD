@@ -10,13 +10,14 @@ Game with crank and music. Some fancy rhythm game.
 
 ## To-Do
 - [x] SCRUBBING
-- [ ] Add starting angle parameter for notes (thanks samario)
+- [X] Add starting angle parameter for notes
 - [ ] Show ranks on levels
 - [ ] Make more levels
 - [ ] Camera controls (again thanks samario)
 - [ ] BG support
 - [ ] Filesystem cleanup
-- [ ] Change paddle size mid level (miner)
-- [ ] Redo paddle graphics to allow for above
-- [ ] Add better feedback for missing
+- [X] Change paddle size mid level
+- [X] Redo paddle graphics to allow for above
+- [X] Add better feedback for missing
 - [ ] Check if sync is even bad, if so fix it
+- [ ] stop instant direction swapping
