@@ -32,7 +32,9 @@ end
 function st.leave()
   entities = {}
   st.source:stop()
+  st.source = nil
   te.stop("music")
+  st.sounddata = nil
 end
 
 
