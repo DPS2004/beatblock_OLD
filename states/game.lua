@@ -55,6 +55,8 @@ function st.update()
         v.played = true
         local newbeat = em.init("beat",200,120)
         newbeat.angle = v.angle
+        newbeat.startangle = v.angle
+        newbeat.endangle = v.endangle or v.angle -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
         newbeat.hb = v.time
         newbeat.smult = v.speedmult
         pq = pq .. "    ".. "spawn here!"
@@ -64,6 +66,8 @@ function st.update()
         v.played = true
         local newbeat = em.init("inverse",200,120)
         newbeat.angle = v.angle
+        newbeat.startangle = v.angle
+        newbeat.endangle = v.endangle or v.angle
         newbeat.hb = v.time
         newbeat.smult = v.speedmult
         pq = pq .. "    ".. "inverse here!"
