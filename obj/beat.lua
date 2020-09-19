@@ -137,18 +137,47 @@ function obj.draw()
       love.graphics.draw(obj.spr,obj.x,obj.y,0,1,1,8,8)
     end
   else
-    love.graphics.draw(obj.spr3,obj.x,obj.y,0,1,1,8,8)
-    local p3 = helpers.rotate(7,helpers.anglepoints(obj.x,obj.y,obj.x2,obj.y2)-90,obj.x,obj.y)
-    local p4 = helpers.rotate(7,helpers.anglepoints(obj.x,obj.y,obj.x2,obj.y2)-90,obj.x2,obj.y2)
-    local p5 = helpers.rotate(7,helpers.anglepoints(obj.x,obj.y,obj.x2,obj.y2)+90,obj.x,obj.y)
-    local p6 = helpers.rotate(7,helpers.anglepoints(obj.x,obj.y,obj.x2,obj.y2)+90,obj.x2,obj.y2)
-    
-    --print(helpers.anglepoints(obj.x,obj.y,obj.x2,obj.y2))
-    helpers.color(2)
-    love.graphics.setLineWidth(2)
-    love.graphics.line(p3[1],p3[2],p4[1],p4[2])
-    love.graphics.line(p5[1],p5[2],p6[1],p6[2])
+
+    -- distances to the beginning and the end of the hold
+    local len1 = helpers.distance({obj.ox, obj.oy}, {obj.x, obj.y})
+    local len2 = helpers.distance({obj.ox, obj.oy}, {obj.x2, obj.y2})
+    local points = {}
+
+    -- how many segments to draw
+    -- based on the beat's angles by default, but can be overridden in the json
+    local segments = obj.segments or (math.abs(obj.angle2 - obj.angle) / 8 + 1)
+    for i = 0, segments, 1 do
+      local t = i / segments
+
+      -- coordinates of the next point
+      local nextAngle = math.rad(helpers.lerp(obj.angle, obj.angle2, t) - 90)
+      local nextDistance = helpers.lerp(len1, len2, t)
+      points[#points+1] = math.cos(nextAngle) * nextDistance + obj.ox
+      points[#points+1] = math.sin(nextAngle) * nextDistance + obj.oy
+    end
+
+    -- idk why but sometimes the last point doesn't reach the end of the slider
+    -- so add it manually if needed
+    if (points[#points] ~= obj.y2) then
+      points[#points+1] = obj.x2
+      points[#points+1] = obj.y2
+    end
+
+    -- need at least 2 points to draw a line ,
+    if #points >= 4 then
+      -- draw the black outline
+      helpers.color(2)
+      love.graphics.setLineWidth(16)
+      love.graphics.line(points)
+      -- draw a white line, to make the black actually look like an outline
+      helpers.color(1)
+      love.graphics.setLineWidth(12)
+      love.graphics.line(points)
+    end
     helpers.color(1)
+
+    -- draw beginning and end of hold
+    love.graphics.draw(obj.spr3,obj.x,obj.y,0,1,1,8,8)
     love.graphics.draw(obj.spr3,obj.x2,obj.y2,0,1,1,8,8)
   end
 
