@@ -22,5 +22,19 @@
     "artist": "",
     "charter": "DPS2004",
     "filename": "testlevel.json"
+  },
+  
+  {
+    "songname": "Loyal Protector",
+    "artist": "Monplaisir",
+    "charter": "Rikri",
+    "filename": "loyalprotector.json"
+  },
+  
+    {
+    "songname": "IwTtCUwaTftSbtSGMmaSamSTsTW",
+    "artist": "answearing machine",
+    "charter": "Rikri",
+    "filename": "iwttcuwatftsbtsgmmasamststw.json"
   }
 ]

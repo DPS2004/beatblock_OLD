@@ -1,0 +1,30 @@
+{
+  "bpm": 111.125,
+  "offset": 4,
+  "events": [
+    {
+      "type": "play",
+      "time": 0,
+      "file": "iwttcuwatftsbtsgmmasamststw.ogg"
+    },
+    {
+      "type": "multipulse",
+      "delay": 4,
+      "reps": 0,
+      "time": 0
+    },
+    
+    {"type":"beat","speedmult":0.6,"angle":-90,"time":0},
+    {"type":"beat","speedmult":0.6,"angle":-75,"time":0.1666},
+    {"type":"beat","speedmult":0.6,"angle":-60,"time":0.3333},
+    {"type":"beat","speedmult":0.6,"angle":-45,"time":0.5},
+    
+    {"type":"beat","speedmult":0.6,"angle":135,"time":3},
+    {"type":"beat","speedmult":0.6,"angle":45,"time":4.5},
+    {"type":"beat","speedmult":0.6,"angle":90,"time":6},
+    {"type":"beat","speedmult":0.6,"angle":75,"time":6.1666},
+    {"type":"beat","speedmult":0.6,"angle":90,"time":6.3333},
+  ],
+  "pdiv": 2,
+  "speed": 60,
+}

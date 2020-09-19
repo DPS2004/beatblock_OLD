@@ -1,0 +1,26 @@
+{
+  "bpm": 120,
+  "offset": 4,
+  "events": [
+    {
+      "type": "play",
+      "time": 0,
+      "file": "loyalprotector.ogg"
+    },
+    {
+      "type": "multipulse",
+      "delay": 4,
+      "reps": 0,
+      "time": 0
+    },
+    
+    {"type":"beat","speedmult":1,"angle":90,"time":0},
+    {"type":"beat","speedmult":1,"angle":0,"time":0.25},
+    {"type":"beat","speedmult":1,"angle":90,"time":0.5},
+    {"type":"beat","speedmult":1,"angle":180,"time":0.75},
+    {"type":"beat","speedmult":1,"angle":90,"time":1},
+    {"type":"beat","speedmult":1,"angle":180,"time":1.25},
+  ],
+  "pdiv": 2,
+  "speed": 60,
+}
