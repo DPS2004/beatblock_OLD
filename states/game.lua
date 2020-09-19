@@ -31,9 +31,10 @@ end
 
 function st.leave()
   entities = {}
-  st.source:stop()
-  st.source = nil
-  te.stop("music")
+  if st.source ~= nil then
+    st.source:stop()
+    st.source = nil
+  end
   st.sounddata = nil
 end
 
@@ -88,6 +89,20 @@ function st.update()
         newbeat.inverse = true
         pq = pq .. "    ".. "spawn here!"
         newbeat.update()
+      end
+      if v.type == "hold" then
+        v.played = true
+        local newbeat = em.init("beat",200,120)
+        newbeat.angle = v.angle1
+        newbeat.hold = true
+        newbeat.duration = v.duration
+        newbeat.startangle = v.angle1
+        newbeat.angle2 = v.angle2 or v.angle1
+        newbeat.endangle = v.endangle or v.angle1 -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
+        newbeat.hb = v.time
+        newbeat.smult = v.speedmult
+        pq = pq .. "    ".. "hold spawn here!"
+                newbeat.update()
       end
 
     end
