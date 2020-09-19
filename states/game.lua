@@ -94,6 +94,7 @@ function st.update()
         v.played = true
         local newbeat = em.init("beat",200,120)
         newbeat.angle = v.angle1
+        newbeat.segments = v.segments or nil
         newbeat.hold = true
         newbeat.duration = v.duration
         newbeat.startangle = v.angle1
