@@ -97,6 +97,11 @@ end
 
 function helpers.lerp(a, b, t)
   return a + (b - a) * t
+
+end
+function helpers.anglepoints(x,y,a,b)
+  return math.deg(math.atan2(x-a,y-b))*-1
+
 end
 
 return helpers

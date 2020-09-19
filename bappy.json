@@ -1,6 +1,6 @@
 {
   "bpm": 130,
-  "offset": 4,
+  "offset": 8,
   "events": [
     {
       "type": "play",
@@ -9,9 +9,9 @@
     },
     {"type": "beat","speedmult": 1,"angle": 0,   "time": 0},
     {"type": "beat","speedmult": 1,"angle": 0,   "time": 0.6666},
-    {"type": "beat","speedmult": 1,"angle": 45,  "time": 1},
+    {"type": "hold","speedmult": 0.75,"angle1": 45, "duration":1, "angle2":0,  "time": 1},
     {"type": "multipulse", "delay": 3,"reps": 7,"time": 1},
-    {"type": "beat","speedmult": 1,"angle": 0,   "time": 2},
+
     {"type": "beat","speedmult": 1,"angle": 90,  "time": 3},
     {"type": "beat","speedmult": 1,"angle": 180, "time": 4},
     {"type": "beat","speedmult": 1,"angle": 190, "time": 4.3333},
@@ -19,8 +19,8 @@
     {"type": "beat","speedmult": 1,"angle": 210, "time": 5},
     {"type": "beat","speedmult": 1,"angle": 180, "time": 6},
     {"type": "beat","speedmult": 1,"angle": 180, "time": 6.6666},
-    {"type": "beat","speedmult": 1,"angle": 225, "time": 7},
-    {"type": "beat","speedmult": 1,"angle": 180, "time": 8},
+    {"type": "hold","speedmult": 0.75,"angle1": 225, "duration":1, "angle2":180,  "time": 7},
+    
     {"type": "beat","speedmult": 1,"angle": 270, "time": 9},
     {"type": "beat","speedmult": 1,"angle": 0,   "time": 10},
     {"type": "beat","speedmult": 1,"angle": 10,  "time": 10.3333},
