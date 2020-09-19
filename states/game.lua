@@ -31,8 +31,11 @@ end
 
 function st.leave()
   entities = {}
-  st.source:stop()
-  te.stop("music")
+  if st.source ~= nil then
+    st.source:stop()
+    st.source = nil
+  end
+  st.sounddata = nil
 end
 
 
@@ -45,13 +48,25 @@ function st.update()
   pq = ""
   maininput:update()
   lovebird.update()
-  st.cbeat = st.cbeat + (st.level.bpm/60) * love.timer.getDelta()
-  st.pt = st.pt + (st.level.bpm/60) * love.timer.getDelta()
+  if st.source == nil then
+    st.cbeat = st.cbeat + (st.level.bpm/60) * love.timer.getDelta()
+  else
+    st.source:update()
+    local b,sb = st.source:getBeat(1)
+    st.cbeat = b+sb
+    --print(b+sb)
+  end
 
   -- read the level
   for i,v in ipairs(st.level.events) do
   -- preload events such as beats
     if v.time <= st.cbeat+st.offset and v.played == false then
+      if v.type == "play" and st.sounddata == nil then
+        
+        st.sounddata = love.sound.newSoundData(v.file)
+       pq = pq .. "      loaded sounddata"
+
+      end
       if v.type == "beat" then
         v.played = true
         local newbeat = em.init("beat",200,120)
@@ -75,6 +90,20 @@ function st.update()
         pq = pq .. "    ".. "spawn here!"
         newbeat.update()
       end
+      if v.type == "hold" then
+        v.played = true
+        local newbeat = em.init("beat",200,120)
+        newbeat.angle = v.angle1
+        newbeat.hold = true
+        newbeat.duration = v.duration
+        newbeat.startangle = v.angle1
+        newbeat.angle2 = v.angle2 or v.angle1
+        newbeat.endangle = v.endangle or v.angle1 -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
+        newbeat.hb = v.time
+        newbeat.smult = v.speedmult
+        pq = pq .. "    ".. "hold spawn here!"
+                newbeat.update()
+      end
 
     end
           -- autoplay
@@ -94,11 +123,16 @@ function st.update()
 
     -- load other events on the beat
     if v.time <= st.cbeat and v.played == false then
+      
       v.played = true
       if v.type == "play" then
-        st.source = love.audio.newSource(v.file,"stream")
-        st.source:play()
-        st.source:seek(((60/st.level.bpm)*st.cbeat))
+        st.source = lovebpm.newTrack()
+          :load(st.sounddata)
+          :setBPM(st.level.bpm)
+          :setLooping(false)
+          :play()
+        
+        st.source:setBeat(st.cbeat)
         pq = pq .. "    ".. "now playing ".. v.file
       end
       
