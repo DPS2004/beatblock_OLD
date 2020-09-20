@@ -74,14 +74,11 @@ function obj.update(dt)
         local mp = em.init("misspart",200,120)
         mp.angle = obj.angle
         mp.distance = (obj.hb - cs.cbeat)*cs.level.speed+cs.length
-        mp.spr = (obj.inverse and not obj.slice and obj.spr2) or (obj.spr) --Determine which sprite the misspart should use
         mp.update()
         obj.delete = true
         pq = pq .. "   player missed!"
         cs.p.emotimer = 100
         cs.p.cemotion = "miss"
-
-        cs.p.hurtpulse()
       end
     else
       if helpers.angdistance(obj.angle,cs.p.angle) <= cs.p.paddle_size / 2 then 
@@ -119,14 +116,11 @@ function obj.update(dt)
         local mp = em.init("misspart",200,120)
         mp.angle = obj.angle
         mp.distance = (obj.hb - cs.cbeat)*cs.level.speed+cs.length
-        mp.spr = obj.spr3 --Set the miss part's sprite to that of a hold
         mp.update()
         obj.delete = true
         pq = pq .. "   player missed!"
         cs.p.emotimer = 100
         cs.p.cemotion = "miss"
-
-        cs.p.hurtpulse()
       end
       
     end

@@ -17,15 +17,12 @@ local obj = {
   paddle_distance = 25,
   cmode = true,
   cemotion = "idle",
-  emotimer = 0,
-  lookradius = 5,
-  maxouchpulse = 0.2,
-  ouchpulse = 0,
-  ouchtime = 15
+  emotimer = 0
 }
 
 
 function obj.update(dt)
+  obj.angle = obj.angle % 360
   obj.emotimer = obj.emotimer - 1
   if obj.emotimer <= 0 then
     obj.cemotion = "idle"
@@ -33,16 +30,17 @@ function obj.update(dt)
   if maininput:pressed("a") then
     obj.cmode = not obj.cmode
   end
-  if obj.cmode then
-    obj.angle = 0-math.deg(math.atan2(obj.y - love.mouse.getY()/shuv.scale, love.mouse.getX()/shuv.scale - obj.x)) +90
-  else
-    if maininput:down("left") then
-      obj.angle = obj.angle - 7
-    elseif maininput:down("right") then
-      obj.angle = obj.angle + 7
+  if not cs.autoplay then
+    if obj.cmode then
+      obj.angle = 0-math.deg(math.atan2(obj.y - love.mouse.getY()/shuv.scale, love.mouse.getX()/shuv.scale - obj.x)) +90
+    else
+      if maininput:down("left") then
+        obj.angle = obj.angle - 7
+      elseif maininput:down("right") then
+        obj.angle = obj.angle + 7
+      end
     end
   end
-
   obj.bobi = obj.bobi + 0.03
 end
 
@@ -85,33 +83,13 @@ function obj.draw()
     )
   love.graphics.pop()
 
-  love.graphics.push()
-    -- scaling circle and face for hurt animation
-    local ouchpulsescale = 1 + obj.ouchpulse
-    love.graphics.scale(ouchpulsescale)
+  helpers.color(1)
+  love.graphics.circle("fill",obj.x,obj.y,16+cs.extend/2+(math.sin(obj.bobi))/2)
+  helpers.color(2)
+  love.graphics.circle("line",obj.x,obj.y,16+cs.extend/2+(math.sin(obj.bobi))/2)
 
-    -- adjusting x and y so they're unaffected by scaling
-    local finalx = obj.x / ouchpulsescale
-    local finaly = obj.y / ouchpulsescale
-
-    -- draw the circle
-    helpers.color(1)
-    love.graphics.circle("fill",finalx,finaly,16+cs.extend/2+(math.sin(obj.bobi))/2)
-    helpers.color(2)
-    love.graphics.circle("line",finalx,finaly,16+cs.extend/2+(math.sin(obj.bobi))/2)
-
-    -- draw the eyes
-    helpers.color(1)
-    -- determine x and y offsets of the eyes
-    local eyex = (obj.lookradius) * math.cos((obj.angle - 90) * math.pi / 180)
-    local eyey = (obj.lookradius) * math.sin((obj.angle - 90) * math.pi / 180)
-    love.graphics.draw(obj.spr[obj.cemotion],finalx + eyex,finaly + eyey,0,1,1,16,16)
-  love.graphics.pop()
-end
-
-function obj.hurtpulse()
-  obj.ouchpulse = obj.maxouchpulse
-  flux.to(obj,obj.ouchtime,{ouchpulse=0}):ease("outSine")
+  helpers.color(1)
+  love.graphics.draw(obj.spr[obj.cemotion],obj.x,obj.y,0,1,1,16,16)
 end
 
 
