@@ -23,7 +23,12 @@
     "charter": "DPS2004",
     "filename": "testlevel.json"
   },
-  
+  {
+    "songname": "orbitalcolossus",
+    "artist": "",
+    "charter": "DPS2004",
+    "filename": "orbitalcolossus.json"
+  },
   {
     "songname": "Loyal Protector",
     "artist": "Monplaisir",

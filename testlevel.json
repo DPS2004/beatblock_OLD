@@ -40,6 +40,20 @@
       "duration":2,
       "angle2": 180
     },
+    {
+      "type": "slice",
+      "time": 16,
+      "speedmult": 1,
+      "duration":2,
+      "angle": 90
+    },
+    {
+      "type": "sliceinvert",
+      "time": 20,
+      "speedmult": 1,
+      "duration":2,
+      "angle": 0
+    }
 
   ],
   "increment": 0.5,

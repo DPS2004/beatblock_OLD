@@ -76,8 +76,35 @@ function st.update()
         newbeat.hb = v.time
         newbeat.smult = v.speedmult
         pq = pq .. "    ".. "spawn here!"
+        newbeat.update()
       end
-
+      if v.type == "slice" then
+        v.played = true
+        local newbeat = em.init("beat",200,120)
+        newbeat.angle = v.angle
+        newbeat.slice = true
+        
+        newbeat.startangle = v.angle
+        newbeat.endangle = v.endangle or v.angle -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
+        newbeat.hb = v.time
+        newbeat.smult = v.speedmult
+        pq = pq .. "    ".. "spawn here!"
+        newbeat.update()
+      end
+      if v.type == "sliceinvert" then
+        v.played = true
+        local newbeat = em.init("beat",200,120)
+        newbeat.angle = v.angle
+        newbeat.slice = true
+        newbeat.inverse = true
+        
+        newbeat.startangle = v.angle
+        newbeat.endangle = v.endangle or v.angle -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
+        newbeat.hb = v.time
+        newbeat.smult = v.speedmult
+        pq = pq .. "    ".. "spawn here!"
+        newbeat.update()
+      end
       if v.type == "inverse" then
         v.played = true
         local newbeat = em.init("beat",200,120)
@@ -108,14 +135,14 @@ function st.update()
 
     end
           -- autoplay
-      if v.time-0.25 <= st.cbeat and st.autoplay and v.autoplayed == false then
+      if v.time-0.05 <= st.cbeat and st.autoplay and v.autoplayed == false then
         if v.type == "beat" or v.type == "inverse" then
           v.autoplayed = true
           if st.ce ~= nil then
             st.ce:stop()
             st.ce = nil
           end
-          st.ce = flux.to(st.p,15,{angle = v.angle}):ease("outExpo")
+          st.ce = flux.to(st.p,0,{angle = v.angle}):ease("outExpo")
           pq = pq..("     easing to "..v.angle)
           
         end

@@ -12,7 +12,8 @@
       "type": "beat",
       "time": 0,
       "speedmult": 1,
-      "angle": 0
+      "angle": -360,
+      "endangle":50
     },
     {
       "type": "beat",

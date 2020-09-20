@@ -2,6 +2,7 @@ function love.load()
   dt = 1
   clevel = "cannery.json"
   gamename = "BeatBlock"
+  crankymode = true
   release = false
   ismobile = false
   pressed = 0
