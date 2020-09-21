@@ -11,6 +11,7 @@ function st.enter(prev)
   st.length = 42
   st.extend = 0
   st.levels = json.decode(helpers.read("songlist.json"))
+  st.levelcount = #st.levels --Get the # of levels in the songlist
 
   st.selection = 1
   st.move = false
@@ -33,12 +34,14 @@ function st.update()
   pq = ""
   maininput:update()
   lovebird.update()
+
+  local newselection = st.selection
   if maininput:pressed("up") then
-    st.selection = st.selection - 1
+    newselection = st.selection - 1
     st.move = true
   end
   if maininput:pressed("down") then
-    st.selection = st.selection + 1
+    newselection = st.selection + 1
     st.move = true
   end
   if maininput:pressed("accept") then
@@ -46,9 +49,12 @@ function st.update()
     helpers.swap(states.game)
   end
   if st.move then
-    te.play("click.ogg","static")
+    if newselection >= 1 and newselection <= st.levelcount then --Only move the cursor if it's within the bounds of the level list
+      st.selection = newselection
+      te.play("click.ogg","static")
+      flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
+    end
     st.move = false
-    flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
   end
 
   flux.update(1)
