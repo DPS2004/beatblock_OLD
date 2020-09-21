@@ -51,7 +51,7 @@ function st.update()
   if st.move then
     if newselection >= 1 and newselection <= st.levelcount then --Only move the cursor if it's within the bounds of the level list
       st.selection = newselection
-      te.play("click.ogg","static")
+      te.play("click2.ogg","static")
       flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
     end
     st.move = false

@@ -64,7 +64,7 @@ function obj.update(dt)
         obj.delete = true
         pq = pq .. "   player hit!"
         if cs.beatsounds then
-          te.play("click.ogg","static")
+          te.play("click2.ogg","static")
         end
         if cs.p.cemotion == "miss" then
           cs.p.emotimer = 0
@@ -88,7 +88,7 @@ function obj.update(dt)
         if obj.hityet == false then
           obj.hityet = true
           pq = pq .. "   started hitting hold"
-          te.play("click.ogg","static")
+          te.play("hold1.ogg","static")
         end
         --em.init("hitpart",obj.x,obj.y)
         --print(helpers.angdistance(obj.angle,cs.p.angle).. " is less than " .. cs.p.paddle_size / 2)
@@ -105,7 +105,7 @@ function obj.update(dt)
         if ((obj.hb - cs.cbeat)*-1)/obj.duration >= 1 then
           pq = pq .. "   finished hold!"
           if cs.beatsounds then
-            te.play("click.ogg","static")
+            te.play("click2.ogg","static")
           end
           if cs.p.cemotion == "miss" then
             cs.p.emotimer = 0
