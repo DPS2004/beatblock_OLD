@@ -88,7 +88,9 @@ function obj.update(dt)
         if obj.hityet == false then
           obj.hityet = true
           pq = pq .. "   started hitting hold"
+          if cs.beatsounds then
           te.play("hold1.ogg","static")
+          end
         end
         --em.init("hitpart",obj.x,obj.y)
         --print(helpers.angdistance(obj.angle,cs.p.angle).. " is less than " .. cs.p.paddle_size / 2)

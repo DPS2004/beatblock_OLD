@@ -7,7 +7,7 @@ local obj = {
   setup = false,
   delt = 5,
 }
-print("MADE CIRCLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
 
 function obj.update(dt)
   if not obj.setup then

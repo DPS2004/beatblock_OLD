@@ -127,10 +127,11 @@ function love.load()
   states = {
     songselect = require "states.songselect",
     game = require "states.game",
+    rdconvert = require "states.rdconvert",
   }
 
   gs.registerEvents()
-  gs.switch(states.songselect)
+  gs.switch(states.rdconvert)
 end
 
 
