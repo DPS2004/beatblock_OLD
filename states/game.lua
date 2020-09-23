@@ -15,8 +15,10 @@ function st.enter(prev)
   st.autoplay = false
   st.length = 42
   st.pt = 0
+  st.bg = love.graphics.newImage("assets/bgs/nothing.png")
+  
   st.on = true
-  st.beatsounds = true
+  st.beatsounds = false
   st.extend = 0
   for i,v in ipairs(st.level.events) do
     v.played = false
@@ -185,6 +187,11 @@ function st.update()
         flux.to(st,10,{extend=0}):ease("linear")
         pq = pq.. "    pulsing"
       end
+      
+      if v.type == "setbg" then
+        st.bg = love.graphics.newImage("assets/bgs/".. v.file ..".png")
+        pq = pq.. "     set bg"
+      end
 
       if v.type == "hom" then
         st.vfx.hom = v.enable
@@ -200,6 +207,22 @@ function st.update()
         pq = pq .. "    ".. "circle spawned"
         local nc = em.init("circlevfx",v.x,v.y)
         nc.delt = v.delta
+      end
+      if v.type == "square" then
+        pq = pq .. "    ".. "square spawned"
+        local nc = em.init("squarevfx",v.x,v.y)
+        nc.r = v.r
+        nc.dx = v.dx
+        nc.dy = v.dy
+        nc.dr = v.dr
+        nc.life = v.life
+        nc.update()
+        
+      end
+      if v.type == "lua" then
+        pq = pq .. "    ".. "ran lua code"
+        local code = loadstring(v.code) -- NOOOOOO YOU CANT RUN ARBITRARY CODE THATS A SECURITY RISK
+        code()  --haha loadstring go brrr
       end
     end
   end
@@ -218,16 +241,20 @@ function st.draw()
 
   love.graphics.rectangle("fill",0,0,400,240)
   love.graphics.setCanvas(st.canv)
+    
     if not st.vfx.hom then
       love.graphics.clear()
     end
+    
     love.graphics.setBlendMode("alpha")
     love.graphics.setColor(1, 1, 1, 1)
+
     if st.vfx.hom then
       for i=0,st.vfx.homint do
         love.graphics.points(math.random(0,400),math.random(0,240))
       end
     end
+    love.graphics.draw(st.bg)
     em.draw()
   love.graphics.setCanvas(shuv.canvas)
   love.graphics.setColor(1, 1, 1, 1)
@@ -236,6 +263,7 @@ function st.draw()
     print(helpers.round(st.cbeat*6,true)/6 .. pq)
   end
   shuv.finish()
+
 end
 
 

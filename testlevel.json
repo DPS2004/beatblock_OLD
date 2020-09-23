@@ -9,6 +9,11 @@
       "file": "cannery.ogg"
     },
     {
+      "type": "lua",
+      "time": 0,
+      "code": "print('hello world')"
+    },
+    {
       "type": "hold",
       "time": 0,
       "speedmult": 1,

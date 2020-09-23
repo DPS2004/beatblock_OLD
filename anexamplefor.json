@@ -1,7 +1,13 @@
 {
   "bpm": 125,
   "offset": 4,
+  "startbeat": 0,
   "events": [
+    {
+      "type": "setbg",
+      "time": -4,
+      "file": "simple1"
+    },
     {
       "type": "play",
       "time": 0,
@@ -13,7 +19,13 @@
       "reps": 32,
       "time": 0
     },
-    
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 0,
+      "y": 120,
+      "delta": 10
+    },
     {"type": "beat","speedmult": 1,"angle": -45,   "time": 0},
     {"type": "beat","speedmult": 1,"angle": 45,   "time": 0.5},
     {"type": "beat","speedmult": 1,"angle": -45,  "time": 1},
@@ -33,7 +45,18 @@
     {"type": "beat","speedmult": 1,"angle": -45,   "time": 7},
     {"type": "beat","speedmult": 1,"angle": 45,   "time": 7.3333},
     {"type": "beat","speedmult": 1,"angle": 45,   "time": 7.5},
-    
+    {
+      "type": "square",
+      "time": 9.5,
+      "x": 200,
+      "y": 120,
+      "r": 8,
+      "dx": 0,
+      "dy": 0,
+      "dr": 10,
+      "life": 100
+      
+    },
     {"type": "beat","speedmult": 1,"angle": -45,   "time": 8},
     {"type": "beat","speedmult": 1,"angle": 45,   "time": 8.5},
     {"type": "beat","speedmult": 1,"angle": -45,  "time": 9},
@@ -43,7 +66,54 @@
     {"type": "beat","speedmult": 1,"angle": -135,   "time": 11},
     {"type": "beat","speedmult": 1,"angle": 135,   "time": 11.3333},
     {"type": "beat","speedmult": 1,"angle": 135,   "time": 11.5},
-    
+    {
+      "type": "square",
+      "time": 14,
+      "x": 200,
+      "y": 120,
+      "r": 200,
+      "dx": 0,
+      "dy": 0,
+      "dr": -10,
+      "life": 20
+      
+    },
+    {
+      "type": "square",
+      "time": 14.5,
+      "x": 200,
+      "y": 120,
+      "r": 200,
+      "dx": 0,
+      "dy": 0,
+      "dr": -10,
+      "life": 20
+      
+    },
+    {
+      "type": "square",
+      "time": 15,
+      "x": 200,
+      "y": 120,
+      "r": 200,
+      "dx": 0,
+      "dy": 0,
+      "dr": -10,
+      "life": 20
+      
+    },
+    {
+      "type": "square",
+      "time": 15.5,
+      "x": 200,
+      "y": 120,
+      "r": 200,
+      "dx": 0,
+      "dy": 0,
+      "dr": -10,
+      "life": 20
+      
+    },
     {"type": "beat","speedmult": 1,"angle": -135,   "time": 12},
     {"type": "beat","speedmult": 1,"angle": 135,   "time": 12.5},
     {"type": "beat","speedmult": 1,"angle": -135,  "time": 13},
@@ -54,7 +124,18 @@
     {"type": "beat","speedmult": 1,"angle": -45,   "time": 15},
     {"type": "beat","speedmult": 1,"angle": 45,   "time": 15.3333},
     {"type": "beat","speedmult": 1,"angle": 45,   "time": 15.5},
-    
+        {
+      "type": "square",
+      "time": 18.5,
+      "x": 200,
+      "y": 120,
+      "r": 8,
+      "dx": 0,
+      "dy": 0,
+      "dr": 10,
+      "life": 100
+      
+    },
     {"type": "beat","speedmult": 1.2,"angle": -55,   "time": 16},
     {"type": "beat","speedmult": 1.2,"angle": 55,   "time": 16.5},
     {"type": "beat","speedmult": 1.2,"angle": -55,  "time": 17},
@@ -64,6 +145,7 @@
     {"type": "beat","speedmult": 1.2,"angle": -125,   "time": 19},
     {"type": "beat","speedmult": 1.2,"angle": 125,   "time": 19.3333},
     {"type": "beat","speedmult": 1.2,"angle": 125,   "time": 19.5},
+
     
     {"type": "beat","speedmult": 1.3,"angle": -120,   "time": 20},
     {"type": "beat","speedmult": 1.3,"angle": 120,   "time": 20.5},
@@ -74,7 +156,18 @@
     {"type": "beat","speedmult": 1.3,"angle": -60,   "time": 23},
     {"type": "beat","speedmult": 1.3,"angle": 60,   "time": 23.3333},
     {"type": "beat","speedmult": 1.3,"angle": 60,   "time": 23.5},
-    
+    {
+      "type": "square",
+      "time": 25.5,
+      "x": 200,
+      "y": 120,
+      "r": 8,
+      "dx": 0,
+      "dy": 0,
+      "dr": 10,
+      "life": 100
+      
+    },
     {"type": "beat","speedmult": 1.4,"angle": -65,   "time": 24},
     {"type": "beat","speedmult": 1.4,"angle": 65,   "time": 24.5},
     {"type": "beat","speedmult": 1.4,"angle": -65,  "time": 25},
@@ -84,7 +177,54 @@
     {"type": "beat","speedmult": 1.4,"angle": -115,   "time": 27},
     {"type": "beat","speedmult": 1.4,"angle": 115,   "time": 27.3333},
     {"type": "beat","speedmult": 1.4,"angle": 115,   "time": 27.5},
-    
+        {
+      "type": "square",
+      "time": 30,
+      "x": 200,
+      "y": 120,
+      "r": 200,
+      "dx": 0,
+      "dy": 0,
+      "dr": -10,
+      "life": 20
+      
+    },
+    {
+      "type": "square",
+      "time": 30.5,
+      "x": 200,
+      "y": 120,
+      "r": 200,
+      "dx": 0,
+      "dy": 0,
+      "dr": -10,
+      "life": 20
+      
+    },
+    {
+      "type": "square",
+      "time": 31,
+      "x": 200,
+      "y": 120,
+      "r": 200,
+      "dx": 0,
+      "dy": 0,
+      "dr": -10,
+      "life": 20
+      
+    },
+    {
+      "type": "square",
+      "time": 31.5,
+      "x": 200,
+      "y": 120,
+      "r": 200,
+      "dx": 0,
+      "dy": 0,
+      "dr": -10,
+      "life": 20
+      
+    },
     {"type": "beat","speedmult": 1.5,"angle": -110,   "time": 28},
     {"type": "beat","speedmult": 1.5,"angle": 110,   "time": 28.5},
     {"type": "beat","speedmult": 1.5,"angle": -110,  "time": 29},
@@ -94,7 +234,18 @@
     {"type": "beat","speedmult": 1.5,"angle": -70,   "time": 31},
     {"type": "beat","speedmult": 1.5,"angle": 70,   "time": 31.3333},
     {"type": "beat","speedmult": 1.5,"angle": 70,   "time": 31.5},
-    
+        {
+      "type": "square",
+      "time": 34.5,
+      "x": 200,
+      "y": 120,
+      "r": 8,
+      "dx": 0,
+      "dy": 0,
+      "dr": 10,
+      "life": 100
+      
+    },
     {"type": "beat","speedmult": 1.33,"angle": -65,   "time": 32},
     {"type": "beat","speedmult": 1.16,"angle": 55,   "time": 32.5},
     {"type": "beat","speedmult": 1,"angle": -45,  "time": 33},
@@ -109,13 +260,84 @@
     {"type": "beat","speedmult": 1,"angle": 135,   "time": 36.5},
     {"type": "beat","speedmult": 1,"angle": -135,  "time": 37},
     {"type": "beat","speedmult": 1,"angle": 135,  "time": 37.5},
+    {
+      "type": "square",
+      "time": 37.5,
+      "x": 40,
+      "y": 240,
+      "r": 16,
+      "dx": 0,
+      "dy": -10,
+      "dr": 0,
+      "life": 100
+      
+    },
+    {
+      "type": "square",
+      "time": 38,
+      "x": 120,
+      "y": 240,
+      "r": 16,
+      "dx": 0,
+      "dy": -10,
+      "dr": 0,
+      "life": 100
+      
+    },
+    {
+      "type": "square",
+      "time": 38.5,
+      "x": 200,
+      "y": 240,
+      "r": 16,
+      "dx": 0,
+      "dy": -10,
+      "dr": 0,
+      "life": 100
+      
+    },
+    {
+      "type": "square",
+      "time": 39,
+      "x": 280,
+      "y": 240,
+      "r": 16,
+      "dx": 0,
+      "dy": -10,
+      "dr": 0,
+      "life": 100
+      
+    },
+    {
+      "type": "square",
+      "time": 39.5,
+      "x": 360,
+      "y": 240,
+      "r": 16,
+      "dx": 0,
+      "dy": -10,
+      "dr": 0,
+      "life": 100
+      
+    },
     {"type": "beat","speedmult": 1,"angle": 90,   "time": 38},
     {"type": "beat","speedmult": 1,"angle": 60,   "time": 38.3333},
     {"type": "beat","speedmult": 1,"angle": 45,   "time": 38.5},
     {"type": "beat","speedmult": 1,"angle": 0,   "time": 39},
     {"type": "beat","speedmult": 1,"angle": -30,   "time": 39.3333},
     {"type": "beat","speedmult": 1,"angle": -45,   "time": 39.5},
-    
+            {
+      "type": "square",
+      "time": 41.5,
+      "x": 200,
+      "y": 120,
+      "r": 8,
+      "dx": 0,
+      "dy": 0,
+      "dr": 10,
+      "life": 100
+      
+    },
     {"type": "beat","speedmult": 1,"angle": -50,   "time": 40},
     {"type": "beat","speedmult": 1,"angle": 35,   "time": 40.5},
     {"type": "beat","speedmult": 1,"angle": -60,  "time": 41},
@@ -135,7 +357,54 @@
     {"type": "beat","speedmult": 1,"angle": -90,   "time": 47},
     {"type": "beat","speedmult": 1,"angle": 0,   "time": 47.3333},
     {"type": "beat","speedmult": 1,"angle": 0,   "time": 47.5},
-    
+    {
+      "type": "square",
+      "time": 46,
+      "x": 200,
+      "y": 120,
+      "r": 200,
+      "dx": 0,
+      "dy": 0,
+      "dr": -10,
+      "life": 20
+      
+    },
+    {
+      "type": "square",
+      "time": 46.5,
+      "x": 200,
+      "y": 120,
+      "r": 200,
+      "dx": 0,
+      "dy": 0,
+      "dr": -10,
+      "life": 20
+      
+    },
+    {
+      "type": "square",
+      "time": 47,
+      "x": 200,
+      "y": 120,
+      "r": 200,
+      "dx": 0,
+      "dy": 0,
+      "dr": -10,
+      "life": 20
+      
+    },
+    {
+      "type": "square",
+      "time": 47.5,
+      "x": 200,
+      "y": 120,
+      "r": 200,
+      "dx": 0,
+      "dy": 0,
+      "dr": -10,
+      "life": 20
+      
+    },
     {"type": "beat","speedmult": 1,"angle": -90,   "time": 48},
     {"type": "beat","speedmult": 1,"angle": 0,   "time": 48.5},
     {"type": "beat","speedmult": 1,"angle": -90,  "time": 49},
@@ -145,8 +414,79 @@
     {"type": "beat","speedmult": 1,"angle": -180,   "time": 51},
     {"type": "beat","speedmult": 1,"angle": 90,   "time": 51.3333},
     {"type": "beat","speedmult": 1,"angle": 90,   "time": 51.5},
-    
+    {
+      "type": "square",
+      "time": 53.5,
+      "x": 360,
+      "y": 0,
+      "r": 16,
+      "dx": 0,
+      "dy": 10,
+      "dr": 0,
+      "life": 100
+      
+    },
+    {
+      "type": "square",
+      "time": 54,
+      "x": 280,
+      "y": 0,
+      "r": 16,
+      "dx": 0,
+      "dy": 10,
+      "dr": 0,
+      "life": 100
+      
+    },
+    {
+      "type": "square",
+      "time": 54.5,
+      "x": 200,
+      "y": 00,
+      "r": 16,
+      "dx": 0,
+      "dy": 10,
+      "dr": 0,
+      "life": 100
+      
+    },
+    {
+      "type": "square",
+      "time": 55,
+      "x": 120,
+      "y": 0,
+      "r": 16,
+      "dx": 0,
+      "dy": 10,
+      "dr": 0,
+      "life": 100
+      
+    },
+    {
+      "type": "square",
+      "time": 55.5,
+      "x": 40,
+      "y": 0,
+      "r": 16,
+      "dx": 0,
+      "dy": 10,
+      "dr": 0,
+      "life": 100
+      
+    },
     {"type": "beat","speedmult": 1,"angle": -180,   "time": 52},
+    {
+      "type": "square",
+      "time": 50.5,
+      "x": 200,
+      "y": 120,
+      "r": 8,
+      "dx": 0,
+      "dy": 0,
+      "dr": 10,
+      "life": 100
+      
+    },
     {"type": "beat","speedmult": 1,"angle": 90,   "time": 52.5},
     {"type": "beat","speedmult": 1,"angle": -180,  "time": 53},
     {"type": "beat","speedmult": 1,"angle": 90,  "time": 53.5},
@@ -156,7 +496,18 @@
     {"type": "beat","speedmult": 1,"angle": -45,   "time": 55},
     {"type": "beat","speedmult": 1,"angle": -75,   "time": 55.3333},
     {"type": "beat","speedmult": 1,"angle": -90,   "time": 55.5},
-    
+    {
+      "type": "square",
+      "time": 57.5,
+      "x": 200,
+      "y": 120,
+      "r": 8,
+      "dx": 0,
+      "dy": 0,
+      "dr": 10,
+      "life": 100
+      
+    },
     {"type": "beat","speedmult": 1,"angle": -95,   "time": 56},
     {"type": "beat","speedmult": 1,"angle": 10,   "time": 56.5},
     {"type": "beat","speedmult": 1,"angle": -105,  "time": 57},
@@ -173,7 +524,19 @@
     {"type": "beat","speedmult": 1,"angle": 45,  "time": 61.5},
     {"type": "beat","speedmult": 1,"angle": 45,   "time": 62},
     
-    
+    {
+      "type": "hom",
+      "time": 62,
+      "enable": true,
+      "intensity":10000
+    },    
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 62,
+      "y": 120,
+      "delta": 5
+    },
     
     {"type": "inverse","speedmult": 1,"angle": 45,   "time": 64},
     {"type": "inverse","speedmult": 1,"angle": -45,   "time": 65},
@@ -193,6 +556,20 @@
     {"type": "inverse","speedmult": 1,"angle": 45,   "time": 77},
     {"type": "inverse","speedmult": 1,"angle": -45,   "time": 78},
     {"type": "inverse","speedmult": 1,"angle": 45,   "time": 79},
+    {
+      "type": "hom",
+      "time": 79,
+      "enable": true,
+      "intensity":80000
+    },
+    {
+      "x": 200,
+      "type": "circle",
+      "time": 80,
+      "y": 120,
+      "delta": -5
+    },
+
     {"type": "inverse","speedmult": 1,"angle": -45,   "time": 79.5},
     
     {"type": "inverse","speedmult": 1,"angle": 45,   "time": 80},
