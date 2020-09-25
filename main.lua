@@ -109,10 +109,10 @@ function love.load()
         x = {"key:x"},
         a = {"key:a"},
         c = {"key:c"},
+        e = {"key:e"},
         k1 = {"key:1"},
         k2 = {"key:2"},
-        k3 = {"key:3"},
-        
+        k3 = {"key:3"}
       },
       pairs = {
         lr = {"left", "right", "up", "down"}
@@ -128,6 +128,7 @@ function love.load()
     songselect = require "states.songselect",
     game = require "states.game",
     rdconvert = require "states.rdconvert",
+    editor = require "states.editor"
   }
 
   gs.registerEvents()

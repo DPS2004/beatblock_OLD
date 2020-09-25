@@ -31,6 +31,9 @@ end
 
 
 function st.update()
+  maininput:update()
+  lovebird.update()
+
   if maininput:pressed("back") then
     helpers.swap(states.songselect)
   end
