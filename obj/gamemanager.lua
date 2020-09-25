@@ -37,8 +37,6 @@ end
 
 function obj.update(dt)
   pq = ""
-  maininput:update()
-  lovebird.update()
   if obj.currst.source == nil then
     obj.currst.cbeat = obj.currst.cbeat + (obj.currst.level.bpm/60) * love.timer.getDelta()
   else

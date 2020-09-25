@@ -48,6 +48,10 @@ function st.update()
     clevel = st.levels[st.selection].filename
     helpers.swap(states.game)
   end
+  if maininput:pressed("e") then
+    clevel = st.levels[st.selection].filename
+    helpers.swap(states.editor)
+  end
   if st.move then
     if newselection >= 1 and newselection <= st.levelcount then --Only move the cursor if it's within the bounds of the level list
       st.selection = newselection
