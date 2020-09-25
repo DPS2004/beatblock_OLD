@@ -1,6 +1,6 @@
 local obj = {
   layer = 1,
-  uplayer = 3,
+  uplayer = -9999,
   x=0,
   y=0,
   currst=nil
