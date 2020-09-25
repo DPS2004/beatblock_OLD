@@ -31,8 +31,6 @@ end
 
 
 function st.update()
-  st.gm.update()
-
   if maininput:pressed("back") then
     helpers.swap(states.songselect)
   end
