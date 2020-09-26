@@ -151,7 +151,7 @@ function obj.draw()
       helpers.drawhold(obj.ox, obj.oy, obj.x, obj.y, obj.x2, obj.y2, obj.angle, obj.angle2, obj.segments, obj.spr3)
     end
   else
-    obj.x, obj.y = helpers.drawslice(obj.ox, obj.oy, (obj.hb - cs.cbeat)*cs.level.speed*obj.smult, obj.angle, obj.inverse)
+    obj.x, obj.y = helpers.drawslice(obj.ox, obj.oy, (obj.hb - cs.cbeat)*cs.level.speed*obj.smult, obj.angle, obj.inverse, 1)
   end
 end
 return obj

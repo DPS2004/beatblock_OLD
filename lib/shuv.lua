@@ -13,14 +13,11 @@ end
 
 function shuv.check()
   if not ismobile then
-    if maininput:pressed("k1") then
-      shuv.scale = 1
-      shuv.update = true
-    elseif maininput:pressed("k2") then
-      shuv.scale = 2
-      shuv.update = true
-    elseif maininput:pressed("k3") then
-      shuv.scale = 3
+    if maininput:pressed("f5") then
+      shuv.scale = shuv.scale + 1
+      if shuv.scale > 3 then
+        shuv.scale = 1
+      end
       shuv.update = true
     end
   end
