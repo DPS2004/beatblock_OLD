@@ -252,7 +252,7 @@ function st.update()
       nearestbeat = nearestbeat + st.beatsnap
     end
   
-    st.cursorpos.angle = nearestangle
+    st.cursorpos.angle = nearestangle % 360
     st.cursorpos.beat = nearestbeat
   end
 
@@ -322,30 +322,6 @@ function st.draw()
         local snaplineend = helpers.rotate(st.beatcirclemaxrad, j * st.degreesnap, screencenter.x, screencenter.y)
         love.graphics.line(snaplinestart[1], snaplinestart[2], snaplineend[1], snaplineend[2])
       end
-
-      --Cursor
-      love.graphics.setColor(1, 1, 1, 0.5)
-      local cursorrad = st.beattoscrollrad(st.cursorpos.beat)
-      if cursorrad >= st.beatcircleminrad then
-        local angle = st.cursorpos.angle
-        local pos = helpers.rotate(cursorrad, angle, screencenter.x, screencenter.y)
-        
-        if st.cursortype == "beat" then
-          love.graphics.draw(st.sprbeat, pos[1], pos[2],0,1,1,8,8)
-        elseif st.cursortype == "inverse" then
-          love.graphics.draw(st.sprinverse, pos[1], pos[2],0,1,1,8,8)
-        elseif st.cursortype == "hold" then
-          love.graphics.draw(st.sprhold, pos[1], pos[2],0,1,1,8,8)
-        elseif st.cursortype == "slice" or st.cursortype == "sliceinvert" then
-          local sliceangle = angle
-          local invert = st.cursortype == "sliceinvert"
-          -- I have no idea why it does this
-          if invert then
-            sliceangle = (sliceangle + 180) % 360
-          end
-          helpers.drawslice(screencenter.x, screencenter.y, cursorrad, sliceangle, invert, 0.5)
-        end
-      end
       
       --Events
       love.graphics.setColor(1, 1, 1, 1)
@@ -385,6 +361,30 @@ function st.draw()
           end
         end
       end
+
+      --Cursor
+      love.graphics.setColor(1, 1, 1, 0.5)
+      local cursorrad = st.beattoscrollrad(st.cursorpos.beat)
+      if cursorrad >= st.beatcircleminrad then
+        local angle = st.cursorpos.angle
+        local pos = helpers.rotate(cursorrad, angle, screencenter.x, screencenter.y)
+        
+        if st.cursortype == "beat" then
+          love.graphics.draw(st.sprbeat, pos[1], pos[2],0,1,1,8,8)
+        elseif st.cursortype == "inverse" then
+          love.graphics.draw(st.sprinverse, pos[1], pos[2],0,1,1,8,8)
+        elseif st.cursortype == "hold" then
+          love.graphics.draw(st.sprhold, pos[1], pos[2],0,1,1,8,8)
+        elseif st.cursortype == "slice" or st.cursortype == "sliceinvert" then
+          local sliceangle = angle
+          local invert = st.cursortype == "sliceinvert"
+          -- I have no idea why it does this
+          if invert then
+            sliceangle = (sliceangle + 180) % 360
+          end
+          helpers.drawslice(screencenter.x, screencenter.y, cursorrad, sliceangle, invert, 0.5)
+        end
+      end
     end
 
   love.graphics.setCanvas(shuv.canvas)
@@ -420,9 +420,14 @@ function st.deleteeventatcursor()
       if v.type ~= "hold" then
         if v.time == st.cursorpos.beat then
           local evangle = v.angle or nil
-          if evangle ~= nil and evangle == st.cursorpos.angle then
-            delindex = i
-            break
+          if evangle ~= nil then
+            if v.type == "sliceinvert" then
+              evangle = (evangle + 180) % 360
+            end
+            if evangle == st.cursorpos.angle  then
+              delindex = i
+              break
+            end
           end
         end
       else
