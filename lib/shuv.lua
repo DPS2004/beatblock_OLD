@@ -6,6 +6,8 @@ local shuv = {
 
 function shuv.init()
   shuv.canvas = love.graphics.newCanvas(400,240)
+  if ismobile then shuv.scale = 1 end
+  
 end
 
 
@@ -25,7 +27,14 @@ function shuv.check()
 
   if shuv.update then
     shuv.update = false
-    love.window.setMode(400*shuv.scale, 240*shuv.scale)
+    
+    if ismobile then
+      love.window.setMode(0,0)
+      love.window.setFullscreen(true)
+      shuv.scale = love.graphics.getHeight() / 240
+    else
+      love.window.setMode(400*shuv.scale, 240*shuv.scale)
+    end
   end
 end
 

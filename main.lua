@@ -5,6 +5,11 @@ function love.load()
   crankymode = true
   release = false
   ismobile = false
+  mobileoverride = false
+  if love.system.getOS( ) == "Android" or mobileoverride then
+    ismobile = true
+    
+  end
   pressed = 0
   mx,my = 0,0
   ispush = false
@@ -51,7 +56,7 @@ function love.load()
   json = require "lib.json"
 
   -- lovebird,debugging console
-  if not release then 
+  if not release or ismobile then 
     lovebird = require "lib.lovebird"
   else
     lovebird = require "lib.lovebirdstripped"
