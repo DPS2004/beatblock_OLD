@@ -422,9 +422,9 @@ function st.deleteeventatcursor()
           local evangle = v.endangle or v.angle or nil
           if evangle ~= nil then
             if v.type == "sliceinvert" then
-              evangle = (evangle + 180) % 360
+              evangle = evangle + 180
             end
-            if evangle == st.cursorpos.angle  then
+            if evangle % 360 == st.cursorpos.angle % 360  then
               delindex = i
               break
             end
@@ -433,13 +433,13 @@ function st.deleteeventatcursor()
       else
         if v.time == st.cursorpos.beat then
           local evangle = v.angle1 or nil
-          if evangle ~= nil and evangle == st.cursorpos.angle then
+          if evangle ~= nil and evangle % 360 == st.cursorpos.angle % 360 then
             delindex = i
             break
           end
         elseif v.time + v.duration == st.cursorpos.beat then
           local evangle = v.angle2 or nil
-          if evangle ~= nil and evangle == st.cursorpos.angle then
+          if evangle ~= nil and evangle % 360 == st.cursorpos.angle % 360 then
             delindex = i
             break
           end
