@@ -151,14 +151,14 @@ function helpers.drawhold(xo, yo, x1, y1, x2, y2, a1, a2, segments, sprhold)
   love.graphics.draw(sprhold,x2,y2,0,1,1,8,8)
 end
 
-function helpers.drawslice (ox, oy, rad, angle, inverse)
+function helpers.drawslice (ox, oy, rad, angle, inverse, alpha)
   local p = {}
   if inverse then
     p = helpers.rotate(-rad,angle,ox,oy)
   else
     p = helpers.rotate(rad,angle,ox,oy)
   end
-  love.graphics.setColor(0,0,0,1)
+  love.graphics.setColor(0,0,0,alpha)
   love.graphics.setLineWidth(2)
   love.graphics.push()
   love.graphics.translate(p[1], p[2])

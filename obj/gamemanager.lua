@@ -10,16 +10,15 @@ function obj.init(newst)
   obj.currst = newst
 end
 
-function obj.startlevel(level)
-  obj.currst.level = level
-
+function obj.resetlevel()
   obj.currst.offset = obj.currst.level.offset
   obj.currst.startbeat = obj.currst.level.startbeat or 0
   obj.currst.cbeat = 0-obj.currst.offset +obj.currst.startbeat
   obj.currst.autoplay = false
   obj.currst.length = 42
   obj.currst.pt = 0
-  obj.currst.bg = love.graphics.newImage("assets/bgs/nothing.png")
+  obj.currst.bg = love.graphics.newImage("assets/bgs/nothing.png")  
+
   obj.currst.misses= 0
   obj.currst.hits = 0
   obj.currst.combo = 0
@@ -31,6 +30,7 @@ function obj.startlevel(level)
   end
 
   obj.currst.on = true
+
   obj.currst.beatsounds = false
   obj.currst.extend = 0
   for i,v in ipairs(obj.currst.level.events) do
@@ -45,6 +45,10 @@ end
 
 
 function obj.update(dt)
+  if not obj.on then
+    return
+  end
+
   pq = ""
   if obj.currst.source == nil then
     obj.currst.cbeat = obj.currst.cbeat + (obj.currst.level.bpm/60) * love.timer.getDelta()

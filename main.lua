@@ -111,14 +111,25 @@ function love.load()
         down = {"key:down", "key:s", "axis:lefty+", "button:dpdown"},
         accept = {"key:space", "button:a"},
         back = {"key:escape", "button:b"},
+        ctrl = {"key:lctrl", "key:rctrl"},
+        plus = {"key:+", "key:="},
+        minus = {"key:-"},
+        leftbracket = {"key:["},
+        rightbracket = {"key:]"},
         s = {"key:s"},
         x = {"key:x"},
         a = {"key:a"},
         c = {"key:c"},
         e = {"key:e"},
+        p = {"key:p"},
         k1 = {"key:1"},
         k2 = {"key:2"},
-        k3 = {"key:3"}
+        k3 = {"key:3"},
+        k4 = {"key:4"},
+        k5 = {"key:5"},
+        f5 = {"key:f5"},
+        mouse1 = {"mouse:1"},
+        mouse2 = {"mouse:2"}
       },
       pairs = {
         lr = {"left", "right", "up", "down"}
