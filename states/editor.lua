@@ -328,36 +328,35 @@ function st.draw()
       for i,v in ipairs(st.level.events) do
         local evrad = st.beattoscrollrad(v.time)
         --Events only drawn if they would appear on screen (i.e. not inside the player at the center or off-screen)
-        if evrad > st.beatcirclemaxrad then
-          break
-        end
-        if evrad >= st.beatcircleminrad then
-          if v.type == "beat" then
-            local angle = v.endangle or v.angle
-            local pos = helpers.rotate(evrad, angle, screencenter.x, screencenter.y)
-            love.graphics.draw(st.sprbeat,pos[1],pos[2],0,1,1,8,8)
-
-          elseif v.type == "inverse" then
-            local angle = v.endangle or v.angle
-            local pos = helpers.rotate(evrad, angle, screencenter.x, screencenter.y)
-            love.graphics.draw(st.sprinverse,pos[1],pos[2],0,1,1,8,8)
-
-          elseif v.type == "slice" or v.type == "sliceinvert" then
-            local angle = v.endangle or v.angle
-            local invert = v.type == "sliceinvert"
-            helpers.drawslice(screencenter.x, screencenter.y, evrad, angle, invert, 1)
+        if evrad <= st.beatcirclemaxrad then
+          if evrad >= st.beatcircleminrad then
+            if v.type == "beat" then
+              local angle = v.endangle or v.angle
+              local pos = helpers.rotate(evrad, angle, screencenter.x, screencenter.y)
+              love.graphics.draw(st.sprbeat,pos[1],pos[2],0,1,1,8,8)
+  
+            elseif v.type == "inverse" then
+              local angle = v.endangle or v.angle
+              local pos = helpers.rotate(evrad, angle, screencenter.x, screencenter.y)
+              love.graphics.draw(st.sprinverse,pos[1],pos[2],0,1,1,8,8)
+  
+            elseif v.type == "slice" or v.type == "sliceinvert" then
+              local angle = v.endangle or v.angle
+              local invert = v.type == "sliceinvert"
+              helpers.drawslice(screencenter.x, screencenter.y, evrad, angle, invert, 1)
+            end
           end
-        end
-
-        if v.type == "hold" then
-          local evrad2 = st.beattoscrollrad(v.time + v.duration)
-          if evrad2 >= st.beatcircleminrad then
-            local evrad1 = (evrad >= st.beatcircleminrad and evrad) or st.beatcircleminrad
-            local angle1 = v.angle1
-            local angle2 = v.angle2
-            local pos1 = helpers.rotate(evrad1, angle1, screencenter.x, screencenter.y)
-            local pos2 = helpers.rotate(evrad2, angle2, screencenter.x, screencenter.y)
-            helpers.drawhold(screencenter.x, screencenter.y, pos1[1], pos1[2], pos2[1], pos2[2], angle1, angle2, v.segments, st.sprhold)
+  
+          if v.type == "hold" then
+            local evrad2 = st.beattoscrollrad(v.time + v.duration)
+            if evrad2 >= st.beatcircleminrad then
+              local evrad1 = (evrad >= st.beatcircleminrad and evrad) or st.beatcircleminrad
+              local angle1 = v.angle1
+              local angle2 = v.angle2
+              local pos1 = helpers.rotate(evrad1, angle1, screencenter.x, screencenter.y)
+              local pos2 = helpers.rotate(evrad2, angle2, screencenter.x, screencenter.y)
+              helpers.drawhold(screencenter.x, screencenter.y, pos1[1], pos1[2], pos2[1], pos2[2], angle1, angle2, v.segments, st.sprhold)
+            end
           end
         end
       end
