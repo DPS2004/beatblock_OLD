@@ -8,7 +8,7 @@ function love.load()
   pressed = 0
   mx,my = 0,0
   ispush = false
-  screencenter = {x = 300, y = 120}
+  screencenter = {x = 200, y = 120}
   -- font is https://tepokato.itch.io/axolotl-font
   -- https://www.dafont.com/digital-disco.font
   font = love.graphics.newFont("assets/DigitalDisco-Thin.ttf", 16)
