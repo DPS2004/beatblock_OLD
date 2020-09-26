@@ -419,7 +419,7 @@ function st.deleteeventatcursor()
     for i,v in ipairs(st.level.events) do
       if v.type ~= "hold" then
         if v.time == st.cursorpos.beat then
-          local evangle = v.angle or nil
+          local evangle = v.endangle or v.angle or nil
           if evangle ~= nil then
             if v.type == "sliceinvert" then
               evangle = (evangle + 180) % 360
