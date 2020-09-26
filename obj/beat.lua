@@ -63,6 +63,8 @@ function obj.update(dt)
         em.init("hitpart",obj.x,obj.y)
         obj.delete = true
         pq = pq .. "   player hit!"
+        cs.hits = cs.hits + 1
+        cs.combo = cs.combo +1
         if cs.beatsounds then
           te.play("click2.ogg","static")
         end
@@ -78,6 +80,8 @@ function obj.update(dt)
         mp.update()
         obj.delete = true
         pq = pq .. "   player missed!"
+        cs.misses = cs.misses + 1
+        cs.combo = 0
         cs.p.emotimer = 100
         cs.p.cemotion = "miss"
 
@@ -106,6 +110,8 @@ function obj.update(dt)
         
         if ((obj.hb - cs.cbeat)*-1)/obj.duration >= 1 then
           pq = pq .. "   finished hold!"
+          cs.hits = cs.hits + 1
+          cs.combo = cs.combo +1
           if cs.beatsounds then
             te.play("click2.ogg","static")
           end
@@ -124,7 +130,9 @@ function obj.update(dt)
         mp.spr = obj.spr3 --Set the miss part's sprite to that of a hold
         mp.update()
         obj.delete = true
-        pq = pq .. "   player missed!"
+        pq = pq .. "   player missed hold!"
+        cs.misses = cs.misses + 1
+        cs.combo = 0
         cs.p.emotimer = 100
         cs.p.cemotion = "miss"
 

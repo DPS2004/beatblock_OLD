@@ -53,7 +53,7 @@ function st.draw()
 
   love.graphics.rectangle("fill",0,0,400,240)
   love.graphics.setCanvas(st.canv)
-    
+  
     if not st.vfx.hom then
       love.graphics.clear()
     end
@@ -67,7 +67,15 @@ function st.draw()
       end
     end
     love.graphics.draw(st.bg)
+
+    helpers.color(1)
     em.draw()
+    helpers.color(2)
+    --love.graphics.print(st.hits.." / " .. (st.misses+st.hits),10,10)
+    if st.combo >= 10 then
+      love.graphics.print(st.combo.." combo!",10,220)
+    end
+    helpers.color(1)
   love.graphics.setCanvas(shuv.canvas)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.draw(st.canv)
