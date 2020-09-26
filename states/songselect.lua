@@ -29,6 +29,30 @@ function st.resume()
 
 end
 
+function st.mousepressed(x,y,b,t,p)
+  if ismobile then
+    local newselection = st.selection
+    if (love.mouse.getY()/shuv.scale) < 240/3 then
+      newselection = st.selection - 1
+      st.move = true
+    elseif (love.mouse.getY()/shuv.scale) > 240/3*2 then
+      newselection = st.selection + 1
+      st.move = true
+    else
+      clevel = st.levels[st.selection].filename
+      helpers.swap(states.game)
+    end
+    if st.move then
+      if newselection >= 1 and newselection <= st.levelcount then --Only move the cursor if it's within the bounds of the level list
+        st.selection = newselection
+        te.play("click2.ogg","static")
+        flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
+      end
+      st.move = false
+    end 
+  end
+end
+
 
 function st.update()
   pq = ""
@@ -80,6 +104,7 @@ function st.draw()
   em.draw()
   if pq ~= "" then
     print(helpers.round(st.cbeat*6,true)/6 .. pq)
+    
   end
 
   shuv.finish()
