@@ -5,8 +5,8 @@ end
 
 
 function st.enter(prev)
-  st.p = em.init("player",200,120)
-  st.gm = em.init("gamemanager",200,120)
+  st.p = em.init("player",screencenter.x,screencenter.y)
+  st.gm = em.init("gamemanager",screencenter.x,screencenter.y)
   st.gm.init(st)
 
   st.canv = love.graphics.newCanvas(400,240)

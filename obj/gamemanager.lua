@@ -58,7 +58,7 @@ function obj.update(dt)
       end
       if v.type == "beat" then
         v.played = true
-        local newbeat = em.init("beat",200,120)
+        local newbeat = em.init("beat",screencenter.x,screencenter.y)
         newbeat.angle = v.angle
         newbeat.startangle = v.angle
         newbeat.endangle = v.endangle or v.angle -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
@@ -69,7 +69,7 @@ function obj.update(dt)
       end
       if v.type == "slice" then
         v.played = true
-        local newbeat = em.init("beat",200,120)
+        local newbeat = em.init("beat",screencenter.x,screencenter.y)
         newbeat.angle = v.angle
         newbeat.slice = true
         
@@ -82,7 +82,7 @@ function obj.update(dt)
       end
       if v.type == "sliceinvert" then
         v.played = true
-        local newbeat = em.init("beat",200,120)
+        local newbeat = em.init("beat",screencenter.x,screencenter.y)
         newbeat.angle = v.angle
         newbeat.slice = true
         newbeat.inverse = true
@@ -96,7 +96,7 @@ function obj.update(dt)
       end
       if v.type == "inverse" then
         v.played = true
-        local newbeat = em.init("beat",200,120)
+        local newbeat = em.init("beat",screencenter.x,screencenter.y)
         newbeat.angle = v.angle
         newbeat.startangle = v.angle
         newbeat.endangle = v.endangle or v.angle -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
@@ -108,7 +108,7 @@ function obj.update(dt)
       end
       if v.type == "hold" then
         v.played = true
-        local newbeat = em.init("beat",200,120)
+        local newbeat = em.init("beat",screencenter.x,screencenter.y)
         newbeat.angle = v.angle1
         newbeat.segments = v.segments or nil
         newbeat.hold = true
