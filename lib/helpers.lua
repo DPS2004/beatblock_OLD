@@ -122,8 +122,8 @@ function helpers.drawhold(xo, yo, x1, y1, x2, y2, a1, a2, segments, sprhold)
     -- coordinates of the next point
     local nextAngle = math.rad(helpers.lerp(a1, a2, t) - 90)
     local nextDistance = helpers.lerp(len1, len2, t)
-    points[#points+1] = math.cos(nextAngle) * nextDistance + 200
-    points[#points+1] = math.sin(nextAngle) * nextDistance + 120
+    points[#points+1] = math.cos(nextAngle) * nextDistance + screencenter.x
+    points[#points+1] = math.sin(nextAngle) * nextDistance + screencenter.y
   end
 
   -- idk why but sometimes the last point doesn't reach the end of the slider

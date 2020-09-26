@@ -1,10 +1,10 @@
 local obj = {
   layer = -2,
   uplayer = 9,
-  x=200,
-  y=120,
-  ox=200,
-  oy=120,
+  x=screencenter.x,
+  y=screencenter.y,
+  ox=screencenter.x,
+  oy=screencenter.y,
   angle=0,
   distance=42,
   spr = love.graphics.newImage("assets/game/square.png")

@@ -2,8 +2,8 @@ local obj = {
   layer = -1,
   uplayer = 3,
   slice =false,
-  x=200,
-  y=120,
+  x=screencenter.x,
+  y=screencenter.y,
   angle=0,
   startangle=0,
   smult2=1,
@@ -71,7 +71,7 @@ function obj.update(dt)
           cs.p.cemotion = "idle"
         end
       else
-        local mp = em.init("misspart",200,120)
+        local mp = em.init("misspart",screencenter.x,screencenter.x)
         mp.angle = obj.angle
         mp.distance = (obj.hb - cs.cbeat)*cs.level.speed+cs.length
         mp.spr = (obj.inverse and not obj.slice and obj.spr2) or (obj.spr) --Determine which sprite the misspart should use
@@ -118,7 +118,7 @@ function obj.update(dt)
           em.init("hitpart",obj.x,obj.y)
         end
       else
-        local mp = em.init("misspart",200,120)
+        local mp = em.init("misspart",screencenter.x,screencenter.x)
         mp.angle = obj.angle
         mp.distance = (obj.hb - cs.cbeat)*cs.level.speed+cs.length
         mp.spr = obj.spr3 --Set the miss part's sprite to that of a hold

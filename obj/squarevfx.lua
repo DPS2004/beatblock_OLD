@@ -1,8 +1,8 @@
 local obj = {
   layer = -10,
   uplayer = 9,
-  x=200,
-  y=120,
+  x=screencenter.x,
+  y=screencenter.y,
   r = 4,
   dx = 1,
   dy = 1,

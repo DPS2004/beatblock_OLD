@@ -9,8 +9,8 @@ end
 
 
 function st.enter(prev)
-  st.p = em.init("player",200,120)
-  st.gm = em.init("gamemanager",200,120)
+  st.p = em.init("player",screencenter.x,screencenter.y)
+  st.gm = em.init("gamemanager",screencenter.x,screencenter.y)
   st.gm.init(st)
 
   st.canv = love.graphics.newCanvas(400,240)
@@ -145,14 +145,15 @@ function st.draw()
     if st.editmode then
       --Beatcircles
       love.graphics.setColor(0, 0, 0, 1)
-      love.graphics.circle("line",200,120,st.beatcircleminrad)
+      love.graphics.circle("line",screencenter.x,screencenter.y,st.beatcircleminrad)
       for i,v in ipairs(st.beatcircles) do
         if st.beatcircles[i] > st.beatcirclemaxrad then
           break
         end
+        --Beat numbers
         if st.beatcircles[i] >= st.beatcircleminrad then
-          love.graphics.circle("line",200,120,st.beatcircles[i])
-          love.graphics.printf(tostring(i), 0, 120 - st.beatcircles[i] - 15, 400, "center", 0, 1, 1)
+          love.graphics.circle("line",screencenter.x,screencenter.y,st.beatcircles[i])
+          love.graphics.printf(tostring(i), 0, screencenter.y - st.beatcircles[i] - 15, screencenter.x * 2, "center", 0, 1, 1)
         end
       end
       
@@ -167,18 +168,18 @@ function st.draw()
         if evrad >= st.beatcircleminrad then
           if v.type == "beat" then
             local angle = v.endangle or v.angle
-            local pos = helpers.rotate(evrad, angle, 200, 120)
+            local pos = helpers.rotate(evrad, angle, screencenter.x, screencenter.y)
             love.graphics.draw(st.sprbeat,pos[1],pos[2],0,1,1,8,8)
 
           elseif v.type == "inverse" then
             local angle = v.endangle or v.angle
-            local pos = helpers.rotate(evrad, angle, 200, 120)
+            local pos = helpers.rotate(evrad, angle, screencenter.x, screencenter.y)
             love.graphics.draw(st.sprinverse,pos[1],pos[2],0,1,1,8,8)
 
           elseif v.type == "slice" or v.type == "sliceinvert" then
             local angle = v.endangle or v.angle
             local invert = v.type == "sliceinvert"
-            helpers.drawslice(200, 120, evrad, angle, invert)
+            helpers.drawslice(screencenter.x, screencenter.y, evrad, angle, invert)
           end
         end
 
@@ -188,9 +189,9 @@ function st.draw()
             local evrad1 = (evrad >= st.beatcircleminrad and evrad) or st.beatcircleminrad
             local angle1 = v.angle1
             local angle2 = v.angle2
-            local pos1 = helpers.rotate(evrad1, angle1, 200, 120)
-            local pos2 = helpers.rotate(evrad2, angle2, 200, 120)
-            helpers.drawhold(200, 120, pos1[1], pos1[2], pos2[1], pos2[2], angle1, angle2, v.segments, st.sprhold)
+            local pos1 = helpers.rotate(evrad1, angle1, screencenter.x, screencenter.y)
+            local pos2 = helpers.rotate(evrad2, angle2, screencenter.x, screencenter.y)
+            helpers.drawhold(screencenter.x, screencenter.y, pos1[1], pos1[2], pos2[1], pos2[2], angle1, angle2, v.segments, st.sprhold)
           end
         end
       end
