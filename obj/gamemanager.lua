@@ -155,6 +155,10 @@ function obj.update(dt)
     if v.time <= obj.currst.cbeat and v.played == false then
       
       v.played = true
+      if v.type == "setBPM" then
+        obj.currst.source:setBPM(v.bpm, v.time)
+        pq = pq .. "    set bpm to "..v.bpm .. " !!"
+      end
       if v.type == "play" then
         obj.currst.source = lovebpm.newTrack()
           :load(obj.currst.sounddata)
