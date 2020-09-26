@@ -28,6 +28,7 @@ function lovebpm.newTrack()
   self.time = 0
   self.totalTime = 0
   self.dtMultiplier = 1
+  self.lastBPMChange = { beat = 0, time = 0}
   return self
 end
 
@@ -115,7 +116,11 @@ function Track:load(filename)
 end
 
 
-function Track:setBPM(n)
+function Track:setBPM(n, at)
+  at = at or 0
+  self.lastBPMChange.time = self.lastBPMChange.time + self.period * (at - self.lastBPMChange.beat)
+  self.lastBPMChange.beat = at
+
   self.period = 60 / n
   return self
 end
@@ -236,7 +241,8 @@ end
 function Track:getBeat(multiplier)
   multiplier = multiplier or 1
   local period = self.period * multiplier
-  return math.floor(self.time / period), (self.time % period) / period
+  local beat = (self.time - self.lastBPMChange.time) / period + self.lastBPMChange.beat
+  return math.floor(beat), beat - math.floor(beat)
 end
 
 
