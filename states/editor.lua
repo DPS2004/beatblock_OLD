@@ -466,7 +466,7 @@ function st.deleteeventatcursor()
     elseif type == "hold" then
       --Barebones hold addition. Need to be able to set both angles
       newevent.angle1 = st.cursorpos.angle
-      newevent.angle2 = (st.cursorpos.angle + 45) % 360
+      newevent.angle2 = st.cursorpos.angle + 45
       newevent.duration = 1
       newevent.speedmult = 1
     end
