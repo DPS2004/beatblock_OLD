@@ -20,7 +20,16 @@ function obj.startlevel(level)
   obj.currst.length = 42
   obj.currst.pt = 0
   obj.currst.bg = love.graphics.newImage("assets/bgs/nothing.png")
-  
+  obj.currst.misses= 0
+  obj.currst.hits = 0
+  obj.currst.combo = 0
+  obj.currst.maxhits = 0
+  for i,v in ipairs(obj.currst.level.events) do
+    if v.type == "beat" or v.type == "slice" or v.type == "sliceinvert" or v.type == "inverse" or v.type == "hold" then
+      obj.currst.maxhits = obj.currst.maxhits + 1
+    end
+  end
+
   obj.currst.on = true
   obj.currst.beatsounds = false
   obj.currst.extend = 0
@@ -212,6 +221,11 @@ function obj.update(dt)
         code()  --haha loadstring go brrr
       end
     end
+  end
+  if obj.currst.combo >= math.floor(obj.currst.maxhits / 4) then
+    obj.currst.p.cemotion = "happy"
+    obj.currst.p.emotimer = 2
+    --print("player should be happy")
   end
 end
 
