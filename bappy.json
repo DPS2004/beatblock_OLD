@@ -41,7 +41,8 @@
     {"type": "beat","speedmult": 1,"angle": 0,   "time": 22},
     {"type": "beat","speedmult": 1,"angle": 10,  "time": 22.3333},
     {"type": "beat","speedmult": 1,"angle": -20, "time": 22.6666},
-    {"type": "beat","speedmult": 1,"angle": 30,  "time": 23}
+    {"type": "beat","speedmult": 1,"angle": 30,  "time": 23},
+    {"type": "showresults",                      "time": 24},
   ],
   "file": "bappy.ogg",
 

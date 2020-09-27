@@ -696,6 +696,7 @@
     {"type": "beat","speedmult": 1,"angle": -90,   "time": 130.5},
     {"type": "beat","speedmult": 1,"angle": -45,   "time": 131},
     {"type": "beat","speedmult": 1,"angle": 0,   "time": 131.5},
+    {"type": "showresults",                        "time": 132},
   ],
   "pdiv": 2,
   "speed": 60,

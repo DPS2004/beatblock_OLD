@@ -56,7 +56,7 @@ function love.load()
   json = require "lib.json"
 
   -- lovebird,debugging console
-  if not release or ismobile then 
+  if (not release) or ismobile then 
     lovebird = require "lib.lovebird"
   else
     lovebird = require "lib.lovebirdstripped"
@@ -145,7 +145,8 @@ function love.load()
     songselect = require "states.songselect",
     game = require "states.game",
     rdconvert = require "states.rdconvert",
-    editor = require "states.editor"
+    editor = require "states.editor",
+    results = require "states.results",
   }
 
   gs.registerEvents()

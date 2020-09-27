@@ -323,6 +323,7 @@ function Track:update()
           b = b + total
         else
           self:emit("end")
+          print("end")
           self:stop()
         end
       end

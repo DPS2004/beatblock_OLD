@@ -3,7 +3,8 @@ local obj = {
   uplayer = -9999,
   x=0,
   y=0,
-  currst=nil
+  currst=nil,
+  songfinished = false
 }
 
 function obj.init(newst)
@@ -50,7 +51,7 @@ function obj.update(dt)
   end
 
   pq = ""
-  if obj.currst.source == nil then
+  if obj.currst.source == nil or obj.songfinished then
     obj.currst.cbeat = obj.currst.cbeat + (obj.currst.level.bpm/60) * love.timer.getDelta()
   else
     obj.currst.source:update()
@@ -66,6 +67,7 @@ function obj.update(dt)
       if v.type == "play" and obj.currst.sounddata == nil then
         
         obj.currst.sounddata = love.sound.newSoundData(v.file)
+        
        pq = pq .. "      loaded sounddata"
 
       end
@@ -165,6 +167,7 @@ function obj.update(dt)
           :setBPM(obj.currst.level.bpm)
           :setLooping(false)
           :play()
+          :on("end", function(f) print("song finished!!!!!!!!!!") obj.songfinished = true end)
         
         obj.currst.source:setBeat(obj.currst.cbeat)
         pq = pq .. "    ".. "now playing ".. v.file
@@ -223,6 +226,10 @@ function obj.update(dt)
         nc.update()
         
       end
+      if v.type == "showresults" then
+        flux.to(obj.currst.p,60,{ouchpulse=200,lookradius=0}):ease("inExpo"):oncomplete(function(f) helpers.swap(states.results) end )
+        
+      end
       if v.type == "lua" then
         pq = pq .. "    ".. "ran lua code"
         local code = loadstring(v.code) -- NOOOOOO YOU CANT RUN ARBITRARY CODE THATS A SECURITY RISK
@@ -235,6 +242,7 @@ function obj.update(dt)
     obj.currst.p.emotimer = 2
     --print("player should be happy")
   end
+  
 end
 
 
