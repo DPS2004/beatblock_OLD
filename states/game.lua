@@ -11,7 +11,7 @@ function st.enter(prev)
 
   st.canv = love.graphics.newCanvas(400,240)
 
-  st.level = json.decode(helpers.read(clevel))
+  st.level = json.decode(helpers.read(clevel .. "level.json"))
   st.gm.resetlevel()
   st.gm.on = true
 end

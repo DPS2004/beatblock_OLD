@@ -10,7 +10,14 @@ function st.enter(prev)
   st.p = em.init("player",350,120)
   st.length = 42
   st.extend = 0
-  st.levels = json.decode(helpers.read("songlist.json"))
+  st.list = json.decode(helpers.read("levels/songlist.json"))
+  st.levels = {}
+  for i,v in ipairs(st.list) do
+    if v.show then
+      local clevelj = json.decode(helpers.read("levels/".. v.name .. "/level.json"))
+      table.insert(st.levels,{songname=clevelj.metadata.songname,artist=clevelj.metadata.artist,filename="levels/".. v.name.."/"})
+    end
+  end
   st.levelcount = #st.levels --Get the # of levels in the songlist
 
   st.selection = 1

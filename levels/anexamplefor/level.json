@@ -1,7 +1,9 @@
 {
-  "bpm": 125,
-  "offset": 4,
-  "startbeat": 0,
+  "properties": {
+    "speed": 60,
+    "startbeat": 0,
+    "offset": 4
+  },
   "events": [
     {
       "type": "setbg",
@@ -11,7 +13,8 @@
     {
       "type": "play",
       "time": 0,
-      "file": "anexamplefor.ogg"
+      "file": "anexamplefor.ogg",
+      "bpm": 125
     },
     {
       "type": "multipulse",
@@ -698,6 +701,10 @@
     {"type": "beat","speedmult": 1,"angle": 0,   "time": 131.5},
     {"type": "showresults",                        "time": 132},
   ],
-  "pdiv": 2,
-  "speed": 60,
+  "metadata": {
+    "songname": "An Example For",
+    "artist": "Captive Portal",
+    "charter": "Rikri + DPS2004",
+    "description": "qwertyuiop"
+  }
 }

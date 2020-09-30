@@ -23,11 +23,11 @@ function st.enter(prev)
       startbeat = 0,
     }
   else
-    st.level = json.decode(helpers.read(clevel))
+    st.level = json.decode(helpers.read(clevel.."level.json"))
   end
 
-  st.offset = st.level.offset
-  st.startbeat = st.level.startbeat or 0
+  st.offset = st.level.properties.offset
+  st.startbeat = st.level.properties.startbeat or 0
   st.cbeat = 0-st.offset +st.startbeat
   st.autoplay = false
   st.length = 42

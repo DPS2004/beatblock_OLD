@@ -42,7 +42,8 @@ function st.draw()
   love.graphics.rectangle("fill",0,0,400,240)
 
   love.graphics.setColor(0,0,0)
-  print("insert results screen here lol")
+  love.graphics.print("insert results screen here lol",100,100)
+  love.graphics.setColor(1,1,1)
 
   em.draw()
   if pq ~= "" then

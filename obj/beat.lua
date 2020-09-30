@@ -44,12 +44,12 @@ function obj.update(dt)
   local p2 = nil
   
   if obj.inverse then
-    p1 = helpers.rotate(((obj.hb - cs.cbeat)*cs.level.speed*obj.smult*-1)+cs.extend+cs.length-24,obj.angle,obj.ox,obj.oy)
+    p1 = helpers.rotate(((obj.hb - cs.cbeat)*cs.level.properties.speed*obj.smult*-1)+cs.extend+cs.length-24,obj.angle,obj.ox,obj.oy)
   elseif not obj.hold then
-    p1 = helpers.rotate((obj.hb - cs.cbeat)*cs.level.speed*obj.smult+cs.extend+cs.length,obj.angle,obj.ox,obj.oy)
+    p1 = helpers.rotate((obj.hb - cs.cbeat)*cs.level.properties.speed*obj.smult+cs.extend+cs.length,obj.angle,obj.ox,obj.oy)
   elseif obj.hold then
-    p1 = helpers.rotate((obj.hb - cs.cbeat)*cs.level.speed*obj.smult+cs.extend+cs.length,obj.angle,obj.ox,obj.oy)
-    p2 = helpers.rotate((obj.hb - cs.cbeat+obj.duration)*cs.level.speed*obj.smult*obj.smult2+cs.extend+cs.length,obj.angle2,obj.ox,obj.oy)
+    p1 = helpers.rotate((obj.hb - cs.cbeat)*cs.level.properties.speed*obj.smult+cs.extend+cs.length,obj.angle,obj.ox,obj.oy)
+    p2 = helpers.rotate((obj.hb - cs.cbeat+obj.duration)*cs.level.properties.speed*obj.smult*obj.smult2+cs.extend+cs.length,obj.angle2,obj.ox,obj.oy)
     obj.x2 = p2[1]
     obj.y2 = p2[2]
     
@@ -75,7 +75,7 @@ function obj.update(dt)
       else
         local mp = em.init("misspart",screencenter.x,screencenter.x)
         mp.angle = obj.angle
-        mp.distance = (obj.hb - cs.cbeat)*cs.level.speed+cs.length
+        mp.distance = (obj.hb - cs.cbeat)*cs.level.properties.speed+cs.length
         mp.spr = (obj.inverse and not obj.slice and obj.spr2) or (obj.spr) --Determine which sprite the misspart should use
         mp.update()
         obj.delete = true
@@ -102,7 +102,7 @@ function obj.update(dt)
         
         
         p1 = helpers.rotate(cs.extend+cs.length,obj.angle,obj.ox,obj.oy)
-        p2 = helpers.rotate((obj.hb - cs.cbeat+obj.duration)*cs.level.speed*obj.smult*obj.smult2+cs.extend+cs.length,obj.angle2,obj.ox,obj.oy)
+        p2 = helpers.rotate((obj.hb - cs.cbeat+obj.duration)*cs.level.properties.speed*obj.smult*obj.smult2+cs.extend+cs.length,obj.angle2,obj.ox,obj.oy)
         obj.x2 = p2[1]
         obj.y2 = p2[2]
         obj.x = p1[1]
@@ -126,7 +126,7 @@ function obj.update(dt)
       else
         local mp = em.init("misspart",screencenter.x,screencenter.x)
         mp.angle = obj.angle
-        mp.distance = (obj.hb - cs.cbeat)*cs.level.speed+cs.length
+        mp.distance = (obj.hb - cs.cbeat)*cs.level.properties.speed+cs.length
         mp.spr = obj.spr3 --Set the miss part's sprite to that of a hold
         mp.update()
         obj.delete = true
@@ -159,7 +159,7 @@ function obj.draw()
       helpers.drawhold(obj.ox, obj.oy, obj.x, obj.y, obj.x2, obj.y2, obj.angle, obj.angle2, obj.segments, obj.spr3)
     end
   else
-    obj.x, obj.y = helpers.drawslice(obj.ox, obj.oy, (obj.hb - cs.cbeat)*cs.level.speed*obj.smult, obj.angle, obj.inverse, 1)
+    obj.x, obj.y = helpers.drawslice(obj.ox, obj.oy, (obj.hb - cs.cbeat)*cs.level.properties.speed*obj.smult, obj.angle, obj.inverse, 1)
   end
 end
 return obj

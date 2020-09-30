@@ -12,8 +12,8 @@ function obj.init(newst)
 end
 
 function obj.resetlevel()
-  obj.currst.offset = obj.currst.level.offset
-  obj.currst.startbeat = obj.currst.level.startbeat or 0
+  obj.currst.offset = obj.currst.level.properties.offset
+  obj.currst.startbeat = obj.currst.level.properties.startbeat or 0
   obj.currst.cbeat = 0-obj.currst.offset +obj.currst.startbeat
   obj.currst.autoplay = false
   obj.currst.length = 42
@@ -51,22 +51,15 @@ function obj.update(dt)
   end
 
   pq = ""
-  if obj.currst.source == nil or obj.songfinished then
-    obj.currst.cbeat = obj.currst.cbeat + (obj.currst.level.bpm/60) * love.timer.getDelta()
-  else
-    obj.currst.source:update()
-    local b,sb = obj.currst.source:getBeat(1)
-    obj.currst.cbeat = b+sb
-    --print(b+sb)
-  end
+  
 
   -- read the level
   for i,v in ipairs(obj.currst.level.events) do
   -- preload events such as beats
     if v.time <= obj.currst.cbeat+obj.currst.offset and v.played == false then
       if v.type == "play" and obj.currst.sounddata == nil then
-        
-        obj.currst.sounddata = love.sound.newSoundData(v.file)
+        obj.currst.level.bpm = v.bpm
+        obj.currst.sounddata = love.sound.newSoundData(clevel..v.file)
         
        pq = pq .. "      loaded sounddata"
 
@@ -164,7 +157,7 @@ function obj.update(dt)
       if v.type == "play" then
         obj.currst.source = lovebpm.newTrack()
           :load(obj.currst.sounddata)
-          :setBPM(obj.currst.level.bpm)
+          :setBPM(v.bpm)
           :setLooping(false)
           :play()
           :on("end", function(f) print("song finished!!!!!!!!!!") obj.songfinished = true end)
@@ -227,7 +220,7 @@ function obj.update(dt)
         
       end
       if v.type == "showresults" then
-        flux.to(obj.currst.p,60,{ouchpulse=200,lookradius=0}):ease("inExpo"):oncomplete(function(f) helpers.swap(states.results) end )
+        flux.to(obj.currst.p,60,{ouchpulse=300,lookradius=0}):ease("inExpo"):oncomplete(function(f) helpers.swap(states.results) end )
         
       end
       if v.type == "lua" then
@@ -236,6 +229,15 @@ function obj.update(dt)
         code()  --haha loadstring go brrr
       end
     end
+  end
+  
+  if obj.currst.source == nil or obj.songfinished then
+    obj.currst.cbeat = obj.currst.cbeat + (obj.currst.level.bpm/60) * love.timer.getDelta()
+  else
+    obj.currst.source:update()
+    local b,sb = obj.currst.source:getBeat(1)
+    obj.currst.cbeat = b+sb
+    --print(b+sb)
   end
   if obj.currst.combo >= math.floor(obj.currst.maxhits / 4) then
     obj.currst.p.cemotion = "happy"

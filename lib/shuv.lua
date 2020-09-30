@@ -37,7 +37,9 @@ end
 
 
 function shuv.start()
+  love.graphics.setColor(1, 1, 1, 1)
   love.graphics.setCanvas(shuv.canvas)
+  love.graphics.setBlendMode("alpha", "premultiplied")
 end
 
 
