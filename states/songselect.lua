@@ -1,29 +1,52 @@
-local st = {}
+local st = {ease = nil}
 
 
 function st.init()
   st.fg = love.graphics.newImage("assets/game/selectfg.png")
 end
 
+function st.refresh()
+  local clist = love.filesystem.getDirectoryItems(st.cdir)
+  local levels = {}
+  for i,v in ipairs(clist) do
+    if love.filesystem.getInfo(st.cdir .. v .. "/level.json") then
+      local clevelj = json.decode(helpers.read(st.cdir .. v .. "/level.json"))
+      table.insert(levels,{islevel = true,songname=clevelj.metadata.songname,artist=clevelj.metadata.artist,filename=st.cdir .. v .. "/"})
+    elseif love.filesystem.getInfo(st.cdir .. v .. "/").type == "directory" then
+      
+      table.insert(levels,{islevel = false,name = v,filename=st.cdir .. v .. "/"})
+    end
+  end
+  if st.cdir ~= "levels/" then
+    local fname = st.cdir
+    local fname2 = ""
+    local offset = 0
+    if string.sub(st.cdir,-1) == "/" then
+      fname = string.sub(fname,1,-2)
+    end
+    fname2 = fname:match(".*/(.*)")
+    fname = string.sub(fname,1,-(string.len(fname2)+1))
+    table.insert(levels,{islevel=false,name="back",filename=fname})
+  end
+  st.selection = 1
+  return levels
+end
 
 function st.enter(prev)
+  st.cdir = "levels/"
   st.p = em.init("player",350,120)
   st.length = 42
   st.extend = 0
-  st.list = json.decode(helpers.read("levels/songlist.json"))
-  st.levels = {}
-  for i,v in ipairs(st.list) do
-    if v.show then
-      local clevelj = json.decode(helpers.read("levels/".. v.name .. "/level.json"))
-      table.insert(st.levels,{songname=clevelj.metadata.songname,artist=clevelj.metadata.artist,filename="levels/".. v.name.."/"})
-    end
-  end
+  --st.list = json.decode(helpers.read("levels/songlist.json"))
+  st.levels = st.refresh()
+
   st.levelcount = #st.levels --Get the # of levels in the songlist
 
   st.selection = 1
   st.move = false
   st.dispy = -60
 end
+
 
 
 function st.leave()
@@ -46,14 +69,25 @@ function st.mousepressed(x,y,b,t,p)
       newselection = st.selection + 1
       st.move = true
     else
-      clevel = st.levels[st.selection].filename
-      helpers.swap(states.game)
+      if st.levels[st.selection].islevel then
+        clevel = st.levels[st.selection].filename
+        helpers.swap(states.game)
+      else
+        st.cdir = st.levels[st.selection].filename
+        st.levels = st.refresh()
+
+        st.levelcount = #st.levels --Get the # of levels in the songlist
+
+        st.selection = 1
+        st.move = true
+        st.dispy = -60
+      end
     end
     if st.move then
       if newselection >= 1 and newselection <= st.levelcount then --Only move the cursor if it's within the bounds of the level list
         st.selection = newselection
         te.play("click2.ogg","static")
-        flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
+        st.ease = flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
       end
       st.move = false
     end 
@@ -76,8 +110,25 @@ function st.update()
     st.move = true
   end
   if maininput:pressed("accept") then
-    clevel = st.levels[st.selection].filename
-    helpers.swap(states.game)
+    if st.levels[st.selection].islevel then
+      clevel = st.levels[st.selection].filename
+      helpers.swap(states.game)
+    else
+      st.cdir = st.levels[st.selection].filename
+      st.levels = st.refresh()
+      
+      st.levelcount = #st.levels --Get the # of levels in the songlist
+      if st.ease then
+        st.ease:stop()
+      end
+      st.selection = 1
+      st.move = true
+      te.play("click2.ogg","static")
+      st.ease = flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
+      --st.dispy = -60
+
+      newselection = 1
+    end
   end
   if maininput:pressed("e") then
     clevel = st.levels[st.selection].filename
@@ -87,7 +138,8 @@ function st.update()
     if newselection >= 1 and newselection <= st.levelcount then --Only move the cursor if it's within the bounds of the level list
       st.selection = newselection
       te.play("click2.ogg","static")
-      flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
+      
+      st.ease = flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
     end
     st.move = false
   end
@@ -105,8 +157,13 @@ function st.draw()
   love.graphics.draw(st.fg,2,-2)
   helpers.color(2)
   for i,v in ipairs(st.levels) do
-    love.graphics.print(v.songname,10,70+i*60+st.dispy,0,2,2)
-    love.graphics.print(v.artist,10,100+i*60+st.dispy)
+    if v.islevel then
+      love.graphics.print(v.songname,10,70+i*60+st.dispy,0,2,2)
+      love.graphics.print(v.artist,10,100+i*60+st.dispy)
+    else
+      love.graphics.print(v.name,10,76+i*60+st.dispy,0,2,2)
+      --love.graphics.print(v.artist,10,100+i*60+st.dispy)
+    end
   end
   em.draw()
   if pq ~= "" then
