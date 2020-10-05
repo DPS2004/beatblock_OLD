@@ -95,6 +95,11 @@ function st.update()
   --Below only applies while in edit mode
   if st.editmode then
     if maininput:pressed("p") then
+      if maininput:down("shift") then
+        st.startbeat = st.scrollradtobeat((st.beatcircleminrad + st.beatcirclestartrad) * st.scrollzoom, false)
+      else
+        st.startbeat = 0
+      end
       st.playlevel()
     end
 
@@ -246,14 +251,8 @@ function st.update()
     --The angle that's nearest to the cursor
     local nearestangle = math.floor((mouseangle / st.degreesnap) + 0.5) * st.degreesnap
   
-    --Find the beat that's nearest to the cursor
-    local nearestbeat = 0
-    while st.beattoscrollrad(nearestbeat + st.beatsnap) < mouserad do
-      nearestbeat = nearestbeat + st.beatsnap
-    end
-  
     st.cursorpos.angle = nearestangle % 360
-    st.cursorpos.beat = nearestbeat
+    st.cursorpos.beat = st.scrollradtobeat(mouserad, true)
   end
 
   flux.update(1)
@@ -412,6 +411,17 @@ function st.beattoscrollrad(beat)
   return st.beatcirclestartrad - (st.scrollpos - st.beatcircledistance * beat) * (st.scrollzoom * 10)
 end
 
+--Find the beat that's nearest to the given radius
+function st.scrollradtobeat(rad, snap)
+  local nearestbeat = 0
+  --Should beat snap be taken into account?
+  local snapfactor = (snap and st.beatsnap) or 0
+  while st.beattoscrollrad(nearestbeat + snapfactor) < rad do
+    nearestbeat = nearestbeat + st.beatsnap
+  end
+  return nearestbeat
+end
+
 --Delete the first event that overlaps the cursor's current position
 function st.deleteeventatcursor()
   local delindex = nil
@@ -482,6 +492,7 @@ function st.deleteeventatcursor()
 
   function st.stoplevel()
     st.editmode = true
+    st.startbeat = 0
     st.gm.resetlevel()
     st.gm.on = false
     

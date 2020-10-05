@@ -13,7 +13,7 @@ end
 
 function obj.resetlevel()
   obj.currst.offset = obj.currst.level.properties.offset
-  obj.currst.startbeat = obj.currst.level.properties.startbeat or 0
+  obj.currst.startbeat = obj.currst.startbeat or 0
   obj.currst.cbeat = 0-obj.currst.offset +obj.currst.startbeat
   obj.currst.autoplay = false
   obj.currst.length = 42
