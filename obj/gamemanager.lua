@@ -70,6 +70,7 @@ function obj.update(dt)
         newbeat.angle = v.angle
         newbeat.startangle = v.angle
         newbeat.endangle = v.endangle or v.angle -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
+        newbeat.spinease = v.spinease or "linear" -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
         newbeat.hb = v.time
         newbeat.smult = v.speedmult
         pq = pq .. "    ".. "spawn here!"

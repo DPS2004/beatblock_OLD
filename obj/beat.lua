@@ -37,7 +37,12 @@ function obj.update(dt)
 
   -- Interpolate angle between startangle and endangle based on progress. Beat should be at endangle when it hits the paddle.
   if (obj.hb - cs.cbeat) > 0 then --only clamp when moving towards point
-    obj.angle = helpers.clamp(helpers.lerp(obj.startangle, obj.endangle, progress), obj.startangle, obj.endangle) % 360
+    if obj.spinease == "linear" then
+      obj.angle = helpers.clamp(helpers.lerp(obj.startangle, obj.endangle, progress), obj.startangle, obj.endangle) % 360
+    elseif obj.spinease == "inExpo"  then
+      --print(2 ^ (10 * (progress - 1)))
+      obj.angle = helpers.clamp(helpers.lerp(obj.startangle, obj.endangle, 2 ^ (10 * (progress - 1))), obj.startangle, obj.endangle) % 360
+    end
   end
   
   local p1 = nil
