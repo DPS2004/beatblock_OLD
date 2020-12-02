@@ -213,6 +213,7 @@ function st.update()
         end
       end
 
+      --r custom angle snap
       if maininput:pressed("accept") and st.degreesnaptextbox == true then
         st.state = "free"
         st.degreesnaptextbox = false
