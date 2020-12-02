@@ -53,13 +53,15 @@ function st.enter(prev)
   st.beatsnap = 0.5
   st.degreesnap = 15
   st.degreesnaptextbox = false
-  st.degreetypedtext = ""
+  st.degreesnaptypedtext = ""
   st.cursorpos = {angle = 0, beat = 0}
   st.scrollpos = 0 --Where you are in the song
   st.scrollzoom = 1
   st.scrolldir = 0 --Used for mouse scrolling
   st.beatcircles = {}
   st.editmode = true
+  
+  st.state = "free" --r MAKE SURE TO CHECK FOR THE FREE STATE BEFORE ADDING A NEW KEYBIND (free state means a text box isn't currently selected or anything)
 
   for i=1,500,1 do
     st.beatcircles[i] = 1
@@ -105,44 +107,44 @@ function st.update()
       st.playlevel()
     end
 
-    if maininput:down("ctrl") then
+    if maininput:down("ctrl") and st.state == "free" then
       if maininput:pressed("s") then
         st.savelevel()
         st.p.hurtpulse() --Little animation to confirm that you indeed saved
       end
     else
       -- Set type of event on cursor
-      if maininput:pressed("k1") then
+      if maininput:pressed("k1") and st.state == "free" then
         st.cursortype = "beat"
       end
     
-      if maininput:pressed("k2") then
+      if maininput:pressed("k2") and st.state == "free" then
         st.cursortype = "inverse"
       end
     
-      if maininput:pressed("k3") then
+      if maininput:pressed("k3") and st.state == "free" then
         st.cursortype = "hold"
       end
     
-      if maininput:pressed("k4") then
+      if maininput:pressed("k4") and st.state == "free" then
         st.cursortype = "slice"
       end
     
-      if maininput:pressed("k5") then
+      if maininput:pressed("k5") and st.state == "free" then
         st.cursortype = "sliceinvert"
       end
 
       --Set zoom
-      if maininput:pressed("up") then
+      if maininput:pressed("up") and st.state == "free" then
         st.scrollzoom = st.scrollzoom + 0.5
       end
     
-      if maininput:pressed("down") then
+      if maininput:pressed("down") and st.state == "free" then
         st.scrollzoom = st.scrollzoom - 0.5
       end
 
       --Beat snap
-      if maininput:pressed("minus") then
+      if maininput:pressed("minus") and st.state == "free" then
         if st.beatsnap == 1 then
           st.beatsnap = 0.5
         elseif st.beatsnap == 0.5 then
@@ -156,7 +158,7 @@ function st.update()
         end
       end
 
-      if maininput:pressed("plus") then
+      if maininput:pressed("plus") and st.state == "free" then
         if st.beatsnap == 0.125 then
           st.beatsnap = 0.1666
         elseif st.beatsnap == 0.1666 then
@@ -171,20 +173,20 @@ function st.update()
       end
 
       --Angle snap
-      if maininput:pressed("rightbracket") then
-        if st.degreesnap == 5 then
-          st.degreesnap = 10
-        elseif st.degreesnap == 10 then
+      if maininput:pressed("rightbracket") and st.state == "free" then
+        if st.degreesnap == 5.625 then
+          st.degreesnap = 7.5
+        elseif st.degreesnap == 7.5 then
+          st.degreesnap = 11.25
+        elseif st.degreesnap == 11.25 then
           st.degreesnap = 15
         elseif st.degreesnap == 15 then
-          st.degreesnap = 20
-        elseif st.degreesnap == 20 then
+          st.degreesnap = 22.5
+        elseif st.degreesnap == 22.5 then
           st.degreesnap = 30
         elseif st.degreesnap == 30 then
           st.degreesnap = 45
         elseif st.degreesnap == 45 then
-          st.degreesnap = 60
-        elseif st.degreesnap == 60 then
           st.degreesnap = 90
         elseif st.degreesnap == 90 then
           st.degreesnaptextbox = true
@@ -193,40 +195,43 @@ function st.update()
         end
       end
 
-      if maininput:pressed("leftbracket") then
+      if maininput:pressed("leftbracket") and st.state == "free" then
         if st.degreesnap == 90 then
-          st.degreesnap = 60
-        elseif st.degreesnap == 60 then
           st.degreesnap = 45
         elseif st.degreesnap == 45 then
           st.degreesnap = 30
         elseif st.degreesnap == 30 then
-          st.degreesnap = 20
-        elseif st.degreesnap == 20 then
+          st.degreesnap = 22.5
+        elseif st.degreesnap == 22.5 then
           st.degreesnap = 15
         elseif st.degreesnap == 15 then
-          st.degreesnap = 10
+          st.degreesnap = 11.25
+        elseif st.degreesnap == 11.25 then
+          st.degreesnap = 7.5
         else
-          st.degreesnap = 5
+          st.degreesnap = 5.625
         end
       end
 
-      if maininput:pressed("enter") and st.degreesnaptextbox == true then
+      if maininput:pressed("accept") and st.degreesnaptextbox == true then
+        st.state = "free"
         st.degreesnaptextbox = false
-        st.degreesnap = tonumber (st.degreetypedtext)
+        st.degreesnap = tonumber (st.degreesnaptypedtext)
       end
       if st.degreesnap == nil then --r TODO: display error "Invalid angle snap! Enter a number."
         st.degreesnap = 60
       end
 
       if st.degreesnaptextbox == true then
+        st.state = "text"
         function love.textinput(t)
           if t=="1" or t=="2" or t=="3" or t=="4" or t=="5" or t=="6" or t=="7" or t=="8" or t=="9" or t=="0" or t=="." then
-            st.degreetypedtext = st.degreetypedtext .. t
+            st.degreesnaptypedtext = st.degreesnaptypedtext .. t
           end
         end
       else
         love.textinput = nil
+        st.degreesnaptypedtext = ""
       end
 
       --Adding/deleting events
@@ -409,9 +414,10 @@ function st.draw()
       end
 
       --r my bad implementation of the textbox
-      if st.beatsnaptextbox == true then
-        love.graphics.print("New angle snap:",30,10) --r PLEASE HELP ME WHY ISNT THE TEXT SHOWING AAAAAAAAA
-        love.graphics.print(st.degreetypedtext,200,200)
+      if st.degreesnaptextbox == true then
+        love.graphics.setColor(1, 0, 0, 1)
+        love.graphics.print("New angle snap:",30,10)
+        love.graphics.print(st.degreesnaptypedtext,30,30)
       end
     end
 
