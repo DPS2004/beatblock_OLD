@@ -32,7 +32,7 @@ function obj.resetlevel()
 
   obj.currst.on = true
 
-  obj.currst.beatsounds = false
+  obj.currst.beatsounds = true
   obj.currst.extend = 0
   for i,v in ipairs(obj.currst.level.events) do
     v.played = false

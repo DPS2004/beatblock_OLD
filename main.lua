@@ -113,6 +113,7 @@ function love.load()
         back = {"key:escape", "button:b"},
         ctrl = {"key:lctrl", "key:rctrl"},
         shift = {"key:lshift", "key:rshift"},
+        enter = {"key:return"},
         plus = {"key:+", "key:="},
         minus = {"key:-"},
         leftbracket = {"key:["},

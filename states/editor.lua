@@ -52,6 +52,8 @@ function st.enter(prev)
   st.cursortype = "beat"
   st.beatsnap = 0.5
   st.degreesnap = 15
+  st.degreesnaptextbox = false
+  st.degreetypedtext = ""
   st.cursorpos = {angle = 0, beat = 0}
   st.scrollpos = 0 --Where you are in the song
   st.scrollzoom = 1
@@ -184,6 +186,10 @@ function st.update()
           st.degreesnap = 60
         elseif st.degreesnap == 60 then
           st.degreesnap = 90
+        elseif st.degreesnap == 90 then
+          st.degreesnaptextbox = true
+        else
+          st.degreesnap = 90
         end
       end
 
@@ -200,9 +206,27 @@ function st.update()
           st.degreesnap = 15
         elseif st.degreesnap == 15 then
           st.degreesnap = 10
-        elseif st.degreesnap == 10 then
+        else
           st.degreesnap = 5
         end
+      end
+
+      if maininput:pressed("enter") and st.degreesnaptextbox == true then
+        st.degreesnaptextbox = false
+        st.degreesnap = tonumber (st.degreetypedtext)
+      end
+      if st.degreesnap == nil then --r TODO: display error "Invalid angle snap! Enter a number."
+        st.degreesnap = 60
+      end
+
+      if st.degreesnaptextbox == true then
+        function love.textinput(t)
+          if t=="1" or t=="2" or t=="3" or t=="4" or t=="5" or t=="6" or t=="7" or t=="8" or t=="9" or t=="0" or t=="." then
+            st.degreetypedtext = st.degreetypedtext .. t
+          end
+        end
+      else
+        love.textinput = nil
       end
 
       --Adding/deleting events
@@ -321,7 +345,7 @@ function st.draw()
         local snaplineend = helpers.rotate(st.beatcirclemaxrad, j * st.degreesnap, screencenter.x, screencenter.y)
         love.graphics.line(snaplinestart[1], snaplinestart[2], snaplineend[1], snaplineend[2])
       end
-      
+
       --Events
       love.graphics.setColor(1, 1, 1, 1)
       for i,v in ipairs(st.level.events) do
@@ -382,6 +406,12 @@ function st.draw()
           end
           helpers.drawslice(screencenter.x, screencenter.y, cursorrad, sliceangle, invert, 0.5)
         end
+      end
+
+      --r my bad implementation of the textbox
+      if st.beatsnaptextbox == true then
+        love.graphics.print("New angle snap:",30,10) --r PLEASE HELP ME WHY ISNT THE TEXT SHOWING AAAAAAAAA
+        love.graphics.print(st.degreetypedtext,200,200)
       end
     end
 
