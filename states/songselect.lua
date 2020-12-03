@@ -2,7 +2,7 @@ local st = {ease = nil}
 
 
 function st.init()
-  st.fg = love.graphics.newImage("assets/game/selectfg.png")
+  st.fg = sprites.songselect.fg
 end
 
 function st.refresh()

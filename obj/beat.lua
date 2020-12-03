@@ -14,9 +14,9 @@ local obj = {
   inverse = false,
   hityet = false,
   hold = false,
-  spr = love.graphics.newImage("assets/game/square.png"),
-  spr2 = love.graphics.newImage("assets/game/inverse.png"),
-  spr3 = love.graphics.newImage("assets/game/hold.png")
+  spr = sprites.beat.square,
+  spr2 = sprites.beat.inverse,
+  spr3 = sprites.beat.hold
 }
 obj.ox = obj.x
 obj.oy = obj.y

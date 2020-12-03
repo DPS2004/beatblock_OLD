@@ -61,10 +61,15 @@ function st.draw()
     love.graphics.setBlendMode("alpha")
     love.graphics.setColor(1, 1, 1, 1)
 
-    if st.vfx.hom then
-      for i=0,st.vfx.homint do
-        love.graphics.points(math.random(0,400),math.random(0,240))
-      end
+    --if st.vfx.hom then
+      --for i=0,st.vfx.homint do
+        --love.graphics.points(math.random(0,400),math.random(0,240))
+      --end 
+      
+    --end
+    --ouch the lag
+    if st.vfx.bgnoise.enable then
+      love.graphics.draw(st.vfx.bgnoise.image,math.random(-2048+gameWidth,0),math.random(-2048+gameHeight,0))
     end
     love.graphics.draw(st.bg)
 

@@ -101,6 +101,22 @@ function love.load()
     {1,0,77/255},
     {1,0,0}
   }
+  --load sprites into memory, so that we are not loading 50 bajillion copies of the beats in a level
+  sprites = {
+    beat= {
+      square = love.graphics.newImage("assets/game/square.png"),
+      inverse = love.graphics.newImage("assets/game/inverse.png"),
+      hold = love.graphics.newImage("assets/game/hold.png")
+    },
+    player = {
+      idle = love.graphics.newImage("assets/game/cranky/idle.png"),
+      happy = love.graphics.newImage("assets/game/cranky/happy.png"),
+      miss = love.graphics.newImage("assets/game/cranky/miss.png")
+    },
+    songselect = {
+      fg = love.graphics.newImage("assets/game/selectfg.png")
+    }
+  }
 
   --setup input
   maininput = baton.new {

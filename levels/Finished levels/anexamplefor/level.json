@@ -8,7 +8,7 @@
     {
       "type": "setbg",
       "time": -4,
-      "file": "simple1"
+      "file": "simple1.png"
     },
     {
       "type": "play",
@@ -531,8 +531,18 @@
       "type": "hom",
       "time": 62,
       "enable": true,
-      "intensity":10000
+
     },    
+    {
+      "type": "bgnoise",
+      "time": 62,
+      "enable": true,
+      "filename":"10000noiseatlas.png",
+      "r": 1,
+      "g": 1,
+      "b": 1,
+      "a": 1
+    },
     {
       "x": 200,
       "type": "circle",
@@ -563,7 +573,16 @@
       "type": "hom",
       "time": 79,
       "enable": true,
-      "intensity":80000
+    },
+    {
+      "type": "bgnoise",
+      "time": 79,
+      "enable": true,
+      "filename":"80000noiseatlas.png",
+      "r": 1,
+      "g": 1,
+      "b": 1,
+      "a": 1
     },
     {
       "x": 200,

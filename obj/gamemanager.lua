@@ -40,7 +40,7 @@ function obj.resetlevel()
   end
   obj.currst.vfx = {}
   obj.currst.vfx.hom = false
-  obj.currst.vfx.homint = 20000
+  obj.currst.vfx.bgnoise = {enable=false,image=love.graphics.newImage("assets/game/noise/0noiseatlas.png"),r=1,b=1,g=1}
   obj.currst.lastsigbeat = math.floor(obj.currst.cbeat)
 end
 
@@ -190,17 +190,38 @@ function obj.update(dt)
       end
       
       if v.type == "setbg" then
-        obj.currst.bg = love.graphics.newImage("assets/bgs/".. v.file ..".png")
-        pq = pq.. "     set bg"
+        obj.currst.bg = love.graphics.newImage("assets/bgs/".. v.file)
+        pq = pq.. "     set bg to " .. v.file
       end
 
       if v.type == "hom" then
         obj.currst.vfx.hom = v.enable
-        obj.currst.vfx.homint = v.intensity
-        if obj.currst.vfx.hom then
+
+        if v.enable then
           pq = pq .. "    ".. "Hall Of Mirrors enabled"
         else
           pq = pq .. "    ".. "Hall Of Mirrors disabled"
+        end
+      end
+      if v.type == "bgnoise" then
+        obj.currst.vfx.bgnoise.enable = v.enable
+        if v.enable then
+          obj.currst.vfx.bgnoise.image = love.graphics.newImage("assets/game/noise/" .. v.filename)
+          obj.currst.vfx.bgnoise.r = v.r or 1
+          obj.currst.vfx.bgnoise.g = v.g or 1
+          obj.currst.vfx.bgnoise.b = v.b or 1
+          obj.currst.vfx.bgnoise.a = v.a or 1
+        else
+          obj.currst.vfx.bgnoise.image = love.graphics.newImage("assets/game/noise/0noiseatlas.png")
+          obj.currst.vfx.bgnoise.r = 1
+          obj.currst.vfx.bgnoise.g = 1
+          obj.currst.vfx.bgnoise.b = 1
+          obj.currst.vfx.bgnoise.a = 0
+        end
+        if v.enable then
+          pq = pq .. "    ".. "BG Noise enabled with filename of " .. v.filename
+        else
+          pq = pq .. "    ".. "BG Noise disabled"
         end
       end
 

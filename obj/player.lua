@@ -2,9 +2,9 @@ local obj = {
   layer = 0,
   uplayer = 0,
   spr = {
-    idle = love.graphics.newImage("assets/game/cranky/idle.png"),
-    happy = love.graphics.newImage("assets/game/cranky/happy.png"),
-    miss = love.graphics.newImage("assets/game/cranky/miss.png")
+    idle = sprites.player.idle,
+    happy = sprites.player.happy,
+    miss = sprites.player.miss
   },
   x=0,
   y=0,
