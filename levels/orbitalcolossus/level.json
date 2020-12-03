@@ -8,83 +8,1761 @@
   "bpm": 164,
   "events": [
     {
+      "angle": 90,
+      "type": "beat",
+      "time": 144,
+      "speedmult": 1,
+      "endangle": 90
+    },
+    {
+      "angle": 90,
+      "type": "beat",
+      "time": 143.75,
+      "speedmult": 1,
+      "endangle": 90
+    },
+    {
+      "angle": 120,
+      "type": "beat",
+      "time": 143.5,
+      "speedmult": 1,
+      "endangle": 120
+    },
+    {
       "angle": 150,
       "type": "beat",
-      "time": 66.75,
+      "time": 143.25,
       "speedmult": 1,
       "endangle": 150
     },
     {
       "angle": 180,
       "type": "beat",
-      "time": 67,
-      "speedmult": 1,
-      "endangle": 180
-    },
-    {
-      "angle": 210,
-      "type": "inverse",
-      "time": 67.5,
-      "speedmult": 1,
-      "endangle": 210
-    },
-    {
-      "angle": 210,
-      "type": "beat",
-      "time": 76.75,
-      "speedmult": 1,
-      "endangle": 210
-    },
-    {
-      "angle": 180,
-      "type": "beat",
-      "time": 77,
-      "speedmult": 1,
-      "endangle": 180
-    },
-    {
-      "angle": 180,
-      "type": "beat",
-      "time": 83,
+      "time": 143,
       "speedmult": 1,
       "endangle": 180
     },
     {
       "angle": 210,
       "type": "beat",
-      "time": 82.75,
+      "time": 142.75,
       "speedmult": 1,
       "endangle": 210
     },
     {
       "angle": 180,
       "type": "beat",
-      "time": 93,
+      "time": 142.5,
       "speedmult": 1,
       "endangle": 180
     },
     {
-      "angle": 150,
+      "angle": 210,
       "type": "beat",
-      "time": 92.75,
+      "time": 142.25,
       "speedmult": 1,
-      "endangle": 150
-    },
-    {
-      "angle": 0,
-      "type": "beat",
-      "time": 71,
-      "speedmult": 1,
-      "endangle": 0
+      "endangle": 210
     },
     {
       "angle": 180,
       "played": false,
       "speedmult": 1,
       "type": "beat",
-      "time": 0,
+      "time": 142,
       "autoplayed": false,
       "endangle": 180
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 141.75,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 120,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 141.5,
+      "autoplayed": false,
+      "endangle": 120
+    },
+    {
+      "angle": 90,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 141.25,
+      "autoplayed": false,
+      "endangle": 90
+    },
+    {
+      "angle": 60,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 141,
+      "autoplayed": false,
+      "endangle": 60
+    },
+    {
+      "angle": 30,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 140.75,
+      "autoplayed": false,
+      "endangle": 30
+    },
+    {
+      "angle": 0,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 140.5,
+      "autoplayed": false,
+      "endangle": 0
+    },
+    {
+      "angle": 330,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 140.25,
+      "autoplayed": false,
+      "endangle": 330
+    },
+    {
+      "angle": 300,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 140,
+      "autoplayed": false,
+      "endangle": 300
+    },
+    {
+      "angle": 270,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 139.75,
+      "autoplayed": false,
+      "endangle": 270
+    },
+    {
+      "angle": 240,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 139.5,
+      "autoplayed": false,
+      "endangle": 240
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 139.25,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 139,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 138.75,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 120,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 138.5,
+      "autoplayed": false,
+      "endangle": 120
+    },
+    {
+      "angle": 90,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 138.25,
+      "autoplayed": false,
+      "endangle": 90
+    },
+    {
+      "angle": 60,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 138,
+      "autoplayed": false,
+      "endangle": 60
+    },
+    {
+      "angle": 30,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 137.75,
+      "autoplayed": false,
+      "endangle": 30
+    },
+    {
+      "angle": 0,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 137.5,
+      "autoplayed": false,
+      "endangle": 0
+    },
+    {
+      "angle": 330,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 137.25,
+      "autoplayed": false,
+      "endangle": 330
+    },
+    {
+      "angle": 300,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 137,
+      "autoplayed": false,
+      "endangle": 300
+    },
+    {
+      "angle": 270,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 136.75,
+      "autoplayed": false,
+      "endangle": 270
+    },
+    {
+      "angle": 240,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 136.5,
+      "autoplayed": false,
+      "endangle": 240
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 136.25,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 136,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 135.75,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 135.5,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 135.25,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 135,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 134.75,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 134.5,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 134.25,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 134,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 133.75,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 240,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 133.5,
+      "autoplayed": false,
+      "endangle": 240
+    },
+    {
+      "angle": 270,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 133.25,
+      "autoplayed": false,
+      "endangle": 270
+    },
+    {
+      "angle": 300,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 133,
+      "autoplayed": false,
+      "endangle": 300
+    },
+    {
+      "angle": 330,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 132.75,
+      "autoplayed": false,
+      "endangle": 330
+    },
+    {
+      "angle": 0,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 132.5,
+      "autoplayed": false,
+      "endangle": 0
+    },
+    {
+      "angle": 30,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 132.25,
+      "autoplayed": false,
+      "endangle": 30
+    },
+    {
+      "angle": 60,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 132,
+      "autoplayed": false,
+      "endangle": 60
+    },
+    {
+      "angle": 90,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 131.75,
+      "autoplayed": false,
+      "endangle": 90
+    },
+    {
+      "angle": 120,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 131.5,
+      "autoplayed": false,
+      "endangle": 120
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 131.25,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 131,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 130.75,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 240,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 130.5,
+      "autoplayed": false,
+      "endangle": 240
+    },
+    {
+      "angle": 270,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 130.25,
+      "autoplayed": false,
+      "endangle": 270
+    },
+    {
+      "angle": 300,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 130,
+      "autoplayed": false,
+      "endangle": 300
+    },
+    {
+      "angle": 330,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 129.75,
+      "autoplayed": false,
+      "endangle": 330
+    },
+    {
+      "angle": 0,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 129.5,
+      "autoplayed": false,
+      "endangle": 0
+    },
+    {
+      "angle": 30,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 129.25,
+      "autoplayed": false,
+      "endangle": 30
+    },
+    {
+      "angle": 60,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 129,
+      "autoplayed": false,
+      "endangle": 60
+    },
+    {
+      "angle": 90,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 128.75,
+      "autoplayed": false,
+      "endangle": 90
+    },
+    {
+      "angle": 120,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 128.5,
+      "autoplayed": false,
+      "endangle": 120
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 128.25,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 128,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 127.75,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 127.5,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 127.25,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 127,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 126.75,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 126.5,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 126.25,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 126,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 125.75,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 120,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 125.5,
+      "autoplayed": false,
+      "endangle": 120
+    },
+    {
+      "angle": 90,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 125.25,
+      "autoplayed": false,
+      "endangle": 90
+    },
+    {
+      "angle": 60,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 125,
+      "autoplayed": false,
+      "endangle": 60
+    },
+    {
+      "angle": 30,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 124.75,
+      "autoplayed": false,
+      "endangle": 30
+    },
+    {
+      "angle": 0,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 124.5,
+      "autoplayed": false,
+      "endangle": 0
+    },
+    {
+      "angle": 330,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 124.25,
+      "autoplayed": false,
+      "endangle": 330
+    },
+    {
+      "angle": 300,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 124,
+      "autoplayed": false,
+      "endangle": 300
+    },
+    {
+      "angle": 270,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 123.75,
+      "autoplayed": false,
+      "endangle": 270
+    },
+    {
+      "angle": 240,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 123.5,
+      "autoplayed": false,
+      "endangle": 240
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 123.25,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 123,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 122.75,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 120,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 122.5,
+      "autoplayed": false,
+      "endangle": 120
+    },
+    {
+      "angle": 90,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 122.25,
+      "autoplayed": false,
+      "endangle": 90
+    },
+    {
+      "angle": 60,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 122,
+      "autoplayed": false,
+      "endangle": 60
+    },
+    {
+      "angle": 30,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 121.75,
+      "autoplayed": false,
+      "endangle": 30
+    },
+    {
+      "angle": 0,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 121.5,
+      "autoplayed": false,
+      "endangle": 0
+    },
+    {
+      "angle": 330,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 121.25,
+      "autoplayed": false,
+      "endangle": 330
+    },
+    {
+      "angle": 300,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 121,
+      "autoplayed": false,
+      "endangle": 300
+    },
+    {
+      "angle": 270,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 120.75,
+      "autoplayed": false,
+      "endangle": 270
+    },
+    {
+      "angle": 240,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 120.5,
+      "autoplayed": false,
+      "endangle": 240
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 120.25,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 120,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 119.75,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 119.5,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 119.25,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 119,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 118.75,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 118.5,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 118.25,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 118,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 117.75,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 240,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 117.5,
+      "autoplayed": false,
+      "endangle": 240
+    },
+    {
+      "angle": 270,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 117.25,
+      "autoplayed": false,
+      "endangle": 270
+    },
+    {
+      "angle": 300,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 117,
+      "autoplayed": false,
+      "endangle": 300
+    },
+    {
+      "angle": 330,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 116.75,
+      "autoplayed": false,
+      "endangle": 330
+    },
+    {
+      "angle": 0,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 116.5,
+      "autoplayed": false,
+      "endangle": 0
+    },
+    {
+      "angle": 30,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 116.25,
+      "autoplayed": false,
+      "endangle": 30
+    },
+    {
+      "angle": 60,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 116,
+      "autoplayed": false,
+      "endangle": 60
+    },
+    {
+      "angle": 90,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 115.75,
+      "autoplayed": false,
+      "endangle": 90
+    },
+    {
+      "angle": 120,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 115.5,
+      "autoplayed": false,
+      "endangle": 120
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 115.25,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 115,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 114.75,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 240,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 114.5,
+      "autoplayed": false,
+      "endangle": 240
+    },
+    {
+      "angle": 270,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 114.25,
+      "autoplayed": false,
+      "endangle": 270
+    },
+    {
+      "angle": 300,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 114,
+      "autoplayed": false,
+      "endangle": 300
+    },
+    {
+      "angle": 330,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 113.75,
+      "autoplayed": false,
+      "endangle": 330
+    },
+    {
+      "angle": 0,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 113.5,
+      "autoplayed": false,
+      "endangle": 0
+    },
+    {
+      "angle": 30,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 113.25,
+      "autoplayed": false,
+      "endangle": 30
+    },
+    {
+      "angle": 60,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 113,
+      "autoplayed": false,
+      "endangle": 60
+    },
+    {
+      "angle": 90,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 112.75,
+      "autoplayed": false,
+      "endangle": 90
+    },
+    {
+      "angle": 120,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 112.5,
+      "autoplayed": false,
+      "endangle": 120
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 112.25,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 112,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 111.5,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 108,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 107.5,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 195,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 111,
+      "autoplayed": false,
+      "endangle": 195
+    },
+    {
+      "angle": 165,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 110.75,
+      "autoplayed": false,
+      "endangle": 165
+    },
+    {
+      "angle": 195,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 110.5,
+      "autoplayed": false,
+      "endangle": 195
+    },
+    {
+      "angle": 165,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 110.25,
+      "autoplayed": false,
+      "endangle": 165
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 109.5,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 110,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 195,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 109.75,
+      "autoplayed": false,
+      "endangle": 195
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 108.5,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 107,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 106.5,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 165,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 106.25,
+      "autoplayed": false,
+      "endangle": 165
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 106,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 165,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 105.75,
+      "autoplayed": false,
+      "endangle": 165
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 105.5,
+      "autoplayed": false,
+      "endangle": 150
+    },
+    {
+      "angle": 165,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 105.25,
+      "autoplayed": false,
+      "endangle": 165
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 105,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 104.5,
+      "autoplayed": false,
+      "endangle": 180
+    },
+    {
+      "angle": 195,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 104.25,
+      "autoplayed": false,
+      "endangle": 195
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 104,
+      "autoplayed": false,
+      "endangle": 210
+    },
+    {
+      "angle": 225,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 103.75,
+      "autoplayed": false,
+      "endangle": 225
+    },
+    {
+      "angle": 240,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 103.5,
+      "autoplayed": false,
+      "endangle": 240
+    },
+    {
+      "angle": 270,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 102.75,
+      "autoplayed": false,
+      "endangle": 270
+    },
+    {
+      "angle": 270,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 101.75,
+      "autoplayed": false,
+      "endangle": 270
+    },
+    {
+      "angle": 270,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 101.5,
+      "autoplayed": false,
+      "endangle": 270
+    },
+    {
+      "angle": 270,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 101,
+      "autoplayed": false,
+      "endangle": 270
+    },
+    {
+      "angle": 270,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 100.75,
+      "autoplayed": false,
+      "endangle": 270
+    },
+    {
+      "angle": 270,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 100.5,
+      "autoplayed": false,
+      "endangle": 270
+    },
+    {
+      "angle": 300,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 100,
+      "autoplayed": false,
+      "endangle": 300
+    },
+    {
+      "angle": 315,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 99.75,
+      "autoplayed": false,
+      "endangle": 315
+    },
+    {
+      "angle": 330,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 99.5,
+      "autoplayed": false,
+      "endangle": 330
+    },
+    {
+      "angle": 345,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 99.25,
+      "autoplayed": false,
+      "endangle": 345
+    },
+    {
+      "angle": 0,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 99,
+      "autoplayed": false,
+      "endangle": 0
+    },
+    {
+      "angle": 0,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 98.5,
+      "autoplayed": false,
+      "endangle": 0
+    },
+    {
+      "angle": 0,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 98,
+      "autoplayed": false,
+      "endangle": 0
+    },
+    {
+      "angle": 0,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 97.75,
+      "autoplayed": false,
+      "endangle": 0
+    },
+    {
+      "angle": 0,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 97.5,
+      "autoplayed": false,
+      "endangle": 0
+    },
+    {
+      "angle": 30,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 97,
+      "autoplayed": false,
+      "endangle": 30
+    },
+    {
+      "angle": 45,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 96.75,
+      "autoplayed": false,
+      "endangle": 45
+    },
+    {
+      "angle": 60,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 96.5,
+      "autoplayed": false,
+      "endangle": 60
+    },
+    {
+      "angle": 75,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 96.25,
+      "autoplayed": false,
+      "endangle": 75
+    },
+    {
+      "angle": 90,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 95.75,
+      "autoplayed": false,
+      "endangle": 90
+    },
+    {
+      "angle": 90,
+      "played": false,
+      "speedmult": 1,
+      "type": "beat",
+      "time": 96,
+      "autoplayed": false,
+      "endangle": 90
+    },
+    {
+      "angle": 90,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 95.25,
+      "autoplayed": false,
+      "endangle": 90
+    },
+    {
+      "angle": 90,
+      "played": false,
+      "speedmult": 1,
+      "type": "inverse",
+      "time": 95.5,
+      "autoplayed": false,
+      "endangle": 90
+    },
+    {
+      "angle": 120,
+      "played": false,
+      "endangle": 120,
+      "type": "beat",
+      "speedmult": 1,
+      "autoplayed": false,
+      "time": 85
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "endangle": 150,
+      "type": "beat",
+      "speedmult": 1,
+      "autoplayed": false,
+      "time": 84.75
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      "autoplayed": false,
+      "time": 84.5
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "endangle": 180,
+      "type": "inverse",
+      "speedmult": 1,
+      "autoplayed": false,
+      "time": 84
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "endangle": 180,
+      "type": "inverse",
+      "speedmult": 1,
+      "autoplayed": false,
+      "time": 83.5
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "endangle": 150,
+      "type": "beat",
+      "speedmult": 1,
+      "autoplayed": false,
+      "time": 78.75
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      "autoplayed": false,
+      "time": 78.5
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      "autoplayed": false,
+      "time": 79
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "endangle": 180,
+      "type": "inverse",
+      "speedmult": 1,
+      "autoplayed": false,
+      "time": 78
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "endangle": 180,
+      "type": "inverse",
+      "speedmult": 1,
+      "autoplayed": false,
+      "time": 77.5
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "time": 66.75,
+      "endangle": 150,
+      "speedmult": 1,
+      "autoplayed": false,
+      "type": "beat"
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "time": 67,
+      "endangle": 180,
+      "speedmult": 1,
+      "autoplayed": false,
+      "type": "beat"
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "time": 67.5,
+      "endangle": 210,
+      "speedmult": 1,
+      "autoplayed": false,
+      "type": "inverse"
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "time": 76.75,
+      "endangle": 210,
+      "speedmult": 1,
+      "autoplayed": false,
+      "type": "beat"
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "time": 77,
+      "endangle": 180,
+      "speedmult": 1,
+      "autoplayed": false,
+      "type": "beat"
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "time": 83,
+      "endangle": 180,
+      "speedmult": 1,
+      "autoplayed": false,
+      "type": "beat"
+    },
+    {
+      "angle": 210,
+      "played": false,
+      "time": 82.75,
+      "endangle": 210,
+      "speedmult": 1,
+      "autoplayed": false,
+      "type": "beat"
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "time": 93,
+      "endangle": 180,
+      "speedmult": 1,
+      "autoplayed": false,
+      "type": "beat"
+    },
+    {
+      "angle": 150,
+      "played": false,
+      "time": 92.75,
+      "endangle": 150,
+      "speedmult": 1,
+      "autoplayed": false,
+      "type": "beat"
+    },
+    {
+      "angle": 0,
+      "played": false,
+      "time": 71,
+      "endangle": 0,
+      "speedmult": 1,
+      "autoplayed": false,
+      "type": "beat"
+    },
+    {
+      "angle": 180,
+      "played": false,
+      "time": 0,
+      "endangle": 180,
+      "speedmult": 1,
+      "autoplayed": false,
+      "type": "beat"
     },
     {
       "bpm": 164,
@@ -1335,46 +3013,6 @@
       "speedmult": 1
     },
     {
-      "angle": -150,
-      "played": false,
-      "type": "inverse",
-      "time": 77.5,
-      "autoplayed": false,
-      "speedmult": 1
-    },
-    {
-      "angle": -150,
-      "played": false,
-      "type": "inverse",
-      "time": 78,
-      "autoplayed": false,
-      "speedmult": 1
-    },
-    {
-      "angle": -150,
-      "played": false,
-      "type": "beat",
-      "time": 78.5,
-      "autoplayed": false,
-      "speedmult": 1
-    },
-    {
-      "angle": -120,
-      "played": false,
-      "type": "beat",
-      "time": 78.75,
-      "autoplayed": false,
-      "speedmult": 1
-    },
-    {
-      "angle": -90,
-      "played": false,
-      "type": "beat",
-      "time": 79,
-      "autoplayed": false,
-      "speedmult": 1
-    },
-    {
       "angle": -180,
       "played": false,
       "type": "inverse",
@@ -1435,46 +3073,6 @@
       "played": false,
       "type": "beat",
       "time": 82.5,
-      "autoplayed": false,
-      "speedmult": 1
-    },
-    {
-      "angle": -150,
-      "played": false,
-      "type": "inverse",
-      "time": 83.5,
-      "autoplayed": false,
-      "speedmult": 1
-    },
-    {
-      "angle": 150,
-      "played": false,
-      "type": "inverse",
-      "time": 84,
-      "autoplayed": false,
-      "speedmult": 1
-    },
-    {
-      "angle": 150,
-      "played": false,
-      "type": "beat",
-      "time": 84.5,
-      "autoplayed": false,
-      "speedmult": 1
-    },
-    {
-      "angle": 120,
-      "played": false,
-      "type": "beat",
-      "time": 84.75,
-      "autoplayed": false,
-      "speedmult": 1
-    },
-    {
-      "angle": 90,
-      "played": false,
-      "type": "beat",
-      "time": 85,
       "autoplayed": false,
       "speedmult": 1
     },
