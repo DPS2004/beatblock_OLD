@@ -85,7 +85,7 @@ function st.draw()
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.draw(st.canv)
   if pq ~= "" then
-    print(helpers.round(st.cbeat*6,true)/6 .. pq)
+    print(helpers.round(st.cbeat*8,true)/8 .. pq)
   end
   shuv.finish()
 

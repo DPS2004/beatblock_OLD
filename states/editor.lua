@@ -90,6 +90,7 @@ function st.update()
 
   if maininput:pressed("back") then
     if st.editmode then
+      st.savelevel()
       helpers.swap(states.songselect)
     else
       st.stoplevel()
