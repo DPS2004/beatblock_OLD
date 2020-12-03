@@ -69,6 +69,7 @@ function st.draw()
     --end
     --ouch the lag
     if st.vfx.bgnoise.enable then
+      love.graphics.setColor(st.vfx.bgnoise.r,st.vfx.bgnoise.g,st.vfx.bgnoise.b,st.vfx.bgnoise.a)
       love.graphics.draw(st.vfx.bgnoise.image,math.random(-2048+gameWidth,0),math.random(-2048+gameHeight,0))
     end
     love.graphics.draw(st.bg)
