@@ -576,7 +576,7 @@
     },
     {
       "type": "bgnoise",
-      "time": 79,
+      "time": 80,
       "enable": true,
       "filename":"80000noiseatlas.png",
       "r": 1,

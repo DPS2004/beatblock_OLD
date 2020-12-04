@@ -12,9 +12,6 @@ function st.enter(prev)
   st.p = em.init("player",screencenter.x,screencenter.y)
   st.gm = em.init("gamemanager",screencenter.x,screencenter.y)
   st.gm.init(st)
-
-  st.canv = love.graphics.newCanvas(400,240)
-
   if clevel == nil then
     st.level = {
       bpm = 100,
@@ -25,23 +22,13 @@ function st.enter(prev)
   else
     st.level = json.decode(helpers.read(clevel.."level.json"))
   end
+  st.gm.resetlevel()
 
-  st.offset = st.level.properties.offset
-  st.startbeat = st.level.properties.startbeat or 0
-  st.cbeat = 0-st.offset +st.startbeat
-  st.autoplay = false
-  st.length = 42
-  st.pt = 0
-  st.bg = love.graphics.newImage("assets/bgs/nothing.png")
-  
-  st.on = true
-  st.beatsounds = false
-  st.extend = 0
+  st.canv = love.graphics.newCanvas(400,240)
 
-  st.vfx = {}
-  st.vfx.hom = false
-  st.vfx.homint = 20000
-  st.lastsigbeat = math.floor(st.cbeat)
+
+
+
 
   --Editor-specific
   st.beatcirclestartrad = 85 --Starting radius of the first beatcircle (the distance of one beat out from the center)
@@ -297,21 +284,7 @@ function st.draw()
   love.graphics.rectangle("fill",0,0,400,240)
   love.graphics.setCanvas(st.canv)
     
-    if not st.vfx.hom then
-      love.graphics.clear()
-    end
-    
-    love.graphics.setBlendMode("alpha")
-    love.graphics.setColor(1, 1, 1, 1)
-
-    if st.vfx.hom then
-      for i=0,st.vfx.homint do
-        love.graphics.points(math.random(0,400),math.random(0,240))
-      end
-    end
-    love.graphics.draw(st.bg)
-    em.draw()
-
+    helpers.drawgame()
     --Only draw the following while in edit mode
     if st.editmode then
       --Beatcircles

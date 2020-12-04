@@ -161,7 +161,7 @@ function love.load()
   states = {
     songselect = require "states.songselect",
     game = require "states.game",
-    rdconvert = require "states.rdconvert",
+    --rdconvert = require "states.rdconvert",
     editor = require "states.editor",
     results = require "states.results",
   }
