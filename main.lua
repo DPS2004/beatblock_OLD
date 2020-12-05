@@ -115,6 +115,19 @@ function love.load()
     },
     songselect = {
       fg = love.graphics.newImage("assets/game/selectfg.png")
+    },
+    results = {
+      grades = {
+        a = love.graphics.newImage("assets/results/big/a.png"),
+        b = love.graphics.newImage("assets/results/big/b.png"),
+        c = love.graphics.newImage("assets/results/big/c.png"),
+        d = love.graphics.newImage("assets/results/big/d.png"),
+        f = love.graphics.newImage("assets/results/big/f.png"),
+        plus = love.graphics.newImage("assets/results/big/plus.png"),
+        minus = love.graphics.newImage("assets/results/big/minus.png"),
+        none = love.graphics.newImage("assets/results/big/none.png"),
+        s = love.graphics.newImage("assets/results/big/s.png")
+      }
     }
   }
 
