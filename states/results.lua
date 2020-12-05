@@ -7,6 +7,12 @@ end
 
 function st.enter(prev)
   entities = {}
+  st.selection = 1
+  st.selectionbounds = {
+    {x=167,y=201,w=64,h=14},
+    {x=179,y=218,w=40,h=17}
+  }
+  st.cselectionbounds = {x=167,y=201,w=64,h=14}
   st.goffset = 0
   st.pctgrade = ((states.game.maxhits - states.game.misses) / states.game.maxhits)*100
   if st.pctgrade == 100 then
@@ -55,6 +61,35 @@ function st.update()
   pq = ""
   maininput:update()
   lovebird.update()
+  if maininput:pressed("up") then
+    st.selection = 1
+    st.ease = flux.to(st.cselectionbounds,30,{
+      x=st.selectionbounds[1].x,
+      y=st.selectionbounds[1].y,
+      w=st.selectionbounds[1].w,
+      h=st.selectionbounds[1].h,
+      
+    }):ease("outExpo")
+  end
+  if maininput:pressed("down") then
+    st.selection = 2
+    st.ease = flux.to(st.cselectionbounds,30,{
+      x=st.selectionbounds[2].x,
+      y=st.selectionbounds[2].y,
+      w=st.selectionbounds[2].w,
+      h=st.selectionbounds[2].h,
+      
+    }):ease("outExpo")
+  end
+  if maininput:pressed("accept") then
+    if st.selection == 1 then
+      helpers.swap(states.songselect)
+    else
+      helpers.swap(states.game)
+    end
+  end
+
+    
 
   flux.update(1)
   em.update(dt)
@@ -74,6 +109,7 @@ function st.draw()
   love.graphics.rectangle("fill",0,33,400,2)
   
   --results circle
+    love.graphics.setLineWidth(2)
   love.graphics.circle("line",200,139,100)
   love.graphics.printf("Grade:",0,45,400,"center")
   love.graphics.setColor(1,1,1)
@@ -84,7 +120,9 @@ function st.draw()
   love.graphics.setColor(0,0,0)
   love.graphics.printf("Misses: " .. states.game.misses,0,135,400,"center")
   love.graphics.printf("Continue",0,201,400,"center")
-  love.graphics.printf("Retry",0,219,400,"center")
+  love.graphics.printf("Retry",0,218,400,"center")
+  love.graphics.setLineWidth(1)
+  love.graphics.rectangle("line",st.cselectionbounds.x,st.cselectionbounds.y,st.cselectionbounds.w,st.cselectionbounds.h)
   love.graphics.setColor(1,1,1)
   
   em.draw()

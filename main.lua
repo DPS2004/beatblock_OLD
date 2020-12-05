@@ -2,10 +2,7 @@ function love.load()
   dt = 1
   clevel = "cannery.json"
   gamename = "BeatBlock"
-  crankymode = true
-  release = false
-  ismobile = false
-  mobileoverride = false
+
   if love.system.getOS( ) == "Android" or mobileoverride then
     ismobile = true
     
