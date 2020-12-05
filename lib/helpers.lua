@@ -99,12 +99,95 @@ function helpers.lerp(a, b, t)
   return a + (b - a) * t
 
 end
+function helpers.interpolate(a, b, t, easeshape, easetype)
+  easeshape = easeshape or "linear"
+  easetype = easetype or "in"
+  q = nil
+
+  if easetype == "out" then
+    t = 1 - t
+
+  elseif t ~= 0.5 then
+
+    if easetype == "inout" then
+      if t < 0.5 then
+        t = 2 * t
+      elseif t > 0.5 then
+        t = 2 - (2 * t)
+      end
+
+    elseif easetype == "outin" then
+      if t < 0.5 then
+        t = 1 - (2 * t)
+      elseif t > 0.5 then
+        t = (2 * t) - 1
+      end
+    end
+  end
+
+  --the ease shapes, feel free to add more though these should be enough for most purposes
+  if easeshape == "linear" then
+    q = t
+  end
+  if easeshape == "quad" then
+    q = t ^ 2
+  end
+  if easeshape == "cubic" then
+    q = t ^ 3
+  end
+  if easeshape == "quart" then
+    q = t ^ 4
+  end
+  if easeshape == "quint" then
+    q = t ^ 5
+  end
+  if easeshape == "expo" then
+    q = 2 ^ (10 * (t - 1))
+  end
+  if easeshape == "sine" then
+    q = -math.cos(t * (math.pi * 0.5)) + 1
+  end
+  if easeshape == "circ" then
+    q = -(math.sqrt(1 - (t ^ 2)) - 1)
+  end
+  if easeshape == "back" then
+    q = (t ^ 2) * ((2.7 * t) - 1.7)
+  end
+  if easeshape == "elastic" then
+    q = -(2 ^ (10 * (t - 1)) * math.sin((t - 1.075) * (math.pi * 2) / 0.3))
+  end
+
+  if easetype == "in" then
+    return a + (b - a) * q
+
+  elseif easetype == "out" then
+    return a + (b - a) * (1 - q)
+
+  elseif t == 0.5 then
+    return 0.5
+
+  --I don't really have an explanation for these two apart from "I messed around in desmos until it looked right"
+  elseif easetype == "inout" then
+    if q < 0.5 then
+      return q
+    elseif q > 0.5 then
+      return 1 - q
+    end
+
+  elseif easetype == "outin" then
+    if q < 0.5 then
+      return 1 - q
+    elseif q > 0.5 then
+      return q
+    end
+  end
+end
 function helpers.anglepoints(x,y,a,b)
   return math.deg(math.atan2(x-a,y-b))*-1
 
 end
 
-function helpers.drawhold(xo, yo, x1, y1, x2, y2, a1, a2, segments, sprhold)
+function helpers.drawhold(xo, yo, x1, y1, x2, y2, a1, a2, segments, sprhold, easeshape, easetype)
 
   -- distances to the beginning and the end of the hold
   local len1 = helpers.distance({xo, yo}, {x1, y1})
@@ -114,13 +197,13 @@ function helpers.drawhold(xo, yo, x1, y1, x2, y2, a1, a2, segments, sprhold)
   -- how many segments to draw
   -- based on the beat's angles by default, but can be overridden in the json
   if segments == nil then
-    segments = (math.abs(a2 - a1) / 8 + 1)
+    segments = (math.abs(a2 - a1) / 2 + 1) --I changed this from / 8 to / 2 to add more segments for easings, if lag maybe change it back
   end
   for i = 0, segments, 1 do
     local t = i / segments
 
     -- coordinates of the next point
-    local nextAngle = math.rad(helpers.lerp(a1, a2, t) - 90)
+    local nextAngle = math.rad(helpers.interpolate(a1, a2, t, easeshape, easetype) - 90)
     local nextDistance = helpers.lerp(len1, len2, t)
     points[#points+1] = math.cos(nextAngle) * nextDistance + screencenter.x
     points[#points+1] = math.sin(nextAngle) * nextDistance + screencenter.y

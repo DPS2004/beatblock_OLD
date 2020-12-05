@@ -16,11 +16,13 @@
     {"type": "beat","time": 52,"angle": 180,"endangle":180, "speedmult": 1, "spinease":"inExpo"},
     {
       "type": "hold",
-      "time": 52,
+      "time": 8,
       "speedmult": 1,
       "angle1": 180,
-      "duration":2,
-      "angle2": 90
+      "duration":32,
+      "angle2": 0,
+      "easeshape": "quad",
+      "easetype": "outin"
     },
     {"type": "beat","time": 52.5,"angle": 180,"endangle":150, "speedmult": 1,"spinease":"inExpo"},
     {"type": "beat","time": 53,"angle": 180,"endangle":120, "speedmult": 1,"spinease":"inExpo"},
