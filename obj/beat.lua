@@ -103,7 +103,7 @@ function obj.update(dt)
         end
         --em.init("hitpart",obj.x,obj.y)
         --print(helpers.angdistance(obj.angle,cs.p.angle).. " is less than " .. cs.p.paddle_size / 2)
-        obj.angle = helpers.lerp(obj.endangle,obj.angle2,((obj.hb - cs.cbeat)*-1)/obj.duration)
+        obj.angle = helpers.interpolate(obj.endangle,obj.angle2,((obj.hb - cs.cbeat)*-1)/obj.duration, obj.holdease)
         
         
         p1 = helpers.rotate(cs.extend+cs.length,obj.angle,obj.ox,obj.oy)
@@ -161,7 +161,7 @@ function obj.draw()
         love.graphics.draw(obj.spr,obj.x,obj.y,0,1,1,8,8)
       end
     else
-      helpers.drawhold(obj.ox, obj.oy, obj.x, obj.y, obj.x2, obj.y2, obj.angle, obj.angle2, obj.segments, obj.spr3)
+      helpers.drawhold(obj.ox, obj.oy, obj.x, obj.y, obj.x2, obj.y2, obj.angle, obj.angle2, obj.segments, obj.spr3, obj.holdease)
     end
   else
     obj.x, obj.y = helpers.drawslice(obj.ox, obj.oy, (obj.hb - cs.cbeat)*cs.level.properties.speed*obj.smult, obj.angle, obj.inverse, 1)

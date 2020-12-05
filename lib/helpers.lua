@@ -99,11 +99,101 @@ function helpers.lerp(a, b, t)
   return a + (b - a) * t
 end
 
+helpers.eases = {
+  ["Linear"] = function (t)
+    return t
+  end,
+
+  ["InQuad"] = function (t)
+    return math.pow(t, 2)
+  end,
+
+  ["OutQuad"] = function (t)
+    return 1 - math.pow(1 - t, 2)
+  end,
+
+  ["InCubic"] = function (t)
+    return math.pow(t, 3)
+  end,
+
+  ["OutCubic"] = function (t)
+    return 1 - math.pow(1 - t, 3)
+  end,
+
+  ["InQuart"] = function (t)
+    return math.pow(t, 4)
+  end,
+
+  ["OutQuart"] = function (t)
+    return 1 - math.pow(1 - t, 4)
+  end,
+
+  ["InQuint"] = function (t)
+    return math.pow(t, 5)
+  end,
+
+  ["OutQuint"] = function (t)
+    return 1 - math.pow(1 - t, 5)
+  end,
+
+  ["InExpo"] = function (t)
+    return math.pow(2, (10 * (t - 1)))
+  end,
+
+  ["OutExpo"] = function (t)
+    return 1 - math.pow(2, (10 * (-t)))
+  end,
+  
+  ["InSine"] = function (t)
+    return 1 - math.cos(t * (math.pi * .5))
+  end,
+
+  ["OutSine"] = function (t)
+    return math.cos((1 - t) * (math.pi * .5))
+  end,
+
+  ["InCirc"] = function (t)
+    return 1 - math.sqrt(1 - (math.pow(t, 2)))
+  end,
+
+  ["OutCirc"] = function (t)
+    return math.sqrt(1 - (math.pow(1 - t, 2)))
+  end,
+
+  ["InBack"] = function (t)
+    return math.pow(t, 2) * (2.7 * t - 1.7)
+  end,
+
+  ["OutBack"] = function (t)
+    return 1 - math.pow(1 - t, 2) * (2.7 * (1 - t) - 1.7)
+  end,
+
+  ["InElastic"] = function (t)
+    return -(2^(10 * (t - 1)) * math.sin((t - 1.075) * (math.pi * 2) / .3))
+  end,
+
+  ["OutElastic"] = function (t)
+    return 1 + (2^(10 * (-t)) * math.sin(((1 - t) - 1.075) * (math.pi * 2) / .3))
+  end
+}
+
+function helpers.interpolate(a, b, t, ease)
+  local q
+  if helpers.eases[ease] then
+    q = helpers.eases[ease] (t)
+  else
+    q = helpers.eases["Linear"] (t)
+  end
+
+  return helpers.lerp (a, b, q)
+end
+
 function helpers.anglepoints(x,y,a,b)
   return math.deg(math.atan2(x-a,y-b))*-1
 end
 
-function helpers.drawhold(xo, yo, x1, y1, x2, y2, a1, a2, segments, sprhold)
+function helpers.drawhold(xo, yo, x1, y1, x2, y2, a1, a2, segments, sprhold, ease)
+  local interp = ease or "Linear"
 
   -- distances to the beginning and the end of the hold
   local len1 = helpers.distance({xo, yo}, {x1, y1})
@@ -119,7 +209,7 @@ function helpers.drawhold(xo, yo, x1, y1, x2, y2, a1, a2, segments, sprhold)
     local t = i / segments
 
     -- coordinates of the next point
-    local nextAngle = math.rad(helpers.lerp(a1, a2, t) - 90)
+    local nextAngle = math.rad(helpers.interpolate(a1, a2, t, interp) - 90)
     local nextDistance = helpers.lerp(len1, len2, t)
     points[#points+1] = math.cos(nextAngle) * nextDistance + screencenter.x
     points[#points+1] = math.sin(nextAngle) * nextDistance + screencenter.y
