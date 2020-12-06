@@ -29,13 +29,16 @@ end
 
 
 function st.draw()
-  push:start()
+  --push:start()
+  shuv.start()
+  love.graphics.setColor(1,1,1)
+
+  love.graphics.rectangle("fill",0,0,400,240)
 
 
   em.draw()
 
-
-  push:finish()
+  shuv.finish()
 end
 
 

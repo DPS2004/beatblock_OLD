@@ -125,6 +125,10 @@ function love.load()
         none = love.graphics.newImage("assets/results/big/none.png"),
         s = love.graphics.newImage("assets/results/big/s.png")
       }
+    },
+    title = {
+      logo = love.graphics.newImage("assets/title/logo.png"),
+      spacetostart = love.graphics.newImage("assets/title/spacetostart.png")
     }
   }
 
@@ -170,6 +174,7 @@ function love.load()
   newswap = false
   states = {
     songselect = require "states.songselect",
+    title = require "states.title",
     game = require "states.game",
     --rdconvert = require "states.rdconvert",
     editor = require "states.editor",
@@ -177,7 +182,7 @@ function love.load()
   }
 
   gs.registerEvents()
-  gs.switch(states.songselect)
+  gs.switch(states.title)
 end
 
 

@@ -10,11 +10,12 @@ Game with crank and music. Some fancy rhythm game.
 
 ## To-Do
 - [x] SCRUBBING
+- [x] Title screen
 - [X] Add starting angle parameter for notes
-- [ ] Show ranks on levels
+- [X] Show ranks on levels
 - [ ] Make more levels
 - [ ] Camera controls (again thanks samario)
-- [ ] BG support
+- [X] BG support
 - [ ] Filesystem cleanup
 - [X] Change paddle size mid level
 - [X] Redo paddle graphics to allow for above

@@ -1,5 +1,5 @@
 function love.conf(t)
-  release = true
+  release = false
   ismobile = false
   mobileoverride = false
   t.window.usedpiscale = false

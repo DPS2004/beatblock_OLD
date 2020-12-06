@@ -373,6 +373,11 @@ end
 
 
 function json.decode(str)
+  if str then
+    print("json decoding " .. str)
+  else
+    print("json is nil!!!!")
+  end
   if type(str) ~= "string" then
     error("expected argument of type string, got " .. type(str))
   end
