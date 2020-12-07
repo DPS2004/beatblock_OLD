@@ -324,4 +324,42 @@ function helpers.drawgame()
   helpers.color(1)
 end
 
+function helpers.rliid(fname)
+
+  local fname2 = ""
+  local offset = 0
+  if string.sub(fname,-1) == "/" then
+    fname = string.sub(fname,1,-2)
+  end
+  fname2 = fname:match(".*/(.*)")
+  fname = string.sub(fname,1,-(string.len(fname2)+1))
+  return fname
+end
+function helpers.gradecalc(pct)
+  local lgrade = ""
+  local lgradepm = ""
+  
+  if pct == 100 then
+    lgrade = "s"
+  elseif pct >= 90 then
+    lgrade = "a"
+  elseif pct >= 80 then
+    lgrade = "b"
+  elseif pct >= 70 then
+    lgrade = "c"
+  elseif pct >= 60 then
+    lgrade = "d"
+  else
+    lgrade = "f"
+  end
+  lgradepm = "none"
+  if lgrade ~= "s" and lgrade ~= "f" then
+    if pct % 10 <= 3 then
+      lgradepm = "minus"
+    elseif pct % 10 >= 7 then
+      lgradepm = "plus"
+    end
+  end
+  return lgrade, lgradepm
+end
 return helpers

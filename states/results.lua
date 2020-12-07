@@ -15,31 +15,25 @@ function st.enter(prev)
   st.cselectionbounds = {x=167,y=201,w=64,h=14}
   st.goffset = 0
   st.pctgrade = ((states.game.maxhits - states.game.misses) / states.game.maxhits)*100
-  if st.pctgrade == 100 then
-    st.lgrade = "s"
-  elseif st.pctgrade >= 90 then
-    st.lgrade = "a"
-    st.goffset = -6
-  elseif st.pctgrade >= 80 then
-    st.lgrade = "b"
-  elseif st.pctgrade >= 70 then
-    st.lgrade = "c"
-    st.goffset = -4
-  elseif st.pctgrade >= 60 then
-    st.lgrade = "d"
-  else
-    st.lgrade = "f"
-  end
-  st.lgradepm = "none"
-  if st.lgrade ~= "s" and st.lgrade ~= "f" then
-    if st.pctgrade % 10 <= 3 then
-      st.lgradepm = "minus"
-    elseif st.pctgrade % 10 <= 7 then
-      st.lgradepm = "none"
-    else
-      st.lgradepm = "plus"
+  st.lgrade,st.lgradepm = helpers.gradecalc(st.pctgrade)
+  st.pljson = dpf.loadjson("savedata/playedlevels.json",{})
+  st.timesplayed = 0
+  st.storepctgrade = st.pctgrade
+  st.storemisses = states.game.misses
+  if st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter] then
+    st.timesplayed = st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].timesplayed
+    st.timesplayed = st.timesplayed + 1
+    if st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].misses < st.storemisses then
+      st.storemisses = st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].misses
     end
+    if st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].pctgrade > st.storepctgrade then
+      st.storepctgrade = st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].pctgrade
+    end
+  else
+    st.timesplayed = 1
   end
+  st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter]={pctgrade=st.storepctgrade,misses=st.storemisses,timesplayed=st.timesplayed}
+  dpf.savejson("savedata/playedlevels.json", st.pljson)
 end
 
 

@@ -67,6 +67,9 @@ function love.load()
 
   -- tween manager
   flux = require "lib.flux"
+  
+  -- uh oh stinky
+  dpf = require "lib.dpf"
 
   -- set size of window
   windowWidth, windowHeight = 800, 480

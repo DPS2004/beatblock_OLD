@@ -19,14 +19,7 @@ function st.refresh()
   end
   if st.cdir ~= "levels/" then
     local fname = st.cdir
-    local fname2 = ""
-    local offset = 0
-    if string.sub(st.cdir,-1) == "/" then
-      fname = string.sub(fname,1,-2)
-    end
-    fname2 = fname:match(".*/(.*)")
-    fname = string.sub(fname,1,-(string.len(fname2)+1))
-    table.insert(levels,{islevel=false,name="back",filename=fname})
+    table.insert(levels,{islevel=false,name="back",filename=helpers.rliid(fname)})
   end
   st.selection = 1
   return levels
