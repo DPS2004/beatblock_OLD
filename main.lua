@@ -114,7 +114,26 @@ function love.load()
       miss = love.graphics.newImage("assets/game/cranky/miss.png")
     },
     songselect = {
-      fg = love.graphics.newImage("assets/game/selectfg.png")
+      fg = love.graphics.newImage("assets/game/selectfg.png"),
+      grades = {
+        fnone = love.graphics.newImage("assets/results/small/fnone.png"),
+        snone = love.graphics.newImage("assets/results/small/snone.png"),
+        anone = love.graphics.newImage("assets/results/small/anone.png"),
+        bnone = love.graphics.newImage("assets/results/small/bnone.png"),
+        cnone = love.graphics.newImage("assets/results/small/cnone.png"),
+        dnone = love.graphics.newImage("assets/results/small/dnone.png"),
+
+        aplus = love.graphics.newImage("assets/results/small/aplus.png"),
+        bplus = love.graphics.newImage("assets/results/small/bplus.png"),
+        cplus = love.graphics.newImage("assets/results/small/cplus.png"),
+        dplus = love.graphics.newImage("assets/results/small/dplus.png"),
+
+        aminus = love.graphics.newImage("assets/results/small/aminus.png"),
+        bminus = love.graphics.newImage("assets/results/small/bminus.png"),
+        cminus = love.graphics.newImage("assets/results/small/cminus.png"),
+        dminus = love.graphics.newImage("assets/results/small/dminus.png")
+
+      }
     },
     results = {
       grades = {

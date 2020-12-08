@@ -22,7 +22,9 @@ function st.refresh()
     table.insert(levels,{islevel=false,name="back",filename=helpers.rliid(fname)})
   end
   st.selection = 1
+  st.pljson = dpf.loadjson("savedata/playedlevels.json",{})
   return levels
+  
 end
 
 function st.enter(prev)
@@ -34,7 +36,7 @@ function st.enter(prev)
   st.levels = st.refresh()
 
   st.levelcount = #st.levels --Get the # of levels in the songlist
-
+  st.crank = "none"
   st.selection = 1
   st.move = false
   st.dispy = -60
@@ -133,8 +135,19 @@ function st.update()
     if newselection >= 1 and newselection <= st.levelcount then --Only move the cursor if it's within the bounds of the level list
       st.selection = newselection
       te.play("click2.ogg","static")
-      
       st.ease = flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
+    end
+    if st.levels[st.selection].islevel then
+      local curjson = json.decode(helpers.read(st.levels[st.selection].filename .. "level.json"))
+      if st.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter] then
+        local cpct = st.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter].pctgrade
+        local sn,ch = helpers.gradecalc(cpct)
+        st.crank = sn .. ch
+      else
+        st.crank = "none"
+      end
+    else
+      st.crank = "none"
     end
     st.move = false
   end
@@ -161,6 +174,9 @@ function st.draw()
     end
   end
   em.draw()
+  if cs.crank ~= "none" then
+    love.graphics.draw(sprites.songselect.grades[cs.crank],320,20)
+  end
   if pq ~= "" then
     print(helpers.round(st.cbeat*6,true)/6 .. pq)
     
