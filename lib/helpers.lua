@@ -294,6 +294,7 @@ function helpers.drawslice (ox, oy, rad, angle, inverse, alpha)
   return p[1], p[2]
 end
 function helpers.drawgame()
+  love.graphics.setFont(font1)
   if not cs.vfx.hom then
     love.graphics.clear()
   end

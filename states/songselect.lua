@@ -157,6 +157,7 @@ end
 
 
 function st.draw()
+  love.graphics.setFont(font1)
   --push:start()
   shuv.start()
 

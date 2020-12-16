@@ -37,6 +37,7 @@ end
 
 
 function st.draw()
+  love.graphics.setFont(font1)
   --push:start()
   shuv.start()
   love.graphics.setColor(1,1,1)

@@ -280,6 +280,7 @@ end
 
 
 function st.draw()
+  love.graphics.setFont(font1)
   shuv.start()
 
   love.graphics.rectangle("fill",0,0,400,240)
@@ -396,7 +397,7 @@ function st.draw()
         love.graphics.print(st.degreesnaptypedtext,30,30)
       end
     end
-
+  em.draw()
   love.graphics.setCanvas(shuv.canvas)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.draw(st.canv)

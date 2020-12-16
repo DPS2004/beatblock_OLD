@@ -13,9 +13,11 @@ function love.load()
   screencenter = {x = 200, y = 120}
   -- font is https://tepokato.itch.io/axolotl-font
   -- https://www.dafont.com/digital-disco.font
-  font = love.graphics.newFont("assets/DigitalDisco-Thin.ttf", 16)
-  font:setFilter("nearest", "nearest",0)
-  love.graphics.setFont(font)
+  font2 = love.graphics.newFont("assets/Axolotl.ttf", 16)
+  font2:setFilter("nearest", "nearest",0)
+  font1 = love.graphics.newFont("assets/DigitalDisco-Thin.ttf", 16)
+  font1:setFilter("nearest", "nearest",0)
+  love.graphics.setFont(font1)
   -- accurate deltatime
   acdelt = true
   love.graphics.setDefaultFilter("nearest","nearest")
