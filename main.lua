@@ -234,7 +234,9 @@ function love.update(d)
     dt = 2
   end
   if paused then
-
+    if cs.source then
+      cs.source:update()
+    end
     em.update(dt) -- for text boxes
 
   end
