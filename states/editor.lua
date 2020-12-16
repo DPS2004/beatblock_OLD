@@ -291,6 +291,7 @@ function st.draw()
     if st.editmode then
       --Beatcircles
       love.graphics.setColor(0, 0, 0, 1)
+      love.graphics.setLineWidth(2)
       love.graphics.circle("line",screencenter.x,screencenter.y,st.beatcircleminrad)
       for i,v in ipairs(st.beatcircles) do
         if st.beatcircles[i] > st.beatcirclemaxrad then
@@ -397,7 +398,9 @@ function st.draw()
         love.graphics.print(st.degreesnaptypedtext,30,30)
       end
     end
-  em.draw()
+  if st.editmode then
+    em.draw()
+  end
   love.graphics.setCanvas(shuv.canvas)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.draw(st.canv)
