@@ -5,7 +5,7 @@ end
 
 
 function st.enter(prev)
-  st.canv = love.graphics.newCanvas(400,240)
+  st.canv = love.graphics.newCanvas(gameWidth,gameHeight)
   local rdstr = helpers.read("rd/level.rdlevel")
   rdstr = rdstr:sub(4) -- BEGONE, ∩╗┐
   st.rdin = json.decode(rdstr)
@@ -65,7 +65,7 @@ end
 function st.draw()
   shuv.start()
 
-  love.graphics.rectangle("fill",0,0,400,240)
+  love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
   love.graphics.setCanvas(st.canv)
     
     

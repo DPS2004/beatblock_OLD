@@ -33,7 +33,7 @@ function st.draw()
   shuv.start()
   love.graphics.setColor(1,1,1)
 
-  love.graphics.rectangle("fill",0,0,400,240)
+  love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
 
 
   em.draw()

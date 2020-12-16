@@ -9,7 +9,7 @@ function st.enter(prev)
   st.gm = em.init("gamemanager",screencenter.x,screencenter.y)
   st.gm.init(st)
 
-  st.canv = love.graphics.newCanvas(400,240)
+  st.canv = love.graphics.newCanvas(gameWidth,gameHeight)
 
   st.level = json.decode(helpers.read(clevel .. "level.json"))
   st.gm.resetlevel()
@@ -50,7 +50,7 @@ end
 function st.draw()
   shuv.start()
 
-  love.graphics.rectangle("fill",0,0,400,240)
+  love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
   love.graphics.setCanvas(st.canv)
   
     helpers.drawgame()

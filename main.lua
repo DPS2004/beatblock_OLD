@@ -10,7 +10,7 @@ function love.load()
   pressed = 0
   mx,my = 0,0
   ispush = false
-  screencenter = {x = 200, y = 120}
+  screencenter = {x = gameWidth/2, y = gameHeight/2}
   -- font is https://tepokato.itch.io/axolotl-font
   -- https://www.dafont.com/digital-disco.font
   font2 = love.graphics.newFont("assets/Axolotl.ttf", 16)
@@ -42,7 +42,6 @@ function love.load()
     push = require "lib.push"
   else
     push = require "lib.pushstripped"
-    love.window.setMode(400,240)
   end
 
   -- deeper, modification of deep, queue functions, now with even more queue
@@ -74,7 +73,7 @@ function love.load()
   dpf = require "lib.dpf"
 
   -- set size of window
-  windowWidth, windowHeight = 800, 480
+
   
   -- set rescaling filter
   love.graphics.setDefaultFilter("nearest", "nearest")
@@ -84,7 +83,7 @@ function love.load()
   love.graphics.setLineJoin("miter")
 
   -- set game canvas size
-  gameWidth, gameHeight = 400,240
+
   
   -- send these arguments to push
   push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {

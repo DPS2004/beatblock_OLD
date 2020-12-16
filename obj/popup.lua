@@ -5,7 +5,8 @@ local obj = {
   y=screencenter.y,
   w=100,
   h=100,
-  text="Hello, world!"
+  text="Hello, world!",
+  runonpause=true
 }
 
 

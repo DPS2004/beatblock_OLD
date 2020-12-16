@@ -17,8 +17,11 @@ end
 
 
 function em.update(dt)
-  if not paused then
-    for i,v in ipairs(entities) do
+  
+  for i,v in ipairs(entities) do
+    if not paused then
+      em.deep.queue(v.uplayer, em.update2, v, dt)
+    elseif v.runonpause then
       em.deep.queue(v.uplayer, em.update2, v, dt)
     end
   end

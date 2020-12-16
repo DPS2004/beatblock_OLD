@@ -24,7 +24,7 @@ function st.enter(prev)
   end
   st.gm.resetlevel()
 
-  st.canv = love.graphics.newCanvas(400,240)
+  st.canv = love.graphics.newCanvas(gameWidth,gameHeight)
 
 
 
@@ -283,7 +283,7 @@ function st.draw()
   love.graphics.setFont(font1)
   shuv.start()
 
-  love.graphics.rectangle("fill",0,0,400,240)
+  love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
   love.graphics.setCanvas(st.canv)
     
     helpers.drawgame()

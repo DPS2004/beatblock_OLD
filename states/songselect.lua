@@ -161,7 +161,7 @@ function st.draw()
   --push:start()
   shuv.start()
 
-  love.graphics.rectangle("fill",0,0,400,240)
+  love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
   love.graphics.draw(st.fg,2,-2)
   helpers.color(2)
   for i,v in ipairs(st.levels) do

@@ -294,7 +294,7 @@ function helpers.drawslice (ox, oy, rad, angle, inverse, alpha)
   return p[1], p[2]
 end
 function helpers.drawgame()
-  love.graphics.setFont(font1)
+
   if not cs.vfx.hom then
     love.graphics.clear()
   end
@@ -320,6 +320,7 @@ function helpers.drawgame()
   helpers.color(2)
   --love.graphics.print(cs.hits.." / " .. (cs.misses+cs.hits),10,10)
   if cs.combo >= 10 then
+    love.graphics.setFont(font1)
     love.graphics.print(cs.combo.." combo!",10,220)
   end
   helpers.color(1)
