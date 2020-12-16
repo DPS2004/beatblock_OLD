@@ -19,11 +19,12 @@ end
 
 
 function st.update()
+  if not paused then
 
-
-  -- do things here
-  flux.update(1)
-  em.update(dt)
+    -- do things here
+    flux.update(1)
+    em.update(dt)\
+  end
 end
 
 

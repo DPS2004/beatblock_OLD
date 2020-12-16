@@ -92,67 +92,67 @@ end
 
 function st.update()
   pq = ""
-
-
-  local newselection = st.selection
-  if maininput:pressed("up") then
-    newselection = st.selection - 1
-    st.move = true
-  end
-  if maininput:pressed("down") then
-    newselection = st.selection + 1
-    st.move = true
-  end
-  if maininput:pressed("accept") then
-    if st.levels[st.selection].islevel then
-      clevel = st.levels[st.selection].filename
-      helpers.swap(states.game)
-    else
-      st.cdir = st.levels[st.selection].filename
-      st.levels = st.refresh()
-      
-      st.levelcount = #st.levels --Get the # of levels in the songlist
-      if st.ease then
-        st.ease:stop()
-      end
-      st.selection = 1
+  if not paused then
+    local newselection = st.selection
+    if maininput:pressed("up") then
+      newselection = st.selection - 1
       st.move = true
-      te.play("click2.ogg","static")
-      st.ease = flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
-      --st.dispy = -60
+    end
+    if maininput:pressed("down") then
+      newselection = st.selection + 1
+      st.move = true
+    end
+    if maininput:pressed("accept") then
+      if st.levels[st.selection].islevel then
+        clevel = st.levels[st.selection].filename
+        helpers.swap(states.game)
+      else
+        st.cdir = st.levels[st.selection].filename
+        st.levels = st.refresh()
+        
+        st.levelcount = #st.levels --Get the # of levels in the songlist
+        if st.ease then
+          st.ease:stop()
+        end
+        st.selection = 1
+        st.move = true
+        te.play("click2.ogg","static")
+        st.ease = flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
+        --st.dispy = -60
 
-      newselection = 1
+        newselection = 1
+      end
     end
-  end
-  if maininput:pressed("e") then
-    if st.levels[st.selection].islevel then
-      clevel = st.levels[st.selection].filename
-      helpers.swap(states.editor)
+    if maininput:pressed("e") then
+      if st.levels[st.selection].islevel then
+        clevel = st.levels[st.selection].filename
+        helpers.swap(states.editor)
+      end
     end
-  end
-  if st.move then
-    if newselection >= 1 and newselection <= st.levelcount then --Only move the cursor if it's within the bounds of the level list
-      st.selection = newselection
-      te.play("click2.ogg","static")
-      st.ease = flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
-    end
-    if st.levels[st.selection].islevel then
-      local curjson = json.decode(helpers.read(st.levels[st.selection].filename .. "level.json"))
-      if st.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter] then
-        local cpct = st.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter].pctgrade
-        local sn,ch = helpers.gradecalc(cpct)
-        st.crank = sn .. ch
+    if st.move then
+      if newselection >= 1 and newselection <= st.levelcount then --Only move the cursor if it's within the bounds of the level list
+        st.selection = newselection
+        te.play("click2.ogg","static")
+        st.ease = flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
+      end
+      if st.levels[st.selection].islevel then
+        local curjson = json.decode(helpers.read(st.levels[st.selection].filename .. "level.json"))
+        if st.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter] then
+          local cpct = st.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter].pctgrade
+          local sn,ch = helpers.gradecalc(cpct)
+          st.crank = sn .. ch
+        else
+          st.crank = "none"
+        end
       else
         st.crank = "none"
       end
-    else
-      st.crank = "none"
+      st.move = false
     end
-    st.move = false
-  end
 
-  flux.update(1)
-  em.update(dt)
+    flux.update(1)
+    em.update(dt)
+  end
 end
 
 

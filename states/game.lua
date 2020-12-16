@@ -33,16 +33,17 @@ end
 
 
 function st.update()
+  if not paused then
+    if maininput:pressed("back") then
+      helpers.swap(states.songselect)
+    end
+    --if maininput:pressed("a") then
+      --helpers.swap(states.rdconvert)
+    --end
 
-  if maininput:pressed("back") then
-    helpers.swap(states.songselect)
+    flux.update(1)
+    em.update(dt)
   end
-  --if maininput:pressed("a") then
-    --helpers.swap(states.rdconvert)
-  --end
-
-  flux.update(1)
-  em.update(dt)
 end
 
 

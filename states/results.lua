@@ -53,38 +53,40 @@ end
 
 function st.update()
   pq = ""
-  if maininput:pressed("up") then
-    st.selection = 1
-    st.ease = flux.to(st.cselectionbounds,30,{
-      x=st.selectionbounds[1].x,
-      y=st.selectionbounds[1].y,
-      w=st.selectionbounds[1].w,
-      h=st.selectionbounds[1].h,
-      
-    }):ease("outExpo")
-  end
-  if maininput:pressed("down") then
-    st.selection = 2
-    st.ease = flux.to(st.cselectionbounds,30,{
-      x=st.selectionbounds[2].x,
-      y=st.selectionbounds[2].y,
-      w=st.selectionbounds[2].w,
-      h=st.selectionbounds[2].h,
-      
-    }):ease("outExpo")
-  end
-  if maininput:pressed("accept") then
-    if st.selection == 1 then
-      helpers.swap(states.songselect)
-    else
-      helpers.swap(states.game)
+  if not paused then
+    if maininput:pressed("up") then
+      st.selection = 1
+      st.ease = flux.to(st.cselectionbounds,30,{
+        x=st.selectionbounds[1].x,
+        y=st.selectionbounds[1].y,
+        w=st.selectionbounds[1].w,
+        h=st.selectionbounds[1].h,
+        
+      }):ease("outExpo")
     end
+    if maininput:pressed("down") then
+      st.selection = 2
+      st.ease = flux.to(st.cselectionbounds,30,{
+        x=st.selectionbounds[2].x,
+        y=st.selectionbounds[2].y,
+        w=st.selectionbounds[2].w,
+        h=st.selectionbounds[2].h,
+        
+      }):ease("outExpo")
+    end
+    if maininput:pressed("accept") then
+      if st.selection == 1 then
+        helpers.swap(states.songselect)
+      else
+        helpers.swap(states.game)
+      end
+    end
+
+      
+
+    flux.update(1)
+    em.update(dt)
   end
-
-    
-
-  flux.update(1)
-  em.update(dt)
 end
 
 

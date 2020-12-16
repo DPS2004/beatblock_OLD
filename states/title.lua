@@ -19,17 +19,19 @@ end
 
 
 function st.update()
-  st.i = st.i + 1
+  if not paused then
+    st.i = st.i + 1
 
-  if st.i %2 == 0 then
-    local nc = em.init("titleparticle",math.random(-8,408),-8)
-    nc.dx = (math.random() *2) -1
-    nc.dy = 2+ math.random()*2
-  end
-  flux.update(1)
-  em.update(dt)
-  if maininput:pressed("accept") then
-    helpers.swap(states.songselect)
+    if st.i %2 == 0 then
+      local nc = em.init("titleparticle",math.random(-8,408),-8)
+      nc.dx = (math.random() *2) -1
+      nc.dy = 2+ math.random()*2
+    end
+    flux.update(1)
+    em.update(dt)
+    if maininput:pressed("accept") then
+      helpers.swap(states.songselect)
+    end
   end
 end
 

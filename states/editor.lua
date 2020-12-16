@@ -74,207 +74,208 @@ end
 function st.update()
 
 
-
-  if maininput:pressed("back") then
-    if st.editmode then
-      st.savelevel()
-      helpers.swap(states.songselect)
-    else
-      st.stoplevel()
-    end
-  end
-
-  --Below only applies while in edit mode
-  if st.editmode then
-    if maininput:pressed("p") then
-      if maininput:down("shift") then
-        st.startbeat = st.scrollradtobeat((st.beatcircleminrad + st.beatcirclestartrad) * st.scrollzoom, false)
-      else
-        st.startbeat = 0
-      end
-      st.playlevel()
-    end
-
-    if maininput:down("ctrl") and st.state == "free" then
-      if maininput:pressed("s") then
+  if not paused then
+    if maininput:pressed("back") then
+      if st.editmode then
         st.savelevel()
-        st.p.hurtpulse() --Little animation to confirm that you indeed saved
+        helpers.swap(states.songselect)
+      else
+        st.stoplevel()
       end
-    else
-      -- Set type of event on cursor
-      if maininput:pressed("k1") and st.state == "free" then
-        st.cursortype = "beat"
-      end
-    
-      if maininput:pressed("k2") and st.state == "free" then
-        st.cursortype = "inverse"
-      end
-    
-      if maininput:pressed("k3") and st.state == "free" then
-        st.cursortype = "hold"
-      end
-    
-      if maininput:pressed("k4") and st.state == "free" then
-        st.cursortype = "slice"
-      end
-    
-      if maininput:pressed("k5") and st.state == "free" then
-        st.cursortype = "sliceinvert"
-      end
+    end
 
-      --Set zoom
-      if maininput:pressed("up") and st.state == "free" then
-        st.scrollzoom = st.scrollzoom + 0.5
-      end
-    
-      if maininput:pressed("down") and st.state == "free" then
-        st.scrollzoom = st.scrollzoom - 0.5
-      end
-
-      --Beat snap
-      if maininput:pressed("minus") and st.state == "free" then
-        if st.beatsnap == 1 then
-          st.beatsnap = 0.5
-        elseif st.beatsnap == 0.5 then
-          st.beatsnap = 0.3333
-        elseif st.beatsnap == 0.3333 then
-          st.beatsnap = 0.25
-        elseif st.beatsnap == 0.25 then
-          st.beatsnap = 0.1666
-        elseif st.beatsnap == 0.1666 then
-          st.beatsnap = 0.125
-        end
-      end
-
-      if maininput:pressed("plus") and st.state == "free" then
-        if st.beatsnap == 0.125 then
-          st.beatsnap = 0.1666
-        elseif st.beatsnap == 0.1666 then
-          st.beatsnap = 0.25
-        elseif st.beatsnap == 0.25 then
-          st.beatsnap = 0.3333
-        elseif st.beatsnap == 0.3333 then
-          st.beatsnap = 0.5
-        elseif st.beatsnap == 0.5 then
-          st.beatsnap = 1
-        end
-      end
-
-      --Angle snap
-      if maininput:pressed("rightbracket") and st.state == "free" then
-        if st.degreesnap == 5.625 then
-          st.degreesnap = 7.5
-        elseif st.degreesnap == 7.5 then
-          st.degreesnap = 11.25
-        elseif st.degreesnap == 11.25 then
-          st.degreesnap = 15
-        elseif st.degreesnap == 15 then
-          st.degreesnap = 22.5
-        elseif st.degreesnap == 22.5 then
-          st.degreesnap = 30
-        elseif st.degreesnap == 30 then
-          st.degreesnap = 45
-        elseif st.degreesnap == 45 then
-          st.degreesnap = 90
-        elseif st.degreesnap == 90 then
-          st.degreesnaptextbox = true
+    --Below only applies while in edit mode
+    if st.editmode then
+      if maininput:pressed("p") then
+        if maininput:down("shift") then
+          st.startbeat = st.scrollradtobeat((st.beatcircleminrad + st.beatcirclestartrad) * st.scrollzoom, false)
         else
-          st.degreesnap = 90
+          st.startbeat = 0
         end
+        st.playlevel()
       end
 
-      if maininput:pressed("leftbracket") and st.state == "free" then
-        if st.degreesnap == 90 then
-          st.degreesnap = 45
-        elseif st.degreesnap == 45 then
-          st.degreesnap = 30
-        elseif st.degreesnap == 30 then
-          st.degreesnap = 22.5
-        elseif st.degreesnap == 22.5 then
-          st.degreesnap = 15
-        elseif st.degreesnap == 15 then
-          st.degreesnap = 11.25
-        elseif st.degreesnap == 11.25 then
-          st.degreesnap = 7.5
-        else
-          st.degreesnap = 5.625
+      if maininput:down("ctrl") and st.state == "free" then
+        if maininput:pressed("s") then
+          st.savelevel()
+          st.p.hurtpulse() --Little animation to confirm that you indeed saved
         end
-      end
+      else
+        -- Set type of event on cursor
+        if maininput:pressed("k1") and st.state == "free" then
+          st.cursortype = "beat"
+        end
+      
+        if maininput:pressed("k2") and st.state == "free" then
+          st.cursortype = "inverse"
+        end
+      
+        if maininput:pressed("k3") and st.state == "free" then
+          st.cursortype = "hold"
+        end
+      
+        if maininput:pressed("k4") and st.state == "free" then
+          st.cursortype = "slice"
+        end
+      
+        if maininput:pressed("k5") and st.state == "free" then
+          st.cursortype = "sliceinvert"
+        end
 
-      --r custom angle snap
-      if maininput:pressed("accept") and st.degreesnaptextbox == true then
-        st.state = "free"
-        st.degreesnaptextbox = false
-        st.degreesnap = tonumber (st.degreesnaptypedtext)
-      end
-      if st.degreesnap == nil then --r TODO: display error "Invalid angle snap! Enter a number."
-        st.degreesnap = 60
-      end
+        --Set zoom
+        if maininput:pressed("up") and st.state == "free" then
+          st.scrollzoom = st.scrollzoom + 0.5
+        end
+      
+        if maininput:pressed("down") and st.state == "free" then
+          st.scrollzoom = st.scrollzoom - 0.5
+        end
 
-      if st.degreesnaptextbox == true then
-        st.state = "text"
-        function love.textinput(t)
-          if t=="1" or t=="2" or t=="3" or t=="4" or t=="5" or t=="6" or t=="7" or t=="8" or t=="9" or t=="0" or t=="." then
-            st.degreesnaptypedtext = st.degreesnaptypedtext .. t
+        --Beat snap
+        if maininput:pressed("minus") and st.state == "free" then
+          if st.beatsnap == 1 then
+            st.beatsnap = 0.5
+          elseif st.beatsnap == 0.5 then
+            st.beatsnap = 0.3333
+          elseif st.beatsnap == 0.3333 then
+            st.beatsnap = 0.25
+          elseif st.beatsnap == 0.25 then
+            st.beatsnap = 0.1666
+          elseif st.beatsnap == 0.1666 then
+            st.beatsnap = 0.125
           end
         end
-      else
-        love.textinput = nil
-        st.degreesnaptypedtext = ""
-      end
 
-      --Adding/deleting events
-      if maininput:released("mouse1") then
-        --Extremely simple. Want to make it so you can drag pre-existing events later, but for now it just deletes what's already there
-        st.deleteeventatcursor()
-        st.addeventatcursor(st.cursortype)
+        if maininput:pressed("plus") and st.state == "free" then
+          if st.beatsnap == 0.125 then
+            st.beatsnap = 0.1666
+          elseif st.beatsnap == 0.1666 then
+            st.beatsnap = 0.25
+          elseif st.beatsnap == 0.25 then
+            st.beatsnap = 0.3333
+          elseif st.beatsnap == 0.3333 then
+            st.beatsnap = 0.5
+          elseif st.beatsnap == 0.5 then
+            st.beatsnap = 1
+          end
+        end
+
+        --Angle snap
+        if maininput:pressed("rightbracket") and st.state == "free" then
+          if st.degreesnap == 5.625 then
+            st.degreesnap = 7.5
+          elseif st.degreesnap == 7.5 then
+            st.degreesnap = 11.25
+          elseif st.degreesnap == 11.25 then
+            st.degreesnap = 15
+          elseif st.degreesnap == 15 then
+            st.degreesnap = 22.5
+          elseif st.degreesnap == 22.5 then
+            st.degreesnap = 30
+          elseif st.degreesnap == 30 then
+            st.degreesnap = 45
+          elseif st.degreesnap == 45 then
+            st.degreesnap = 90
+          elseif st.degreesnap == 90 then
+            st.degreesnaptextbox = true
+          else
+            st.degreesnap = 90
+          end
+        end
+
+        if maininput:pressed("leftbracket") and st.state == "free" then
+          if st.degreesnap == 90 then
+            st.degreesnap = 45
+          elseif st.degreesnap == 45 then
+            st.degreesnap = 30
+          elseif st.degreesnap == 30 then
+            st.degreesnap = 22.5
+          elseif st.degreesnap == 22.5 then
+            st.degreesnap = 15
+          elseif st.degreesnap == 15 then
+            st.degreesnap = 11.25
+          elseif st.degreesnap == 11.25 then
+            st.degreesnap = 7.5
+          else
+            st.degreesnap = 5.625
+          end
+        end
+
+        --r custom angle snap
+        if maininput:pressed("accept") and st.degreesnaptextbox == true then
+          st.state = "free"
+          st.degreesnaptextbox = false
+          st.degreesnap = tonumber (st.degreesnaptypedtext)
+        end
+        if st.degreesnap == nil then --r TODO: display error "Invalid angle snap! Enter a number."
+          st.degreesnap = 60
+        end
+
+        if st.degreesnaptextbox == true then
+          st.state = "text"
+          function love.textinput(t)
+            if t=="1" or t=="2" or t=="3" or t=="4" or t=="5" or t=="6" or t=="7" or t=="8" or t=="9" or t=="0" or t=="." then
+              st.degreesnaptypedtext = st.degreesnaptypedtext .. t
+            end
+          end
+        else
+          love.textinput = nil
+          st.degreesnaptypedtext = ""
+        end
+
+        --Adding/deleting events
+        if maininput:released("mouse1") then
+          --Extremely simple. Want to make it so you can drag pre-existing events later, but for now it just deletes what's already there
+          st.deleteeventatcursor()
+          st.addeventatcursor(st.cursortype)
+        end
+      
+        if maininput:released("mouse2") then
+          st.deleteeventatcursor()
+        end
       end
     
-      if maininput:released("mouse2") then
-        st.deleteeventatcursor()
-      end
-    end
-  
 
-    --Scroll through level
-    if st.scrolldir == 1 then
-      st.scrollpos = st.scrollpos + 0.5 / st.scrollzoom
-    end
-  
-    if st.scrolldir == -1 then
-      st.scrollpos = st.scrollpos - 0.5 / st.scrollzoom
-    end
-  
-    if st.scrollpos < 0 then
-      st.scrollpos = 0
-    end
-  
-    st.scrollzoom = helpers.clamp(st.scrollzoom, 0.5, 3)
-  
-    if st.scrolldir ~= 0 then
-      st.scrolldir = 0
-    end
+      --Scroll through level
+      if st.scrolldir == 1 then
+        st.scrollpos = st.scrollpos + 0.5 / st.scrollzoom
+      end
     
-    --Scale editor circles based on scroll position and zoom level
-    for i,v in ipairs(st.beatcircles) do
-      st.beatcircles[i] = st.beattoscrollrad(i - 1)
+      if st.scrolldir == -1 then
+        st.scrollpos = st.scrollpos - 0.5 / st.scrollzoom
+      end
+    
+      if st.scrollpos < 0 then
+        st.scrollpos = 0
+      end
+    
+      st.scrollzoom = helpers.clamp(st.scrollzoom, 0.5, 3)
+    
+      if st.scrolldir ~= 0 then
+        st.scrolldir = 0
+      end
+      
+      --Scale editor circles based on scroll position and zoom level
+      for i,v in ipairs(st.beatcircles) do
+        st.beatcircles[i] = st.beattoscrollrad(i - 1)
+      end
+    
+      local mouseX = love.mouse.getX()/shuv.scale
+      local mouseY = love.mouse.getY()/shuv.scale
+    
+      local mouseangle = (math.deg(math.atan2(mouseY - screencenter.y, mouseX - screencenter.x)) + 90)
+      local mouserad = helpers.distance({screencenter.x, screencenter.y}, {mouseX, mouseY})
+    
+      --The angle that's nearest to the cursor
+      local nearestangle = math.floor((mouseangle / st.degreesnap) + 0.5) * st.degreesnap
+    
+      st.cursorpos.angle = nearestangle % 360
+      st.cursorpos.beat = st.scrollradtobeat(mouserad, true)
     end
-  
-    local mouseX = love.mouse.getX()/shuv.scale
-    local mouseY = love.mouse.getY()/shuv.scale
-  
-    local mouseangle = (math.deg(math.atan2(mouseY - screencenter.y, mouseX - screencenter.x)) + 90)
-    local mouserad = helpers.distance({screencenter.x, screencenter.y}, {mouseX, mouseY})
-  
-    --The angle that's nearest to the cursor
-    local nearestangle = math.floor((mouseangle / st.degreesnap) + 0.5) * st.degreesnap
-  
-    st.cursorpos.angle = nearestangle % 360
-    st.cursorpos.beat = st.scrollradtobeat(mouserad, true)
+
+    flux.update(1)
+    em.update(dt)
   end
-
-  flux.update(1)
-  em.update(dt)
 end
 
 

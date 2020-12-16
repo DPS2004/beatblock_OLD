@@ -214,6 +214,14 @@ function love.update(d)
   lovebird.update()
   if maininput:pressed("pause") then
     paused = not paused
+    if cs.source then
+      if paused then
+        cs.source:pause()
+      else
+        cs.source:play()
+
+      end
+    end
   end
   cs = gs.current()
   shuv.check()
@@ -225,6 +233,12 @@ function love.update(d)
   if dt >=2 then
     dt = 2
   end
+  if paused then
+
+    em.update(dt) -- for text boxes
+
+  end
+    
 end
 
 

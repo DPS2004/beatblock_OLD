@@ -31,32 +31,34 @@ end
 
 
 function st.update()
+  
   pq = ""
-
-  local newselection = st.selection
-  if maininput:pressed("up") then
-    newselection = st.selection - 1
-    st.move = true
-  end
-  if maininput:pressed("down") then
-    newselection = st.selection + 1
-    st.move = true
-  end
-  if maininput:pressed("accept") then
-    clevel = st.levels[st.selection].filename
-    helpers.swap(states.game)
-  end
-  if st.move then
-    if newselection >= 1 and newselection <= st.levelcount then --Only move the cursor if it's within the bounds of the level list
-      st.selection = newselection
-      te.play("click2.ogg","static")
-      flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
+  if not paused then
+    local newselection = st.selection
+    if maininput:pressed("up") then
+      newselection = st.selection - 1
+      st.move = true
     end
-    st.move = false
-  end
+    if maininput:pressed("down") then
+      newselection = st.selection + 1
+      st.move = true
+    end
+    if maininput:pressed("accept") then
+      clevel = st.levels[st.selection].filename
+      helpers.swap(states.game)
+    end
+    if st.move then
+      if newselection >= 1 and newselection <= st.levelcount then --Only move the cursor if it's within the bounds of the level list
+        st.selection = newselection
+        te.play("click2.ogg","static")
+        flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
+      end
+      st.move = false
+    end
 
-  flux.update(1)
-  em.update(dt)
+    flux.update(1)
+    em.update(dt)
+  end
 end
 
 

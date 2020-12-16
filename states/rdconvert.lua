@@ -51,14 +51,14 @@ end
 
 function st.update()
   pq = ""
-  
+  if not paused then
+    if maininput:pressed("back") then
+      helpers.swap(states.songselect)
+    end
 
-  if maininput:pressed("back") then
-    helpers.swap(states.songselect)
+    flux.update(1)
+    em.update(dt)
   end
-
-  flux.update(1)
-  em.update(dt)
 end
 
 
