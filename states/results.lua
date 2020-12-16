@@ -53,8 +53,6 @@ end
 
 function st.update()
   pq = ""
-  maininput:update()
-  lovebird.update()
   if maininput:pressed("up") then
     st.selection = 1
     st.ease = flux.to(st.cselectionbounds,30,{

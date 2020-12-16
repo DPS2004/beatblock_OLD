@@ -72,8 +72,8 @@ end
 
 
 function st.update()
-  maininput:update()
-  lovebird.update()
+
+
 
   if maininput:pressed("back") then
     if st.editmode then

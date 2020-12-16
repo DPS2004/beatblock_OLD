@@ -175,6 +175,7 @@ function love.load()
         c = {"key:c"},
         e = {"key:e"},
         p = {"key:p"},
+        pause = {"key:tab"},
         k1 = {"key:1"},
         k2 = {"key:2"},
         k3 = {"key:3"},
@@ -209,6 +210,11 @@ end
 
 
 function love.update(d)
+  maininput:update()
+  lovebird.update()
+  if maininput:pressed("pause") then
+    paused = not paused
+  end
   cs = gs.current()
   shuv.check()
   if not acdelt then

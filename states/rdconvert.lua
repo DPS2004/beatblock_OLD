@@ -51,8 +51,6 @@ end
 
 function st.update()
   pq = ""
-  maininput:update()
-  lovebird.update()
   
 
   if maininput:pressed("back") then

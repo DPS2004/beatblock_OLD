@@ -32,8 +32,6 @@ end
 
 function st.update()
   pq = ""
-  maininput:update()
-  lovebird.update()
 
   local newselection = st.selection
   if maininput:pressed("up") then

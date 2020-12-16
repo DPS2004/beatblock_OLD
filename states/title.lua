@@ -20,8 +20,7 @@ end
 
 function st.update()
   st.i = st.i + 1
-  maininput:update()
-  lovebird.update()
+
   if st.i %2 == 0 then
     local nc = em.init("titleparticle",math.random(-8,408),-8)
     nc.dx = (math.random() *2) -1

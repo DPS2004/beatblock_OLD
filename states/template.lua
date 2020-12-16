@@ -19,10 +19,9 @@ end
 
 
 function st.update()
-  maininput:update()
-  lovebird.update()
 
 
+  -- do things here
   flux.update(1)
   em.update(dt)
 end
