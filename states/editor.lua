@@ -20,7 +20,7 @@ function st.enter(prev)
       startbeat = 0,
     }
   else
-    st.level = json.decode(helpers.read(clevel.."level.json"))
+    st.level = dpf.loadjson(clevel.."level.json")
   end
   st.gm.resetlevel()
 

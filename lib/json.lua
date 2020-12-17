@@ -373,9 +373,7 @@ end
 
 
 function json.decode(str)
-  if str then
-    print("json decoding " .. str)
-  else
+  if not str then
     print("json is nil!!!!")
   end
   if type(str) ~= "string" then

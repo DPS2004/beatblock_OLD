@@ -10,7 +10,7 @@ function st.refresh()
   local levels = {}
   for i,v in ipairs(clist) do
     if love.filesystem.getInfo(st.cdir .. v .. "/level.json") then
-      local clevelj = json.decode(helpers.read(st.cdir .. v .. "/level.json"))
+      local clevelj = dpf.loadjson(st.cdir .. v .. "/level.json")
       table.insert(levels,{islevel = true,songname=clevelj.metadata.songname,artist=clevelj.metadata.artist,filename=st.cdir .. v .. "/"})
     elseif love.filesystem.getInfo(st.cdir .. v .. "/").type == "directory" then
       
@@ -19,7 +19,7 @@ function st.refresh()
   end
   if st.cdir ~= "levels/" then
     local fname = st.cdir
-    table.insert(levels,{islevel=false,name="back",filename=helpers.rliid(fname)})
+    table.insert(levels,{islevel=false,name=loc.get("back"),filename=helpers.rliid(fname)})
   end
   st.selection = 1
   st.pljson = dpf.loadjson("savedata/playedlevels.json",{})
@@ -32,7 +32,6 @@ function st.enter(prev)
   st.p = em.init("player",350,120)
   st.length = 42
   st.extend = 0
-  --st.list = json.decode(helpers.read("levels/songlist.json"))
   st.levels = st.refresh()
 
   st.levelcount = #st.levels --Get the # of levels in the songlist
@@ -136,7 +135,7 @@ function st.update()
         st.ease = flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
       end
       if st.levels[st.selection].islevel then
-        local curjson = json.decode(helpers.read(st.levels[st.selection].filename .. "level.json"))
+        local curjson = dpf.loadjson(st.levels[st.selection].filename .. "level.json")
         if st.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter] then
           local cpct = st.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter].pctgrade
           local sn,ch = helpers.gradecalc(cpct)

@@ -11,7 +11,7 @@ function st.enter(prev)
 
   st.canv = love.graphics.newCanvas(gameWidth,gameHeight)
 
-  st.level = json.decode(helpers.read(clevel .. "level.json"))
+  st.level = dpf.loadjson(clevel .. "level.json")
   st.gm.resetlevel()
   st.gm.on = true
 end

@@ -2,6 +2,7 @@ dpf = {}
 
 
 function dpf.loadjson(f,w)
+  print("dpf loading "..f)
   local cf = love.filesystem.read(f)
   if cf == nil then
     love.filesystem.createDirectory(helpers.rliid(f))

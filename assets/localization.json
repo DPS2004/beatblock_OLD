@@ -1,0 +1,27 @@
+{
+  "back": {
+    "en": "Back",
+    "fr": "Retourne"
+  },
+  "combo": {
+    "en": " combo!",
+    "fr": " combo!"
+  },
+  "grade": {
+    "en": "Grade:",
+    "fr": "Votre Note:"
+  },
+  "misses": {
+    "en": "Misses: ",
+    "fr": "Manques: "
+  },
+  "continue": {
+    "en": "Continue",
+    "fr": "Continuer"
+  },
+  "retry": {
+    "en": "Retry",
+    "fr": "Recommencer"
+  }
+  
+}

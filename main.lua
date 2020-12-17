@@ -23,6 +23,21 @@ function love.load()
   love.graphics.setDefaultFilter("nearest","nearest")
 
   -- import libraries
+  
+    
+  -- json handler
+  json = require "lib.json"
+  
+  -- quickly load json files
+  dpf = require "lib.dpf"
+  
+  -- localization
+  loc = require "lib.loc"
+  loc.load("assets/localization.json")
+
+  -- custom functions, snippets, etc
+  helpers = require "lib.helpers"
+
   -- gamestate, manages gamestates
   gs = require "lib.gamestate"
 
@@ -35,8 +50,7 @@ function love.load()
   shuv = require "lib.shuv"
   shuv.init()
 
-  -- custom functions, snippets, etc
-  helpers = require "lib.helpers"
+
   -- push, graphics helper, makes screen resolution stuff easy
   if ispush then
     push = require "lib.push"
@@ -50,8 +64,7 @@ function love.load()
   -- tesound, sound playback
   te = require"lib.tesound"
 
-  -- json handler
-  json = require "lib.json"
+
 
   -- lovebird,debugging console
   if (not release) or ismobile then 
@@ -69,8 +82,9 @@ function love.load()
   -- tween manager
   flux = require "lib.flux"
   
-  -- uh oh stinky
-  dpf = require "lib.dpf"
+
+  
+
 
   -- set size of window
 
