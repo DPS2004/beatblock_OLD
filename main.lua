@@ -198,7 +198,8 @@ function love.load()
         k5 = {"key:5"},
         f5 = {"key:f5"},
         mouse1 = {"mouse:1"},
-        mouse2 = {"mouse:2"}
+        mouse2 = {"mouse:2"},
+        mouse3 = {"mouse:3"}
       },
       pairs = {
         lr = {"left", "right", "up", "down"}

@@ -48,7 +48,7 @@ function st.enter(prev)
   st.beatcircles = {}
   st.editmode = true
   
-  st.state = "free" --r MAKE SURE TO CHECK FOR THE FREE STATE BEFORE ADDING A NEW KEYBIND (free state means a text box isn't currently selected or anything)
+  --st.state = "free" --r MAKE SURE TO CHECK FOR THE FREE STATE BEFORE ADDING A NEW KEYBIND (free state means a text box isn't currently selected or anything)
 
   for i=1,500,1 do
     st.beatcircles[i] = 1
@@ -86,6 +86,17 @@ function st.update()
 
     --Below only applies while in edit mode
     if st.editmode then
+      local mouseX = love.mouse.getX()/shuv.scale
+      local mouseY = love.mouse.getY()/shuv.scale
+    
+      local mouseangle = (math.deg(math.atan2(mouseY - screencenter.y, mouseX - screencenter.x)) + 90)
+      local mouserad = helpers.distance({screencenter.x, screencenter.y}, {mouseX, mouseY})
+    
+      --The angle that's nearest to the cursor
+      local nearestangle = math.floor((mouseangle / st.degreesnap) + 0.5) * st.degreesnap
+    
+      st.cursorpos.angle = nearestangle % 360
+      st.cursorpos.beat = st.scrollradtobeat(mouserad+10, true)
       if maininput:pressed("p") then
         if maininput:down("shift") then
           st.startbeat = st.scrollradtobeat((st.beatcircleminrad + st.beatcirclestartrad) * st.scrollzoom, false)
@@ -94,45 +105,45 @@ function st.update()
         end
         st.playlevel()
       end
-
-      if maininput:down("ctrl") and st.state == "free" then
+      
+      if maininput:down("ctrl") then
         if maininput:pressed("s") then
           st.savelevel()
           st.p.hurtpulse() --Little animation to confirm that you indeed saved
         end
       else
         -- Set type of event on cursor
-        if maininput:pressed("k1") and st.state == "free" then
+        if maininput:pressed("k1") then
           st.cursortype = "beat"
         end
       
-        if maininput:pressed("k2") and st.state == "free" then
+        if maininput:pressed("k2") then
           st.cursortype = "inverse"
         end
       
-        if maininput:pressed("k3") and st.state == "free" then
+        if maininput:pressed("k3") then
           st.cursortype = "hold"
         end
       
-        if maininput:pressed("k4") and st.state == "free" then
+        if maininput:pressed("k4") then
           st.cursortype = "slice"
         end
       
-        if maininput:pressed("k5") and st.state == "free" then
+        if maininput:pressed("k5") then
           st.cursortype = "sliceinvert"
         end
 
         --Set zoom
-        if maininput:pressed("up") and st.state == "free" then
+        if maininput:pressed("up") then
           st.scrollzoom = st.scrollzoom + 0.5
         end
       
-        if maininput:pressed("down") and st.state == "free" then
+        if maininput:pressed("down") then
           st.scrollzoom = st.scrollzoom - 0.5
         end
 
         --Beat snap
-        if maininput:pressed("minus") and st.state == "free" then
+        if maininput:pressed("minus") then
           if st.beatsnap == 1 then
             st.beatsnap = 0.5
           elseif st.beatsnap == 0.5 then
@@ -146,7 +157,7 @@ function st.update()
           end
         end
 
-        if maininput:pressed("plus") and st.state == "free" then
+        if maininput:pressed("plus") then
           if st.beatsnap == 0.125 then
             st.beatsnap = 0.1666
           elseif st.beatsnap == 0.1666 then
@@ -161,7 +172,7 @@ function st.update()
         end
 
         --Angle snap
-        if maininput:pressed("rightbracket") and st.state == "free" then
+        if maininput:pressed("rightbracket") then
           if st.degreesnap == 5.625 then
             st.degreesnap = 7.5
           elseif st.degreesnap == 7.5 then
@@ -183,7 +194,7 @@ function st.update()
           end
         end
 
-        if maininput:pressed("leftbracket") and st.state == "free" then
+        if maininput:pressed("leftbracket") then
           if st.degreesnap == 90 then
             st.degreesnap = 45
           elseif st.degreesnap == 45 then
@@ -201,27 +212,7 @@ function st.update()
           end
         end
 
-        --r custom angle snap
-        if maininput:pressed("accept") and st.degreesnaptextbox == true then
-          st.state = "free"
-          st.degreesnaptextbox = false
-          st.degreesnap = tonumber (st.degreesnaptypedtext)
-        end
-        if st.degreesnap == nil then --r TODO: display error "Invalid angle snap! Enter a number."
-          st.degreesnap = 60
-        end
-
-        if st.degreesnaptextbox == true then
-          st.state = "text"
-          function love.textinput(t)
-            if t=="1" or t=="2" or t=="3" or t=="4" or t=="5" or t=="6" or t=="7" or t=="8" or t=="9" or t=="0" or t=="." then
-              st.degreesnaptypedtext = st.degreesnaptypedtext .. t
-            end
-          end
-        else
-          love.textinput = nil
-          st.degreesnaptypedtext = ""
-        end
+        
 
         --Adding/deleting events
         if maininput:released("mouse1") then
@@ -232,6 +223,20 @@ function st.update()
       
         if maininput:released("mouse2") then
           st.deleteeventatcursor()
+        end
+        -- edit events with e or mid click
+        if maininput:pressed("e") or maininput:pressed("mouse3") then
+          st.eventindex = st.findeventatcursor()
+          if st.eventindex then
+            paused = true
+            local pos = helpers.rotate(st.beattoscrollrad(st.cursorpos.beat), st.cursorpos.angle, screencenter.x, screencenter.y)
+            local pup = em.init("popup",pos[1],pos[2]+16)
+            pup.h=32
+            pup.ok.y=24
+            pup.ok.onclick = function() paused = false end
+            
+            
+          end
         end
       end
     
@@ -260,17 +265,7 @@ function st.update()
         st.beatcircles[i] = st.beattoscrollrad(i - 1)
       end
     
-      local mouseX = love.mouse.getX()/shuv.scale
-      local mouseY = love.mouse.getY()/shuv.scale
-    
-      local mouseangle = (math.deg(math.atan2(mouseY - screencenter.y, mouseX - screencenter.x)) + 90)
-      local mouserad = helpers.distance({screencenter.x, screencenter.y}, {mouseX, mouseY})
-    
-      --The angle that's nearest to the cursor
-      local nearestangle = math.floor((mouseangle / st.degreesnap) + 0.5) * st.degreesnap
-    
-      st.cursorpos.angle = nearestangle % 360
-      st.cursorpos.beat = st.scrollradtobeat(mouserad, true)
+      
     end
 
     flux.update(1)
@@ -432,7 +427,7 @@ function st.scrollradtobeat(rad, snap)
   local nearestbeat = 0
   --Should beat snap be taken into account?
   local snapfactor = (snap and st.beatsnap) or 0
-  while st.beattoscrollrad(nearestbeat + snapfactor) < rad do
+  while st.beattoscrollrad(nearestbeat + snapfactor)  < rad do
     nearestbeat = nearestbeat + st.beatsnap
   end
   return nearestbeat
@@ -441,88 +436,126 @@ end
 --Delete the first event that overlaps the cursor's current position
 function st.deleteeventatcursor()
   local delindex = nil
-    for i,v in ipairs(st.level.events) do
-      if v.type ~= "hold" then
-        if v.time == st.cursorpos.beat then
-          local evangle = v.endangle or v.angle or nil
-          if evangle ~= nil then
-            if v.type == "sliceinvert" then
-              evangle = evangle + 180
-            end
-            if evangle % 360 == st.cursorpos.angle % 360  then
-              delindex = i
-              break
-            end
+  for i,v in ipairs(st.level.events) do
+    if v.type ~= "hold" then
+      if v.time == st.cursorpos.beat then
+        local evangle = v.endangle or v.angle or nil
+        if evangle ~= nil then
+          if v.type == "sliceinvert" then
+            evangle = evangle + 180
           end
-        end
-      else
-        if v.time == st.cursorpos.beat then
-          local evangle = v.angle1 or nil
-          if evangle ~= nil and evangle % 360 == st.cursorpos.angle % 360 then
-            delindex = i
-            break
-          end
-        elseif v.time + v.duration == st.cursorpos.beat then
-          local evangle = v.angle2 or nil
-          if evangle ~= nil and evangle % 360 == st.cursorpos.angle % 360 then
+          if evangle % 360 == st.cursorpos.angle % 360  then
             delindex = i
             break
           end
         end
       end
-      
-    end
-
-    if delindex ~= nil then
-      table.remove(st.level.events, delindex)
-    end
-  end
-
-  --Add an event of type [type] at the cursor's current position
-  function st.addeventatcursor(type)
-    local newevent = {time = st.cursorpos.beat, type = type}
-    if type == "beat" or type == "inverse" or type == "slice" or type == "sliceinvert" then
-      local evangle = st.cursorpos.angle
-      if type == "sliceinvert" then
-        evangle = (evangle + 180) % 360 --Sliceinverts are weird
+    else
+      if v.time == st.cursorpos.beat then
+        local evangle = v.angle1 or nil
+        if evangle ~= nil and evangle % 360 == st.cursorpos.angle % 360 then
+          delindex = i
+          break
+        end
+      elseif v.time + v.duration == st.cursorpos.beat then
+        local evangle = v.angle2 or nil
+        if evangle ~= nil and evangle % 360 == st.cursorpos.angle % 360 then
+          delindex = i
+          break
+        end
       end
-      newevent.angle = evangle
-      newevent.endangle = evangle
-      newevent.speedmult = 1
-    elseif type == "hold" then
-      --Barebones hold addition. Need to be able to set both angles
-      newevent.angle1 = st.cursorpos.angle
-      newevent.angle2 = st.cursorpos.angle + 45
-      newevent.duration = 1
-      newevent.speedmult = 1
     end
-
-    table.insert(st.level.events, 1, newevent)
-  end
-
-  function st.playlevel()
-    st.editmode = false
-    st.gm.resetlevel()
-    st.gm.on = true
-  end
-
-  function st.stoplevel()
-    st.editmode = true
-    st.startbeat = 0
-    st.gm.resetlevel()
-    st.gm.on = false
     
-    entities = {st.p, st.gm}
-    if st.source ~= nil then
-      st.source:stop()
-      st.source = nil
-    end
-    st.sounddata = nil
   end
 
-  function st.savelevel()
-    helpers.write("output.json",json.encode(st.level))
+  if delindex ~= nil then
+    table.remove(st.level.events, delindex)
   end
+end
+--find the first event at the cursor
+function st.findeventatcursor()
+  local returndex = nil
+  for i,v in ipairs(st.level.events) do
+    if v.type ~= "hold" then
+      if v.time == st.cursorpos.beat then
+      
+        local evangle = v.endangle or v.angle or nil
+        if evangle ~= nil then
+          if v.type == "sliceinvert" then
+            evangle = evangle + 180
+          end
+          if evangle % 360 == st.cursorpos.angle % 360  then
+            returndex = i
+            break
+          end
+        end
+      end
+    else
+      if v.time == st.cursorpos.beat then
+        local evangle = v.angle1 or nil
+        if evangle ~= nil and evangle % 360 == st.cursorpos.angle % 360 then
+          returndex = i
+          break
+        end
+      elseif v.time + v.duration == st.cursorpos.beat then
+        local evangle = v.angle2 or nil
+        if evangle ~= nil and evangle % 360 == st.cursorpos.angle % 360 then
+          returndex = i
+          break
+        end
+      end
+    end
+    
+  end
+
+  return returndex
+end
+
+--Add an event of type [type] at the cursor's current position
+function st.addeventatcursor(type)
+  local newevent = {time = st.cursorpos.beat, type = type}
+  if type == "beat" or type == "inverse" or type == "slice" or type == "sliceinvert" then
+    local evangle = st.cursorpos.angle
+    if type == "sliceinvert" then
+      evangle = (evangle + 180) % 360 --Sliceinverts are weird
+    end
+    newevent.angle = evangle
+    newevent.endangle = evangle
+    newevent.speedmult = 1
+  elseif type == "hold" then
+    --Barebones hold addition. Need to be able to set both angles
+    newevent.angle1 = st.cursorpos.angle
+    newevent.angle2 = st.cursorpos.angle
+    newevent.duration = 1
+    newevent.speedmult = 1
+  end
+
+  table.insert(st.level.events, 1, newevent)
+end
+
+function st.playlevel()
+  st.editmode = false
+  st.gm.resetlevel()
+  st.gm.on = true
+end
+
+function st.stoplevel()
+  st.editmode = true
+  st.startbeat = 0
+  st.gm.resetlevel()
+  st.gm.on = false
+  
+  entities = {st.p, st.gm}
+  if st.source ~= nil then
+    st.source:stop()
+    st.source = nil
+  end
+  st.sounddata = nil
+end
+
+function st.savelevel()
+  helpers.write("output.json",json.encode(st.level))
+end
 
 
 return st
