@@ -5,6 +5,16 @@
     "offset": 12
   },
   "events": [
+      {
+      "type": "bgnoise",
+      "time": -1,
+      "enable": true,
+      "filename":"10000noiseatlas.png",
+      "r": 1,
+      "g": 1,
+      "b": 1,
+      "a": 1
+    },
     {
       "type": "play",
       "time": 0,
@@ -17,6 +27,12 @@
       "speedmult": 1,
       "angle": -360,
       "endangle":50
+    },
+    {
+      "type": "mine",
+      "time": 11,
+      "speedmult": 2,
+      "angle": 180,
     },
     {
       "type": "beat",
@@ -279,7 +295,7 @@
       "intensity": 20000
     },
     {
-      "type": "beat",
+      "type": "mine",
       "time": 28,
       "speedmult": 1,
       "angle": 270

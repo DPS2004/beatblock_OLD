@@ -25,7 +25,7 @@ function obj.resetlevel()
   obj.currst.combo = 0
   obj.currst.maxhits = 0
   for i,v in ipairs(obj.currst.level.events) do
-    if v.type == "beat" or v.type == "slice" or v.type == "sliceinvert" or v.type == "inverse" or v.type == "hold" then
+    if v.type == "beat" or v.type == "slice" or v.type == "sliceinvert" or v.type == "inverse" or v.type == "hold" or v.type == "mine" then
       obj.currst.maxhits = obj.currst.maxhits + 1
     end
   end
@@ -130,6 +130,19 @@ function obj.update(dt)
         newbeat.smult = v.speedmult
         pq = pq .. "    ".. "hold spawn here!"
                 newbeat.update()
+      end
+      if v.type == "mine" then
+        v.played = true
+        local newbeat = em.init("beat",screencenter.x,screencenter.y)
+        newbeat.angle = v.angle
+        newbeat.startangle = v.angle
+        newbeat.endangle = v.endangle or v.angle -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
+        newbeat.spinease = v.spinease or "linear" -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
+        newbeat.hb = v.time
+        newbeat.smult = v.speedmult
+        newbeat.mine=true
+        pq = pq .. "    ".. "mine here!"
+        newbeat.update()
       end
 
     end

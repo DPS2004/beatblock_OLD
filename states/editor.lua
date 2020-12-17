@@ -132,6 +132,9 @@ function st.update()
         if maininput:pressed("k5") then
           st.cursortype = "sliceinvert"
         end
+        if maininput:pressed("k6") then
+          st.cursortype = "mine"
+        end
 
         --Set zoom
         if maininput:pressed("up") then
@@ -345,6 +348,11 @@ function st.draw()
               local angle = v.endangle or v.angle
               local invert = v.type == "sliceinvert"
               helpers.drawslice(screencenter.x, screencenter.y, evrad, angle, invert, 1)
+            
+            elseif v.type == "mine" then
+              local angle = v.endangle or v.angle
+              local pos = helpers.rotate(evrad, angle, screencenter.x, screencenter.y)
+              love.graphics.draw(sprites.beat.mine,pos[1],pos[2],0,1,1,8,8)
             end
           end
   
@@ -373,6 +381,8 @@ function st.draw()
           love.graphics.draw(st.sprbeat, pos[1], pos[2],0,1,1,8,8)
         elseif st.cursortype == "inverse" then
           love.graphics.draw(st.sprinverse, pos[1], pos[2],0,1,1,8,8)
+        elseif st.cursortype == "mine" then
+          love.graphics.draw(sprites.beat.mine, pos[1], pos[2],0,1,1,8,8)
         elseif st.cursortype == "hold" then
           love.graphics.draw(st.sprhold, pos[1], pos[2],0,1,1,8,8)
         elseif st.cursortype == "slice" or st.cursortype == "sliceinvert" then
@@ -514,7 +524,7 @@ end
 --Add an event of type [type] at the cursor's current position
 function st.addeventatcursor(type)
   local newevent = {time = st.cursorpos.beat, type = type}
-  if type == "beat" or type == "inverse" or type == "slice" or type == "sliceinvert" then
+  if type == "beat" or type == "inverse" or type == "slice" or type == "sliceinvert" or type == "mine" then
     local evangle = st.cursorpos.angle
     if type == "sliceinvert" then
       evangle = (evangle + 180) % 360 --Sliceinverts are weird

@@ -121,7 +121,8 @@ function love.load()
     beat= {
       square = love.graphics.newImage("assets/game/square.png"),
       inverse = love.graphics.newImage("assets/game/inverse.png"),
-      hold = love.graphics.newImage("assets/game/hold.png")
+      hold = love.graphics.newImage("assets/game/hold.png"),
+      mine = love.graphics.newImage("assets/game/mine.png")
     },
     player = {
       idle = love.graphics.newImage("assets/game/cranky/idle.png"),
@@ -171,7 +172,8 @@ function love.load()
   --load select sounds
   sounds = {
     click = love.sound.newSoundData("assets/click2.ogg"),
-    hold = love.sound.newSoundData("assets/hold1.ogg")
+    hold = love.sound.newSoundData("assets/hold1.ogg"),
+    mine = love.sound.newSoundData("assets/mine.ogg")
   }
 
   --setup input
@@ -201,6 +203,7 @@ function love.load()
         k3 = {"key:3"},
         k4 = {"key:4"},
         k5 = {"key:5"},
+        k6 = {"key:6"},
         f5 = {"key:f5"},
         mouse1 = {"mouse:1"},
         mouse2 = {"mouse:2"},
