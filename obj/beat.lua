@@ -71,7 +71,7 @@ function obj.update(dt)
         cs.hits = cs.hits + 1
         cs.combo = cs.combo +1
         if cs.beatsounds then
-          te.play("click2.ogg","static")
+          te.play(sounds.click,"static")
         end
         if cs.p.cemotion == "miss" then
           cs.p.emotimer = 0
@@ -98,7 +98,7 @@ function obj.update(dt)
           obj.hityet = true
           pq = pq .. "   started hitting hold"
           if cs.beatsounds then
-          te.play("hold1.ogg","static")
+          te.play(sounds.hold,"static")
           end
         end
         --em.init("hitpart",obj.x,obj.y)
@@ -118,7 +118,7 @@ function obj.update(dt)
           cs.hits = cs.hits + 1
           cs.combo = cs.combo +1
           if cs.beatsounds then
-            te.play("click2.ogg","static")
+            te.play(sounds.click,"static")
           end
           if cs.p.cemotion == "miss" then
             cs.p.emotimer = 0

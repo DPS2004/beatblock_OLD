@@ -16,7 +16,7 @@ Game with crank and music. Some fancy rhythm game.
 - [ ] Make more levels
 - [ ] Camera controls (again thanks samario)
 - [X] BG support
-- [ ] Filesystem cleanup
+- [X] Filesystem cleanup
 - [X] Change paddle size mid level
 - [X] Redo paddle graphics to allow for above
 - [X] Add better feedback for missing

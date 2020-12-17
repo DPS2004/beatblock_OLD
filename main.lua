@@ -168,6 +168,11 @@ function love.load()
       spacetostart = love.graphics.newImage("assets/title/spacetostart.png")
     }
   }
+  --load select sounds
+  sounds = {
+    click = love.sound.newSoundData("assets/click2.ogg"),
+    hold = love.sound.newSoundData("assets/hold1.ogg")
+  }
 
   --setup input
   maininput = baton.new {
@@ -206,7 +211,8 @@ function love.load()
       },
         joystick = love.joystick.getJoysticks()[1],
     }
-
+  
+  love.filesystem.createDirectory("levels")
   entities = {}
   -- init states
   toswap = nil
