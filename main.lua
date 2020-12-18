@@ -49,8 +49,9 @@ function love.load()
 
   shuv = require "lib.shuv"
   shuv.init()
-
-
+  
+  -- what it says on the tin
+  utf8 = require("utf8")
   -- push, graphics helper, makes screen resolution stuff easy
   if ispush then
     push = require "lib.push"
@@ -187,6 +188,7 @@ function love.load()
         back = {"key:escape", "button:b"},
         ctrl = {"key:lctrl", "key:rctrl"},
         shift = {"key:lshift", "key:rshift"},
+        backspace = {"key:backspace"},
         plus = {"key:+", "key:="},
         minus = {"key:-"},
         leftbracket = {"key:["},
@@ -233,6 +235,9 @@ function love.load()
   gs.switch(states.title)
 end
 
+function love.textinput(t)
+  tinput = t
+end
 
 function love.update(d)
   maininput:update()
@@ -263,10 +268,12 @@ function love.update(d)
       cs.source:update()
     end
     em.update(dt) -- for text boxes
-
   end
-    
+  --print(tinput)
+  
 end
+
+
 
 
 function love.resize(w, h)

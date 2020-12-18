@@ -8,11 +8,28 @@ local obj = {
   text="Hello, world!",
   runonpause=true,
   buttons = {},
+  textinput = {text="",y=50,show=false,numberonly=true},
   samplebutton = {x=50,y=50,w=16,h=16,text="ok",onclick = function() end}
 }
-
+tinput = ""
 
 function obj.update(dt)
+  if obj.textinput.show then
+    --print(tinput)
+    if obj.textinput.numberonly then
+      if tonumber(tinput) ~= nil or tinput == "." then
+        obj.textinput.text = obj.textinput.text.. tinput
+      end
+    else
+      obj.textinput.text = obj.textinput.text.. tinput
+    end
+    if maininput:pressed("backspace") then -- copied from https://love2d.org/wiki/utf8
+      local byteoffset = utf8.offset(obj.textinput.text, -1)
+      if byteoffset then
+        obj.textinput.text = string.sub(obj.textinput.text, 1, byteoffset - 1)
+      end
+    end
+  end
   if maininput:released("mouse1") then
     local mouseX = love.mouse.getX()/shuv.scale
     local mouseY = love.mouse.getY()/shuv.scale
@@ -36,7 +53,12 @@ function obj.draw()
   love.graphics.rectangle("line",obj.x-obj.w/2,obj.y-obj.h/2,obj.w,obj.h)
   love.graphics.setFont(font2)
   love.graphics.printf(obj.text,obj.x-obj.w/2,obj.y-obj.h/2,obj.w,"center")
+  if obj.textinput.show then
+    love.graphics.printf(obj.textinput.text,obj.x-obj.w/2,(obj.y-obj.h/2)+obj.textinput.y,obj.w,"center")
+    --print(obj.textinput.text)
+  end
   love.graphics.setColor(1,1,1,1)
+
   --ok box
   for i, v in ipairs(obj.buttons) do
     love.graphics.setColor(1,1,1,1)

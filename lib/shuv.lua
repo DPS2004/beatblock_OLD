@@ -47,6 +47,7 @@ function shuv.finish()
   love.graphics.setCanvas()
   love.graphics.draw(shuv.canvas,0,0,0,shuv.scale,shuv.scale)
   helpers.doswap()
+  tinput = ""
 end
 
 return shuv
