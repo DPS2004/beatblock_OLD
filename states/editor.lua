@@ -112,11 +112,11 @@ function st.update()
           paused = true
 
           local pup = em.init("popup",screencenter.x,screencenter.y)
-          pup.text = "ATTENTION! \n This will reload the level from the level.json file. Are you sure you want to do this?"
+          pup.text = loc.get("refreshwarning")
           pup.w=200
           pup.h=100
-          pup.newbutton({x=100,y=90,w=16,h=16,text="ok",onclick = function() cs.level = dpf.loadjson(clevel.."level.json",{}) paused = false pup.delete = true end})
-          pup.newbutton({x=100,y=70,w=50,h=16,text="cancel",onclick = function() paused = false pup.delete = true end})
+          pup.newbutton({x=100,y=90,w=16,h=16,text=loc.get("ok"),onclick = function() cs.level = dpf.loadjson(clevel.."level.json",{}) paused = false pup.delete = true end})
+          pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
         end
         if maininput:pressed("s") then
           st.savelevel()
@@ -242,13 +242,15 @@ function st.update()
         if maininput:pressed("e") or maininput:pressed("mouse3") then
           st.eventindex = st.findeventatcursor()
           if st.eventindex then
-            paused = true
-            local pos = helpers.rotate(st.beattoscrollrad(st.cursorpos.beat), st.cursorpos.angle, screencenter.x, screencenter.y)
-            local pup = em.init("popup",pos[1],pos[2]+16)
-            
-            pup.h=32
-            pup.newbutton({x=50,y=24,w=16,h=16,text="ok",onclick = function() paused = false pup.delete = true end})
-            
+            if st.level.events[st.eventindex].type == "hold" then
+              paused = true
+              local pos = helpers.rotate(st.beattoscrollrad(st.cursorpos.beat), st.cursorpos.angle, screencenter.x, screencenter.y)
+              local pup = em.init("popup",screencenter.x,screencenter.y)
+              pup.text = loc.get("editwhat")
+              pup.w = 200
+              pup.h=100
+              pup.newbutton({x=50,y=24,w=16,h=16,text=loc.get("ok"),onclick = function() paused = false pup.delete = true end})
+            end
             
           end
         end

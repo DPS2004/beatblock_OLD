@@ -22,6 +22,18 @@
   "retry": {
     "en": "Retry",
     "fr": "Recommencer"
+  },
+  "refreshwarning": {
+    "en": "ATTENTION! \n This will reload the level from the level.json file. Are you sure you want to do this?"
+  },
+  "editwhat": {
+    "en": "What do you want to edit?"
+  },
+  "ok": {
+    "en": "ok"
+  },
+  "cancel": {
+    "en": "cancel"
   }
   
 }

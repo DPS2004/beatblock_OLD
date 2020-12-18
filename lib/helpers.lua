@@ -334,8 +334,12 @@ function helpers.rliid(fname)
     fname = string.sub(fname,1,-2)
   end
   fname2 = fname:match(".*/(.*)")
-  fname = string.sub(fname,1,-(string.len(fname2)+1))
-  return fname
+  if fname2 then
+    fname = string.sub(fname,1,-(string.len(fname2)+1))
+    return fname
+  else
+    return ""
+  end
 end
 function helpers.gradecalc(pct)
   local lgrade = ""

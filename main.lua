@@ -215,8 +215,7 @@ function love.load()
       },
         joystick = love.joystick.getJoysticks()[1],
     }
-  
-  love.filesystem.createDirectory("levels")
+    
   entities = {}
   -- init states
   toswap = nil
