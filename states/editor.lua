@@ -20,7 +20,7 @@ function st.enter(prev)
       startbeat = 0,
     }
   else
-    st.level = dpf.loadjson(clevel.."level.json")
+    st.level = dpf.loadjson(clevel.."level.json",{})
   end
   st.gm.resetlevel()
 
@@ -107,6 +107,17 @@ function st.update()
       end
       
       if maininput:down("ctrl") then
+        if maininput:pressed("r") then
+          print("ctrl+r")
+          paused = true
+
+          local pup = em.init("popup",screencenter.x,screencenter.y)
+          pup.text = "ATTENTION! \n This will reload the level from the level.json file. Are you sure you want to do this?"
+          pup.w=200
+          pup.h=100
+          pup.newbutton({x=100,y=90,w=16,h=16,text="ok",onclick = function() cs.level = dpf.loadjson(clevel.."level.json",{}) paused = false pup.delete = true end})
+          pup.newbutton({x=100,y=70,w=50,h=16,text="cancel",onclick = function() paused = false pup.delete = true end})
+        end
         if maininput:pressed("s") then
           st.savelevel()
           st.p.hurtpulse() --Little animation to confirm that you indeed saved
@@ -234,9 +245,9 @@ function st.update()
             paused = true
             local pos = helpers.rotate(st.beattoscrollrad(st.cursorpos.beat), st.cursorpos.angle, screencenter.x, screencenter.y)
             local pup = em.init("popup",pos[1],pos[2]+16)
+            
             pup.h=32
-            pup.ok.y=24
-            pup.ok.onclick = function() paused = false end
+            pup.newbutton({x=50,y=24,w=16,h=16,text="ok",onclick = function() paused = false pup.delete = true end})
             
             
           end
@@ -564,7 +575,7 @@ function st.stoplevel()
 end
 
 function st.savelevel()
-  helpers.write("output.json",json.encode(st.level))
+  dpf.savejson(clevel.."level.json",st.level)
 end
 
 

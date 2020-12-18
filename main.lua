@@ -197,6 +197,7 @@ function love.load()
         c = {"key:c"},
         e = {"key:e"},
         p = {"key:p"},
+        r = {"key:r"},
         pause = {"key:tab"},
         k1 = {"key:1"},
         k2 = {"key:2"},

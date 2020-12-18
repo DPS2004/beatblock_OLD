@@ -33,7 +33,7 @@ uti = "com.dps2004.beatblock"
 # An arbitrary version for the current iteration of the game. Can use
 # any desired version format. This will be used to differentiate the
 # resulting build files.
-version = "alpha 1.1"
+version = "alpha 1.2"
 
 #
 # Build settings
