@@ -1,4 +1,4 @@
-mrdir /s /q release
+rmdir /s /q release
 boon build . --target all
 call winhhtpjs.bat "https://github.com/love2d/love/releases/download/11.3/love-11.3-android-embed.apk" -saveTo "release\love-11.3-android-embed.apk" 
 cd release
