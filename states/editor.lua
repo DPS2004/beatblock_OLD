@@ -253,7 +253,7 @@ function st.update()
                 pup.h = 100 
                 pup.text = loc.get("editing") .. " " .. loc.get("angle1") .. ":"
                 pup.buttons = {}
-                pup.textinput= {text=tostring(st.level.events[st.eventindex].angle1),y=50,show=true,numberonly=true}
+                pup.textinput= {text=tostring(st.level.events[st.eventindex].angle1),y=50,show=true,numberonly=true, allowminus=true}
                 pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].angle1 = tonumber(pup.textinput.text) paused = false pup.delete = true end})
                 pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
@@ -261,7 +261,7 @@ function st.update()
                 pup.h = 100 
                 pup.text = loc.get("editing") .. " " .. loc.get("angle2") .. ":"
                 pup.buttons = {}
-                pup.textinput= {text=tostring(st.level.events[st.eventindex].angle2),y=50,show=true,numberonly=true}
+                pup.textinput= {text=tostring(st.level.events[st.eventindex].angle2),y=50,show=true,numberonly=true, allowminus=true}
                 pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].angle2 = tonumber(pup.textinput.text) paused = false pup.delete = true end})
                 pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
@@ -409,7 +409,7 @@ function st.draw()
               local angle2 = v.angle2
               local pos1 = helpers.rotate(evrad1, angle1, screencenter.x, screencenter.y)
               local pos2 = helpers.rotate(evrad2, angle2, screencenter.x, screencenter.y)
-              helpers.drawhold(screencenter.x, screencenter.y, pos1[1], pos1[2], pos2[1], pos2[2], angle1, angle2, v.segments, st.sprhold)
+              helpers.drawhold(screencenter.x, screencenter.y, pos1[1], pos1[2], pos2[1], pos2[2], angle1, angle2, v.segments, st.sprhold, v.holdease)
             end
           end
         end

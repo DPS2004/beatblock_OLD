@@ -17,7 +17,7 @@ function obj.update(dt)
   if obj.textinput.show then
     --print(tinput)
     if obj.textinput.numberonly then
-      if tonumber(tinput) ~= nil or tinput == "." then
+      if (tonumber(tinput) ~= nil or tinput == ".") or (obj.textinput.allowminus and tinput == "-") then
         obj.textinput.text = obj.textinput.text.. tinput
       end
     else
