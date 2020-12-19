@@ -249,7 +249,7 @@ function st.update()
               pup.text = loc.get("editwhat")
               pup.w = 200
               pup.h=150
-              pup.newbutton({x=100,y=60,w=50,h=16,text=loc.get("angle1"),onclick = function() 
+              pup.newbutton({x=100,y=40,w=50,h=16,text=loc.get("angle1"),onclick = function() 
                 pup.h = 100 
                 pup.text = loc.get("editing") .. " " .. loc.get("angle1") .. ":"
                 pup.buttons = {}
@@ -257,7 +257,7 @@ function st.update()
                 pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].angle1 = tonumber(pup.textinput.text) paused = false pup.delete = true end})
                 pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
-              pup.newbutton({x=100,y=80,w=50,h=16,text=loc.get("angle2"),onclick = function()   
+              pup.newbutton({x=100,y=60,w=50,h=16,text=loc.get("angle2"),onclick = function()   
                 pup.h = 100 
                 pup.text = loc.get("editing") .. " " .. loc.get("angle2") .. ":"
                 pup.buttons = {}
@@ -265,7 +265,7 @@ function st.update()
                 pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].angle2 = tonumber(pup.textinput.text) paused = false pup.delete = true end})
                 pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
-              pup.newbutton({x=100,y=100,w=50,h=16,text=loc.get("duration"),onclick = function()   
+              pup.newbutton({x=100,y=80,w=50,h=16,text=loc.get("duration"),onclick = function()   
                 pup.h = 100 
                 pup.text = loc.get("editing") .. " " .. loc.get("duration") .. ":"
                 pup.buttons = {}
@@ -273,12 +273,20 @@ function st.update()
                 pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].duration = tonumber(pup.textinput.text) paused = false pup.delete = true end})
                 pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
-              pup.newbutton({x=100,y=120,w=50,h=16,text=loc.get("time"),onclick = function()   
+              pup.newbutton({x=100,y=100,w=50,h=16,text=loc.get("time"),onclick = function()   
                 pup.h = 100 
                 pup.text = loc.get("editing") .. " " .. loc.get("time") .. ":"
                 pup.buttons = {}
                 pup.textinput= {text=tostring(st.level.events[st.eventindex].time),y=50,show=true,numberonly=true}
                 pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].time = tonumber(pup.textinput.text) paused = false pup.delete = true end})
+                pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
+              end})
+              pup.newbutton({x=100,y=120,w=50,h=16,text=loc.get("speedmult"),onclick = function()   
+                pup.h = 100 
+                pup.text = loc.get("editing") .. " " .. loc.get("speedmult") .. ":"
+                pup.buttons = {}
+                pup.textinput= {text=tostring(st.level.events[st.eventindex].speedmult),y=50,show=true,numberonly=true}
+                pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].speedmult = tonumber(pup.textinput.text) paused = false pup.delete = true end})
                 pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
               pup.newbutton({x=100,y=140,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
