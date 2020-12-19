@@ -118,12 +118,13 @@ function obj.update(dt)
       if v.type == "hold" then
         v.played = true
         local newbeat = em.init("beat",screencenter.x,screencenter.y)
-        newbeat.angle = v.angle1
         newbeat.segments = v.segments or nil
         newbeat.hold = true
         newbeat.duration = v.duration
         newbeat.holdease = v.holdease or nil
         newbeat.startangle = v.angle1
+        newbeat.angle = v.angle1
+        newbeat.angle1 = v.angle1
         newbeat.angle2 = v.angle2 or v.angle1
         newbeat.endangle = v.endangle or v.angle1 -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
         newbeat.hb = v.time
