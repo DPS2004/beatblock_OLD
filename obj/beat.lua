@@ -188,8 +188,7 @@ function obj.update(dt)
 
 end
 
-function obj.draw()
-  
+function obj.draw()  
   if not obj.slice then
     love.graphics.setColor(1,1,1,1)
     if not obj.hold then
@@ -201,7 +200,8 @@ function obj.draw()
         love.graphics.draw(obj.spr,obj.x,obj.y,0,1,1,8,8)
       end
     else
-      helpers.drawhold(obj.ox, obj.oy, obj.x, obj.y, obj.x2, obj.y2, obj.angle, obj.angle2, obj.segments, obj.spr3, obj.holdease)
+      local completion = math.max(0, (cs.cbeat - obj.hb) / obj.duration)
+      helpers.drawhold(obj.ox, obj.oy, obj.x, obj.y, obj.x2, obj.y2, completion, obj.angle1, obj.angle2, obj.segments, obj.spr3, obj.holdease)
     end
   else
     obj.x, obj.y = helpers.drawslice(obj.ox, obj.oy, (obj.hb - cs.cbeat)*cs.level.properties.speed*obj.smult, obj.angle, obj.inverse, 1)
