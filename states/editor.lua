@@ -193,7 +193,7 @@ function st.update()
         if maininput:pressed("rightbracket") then
           if st.degreesnap == 5 then
             st.degreesnap = 5.625
-          if st.degreesnap == 5.625 then
+          elseif st.degreesnap == 5.625 then
             st.degreesnap = 7.5
           elseif st.degreesnap == 7.5 then
             st.degreesnap = 11.25
@@ -338,7 +338,7 @@ paused = true
                 pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
               pup.newbutton({x=100,y=140,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
-              end
+            
               
             end
             
