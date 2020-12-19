@@ -29,7 +29,7 @@ function st.update()
     end
     flux.update(1)
     em.update(dt)
-    if maininput:pressed("accept") then
+    if maininput:pressed("accept") or maininput:pressed("mouse1") then
       helpers.swap(states.songselect)
     end
   end
