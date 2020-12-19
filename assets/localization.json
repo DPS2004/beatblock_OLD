@@ -26,6 +26,9 @@
   "refreshwarning": {
     "en": "ATTENTION! \n This will reload the level from the level.json file. Are you sure you want to do this?"
   },
+  "savewarning": {
+    "en": "ATTENTION! \n Do you want to save your changes to this level before exiting?"
+  },
   "editwhat": {
     "en": "What do you want to edit?"
   },
@@ -34,6 +37,21 @@
   },
   "ok": {
     "en": "ok"
+  },
+  "save": {
+    "en": "save"
+  },
+  "dontsave": {
+    "en": "don't save"
+  },
+  "speedmult": {
+    "en": "speed multiplier"
+  },
+  "startangle": {
+    "en": "start angle"
+  },
+  "endangle": {
+    "en": "end angle"
   },
   "angle1": {
     "en": "angle 1"
