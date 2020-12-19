@@ -192,7 +192,7 @@ function helpers.anglepoints(x,y,a,b)
   return math.deg(math.atan2(x-a,y-b))*-1
 end
 
-function helpers.drawhold(xo, yo, x1, y1, x2, y2, a1, a2, segments, sprhold, ease)
+function helpers.drawhold(xo, yo, x1, y1, x2, y2, completion, a1, a2, segments, sprhold, ease)
   local interp = ease or "Linear"
 
   -- distances to the beginning and the end of the hold
@@ -207,9 +207,9 @@ function helpers.drawhold(xo, yo, x1, y1, x2, y2, a1, a2, segments, sprhold, eas
   end
   for i = 0, segments, 1 do
     local t = i / segments
-
+    local angle_t = t * (1 - completion) + completion
     -- coordinates of the next point
-    local nextAngle = math.rad(helpers.interpolate(a1, a2, t, interp) - 90)
+    local nextAngle = math.rad(helpers.interpolate(a1, a2, angle_t, interp) - 90)
     local nextDistance = helpers.lerp(len1, len2, t)
     points[#points+1] = math.cos(nextAngle) * nextDistance + screencenter.x
     points[#points+1] = math.sin(nextAngle) * nextDistance + screencenter.y
