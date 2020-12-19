@@ -72,13 +72,17 @@ end
 
 
 function st.update()
-
-
   if not paused then
     if maininput:pressed("back") then
       if st.editmode then
-        st.savelevel()
-        helpers.swap(states.songselect)
+        paused = true
+        local pup = em.init("popup",screencenter.x,screencenter.y)
+        pup.text = loc.get("savewarning")
+        pup.w=200
+        pup.h=100
+        pup.newbutton({x=100,y=50,w=50,h=16,text=loc.get("save"),onclick = function() st.savelevel() helpers.swap(states.songselect) paused = false pup.delete = true end})
+        pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("dontsave"),onclick = function() helpers.swap(states.songselect) paused = false pup.delete = true end})
+        pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
       else
         st.stoplevel()
       end
@@ -187,6 +191,8 @@ function st.update()
 
         --Angle snap
         if maininput:pressed("rightbracket") then
+          if st.degreesnap == 5 then
+            st.degreesnap = 5.625
           if st.degreesnap == 5.625 then
             st.degreesnap = 7.5
           elseif st.degreesnap == 7.5 then
@@ -221,8 +227,10 @@ function st.update()
             st.degreesnap = 11.25
           elseif st.degreesnap == 11.25 then
             st.degreesnap = 7.5
-          else
+          elseif st.degreesnap == 7.5 then
             st.degreesnap = 5.625
+          else
+            st.degreesnap = 5
           end
         end
 
@@ -281,7 +289,7 @@ function st.update()
                 pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].time = tonumber(pup.textinput.text) paused = false pup.delete = true end})
                 pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
-              pup.newbutton({x=100,y=120,w=50,h=16,text=loc.get("speedmult"),onclick = function()   
+              pup.newbutton({x=100,y=120,w=100,h=16,text=loc.get("speedmult"),onclick = function()   
                 pup.h = 100 
                 pup.text = loc.get("editing") .. " " .. loc.get("speedmult") .. ":"
                 pup.buttons = {}
@@ -290,6 +298,48 @@ function st.update()
                 pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
               pup.newbutton({x=100,y=140,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
+            elseif st.level.events[st.eventindex].type == "beat" or st.level.events[st.eventindex].type == "slice" or st.level.events[st.eventindex].type == "sliceinvert" or st.level.events[st.eventindex].type == "inverse" or st.level.events[st.eventindex].type == "mine" then
+paused = true
+              local pos = helpers.rotate(st.beattoscrollrad(st.cursorpos.beat), st.cursorpos.angle, screencenter.x, screencenter.y)
+              local pup = em.init("popup",screencenter.x,screencenter.y)
+              pup.text = loc.get("editwhat")
+              pup.w = 200
+              pup.h=150
+              pup.newbutton({x=100,y=60,w=60,h=16,text=loc.get("startangle"),onclick = function() 
+                pup.h = 100 
+                pup.text = loc.get("editing") .. " " .. loc.get("startangle") .. ":"
+                pup.buttons = {}
+                pup.textinput= {text=tostring(st.level.events[st.eventindex].angle),y=50,show=true,numberonly=true, allowminus=true}
+                pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].angle = tonumber(pup.textinput.text) paused = false pup.delete = true end})
+                pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
+              end})
+              pup.newbutton({x=100,y=80,w=50,h=16,text=loc.get("endangle"),onclick = function()   
+                pup.h = 100 
+                pup.text = loc.get("editing") .. " " .. loc.get("endangle") .. ":"
+                pup.buttons = {}
+                pup.textinput= {text=tostring(st.level.events[st.eventindex].endangle or st.level.events[st.eventindex].angle),y=50,show=true,numberonly=true, allowminus=true}
+                pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].endangle = tonumber(pup.textinput.text) paused = false pup.delete = true end})
+                pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
+              end})
+              pup.newbutton({x=100,y=100,w=50,h=16,text=loc.get("time"),onclick = function()   
+                pup.h = 100 
+                pup.text = loc.get("editing") .. " " .. loc.get("time") .. ":"
+                pup.buttons = {}
+                pup.textinput= {text=tostring(st.level.events[st.eventindex].time),y=50,show=true,numberonly=true}
+                pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].hb = tonumber(pup.textinput.text) paused = false pup.delete = true end})
+                pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
+              end})
+              pup.newbutton({x=100,y=120,w=100,h=16,text=loc.get("speedmult"),onclick = function()   
+                pup.h = 100 
+                pup.text = loc.get("editing") .. " " .. loc.get("speedmult") .. ":"
+                pup.buttons = {}
+                pup.textinput= {text=tostring(st.level.events[st.eventindex].speedmult),y=50,show=true,numberonly=true}
+                pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].speedmult = tonumber(pup.textinput.text) paused = false pup.delete = true end})
+                pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
+              end})
+              pup.newbutton({x=100,y=140,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
+              end
+              
             end
             
           end
