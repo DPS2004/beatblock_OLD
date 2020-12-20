@@ -30,6 +30,7 @@ function st.update()
     flux.update(1)
     em.update(dt)
     if maininput:pressed("accept") or maininput:pressed("mouse1") then
+      print(love.filesystem.getSaveDirectory())
       helpers.swap(states.songselect)
     end
   end
