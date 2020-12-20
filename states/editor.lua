@@ -48,7 +48,13 @@ function st.enter(prev)
   st.beatcircles = {}
   st.editmode = true
   
-  st.draggingevent = nil
+  --for dragging events
+  st.draggingeventindex = nil
+  st.draggingeventpart = nil
+  
+  st.draggingeventmoved = false
+  st.openpup = false
+  
   --st.state = "free" --r MAKE SURE TO CHECK FOR THE FREE STATE BEFORE ADDING A NEW KEYBIND (free state means a text box isn't currently selected or anything)
 
   for i=1,500,1 do
@@ -239,41 +245,140 @@ function st.update()
 
         --Adding/deleting/dragging events
         if maininput:pressed("mouse1") then
-          st.draggingevent = st.findeventatcursor()
+          st.draggingeventindex = st.findeventatcursor()
+          st.draggingeventpart = st.findholdtypeatcursor()
         end
 
-        if maininput:down("mouse1") and st.draggingevent then
+        if maininput:down("mouse1") and st.draggingeventindex then
 
-          if st.level.events[st.draggingevent].type ~= "hold" then
-            if st.level.events[st.draggingevent].type ~= "sliceinvert" then
-              st.level.events[st.draggingevent].endangle = st.cursorpos.angle
-              st.level.events[st.draggingevent].time = st.cursorpos.beat
+          if st.level.events[st.draggingeventindex].type ~= "hold" then
+            
+            local endangle = st.level.events[st.draggingeventindex].endangle
+            local startbeat = st.level.events[st.draggingeventindex].time
+            
+            if st.level.events[st.draggingeventindex].type ~= "sliceinvert" then
+              --editing not holds nor sliceinverts
+              st.level.events[st.draggingeventindex].endangle = st.cursorpos.angle
+              st.level.events[st.draggingeventindex].time = st.cursorpos.beat
             else
-              st.level.events[st.draggingevent].endangle = -(180 - st.cursorpos.angle)
-              st.level.events[st.draggingevent].time = st.cursorpos.beat
+              --editing sliceinverts
+              st.level.events[st.draggingeventindex].endangle = -(180 - st.cursorpos.angle)
+              st.level.events[st.draggingeventindex].time = st.cursorpos.beat
+            end
+
+            if (endangle ~= st.level.events[st.draggingeventindex].endangle) or (startbeat ~= st.level.events[st.draggingeventindex].time) then
+              st.draggingeventmoved = true
             end
 
           else
-            
+
+            --holds
+            local angle1 = st.level.events[st.draggingeventindex].angle1
+            local angle2 = st.level.events[st.draggingeventindex].angle2
+            local startbeat = st.level.events[st.draggingeventindex].time
+            local duration = st.level.events[st.draggingeventindex].duration
+
+            if st.draggingeventpart == "holdstart" then
+              --editing hold starts
+              if (angle1 % 360) ~= st.cursorpos.angle then 
+                if math.abs(st.cursorpos.angle - (angle1 % 360)) > 180 then
+                  if (st.cursorpos.angle - (angle1 % 360)) < 0 then
+                    angle1 = angle1 + 360 + st.cursorpos.angle - (angle1 % 360)
+                  else
+                    angle1 = angle1 - 360 + st.cursorpos.angle - (angle1 % 360)
+                  end
+                else
+                  angle1 = angle1 + st.cursorpos.angle - (angle1 % 360)
+                end
+              end
+
+              duration = duration + startbeat - st.cursorpos.beat
+              startbeat = st.cursorpos.beat
+              if duration < 0 then
+                angle2, angle1 = angle1, angle2
+                startbeat = startbeat + duration
+                duration = -duration
+                st.draggingeventpart = "holdend"
+              end
+
+            else
+              --editing hold ends
+              if (angle2 % 360) ~= st.cursorpos.angle then 
+                if math.abs(st.cursorpos.angle - (angle2 % 360)) > 180 then
+                  if (st.cursorpos.angle - (angle2 % 360)) < 0 then
+                    angle2 = angle2 + 360 + st.cursorpos.angle - (angle2 % 360)
+                  else
+                    angle2 = angle2 - 360 + st.cursorpos.angle - (angle2 % 360)
+                  end
+                else
+                  angle2 = angle2 + st.cursorpos.angle - (angle2 % 360)
+                end
+              end
+
+              duration = st.cursorpos.beat - startbeat
+              if duration < 0 then
+                angle2, angle1 = angle1, angle2
+                startbeat = startbeat + duration
+                duration = -duration
+                st.draggingeventpart = "holdstart"
+              end
+            end
+
+            if
+            (st.level.events[st.draggingeventindex].angle1 ~= angle1) or
+            (st.level.events[st.draggingeventindex].angle2 ~= angle2) or
+            (st.level.events[st.draggingeventindex].time ~= startbeat) or
+            (st.level.events[st.draggingeventindex].duration ~= duration) then
+              st.draggingeventmoved = true
+            end
+
+            st.level.events[st.draggingeventindex].angle1 = angle1
+            st.level.events[st.draggingeventindex].angle2 = angle2
+            st.level.events[st.draggingeventindex].time = startbeat
+            st.level.events[st.draggingeventindex].duration = duration
 
           end
 
         end
 
         if maininput:released("mouse1") then
-          if st.draggingevent then
-            st.draggingevent = nil
+          if st.draggingeventindex then
+
+            --change the angle of angle1 and angle2 until angle1 is between 0 and 360 degrees
+            if st.draggingeventpart == "holdstart" then
+              while st.level.events[st.draggingeventindex].angle1 >= 360 do
+                st.level.events[st.draggingeventindex].angle1 = st.level.events[st.draggingeventindex].angle1 - 360
+                st.level.events[st.draggingeventindex].angle2 = st.level.events[st.draggingeventindex].angle2 - 360
+              end
+              while st.level.events[st.draggingeventindex].angle2 < 0 do
+                st.level.events[st.draggingeventindex].angle1 = st.level.events[st.draggingeventindex].angle1 + 360
+                st.level.events[st.draggingeventindex].angle2 = st.level.events[st.draggingeventindex].angle2 + 360
+              end
+            end
+
+          st.draggingeventindex = nil
+          st.draggingeventpart = nil
+
           else
             st.deleteeventatcursor()
             st.addeventatcursor(st.cursortype)
           end
+          
+          --currently dragging event wasn't moved? open the popup!
+          if st.draggingeventmoved == false then
+            st.openpup = true
+          else
+            st.draggingeventmoved = false
+          end
+          
         end
       
         if maininput:released("mouse2") then
           st.deleteeventatcursor()
         end
         -- edit events with e or mid click
-        if maininput:pressed("e") or maininput:pressed("mouse3") then
+        if maininput:pressed("e") or maininput:pressed("mouse3") or st.openpup == true then
+          st.openpup = false
           st.eventindex = st.findeventatcursor()
           if st.eventindex then
             if st.level.events[st.eventindex].type == "hold" then
@@ -641,6 +746,32 @@ function st.findeventatcursor()
         local evangle = v.angle2 or nil
         if evangle ~= nil and evangle % 360 == st.cursorpos.angle % 360 then
           returndex = i
+          break
+        end
+      end
+    end
+    
+  end
+
+  return returndex
+end
+--determine if a hold on the cursor is a hold start or hold end
+function st.findholdtypeatcursor()
+  local returndex = nil
+  for i,v in ipairs(st.level.events) do
+    if v.type ~= "hold" then
+      returndex = nil
+    else
+      if v.time == st.cursorpos.beat then
+        local evangle = v.angle1 or nil
+        if evangle ~= nil and evangle % 360 == st.cursorpos.angle % 360 then
+          returndex = "holdstart"
+          break
+        end
+      elseif v.time + v.duration == st.cursorpos.beat then
+        local evangle = v.angle2 or nil
+        if evangle ~= nil and evangle % 360 == st.cursorpos.angle % 360 then
+          returndex = "holdend"
           break
         end
       end
