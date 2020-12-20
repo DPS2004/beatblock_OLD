@@ -54,6 +54,8 @@ function obj.update(dt)
   
   if obj.inverse then
     p1 = helpers.rotate(((obj.hb - cs.cbeat)*cs.level.properties.speed*obj.smult*-1)+cs.extend+cs.length-24,obj.angle,obj.ox,obj.oy)
+  elseif obj.side then
+    p1 = helpers.rotate((obj.hb - cs.cbeat)*cs.level.properties.speed*obj.smult+cs.extend+cs.length-10,obj.angle,obj.ox,obj.oy)
   elseif not obj.hold then
     p1 = helpers.rotate((obj.hb - cs.cbeat)*cs.level.properties.speed*obj.smult+cs.extend+cs.length,obj.angle,obj.ox,obj.oy)
   elseif obj.hold then
