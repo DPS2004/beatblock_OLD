@@ -48,6 +48,7 @@ function st.enter(prev)
   st.beatcircles = {}
   st.editmode = true
   
+  st.draggingevent = nil
   --st.state = "free" --r MAKE SURE TO CHECK FOR THE FREE STATE BEFORE ADDING A NEW KEYBIND (free state means a text box isn't currently selected or anything)
 
   for i=1,500,1 do
@@ -236,11 +237,36 @@ function st.update()
 
         
 
-        --Adding/deleting events
+        --Adding/deleting/dragging events
+        if maininput:pressed("mouse1") then
+          st.draggingevent = st.findeventatcursor()
+        end
+
+        if maininput:down("mouse1") and st.draggingevent then
+
+          if st.level.events[st.draggingevent].type ~= "hold" then
+            if st.level.events[st.draggingevent].type ~= "sliceinvert" then
+              st.level.events[st.draggingevent].endangle = st.cursorpos.angle
+              st.level.events[st.draggingevent].time = st.cursorpos.beat
+            else
+              st.level.events[st.draggingevent].endangle = -(180 - st.cursorpos.angle)
+              st.level.events[st.draggingevent].time = st.cursorpos.beat
+            end
+
+          else
+            
+
+          end
+
+        end
+
         if maininput:released("mouse1") then
-          --Extremely simple. Want to make it so you can drag pre-existing events later, but for now it just deletes what's already there
-          st.deleteeventatcursor()
-          st.addeventatcursor(st.cursortype)
+          if st.draggingevent then
+            st.draggingevent = nil
+          else
+            st.deleteeventatcursor()
+            st.addeventatcursor(st.cursortype)
+          end
         end
       
         if maininput:released("mouse2") then
