@@ -19,3 +19,11 @@ copy apktool.yml release\love_decoded\apktool.yml
 cd release
 call apktool b -o beatblock.apk love_decoded
 cd..
+call winhhtpjs.bat "https://github.com/patrickfav/uber-apk-signer/releases/download/v1.2.1/uber-apk-signer-1.2.1.jar" -saveTo "release\uber-apk-signer.jar" 
+cd release
+call java -jar uber-apk-signer.jar --apks beatblock.apk
+del uber-apk-signer.jar
+del beatblock.apk
+del love-11.3-android-embed.apk
+cd..
+echo "done!"
