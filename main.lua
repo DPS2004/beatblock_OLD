@@ -123,7 +123,8 @@ function love.load()
       square = love.graphics.newImage("assets/game/square.png"),
       inverse = love.graphics.newImage("assets/game/inverse.png"),
       hold = love.graphics.newImage("assets/game/hold.png"),
-      mine = love.graphics.newImage("assets/game/mine.png")
+      mine = love.graphics.newImage("assets/game/mine.png"),
+      side = love.graphics.newImage("assets/game/side.png")
     },
     player = {
       idle = love.graphics.newImage("assets/game/cranky/idle.png"),
@@ -207,6 +208,7 @@ function love.load()
         k4 = {"key:4"},
         k5 = {"key:5"},
         k6 = {"key:6"},
+        k7 = {"key:7"},
         f5 = {"key:f5"},
         mouse1 = {"mouse:1"},
         mouse2 = {"mouse:2"},

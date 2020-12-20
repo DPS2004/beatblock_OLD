@@ -1,7 +1,7 @@
 local obj = {
   layer = -1,
   uplayer = 3,
-  slice =false,
+  slice = false,
   x=screencenter.x,
   y=screencenter.y,
   angle=0,
@@ -14,11 +14,13 @@ local obj = {
   inverse = false,
   hityet = false,
   hold = false,
-  mine=false,
+  mine = false,
+  side = false,
   spr = sprites.beat.square,
   spr2 = sprites.beat.inverse,
   spr3 = sprites.beat.hold,
-  spr4 = sprites.beat.mine
+  spr4 = sprites.beat.mine,
+  spr5 = sprites.beat.side
 }
 obj.ox = obj.x
 obj.oy = obj.y
@@ -64,7 +66,7 @@ function obj.update(dt)
   obj.x = p1[1]
   obj.y = p1[2]  
 
-  if (obj.hb - cs.cbeat) <= 0 then
+  if (obj.hb - cs.cbeat) <= 0 and not obj.side then
     if not obj.mine then
       if not obj.hold then
         if helpers.angdistance(obj.angle,cs.p.angle) <= cs.p.paddle_size / 2 then 
@@ -148,7 +150,7 @@ function obj.update(dt)
         end
         
       end
-    else
+    elseif obj.mine then
       --mine
       if helpers.angdistance(obj.angle,cs.p.angle) <= cs.p.paddle_size / 2 then 
         -- mine is hit
@@ -183,7 +185,51 @@ function obj.update(dt)
         end
       end
     end
-  
+  elseif obj.side then
+    --side notes
+    if helpers.angdistance(obj.angle,cs.p.angle) <= cs.p.paddle_size / 2 and helpers.angdistance(obj.angle,cs.p.angleprevframe) > cs.p.paddle_size / 2 and math.abs(obj.hb - cs.cbeat) <= 1/4 then
+      em.init("hitpart",obj.x,obj.y)
+      obj.delete = true
+      pq = pq .. "   player hit!"
+      cs.hits = cs.hits + 1
+      cs.combo = cs.combo +1
+      if cs.beatsounds then
+        te.play(sounds.click,"static")
+      end
+      if cs.p.cemotion == "miss" then
+        cs.p.emotimer = 0
+        cs.p.cemotion = "idle"
+      end
+    elseif obj.hb - cs.cbeat <= -1/4 then
+      local mp = em.init("misspart",screencenter.x,screencenter.x)
+      mp.angle = obj.angle
+      mp.distance = (obj.hb - cs.cbeat)*cs.level.properties.speed+cs.length
+      mp.spr = (obj.inverse and not obj.slice and obj.spr2) or (obj.spr5) --Determine which sprite the misspart should use
+      mp.update()
+      obj.delete = true
+      pq = pq .. "   player missed!"
+      cs.misses = cs.misses + 1
+      cs.combo = 0
+      cs.p.emotimer = 100
+      cs.p.cemotion = "miss"
+      cs.p.hurtpulse()
+    elseif helpers.angdistance(obj.angle,cs.p.angle) <= cs.p.paddle_size / 2 and helpers.angdistance(obj.angle,cs.p.angleprevframe) <= cs.p.paddle_size / 2 and (obj.hb - cs.cbeat) <= 0 then
+      local mp = em.init("misspart",screencenter.x,screencenter.x)
+      mp.angle = obj.angle
+      mp.distance = (obj.hb - cs.cbeat)*cs.level.properties.speed+cs.length
+      mp.spr = (obj.inverse and not obj.slice and obj.spr2) or (obj.spr5) --Determine which sprite the misspart should use
+      mp.update()
+      obj.delete = true
+      pq = pq .. "   player missed!"
+      cs.misses = cs.misses + 1
+      cs.combo = 0
+      cs.p.emotimer = 100
+      cs.p.cemotion = "miss"
+      cs.p.hurtpulse()
+      if cs.beatsounds then
+        te.play(sounds.mine,"static")
+      end
+    end
   end
 
 end
@@ -196,6 +242,8 @@ function obj.draw()
         love.graphics.draw(obj.spr2,obj.x,obj.y,0,1,1,8,8)
       elseif obj.mine then
         love.graphics.draw(obj.spr4,obj.x,obj.y,0,1,1,8,8)
+      elseif obj.side then
+        love.graphics.draw(obj.spr5,obj.x,obj.y,math.rad(obj.angle),1,1,12,10)
       else
         love.graphics.draw(obj.spr,obj.x,obj.y,0,1,1,8,8)
       end

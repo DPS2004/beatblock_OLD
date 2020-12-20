@@ -157,6 +157,9 @@ function st.update()
         if maininput:pressed("k6") then
           st.cursortype = "mine"
         end
+        if maininput:pressed("k7") then
+          st.cursortype = "side"
+        end
 
         --Set zoom
         if maininput:pressed("up") then
@@ -428,7 +431,7 @@ function st.update()
                 pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
               pup.newbutton({x=100,y=140,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
-            elseif st.level.events[st.eventindex].type == "beat" or st.level.events[st.eventindex].type == "slice" or st.level.events[st.eventindex].type == "sliceinvert" or st.level.events[st.eventindex].type == "inverse" or st.level.events[st.eventindex].type == "mine" then
+            elseif st.level.events[st.eventindex].type == "beat" or st.level.events[st.eventindex].type == "slice" or st.level.events[st.eventindex].type == "sliceinvert" or st.level.events[st.eventindex].type == "inverse" or st.level.events[st.eventindex].type == "mine" or st.level.events[st.eventindex].type == "side" then
 paused = true
               local pos = helpers.rotate(st.beattoscrollrad(st.cursorpos.beat), st.cursorpos.angle, screencenter.x, screencenter.y)
               local pup = em.init("popup",screencenter.x,screencenter.y)
@@ -581,11 +584,17 @@ function st.draw()
               local angle = v.endangle or v.angle
               local invert = v.type == "sliceinvert"
               helpers.drawslice(screencenter.x, screencenter.y, evrad, angle, invert, 1)
-            
+
             elseif v.type == "mine" then
               local angle = v.endangle or v.angle
               local pos = helpers.rotate(evrad, angle, screencenter.x, screencenter.y)
               love.graphics.draw(sprites.beat.mine,pos[1],pos[2],0,1,1,8,8)
+
+            elseif v.type == "side" then
+              local angle = v.endangle or v.angle
+              local pos = helpers.rotate(evrad, angle, screencenter.x, screencenter.y)
+              love.graphics.draw(sprites.beat.side,pos[1],pos[2],0,1,1,12,10)
+
             end
           end
   
@@ -617,6 +626,8 @@ function st.draw()
           love.graphics.draw(st.sprinverse, pos[1], pos[2],0,1,1,8,8)
         elseif st.cursortype == "mine" then
           love.graphics.draw(sprites.beat.mine, pos[1], pos[2],0,1,1,8,8)
+        elseif st.cursortype == "side" then
+          love.graphics.draw(sprites.beat.side, pos[1], pos[2],0,1,1,12,10)
         elseif st.cursortype == "hold" then
           love.graphics.draw(st.sprhold, pos[1], pos[2],0,1,1,8,8)
         elseif st.cursortype == "slice" or st.cursortype == "sliceinvert" then
@@ -784,7 +795,7 @@ end
 --Add an event of type [type] at the cursor's current position
 function st.addeventatcursor(type)
   local newevent = {time = st.cursorpos.beat, type = type}
-  if type == "beat" or type == "inverse" or type == "slice" or type == "sliceinvert" or type == "mine" then
+  if type == "beat" or type == "inverse" or type == "slice" or type == "sliceinvert" or type == "mine" or type == "side" then
     local evangle = st.cursorpos.angle
     if type == "sliceinvert" then
       evangle = (evangle + 180) % 360 --Sliceinverts are weird

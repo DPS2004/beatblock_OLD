@@ -10,6 +10,7 @@ local obj = {
   y=0,
   bobi=0,
   angle = 0,
+  angleprevframe = 0,
   extend = 0,
   paddle_size = 70,
   handle_size = 15,
@@ -36,6 +37,7 @@ function obj.update(dt)
   end
   if not cs.autoplay then
     if obj.cmode then
+      obj.angleprevframe = obj.angle --this way obj.angleprevframe is always 1 frame behind obj.angle
       obj.angle = 0-math.deg(math.atan2(obj.y - love.mouse.getY()/shuv.scale, love.mouse.getX()/shuv.scale - obj.x)) +90
     else
       if maininput:down("left") then
