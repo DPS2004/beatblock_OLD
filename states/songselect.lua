@@ -83,8 +83,20 @@ function st.mousepressed(x,y,b,t,p)
         te.play(sounds.click,"static")
         st.ease = flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
       end
+      if st.levels[st.selection].islevel then
+        local curjson = dpf.loadjson(st.levels[st.selection].filename .. "level.json")
+        if st.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter] then
+          local cpct = st.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter].pctgrade
+          local sn,ch = helpers.gradecalc(cpct)
+          st.crank = sn .. ch
+        else
+          st.crank = "none"
+        end
+      else
+        st.crank = "none"
+      end
       st.move = false
-    end 
+    end
   end
 end
 
