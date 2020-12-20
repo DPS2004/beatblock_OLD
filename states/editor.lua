@@ -356,6 +356,13 @@ function st.update()
               end
             end
 
+          --currently dragging event wasn't moved? open the popup!
+          if st.draggingeventmoved == false then
+            st.openpup = true
+          else
+            st.draggingeventmoved = false
+          end
+
           st.draggingeventindex = nil
           st.draggingeventpart = nil
 
@@ -363,14 +370,6 @@ function st.update()
             st.deleteeventatcursor()
             st.addeventatcursor(st.cursortype)
           end
-          
-          --currently dragging event wasn't moved? open the popup!
-          if st.draggingeventmoved == false then
-            st.openpup = true
-          else
-            st.draggingeventmoved = false
-          end
-          
         end
       
         if maininput:released("mouse2") then
