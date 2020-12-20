@@ -205,7 +205,7 @@ function helpers.drawhold(xo, yo, x1, y1, x2, y2, completion, a1, a2, segments, 
   if segments == nil then
     segments = (math.abs(a2 - a1) / 8 + 1)
   end
-  for i = 0, segments, 1 do
+  for i = 0, segments do
     local t = i / segments
     local angle_t = t * (1 - completion) + completion
     -- coordinates of the next point

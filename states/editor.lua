@@ -493,7 +493,8 @@ function st.draw()
               local angle2 = v.angle2
               local pos1 = helpers.rotate(evrad1, angle1, screencenter.x, screencenter.y)
               local pos2 = helpers.rotate(evrad2, angle2, screencenter.x, screencenter.y)
-              helpers.drawhold(screencenter.x, screencenter.y, pos1[1], pos1[2], pos2[1], pos2[2], angle1, angle2, v.segments, st.sprhold, v.holdease)
+              local completion = math.max(0, (cs.cbeat - 0 ) / v.duration)
+              helpers.drawhold(screencenter.x, screencenter.y, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, st.sprhold, v.holdease)
             end
           end
         end

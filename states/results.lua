@@ -50,6 +50,36 @@ function st.mousepressed(x,y,b,t,p)
 
 end
 
+function st.mousepressed(x,y,b,t,p)
+  if ismobile then
+    if (love.mouse.getY()/shuv.scale) < 240/3 then -- up
+      st.selection = 1
+      st.ease = flux.to(st.cselectionbounds,30,{
+        x=st.selectionbounds[1].x,
+        y=st.selectionbounds[1].y,
+        w=st.selectionbounds[1].w,
+        h=st.selectionbounds[1].h,
+        
+      }):ease("outExpo")
+    elseif (love.mouse.getY()/shuv.scale) > 240/3*2 then -- down
+      st.selection = 2
+      st.ease = flux.to(st.cselectionbounds,30,{
+        x=st.selectionbounds[2].x,
+        y=st.selectionbounds[2].y,
+        w=st.selectionbounds[2].w,
+        h=st.selectionbounds[2].h,
+        
+      }):ease("outExpo")
+    else -- center
+      if st.selection == 1 then
+        helpers.swap(states.songselect)
+      else
+        helpers.swap(states.game)
+      end
+    
+    end
+  end
+end
 
 function st.update()
   pq = ""
