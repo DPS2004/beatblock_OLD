@@ -192,8 +192,9 @@ function helpers.anglepoints(x,y,a,b)
   return math.deg(math.atan2(x-a,y-b))*-1
 end
 
-function helpers.drawhold(xo, yo, x1, y1, x2, y2, completion, a1, a2, segments, sprhold, ease)
+function helpers.drawhold(xo, yo, x1, y1, x2, y2, completion, a1, a2, segments, sprhold, ease, holdtype)
   local interp = ease or "Linear"
+  local colortype = holdtype or "hold"
 
   -- distances to the beginning and the end of the hold
   local len1 = helpers.distance({xo, yo}, {x1, y1})
@@ -232,6 +233,12 @@ function helpers.drawhold(xo, yo, x1, y1, x2, y2, completion, a1, a2, segments, 
     helpers.color(1)
     love.graphics.setLineWidth(12)
     love.graphics.line(points)
+    --the added line for mine holds
+    if colortype ~= "hold" then
+      helpers.color(2)
+      love.graphics.setLineWidth(10)
+      love.graphics.line(points)
+    end
   end
   helpers.color(1)
 

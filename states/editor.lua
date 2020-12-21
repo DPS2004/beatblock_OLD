@@ -154,11 +154,17 @@ function st.update()
         if maininput:pressed("k5") then
           st.cursortype = "sliceinvert"
         end
+      
         if maininput:pressed("k6") then
           st.cursortype = "mine"
         end
+      
         if maininput:pressed("k7") then
           st.cursortype = "side"
+        end
+      
+        if maininput:pressed("k8") then
+          st.cursortype = "minehold"
         end
 
         --Set zoom
@@ -254,7 +260,7 @@ function st.update()
 
         if maininput:down("mouse1") and st.draggingeventindex then
 
-          if st.level.events[st.draggingeventindex].type ~= "hold" then
+          if st.level.events[st.draggingeventindex].type ~= "hold" and st.level.events[st.draggingeventindex].type ~= "minehold" then
             
             local endangle = st.level.events[st.draggingeventindex].endangle
             local startbeat = st.level.events[st.draggingeventindex].time
@@ -383,7 +389,7 @@ function st.update()
           st.openpup = false
           st.eventindex = st.findeventatcursor()
           if st.eventindex then
-            if st.level.events[st.eventindex].type == "hold" then
+            if st.level.events[st.eventindex].type == "hold" or "minehold" then
               paused = true
               local pos = helpers.rotate(st.beattoscrollrad(st.cursorpos.beat), st.cursorpos.angle, screencenter.x, screencenter.y)
               local pup = em.init("popup",screencenter.x,screencenter.y)
@@ -598,7 +604,7 @@ function st.draw()
             end
           end
   
-          if v.type == "hold" then
+          if v.type == "hold" or v.type == "minehold" then
             local evrad2 = st.beattoscrollrad(v.time + v.duration)
             if evrad2 >= st.beatcircleminrad then
               local evrad1 = (evrad >= st.beatcircleminrad and evrad) or st.beatcircleminrad
@@ -607,7 +613,11 @@ function st.draw()
               local pos1 = helpers.rotate(evrad1, angle1, screencenter.x, screencenter.y)
               local pos2 = helpers.rotate(evrad2, angle2, screencenter.x, screencenter.y)
               local completion = math.max(0, (cs.cbeat - 0 ) / v.duration)
-              helpers.drawhold(screencenter.x, screencenter.y, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, st.sprhold, v.holdease)
+              if v.type == "hold" then
+                helpers.drawhold(screencenter.x, screencenter.y, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, st.sprhold, v.holdease, v.type)
+              else
+                helpers.drawhold(screencenter.x, screencenter.y, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, sprites.beat.minehold, v.holdease, v.type)
+              end
             end
           end
         end
@@ -630,6 +640,8 @@ function st.draw()
           love.graphics.draw(sprites.beat.side, pos[1], pos[2],0,1,1,12,10)
         elseif st.cursortype == "hold" then
           love.graphics.draw(st.sprhold, pos[1], pos[2],0,1,1,8,8)
+        elseif st.cursortype == "minehold" then
+          love.graphics.draw(sprites.beat.minehold, pos[1], pos[2],0,1,1,8,8)
         elseif st.cursortype == "slice" or st.cursortype == "sliceinvert" then
           local sliceangle = angle
           local invert = st.cursortype == "sliceinvert"
@@ -731,7 +743,7 @@ end
 function st.findeventatcursor()
   local returndex = nil
   for i,v in ipairs(st.level.events) do
-    if v.type ~= "hold" then
+    if v.type ~= "hold" and v.type ~= "minehold" then
       if v.time == st.cursorpos.beat then
       
         local evangle = v.endangle or v.angle or nil
@@ -769,7 +781,7 @@ end
 function st.findholdtypeatcursor()
   local returndex = nil
   for i,v in ipairs(st.level.events) do
-    if v.type ~= "hold" then
+    if v.type ~= "hold" and v.type ~= "minehold" then
       returndex = nil
     else
       if v.time == st.cursorpos.beat then
@@ -803,7 +815,7 @@ function st.addeventatcursor(type)
     newevent.angle = evangle
     newevent.endangle = evangle
     newevent.speedmult = 1
-  elseif type == "hold" then
+  elseif type == "hold" or "minehold" then
     --Barebones hold addition. Need to be able to set both angles
     newevent.angle1 = st.cursorpos.angle
     newevent.angle2 = st.cursorpos.angle

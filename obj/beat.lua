@@ -16,11 +16,13 @@ local obj = {
   hold = false,
   mine = false,
   side = false,
+  minehold = false,
   spr = sprites.beat.square,
   spr2 = sprites.beat.inverse,
   spr3 = sprites.beat.hold,
   spr4 = sprites.beat.mine,
-  spr5 = sprites.beat.side
+  spr5 = sprites.beat.side,
+  spr6 = sprites.beat.minehold
 }
 obj.ox = obj.x
 obj.oy = obj.y
@@ -56,9 +58,9 @@ function obj.update(dt)
     p1 = helpers.rotate(((obj.hb - cs.cbeat)*cs.level.properties.speed*obj.smult*-1)+cs.extend+cs.length-24,obj.angle,obj.ox,obj.oy)
   elseif obj.side then
     p1 = helpers.rotate((obj.hb - cs.cbeat)*cs.level.properties.speed*obj.smult+cs.extend+cs.length-10,obj.angle,obj.ox,obj.oy)
-  elseif not obj.hold then
+  elseif not obj.hold and not obj.minehold then
     p1 = helpers.rotate((obj.hb - cs.cbeat)*cs.level.properties.speed*obj.smult+cs.extend+cs.length,obj.angle,obj.ox,obj.oy)
-  elseif obj.hold then
+  elseif obj.hold or obj.minehold then
     p1 = helpers.rotate((obj.hb - cs.cbeat)*cs.level.properties.speed*obj.smult+cs.extend+cs.length,obj.angle,obj.ox,obj.oy)
     p2 = helpers.rotate((obj.hb - cs.cbeat+obj.duration)*cs.level.properties.speed*obj.smult*obj.smult2+cs.extend+cs.length,obj.angle2,obj.ox,obj.oy)
     obj.x2 = p2[1]
@@ -70,7 +72,7 @@ function obj.update(dt)
 
   if (obj.hb - cs.cbeat) <= 0 and not obj.side then
     if not obj.mine then
-      if not obj.hold then
+      if not obj.hold and not obj.minehold then
         if helpers.angdistance(obj.angle,cs.p.angle) <= cs.p.paddle_size / 2 then 
           em.init("hitpart",obj.x,obj.y)
           obj.delete = true
@@ -99,7 +101,7 @@ function obj.update(dt)
 
           cs.p.hurtpulse()
         end
-      else
+      elseif obj.hold then
         if helpers.angdistance(obj.angle,cs.p.angle) <= cs.p.paddle_size / 2 then 
           if obj.hityet == false then
             obj.hityet = true
@@ -150,9 +152,62 @@ function obj.update(dt)
 
           cs.p.hurtpulse()
         end
-        
+
+      --mine hold
+      elseif obj.minehold then
+        --avoiding mine hold
+        if helpers.angdistance(obj.angle,cs.p.angle) >= cs.p.paddle_size / 2 then 
+          if obj.hityet == false then
+            obj.hityet = true
+            pq = pq .. "   started mine hold"
+          end
+          --em.init("hitpart",obj.x,obj.y)
+          --print(helpers.angdistance(obj.angle,cs.p.angle).. " is less than " .. cs.p.paddle_size / 2)
+          obj.angle = helpers.interpolate(obj.endangle,obj.angle2,((obj.hb - cs.cbeat)*-1)/obj.duration, obj.holdease)
+          
+          
+          p1 = helpers.rotate(cs.extend+cs.length,obj.angle,obj.ox,obj.oy)
+          p2 = helpers.rotate((obj.hb - cs.cbeat+obj.duration)*cs.level.properties.speed*obj.smult*obj.smult2+cs.extend+cs.length,obj.angle2,obj.ox,obj.oy)
+          obj.x2 = p2[1]
+          obj.y2 = p2[2]
+          obj.x = p1[1]
+          obj.y = p1[2]  
+          
+          if ((obj.hb - cs.cbeat)*-1)/obj.duration >= 1 then
+            pq = pq .. "   finished mine hold!"
+            cs.hits = cs.hits + 1
+            cs.combo = cs.combo + 1
+            if cs.p.cemotion == "miss" then
+              cs.p.emotimer = 0
+              cs.p.cemotion = "idle"
+              
+            end
+            obj.delete = true
+            em.init("hitpart",obj.x,obj.y)
+          end
+        --failed mine hold
+        else
+          local mp = em.init("misspart",screencenter.x,screencenter.x)
+          mp.angle = obj.angle
+          mp.distance = (obj.hb - cs.cbeat)*cs.level.properties.speed+cs.length
+          mp.spr = obj.spr6 --Set the miss part's sprite to that of a hold
+          mp.update()
+          obj.delete = true
+          pq = pq .. "   player hit mine hold!"
+          cs.misses = cs.misses + 1
+          cs.combo = 0
+          cs.p.emotimer = 100
+          cs.p.cemotion = "miss"
+          if cs.beatsounds then
+            te.play(sounds.mine,"static")
+          end
+
+          cs.p.hurtpulse()
+        end
       end
+
     elseif obj.mine then
+
       --mine
       if helpers.angdistance(obj.angle,cs.p.angle) <= cs.p.paddle_size / 2 then 
         -- mine is hit
@@ -239,7 +294,7 @@ end
 function obj.draw()  
   if not obj.slice then
     love.graphics.setColor(1,1,1,1)
-    if not obj.hold then
+    if not obj.hold and not obj.minehold then
       if obj.inverse then
         love.graphics.draw(obj.spr2,obj.x,obj.y,0,1,1,8,8)
       elseif obj.mine then
@@ -249,9 +304,12 @@ function obj.draw()
       else
         love.graphics.draw(obj.spr,obj.x,obj.y,0,1,1,8,8)
       end
-    else
+    elseif obj.hold then
       local completion = math.max(0, (cs.cbeat - obj.hb) / obj.duration)
-      helpers.drawhold(obj.ox, obj.oy, obj.x, obj.y, obj.x2, obj.y2, completion, obj.angle1, obj.angle2, obj.segments, obj.spr3, obj.holdease)
+      helpers.drawhold(obj.ox, obj.oy, obj.x, obj.y, obj.x2, obj.y2, completion, obj.angle1, obj.angle2, obj.segments, obj.spr3, obj.holdease, "hold")
+    elseif obj.minehold then
+      local completion = math.max(0, (cs.cbeat - obj.hb) / obj.duration)
+      helpers.drawhold(obj.ox, obj.oy, obj.x, obj.y, obj.x2, obj.y2, completion, obj.angle1, obj.angle2, obj.segments, obj.spr6, obj.holdease, "minehold")
     end
   else
     obj.x, obj.y = helpers.drawslice(obj.ox, obj.oy, (obj.hb - cs.cbeat)*cs.level.properties.speed*obj.smult, obj.angle, obj.inverse, 1)

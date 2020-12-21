@@ -115,7 +115,8 @@ function love.load()
     {1,1,1},
     {0,0,0},
     {1,0,77/255},
-    {1,0,0}
+    {1,0,0},
+    {1/2,1/2,1/2}
   }
   --load sprites into memory, so that we are not loading 50 bajillion copies of the beats in a level
   sprites = {
@@ -124,7 +125,8 @@ function love.load()
       inverse = love.graphics.newImage("assets/game/inverse.png"),
       hold = love.graphics.newImage("assets/game/hold.png"),
       mine = love.graphics.newImage("assets/game/mine.png"),
-      side = love.graphics.newImage("assets/game/side.png")
+      side = love.graphics.newImage("assets/game/side.png"),
+      minehold = love.graphics.newImage("assets/game/minehold.png")
     },
     player = {
       idle = love.graphics.newImage("assets/game/cranky/idle.png"),
@@ -209,6 +211,7 @@ function love.load()
         k5 = {"key:5"},
         k6 = {"key:6"},
         k7 = {"key:7"},
+        k8 = {"key:8"},
         f5 = {"key:f5"},
         mouse1 = {"mouse:1"},
         mouse2 = {"mouse:2"},
