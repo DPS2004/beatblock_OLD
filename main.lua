@@ -196,6 +196,8 @@ function love.load()
         minus = {"key:-"},
         leftbracket = {"key:["},
         rightbracket = {"key:]"},
+        comma = {"key:,"},
+        period = {"key:."},
         s = {"key:s"},
         x = {"key:x"},
         a = {"key:a"},

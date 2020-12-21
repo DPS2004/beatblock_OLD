@@ -176,6 +176,23 @@ function st.update()
           st.scrollzoom = st.scrollzoom - 0.5
         end
 
+        --the
+        if maininput:pressed("comma") and st.findholdtypeatcursor() ~= nil then
+          if st.level.events[st.findeventatcursor()].holdease ~= "InQuad" then
+            st.level.events[st.findeventatcursor()].holdease = "InQuad"
+          else
+            st.level.events[st.findeventatcursor()].holdease = "Linear"
+          end
+        end
+        
+        if maininput:pressed("period") and st.findholdtypeatcursor() ~= nil then
+          if st.level.events[st.findeventatcursor()].holdease ~= "OutQuad" then
+            st.level.events[st.findeventatcursor()].holdease = "OutQuad"
+          else
+            st.level.events[st.findeventatcursor()].holdease = "Linear"
+          end
+        end
+
         --Beat snap
         if maininput:pressed("minus") then
           if st.beatsnap == 1 then
