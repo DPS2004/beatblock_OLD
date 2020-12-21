@@ -704,7 +704,7 @@ end
 function st.deleteeventatcursor()
   local delindex = nil
   for i,v in ipairs(st.level.events) do
-    if v.type ~= "hold" then
+    if v.type ~= "hold" and v.type ~= "minehold" then
       if v.time == st.cursorpos.beat then
         local evangle = v.endangle or v.angle or nil
         if evangle ~= nil then
