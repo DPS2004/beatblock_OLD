@@ -16,6 +16,7 @@ local obj = {
   hold = false,
   mine = false,
   side = false,
+  sidehityet = false,
   minehold = false,
   spr = sprites.beat.square,
   spr2 = sprites.beat.inverse,
@@ -245,6 +246,19 @@ function obj.update(dt)
   elseif obj.side then
     --side notes
     if helpers.angdistance(obj.angle,cs.p.angle) <= cs.p.paddle_size / 2 and helpers.angdistance(obj.angle,cs.p.angleprevframe) > cs.p.paddle_size / 2 and math.abs(obj.hb - cs.cbeat) <= 1/4 then
+      obj.sidehityet = true
+    elseif helpers.angdistance(obj.angle,cs.p.angle) > cs.p.paddle_size / 2 and helpers.angdistance(obj.angle,cs.p.angleprevframe) <= cs.p.paddle_size / 2 and 60 > helpers.angdistance(obj.angle,cs.p.angle) and 60 > helpers.angdistance(obj.angle,cs.p.angleprevframe) then
+      if obj.angle - cs.p.angleprevframe > 0 or obj.angle - cs.p.angleprevframe < -180 then
+        if obj.angle - cs.p.angle < 0 or obj.angle - cs.p.angle > 180 then
+          obj.sidehityet = true
+        end
+      else
+        if obj.angle - cs.p.angle > 0 or obj.angle - cs.p.angle < -180 then
+          obj.sidehityet = true
+        end
+      end
+    end
+    if obj.sidehityet == true and cs.cbeat >= obj.hb then
       em.init("hitpart",obj.x,obj.y)
       obj.delete = true
       pq = pq .. "   player hit!"
