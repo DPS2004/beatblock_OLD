@@ -76,7 +76,7 @@ function obj.update(dt)
           obj.delete = true
           pq = pq .. "   player hit!"
           cs.hits = cs.hits + 1
-          cs.combo = cs.combo +1
+          cs.combo = cs.combo + 1
           if cs.beatsounds then
             te.play(sounds.click,"static")
           end
@@ -123,7 +123,7 @@ function obj.update(dt)
           if ((obj.hb - cs.cbeat)*-1)/obj.duration >= 1 then
             pq = pq .. "   finished hold!"
             cs.hits = cs.hits + 1
-            cs.combo = cs.combo +1
+            cs.combo = cs.combo + 1
             if cs.beatsounds then
               te.play(sounds.click,"static")
             end
@@ -180,7 +180,7 @@ function obj.update(dt)
         obj.delete = true
         pq = pq .. "   player missed mine!"
         cs.hits = cs.hits + 1
-        cs.combo = cs.combo +1
+        cs.combo = cs.combo + 1
         if cs.p.cemotion == "miss" then
           cs.p.emotimer = 0
           cs.p.cemotion = "idle"
@@ -194,7 +194,7 @@ function obj.update(dt)
       obj.delete = true
       pq = pq .. "   player hit!"
       cs.hits = cs.hits + 1
-      cs.combo = cs.combo +1
+      cs.combo = cs.combo + 1
       if cs.beatsounds then
         te.play(sounds.click,"static")
       end
