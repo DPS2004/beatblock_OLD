@@ -412,7 +412,7 @@ function st.update()
               local pup = em.init("popup",screencenter.x,screencenter.y)
               pup.text = loc.get("editwhat")
               pup.w = 200
-              pup.h=150
+              pup.h=170
               pup.newbutton({x=100,y=40,w=50,h=16,text=loc.get("angle1"),onclick = function() 
                 pup.h = 100 
                 pup.text = loc.get("editing") .. " " .. loc.get("angle1") .. ":"
@@ -429,7 +429,15 @@ function st.update()
                 pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].angle2 = tonumber(pup.textinput.text) paused = false pup.delete = true end})
                 pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
-              pup.newbutton({x=100,y=80,w=50,h=16,text=loc.get("duration"),onclick = function()   
+                pup.newbutton({x=100,y=80,w=50,h=16,text=loc.get("holdease"),onclick = function()   
+                  pup.h = 100 
+                  pup.text = loc.get("editing") .. " " .. loc.get("holdease") .. ":"
+                  pup.buttons = {}
+                  pup.textinput= {text=tostring(st.level.events[st.eventindex].holdease),y=50,show=true,numberonly=false}
+                  pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].holdease =   pup.textinput.text paused = false pup.delete = true end})
+                  pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
+              end})
+              pup.newbutton({x=100,y=100,w=50,h=16,text=loc.get("duration"),onclick = function()   
                 pup.h = 100 
                 pup.text = loc.get("editing") .. " " .. loc.get("duration") .. ":"
                 pup.buttons = {}
@@ -437,7 +445,7 @@ function st.update()
                 pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].duration = tonumber(pup.textinput.text) paused = false pup.delete = true end})
                 pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
-              pup.newbutton({x=100,y=100,w=50,h=16,text=loc.get("time"),onclick = function()   
+              pup.newbutton({x=100,y=120,w=50,h=16,text=loc.get("time"),onclick = function()   
                 pup.h = 100 
                 pup.text = loc.get("editing") .. " " .. loc.get("time") .. ":"
                 pup.buttons = {}
@@ -445,7 +453,7 @@ function st.update()
                 pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].time = tonumber(pup.textinput.text) paused = false pup.delete = true end})
                 pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
-              pup.newbutton({x=100,y=120,w=100,h=16,text=loc.get("speedmult"),onclick = function()   
+              pup.newbutton({x=100,y=140,w=100,h=16,text=loc.get("speedmult"),onclick = function()   
                 pup.h = 100 
                 pup.text = loc.get("editing") .. " " .. loc.get("speedmult") .. ":"
                 pup.buttons = {}
@@ -453,7 +461,7 @@ function st.update()
                 pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].speedmult = tonumber(pup.textinput.text) paused = false pup.delete = true end})
                 pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
-              pup.newbutton({x=100,y=140,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
+              pup.newbutton({x=100,y=160,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
             elseif st.level.events[st.eventindex].type == "beat" or st.level.events[st.eventindex].type == "slice" or st.level.events[st.eventindex].type == "sliceinvert" or st.level.events[st.eventindex].type == "inverse" or st.level.events[st.eventindex].type == "mine" or st.level.events[st.eventindex].type == "side" then
 paused = true
               local pos = helpers.rotate(st.beattoscrollrad(st.cursorpos.beat), st.cursorpos.angle, screencenter.x, screencenter.y)
