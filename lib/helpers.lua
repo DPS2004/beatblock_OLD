@@ -204,7 +204,11 @@ function helpers.drawhold(xo, yo, x1, y1, x2, y2, completion, a1, a2, segments, 
   -- how many segments to draw
   -- based on the beat's angles by default, but can be overridden in the json
   if segments == nil then
-    segments = (math.abs(a2 - a1) / 8 + 1)
+    if interp == "Linear" then
+      segments = (math.abs(a2 - a1) / 8 + 1)
+    else
+      segments = (math.abs(a2 - a1) + 1)
+    end
   end
   for i = 0, segments do
     local t = i / segments
@@ -374,5 +378,40 @@ function helpers.gradecalc(pct)
     end
   end
   return lgrade, lgradepm
+end
+
+function helpers.isanglebetween(a1,a2,a3)
+  --make a1 and a2 positive
+  while a1 < 0 or a2 < 0 do
+    a1 = a1 + 360
+    a2 = a2 + 360
+  end
+  --make sure either a1 or a2 are below 360 degrees
+  while a1 > 360 and a2 > 360 do
+    a1 = a1 - 360
+    a2 = a2 - 360
+  end
+  --if the distance between a1 and a2 is 360+ degrees, a3 will always be between the two no matter what
+  if math.abs(a2-a1) >= 360 then
+    return true
+  end
+  --make sure a2 is greater than a1 (such that if one of the two are over 360 degrees, it'll be a2)
+  if a1 > a2 then
+    a1, a2 = a2, a1
+  end
+  --i dont even know how to explain this, but basically this offsets everything to turn the situation into another one with an identical answer where a1 and a2 are both between 0 and 360
+  if a2 > 360 then
+    a1 = a1 - a2 + 360
+    a3 = a3 - a2 + 360
+    a2 = 360
+  end
+  --make sure a3 is between 0 and 360
+  a3 = a3 % 360
+  --finally determine if a3 is between a1 and a2
+  if a2 > a3 and a3 > a1 then
+    return true
+  else
+    return false
+  end
 end
 return helpers

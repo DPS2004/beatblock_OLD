@@ -156,8 +156,10 @@ function obj.update(dt)
 
       --mine hold
       elseif obj.minehold then
-        --avoiding mine hold
-        if helpers.angdistance(obj.angle,cs.p.angle) >= cs.p.paddle_size / 2 then 
+
+        local hitminehold = nil
+        --avoiding mine hold, duration is not 0
+        if helpers.angdistance(obj.angle,cs.p.angle) >= cs.p.paddle_size / 2 and obj.duration ~= 0 then 
           if obj.hityet == false then
             obj.hityet = true
             pq = pq .. "   started mine hold"
@@ -175,19 +177,25 @@ function obj.update(dt)
           obj.y = p1[2]  
           
           if ((obj.hb - cs.cbeat)*-1)/obj.duration >= 1 then
-            pq = pq .. "   finished mine hold!"
-            cs.hits = cs.hits + 1
-            cs.combo = cs.combo + 1
-            if cs.p.cemotion == "miss" then
-              cs.p.emotimer = 0
-              cs.p.cemotion = "idle"
-              
-            end
-            obj.delete = true
-            em.init("hitpart",obj.x,obj.y)
+            hitminehold = false
           end
-        --failed mine hold
-        else
+        
+        --failed mine hold, duration is not 0
+        elseif obj.duration ~= 0 then
+          hitminehold = true
+          
+        --duration is 0
+        elseif obj.duration == 0 then
+          if helpers.isanglebetween(obj.endangle, obj.angle2, cs.p.angle) == false and helpers.angdistance(obj.endangle,cs.p.angle) > cs.p.paddle_size / 2 and helpers.angdistance(obj.angle2,cs.p.angle) > cs.p.paddle_size / 2 then
+            hitminehold = false
+          else
+            hitminehold = true
+          end
+
+
+        end
+        
+        if hitminehold == true then
           local mp = em.init("misspart",screencenter.x,screencenter.x)
           mp.angle = obj.angle
           mp.distance = (obj.hb - cs.cbeat)*cs.level.properties.speed+cs.length
@@ -202,9 +210,20 @@ function obj.update(dt)
           if cs.beatsounds then
             te.play(sounds.mine,"static")
           end
-
           cs.p.hurtpulse()
+        elseif hitminehold == false then
+          pq = pq .. "   finished mine hold!"
+          cs.hits = cs.hits + 1
+          cs.combo = cs.combo + 1
+          if cs.p.cemotion == "miss" then
+            cs.p.emotimer = 0
+            cs.p.cemotion = "idle"
+          end
+          obj.delete = true
+          em.init("hitpart",obj.x,obj.y)
         end
+        
+        
       end
 
     elseif obj.mine then
@@ -247,7 +266,7 @@ function obj.update(dt)
     --side notes
     if helpers.angdistance(obj.angle,cs.p.angle) <= cs.p.paddle_size / 2 and helpers.angdistance(obj.angle,cs.p.angleprevframe) > cs.p.paddle_size / 2 and math.abs(obj.hb - cs.cbeat) <= 1/4 then
       obj.sidehityet = true
-    elseif helpers.angdistance(obj.angle,cs.p.angle) > cs.p.paddle_size / 2 and helpers.angdistance(obj.angle,cs.p.angleprevframe) <= cs.p.paddle_size / 2 and 60 > helpers.angdistance(obj.angle,cs.p.angle) and 60 > helpers.angdistance(obj.angle,cs.p.angleprevframe) then
+    elseif helpers.angdistance(obj.angle,cs.p.angle) > cs.p.paddle_size / 2 and helpers.angdistance(obj.angle,cs.p.angleprevframe) > cs.p.paddle_size / 2 and 60 > helpers.angdistance(obj.angle,cs.p.angle) and 60 > helpers.angdistance(obj.angle,cs.p.angleprevframe) then
       if obj.angle - cs.p.angleprevframe > 0 or obj.angle - cs.p.angleprevframe < -180 then
         if obj.angle - cs.p.angle < 0 or obj.angle - cs.p.angle > 180 then
           obj.sidehityet = true

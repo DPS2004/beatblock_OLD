@@ -371,12 +371,12 @@ function st.update()
           if st.draggingeventindex then
 
             --change the angle of angle1 and angle2 until angle1 is between 0 and 360 degrees
-            if st.draggingeventpart == "holdstart" then
+            if st.draggingeventpart == "holdstart" or st.draggingeventpart == "holdend" then
               while st.level.events[st.draggingeventindex].angle1 >= 360 do
                 st.level.events[st.draggingeventindex].angle1 = st.level.events[st.draggingeventindex].angle1 - 360
                 st.level.events[st.draggingeventindex].angle2 = st.level.events[st.draggingeventindex].angle2 - 360
               end
-              while st.level.events[st.draggingeventindex].angle2 < 0 do
+              while st.level.events[st.draggingeventindex].angle1 < 0 do
                 st.level.events[st.draggingeventindex].angle1 = st.level.events[st.draggingeventindex].angle1 + 360
                 st.level.events[st.draggingeventindex].angle2 = st.level.events[st.draggingeventindex].angle2 + 360
               end
