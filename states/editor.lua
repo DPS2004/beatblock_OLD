@@ -133,6 +133,13 @@ function st.update()
           st.savelevel()
           st.p.hurtpulse() --Little animation to confirm that you indeed saved
         end
+        --zoom
+        if st.scrolldir == 1 then
+          st.scrollzoom = st.scrollzoom + 0.5
+        end
+        if st.scrolldir == -1 then
+          st.scrollzoom = st.scrollzoom - 0.5
+        end
       else
         -- Set type of event on cursor
         if maininput:pressed("k1") then
@@ -512,19 +519,27 @@ paused = true
     
 
       --Scroll through level
+      st.scrollzoom = helpers.clamp(st.scrollzoom, 0.5, 3)
+      
       if st.scrolldir == 1 then
-        st.scrollpos = st.scrollpos + 0.5 / st.scrollzoom
+        if not maininput:down("shift") then
+          st.scrollpos = st.scrollpos + 0.5 / st.scrollzoom
+        else
+          st.scrollpos = st.scrollpos + 5 / st.scrollzoom
+        end
       end
     
       if st.scrolldir == -1 then
-        st.scrollpos = st.scrollpos - 0.5 / st.scrollzoom
+        if not maininput:down("shift") then
+          st.scrollpos = st.scrollpos - 0.5 / st.scrollzoom
+        else
+          st.scrollpos = st.scrollpos - 5 / st.scrollzoom
+        end
       end
     
       if st.scrollpos < 0 then
         st.scrollpos = 0
       end
-    
-      st.scrollzoom = helpers.clamp(st.scrollzoom, 0.5, 3)
     
       if st.scrolldir ~= 0 then
         st.scrolldir = 0
