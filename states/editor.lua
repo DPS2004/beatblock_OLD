@@ -57,7 +57,7 @@ function st.enter(prev)
   
   --st.state = "free" --r MAKE SURE TO CHECK FOR THE FREE STATE BEFORE ADDING A NEW KEYBIND (free state means a text box isn't currently selected or anything)
 
-  for i=1,500,1 do
+  for i=1,5000,1 do
     st.beatcircles[i] = 1
   end
 end
