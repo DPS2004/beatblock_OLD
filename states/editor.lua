@@ -460,7 +460,7 @@ function st.update()
                   pup.h = 100 
                   pup.text = loc.get("editing") .. " " .. loc.get("holdease") .. ":"
                   pup.buttons = {}
-                  pup.textinput= {text=tostring(st.level.events[st.eventindex].holdease),y=50,show=true,numberonly=false}
+                  pup.textinput= {text=tostring(st.level.events[st.eventindex].holdease or ""),y=50,show=true,numberonly=false}
                   pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].holdease =   pup.textinput.text paused = false pup.delete = true end})
                   pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})
