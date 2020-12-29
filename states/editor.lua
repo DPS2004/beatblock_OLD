@@ -1,7 +1,11 @@
 local st = {
-  sprbeat = love.graphics.newImage("assets/game/square.png"),
-  sprinverse = love.graphics.newImage("assets/game/inverse.png"),
-  sprhold = love.graphics.newImage("assets/game/hold.png")
+  sprEditorSquare = love.graphics.newImage("assets/editor/editorSquare.png"),
+  sprEditorPalette = love.graphics.newImage("assets/editor/editorPalette.png"),
+  sprEditorRect51x26 = love.graphics.newImage("assets/editor/editorRect51x26.png"),
+  sprEditorRect41x33 = love.graphics.newImage("assets/editor/editorRect41x33.png"),
+  sprEditorSelected = love.graphics.newImage("assets/editor/editorSelected.png"),
+  sprEditorPlaySymbol = love.graphics.newImage("assets/editor/editorPlaySymbol.png"),
+  sprEditorTextBox = love.graphics.newImage("assets/editor/editorTextBox.png")
 }
 function st.init()
 
@@ -55,6 +59,18 @@ function st.enter(prev)
   st.draggingeventmoved = false
   st.openpup = false
   
+  --for editor UI
+  st.cursoruiindex = nil --the area the cursor is in
+  st.cursorpresseduiindex = nil --the area the cursor was in when it was pressed
+  st.currenttab = "tab1" --the current tab
+  st.currentpaletteindex = "palette1" --the current palette index
+  st.editorsuppression = false
+  st.moduleindex = nil --the currently editing field (modules)
+  st.editingtext = nil
+  st.resetsuppressionnextframe = false
+  
+  st.selectedeventindex = nil
+  
   --st.state = "free" --r MAKE SURE TO CHECK FOR THE FREE STATE BEFORE ADDING A NEW KEYBIND (free state means a text box isn't currently selected or anything)
 
   for i=1,5000,1 do
@@ -81,7 +97,7 @@ end
 function st.update()
   if not paused then
     if maininput:pressed("back") then
-      if st.editmode then
+      if st.editmode and st.selectedeventindex == nil then
         paused = true
         local pup = em.init("popup",screencenter.x,screencenter.y)
         pup.text = loc.get("savewarning")
@@ -117,6 +133,8 @@ function st.update()
         st.playlevel()
       end
       
+
+      --Hotkeys
       if maininput:down("ctrl") then
         if maininput:pressed("r") then
           print("ctrl+r")
@@ -140,7 +158,7 @@ function st.update()
         if st.scrolldir == -1 then
           st.scrollzoom = st.scrollzoom - 0.5
         end
-      else
+      elseif st.editingtext == nil then
         -- Set type of event on cursor
         if maininput:pressed("k1") then
           st.cursortype = "beat"
@@ -183,7 +201,7 @@ function st.update()
           st.scrollzoom = st.scrollzoom - 0.5
         end
 
-        --the
+        --change hold easing with , and .
         if maininput:pressed("comma") and st.findholdtypeatcursor() ~= nil then
           if st.level.events[st.findeventatcursor()].holdease ~= "InQuad" then
             st.level.events[st.findeventatcursor()].holdease = "InQuad"
@@ -274,15 +292,17 @@ function st.update()
           end
         end
 
-        
+        if maininput:pressed("back") then
+          st.selectedeventindex = nil
+        end
 
         --Adding/deleting/dragging events
-        if maininput:pressed("mouse1") then
+        if maininput:pressed("mouse1") and not st.editorsuppression then
           st.draggingeventindex = st.findeventatcursor()
           st.draggingeventpart = st.findholdtypeatcursor()
         end
 
-        if maininput:down("mouse1") and st.draggingeventindex then
+        if maininput:down("mouse1") and st.draggingeventindex and not st.editorsuppression then
 
           if st.level.events[st.draggingeventindex].type ~= "hold" and st.level.events[st.draggingeventindex].type ~= "minehold" then
             
@@ -374,7 +394,7 @@ function st.update()
 
         end
 
-        if maininput:released("mouse1") then
+        if maininput:released("mouse1") and not st.editorsuppression then
           if st.draggingeventindex then
 
             --change the angle of angle1 and angle2 until angle1 is between 0 and 360 degrees
@@ -389,9 +409,9 @@ function st.update()
               end
             end
 
-          --currently dragging event wasn't moved? open the popup!
+          --currently dragging event wasn't moved? select the event!
           if st.draggingeventmoved == false then
-            st.openpup = true
+            st.selectedeventindex = st.draggingeventindex
           else
             st.draggingeventmoved = false
           end
@@ -405,7 +425,7 @@ function st.update()
           end
         end
       
-        if maininput:released("mouse2") then
+        if maininput:released("mouse2") and not st.editorsuppression then
           st.deleteeventatcursor()
         end
         -- edit events with e or mid click
@@ -518,6 +538,196 @@ paused = true
       end
     
 
+      --editor UI
+      --module functions
+      function st.newmodule(eventid,modifyingvariable,moduletype,posy)
+        if moduletype == "textinput" or moduletype == "numberinput" or moduletype == "textinputwithtoggle" or moduletype == "numberinputwithtoggle" then
+          --if the cursor is hovering over the textbox, set st.cursoruiindex to "module" .. modifyingvariable .. "textbox"
+          if helpers.iscursorinrectangle(350,397,posy+20-9,posy+32-9,mouseX,mouseY) then
+            st.cursoruiindex = "module" .. modifyingvariable .. "textbox"
+          end
+          --if the textbox is being edited, set st.editingtext to st.level.events[eventid][modifyingvariable] if st.editingtext is nil, else st.editingtext = st.editingtext .. tinput
+          if st.moduleindex == "module" .. modifyingvariable .. "textbox" then
+            if st.editingtext == nil then
+              st.editingtext = tostring(st.level.events[eventid][modifyingvariable])
+            end
+            st.editingtext = st.editingtext .. tinput
+            if maininput:pressed("backspace") then
+              st.editingtext = string.sub(st.editingtext,1,-2)
+            end
+            st.editorsuppression = true
+            --if the textbox is being edited and the mouse is pressed outside of the textbox, set st.level.events[eventid][modifyingvariable] to st.editingtext, then set st.editingtext to nil
+            if (st.cursoruiindex ~= st.moduleindex and maininput:released("mouse1")) or maininput:pressed("back") or maininput:pressed("accept") then
+              if moduletype == "numberinput" or moduletype == "numberinputwithtoggle" then
+                st.level.events[eventid][modifyingvariable] = tonumber(st.editingtext)
+              else
+                st.level.events[eventid][modifyingvariable] = st.editingtext
+              end
+              st.editingtext = nil
+              st.moduleindex = nil
+              st.resetsuppressionnextframe = true
+            end
+          end
+        elseif moduletype == "easing" then
+        end
+      end
+
+      function st.drawmodule(eventid,modifyingvariable,moduletype,posy,header)
+        love.graphics.setFont(font2)
+        --draw the header
+        love.graphics.setColor(0, 0, 0, 1)
+        love.graphics.printf(header, 351, posy-2, screencenter.x * 2, "left", 0, 1, 1)
+        love.graphics.setColor(1, 1, 1, 1)
+        if moduletype == "textinput" or moduletype == "numberinput" or moduletype == "textinputwithtoggle" or moduletype == "numberinputwithtoggle" then
+          --draw the textbox
+          love.graphics.draw(st.sprEditorTextBox,350,posy+11)
+          --check if a textbox is being edited, and if so if the textbox being edited is this one
+          if st.moduleindex == "module" .. modifyingvariable .. "textbox" and st.editingtext ~= nil then
+            --if so, draw the current text
+            love.graphics.setColor(0, 0, 0, 1)
+            love.graphics.printf(st.editingtext .. "|", 352, posy+9, screencenter.x * 2, "left", 0, 1, 1)
+            love.graphics.setColor(1, 1, 1, 1)
+          --elsewise, draw the current value
+          else
+            love.graphics.setColor(0, 0, 0, 1)
+            love.graphics.printf(tostring(st.level.events[eventid][modifyingvariable]), 352, posy+9, screencenter.x * 2, "left", 0, 1, 1)
+            love.graphics.setColor(1, 1, 1, 1)
+          end
+          
+        elseif moduletype == "easing" then
+        end
+        love.graphics.setFont(font1)
+      end
+
+      function st.eventsintab(tab)
+        if tab == "tab1" then
+          return 1 --the number of events in tab 1
+        elseif tab == "tab2" then
+          return 6 --the number of events in tab 2
+        elseif tab == "tab3" then
+          return 1 --the number of events in tab 3
+        elseif tab == "tab4" then
+          return 1 --the number of events in tab 4
+        end
+      end
+        
+      if st.resetsuppressionnextframe then
+        st.editorsuppression = false
+          st.resetsuppressionnextframe = false
+        end
+      st.cursoruiindex = nil
+      
+      if st.selectedeventindex == nil then
+        st.editingtext = nil
+      end
+      
+      local regspace = 23 --this is just for spacing out modules
+      
+      --place the modules
+      if st.selectedeventindex ~= nil then
+        local et = st.level.events[st.selectedeventindex].type
+        if et=="beat" or et=="inverse" or et=="side" or et=="mine" or et=="slice" or et=="sliceinvert" then
+          st.newmodule(st.selectedeventindex,"time","numberinput",28)
+          st.newmodule(st.selectedeventindex,"endangle","numberinput",28 + regspace)
+          st.newmodule(st.selectedeventindex,"angle","numberinput",28 + (2*regspace))
+          st.newmodule(st.selectedeventindex,"speedmult","numberinput",28 + (3*regspace))
+        elseif et=="hold" or et=="minehold" then
+          st.newmodule(st.selectedeventindex,"time","numberinput",28)
+          st.newmodule(st.selectedeventindex,"duration","numberinput",28 + regspace)
+          st.newmodule(st.selectedeventindex,"angle1","numberinput",28 + (2*regspace))
+          st.newmodule(st.selectedeventindex,"angle2","numberinput",28 + (3*regspace))
+          st.newmodule(st.selectedeventindex,"holdease","textinput",28 + (4*regspace))
+          st.newmodule(st.selectedeventindex,"speedmult","numberinput",28 + (5*regspace))
+        end
+      end
+      
+      --figure out what tab the cursor is over
+      for i=1,4,1 do
+        if helpers.iscursorinrectangle((25*i)-24,(25*i)+1,1,26,mouseX,mouseY) then
+          st.cursoruiindex = "tab" .. tostring(i)
+        end
+      end
+      
+      --figure out what palette event the cursor is over
+      for i=1,st.eventsintab(st.currenttab),1 do
+        if i % 2 == 1 then
+          if helpers.iscursorinrectangle(1,26,(25*((i+1)/2))+1,(25*((i+1)/2))+26,mouseX,mouseY) then
+            st.cursoruiindex = "palette" .. tostring(i)
+          end
+        elseif i % 2 == 0 then
+          if helpers.iscursorinrectangle(26,51,(25*(i/2))+1,(25*(i/2))+26,mouseX,mouseY) then
+            st.cursoruiindex = "palette" .. tostring(i)
+          end
+        end
+      end
+      
+      --play button
+      if helpers.iscursorinrectangle(306,346,206,238,mouseX,mouseY) then
+        st.cursoruiindex = "playlevel"
+      end
+      
+      --is the cursor over a bar?
+      if st.cursoruiindex == nil then
+        if helpers.iscursorinrectangle(1,51,1,238,mouseX,mouseY) or helpers.iscursorinrectangle(348,398,1,238,mouseX,mouseY) then
+          st.cursoruiindex = "bar"
+        end
+      end
+
+      if maininput:pressed("mouse1") then
+        st.cursorpresseduiindex = st.cursoruiindex
+        if st.cursoruiindex ~= nil then
+          st.editorsuppression = true
+        end
+      end
+
+      if maininput:released("mouse1") then
+        if st.cursoruiindex == st.cursorpresseduiindex and st.cursoruiindex ~= nil then
+          --code for making the buttons do stuff
+          if string.sub(st.cursoruiindex,1,3) == "tab" then
+            st.currenttab = st.cursoruiindex
+            st.currentpaletteindex = "palette1"
+          elseif string.sub(st.cursoruiindex,1,7) == "palette" then
+            st.currentpaletteindex = st.cursoruiindex
+          elseif string.sub(st.cursoruiindex,1,6) == "module" then
+            st.moduleindex = st.cursoruiindex
+          elseif st.cursoruiindex == "playlevel" then
+            st.playlevel()
+          end
+        elseif st.cursoruiindex == nil then
+          st.resetsuppressionnextframe = true
+        end
+        st.cursorpresseduiindex = nil
+      end
+      
+      if st.cursoruiindex ~= nil and not maininput:down("mouse1") then
+        st.editorsuppression = true
+      elseif not maininput:down("mouse1") and not st.resetsuppressionnextframe then
+        st.editorsuppression = false
+      end
+      
+      --TABS AND PALETTE
+      --Events on tab 1
+      if st.currenttab == "tab1" then
+
+      --Events on tab 2
+      elseif st.currenttab == "tab2" then
+        if st.currentpaletteindex == "palette1" then
+          st.cursortype = "beat"
+        elseif st.currentpaletteindex == "palette2" then
+          st.cursortype = "inverse"
+        elseif st.currentpaletteindex == "palette3" then
+          st.cursortype = "side"
+        elseif st.currentpaletteindex == "palette4" then
+          st.cursortype = "mine"
+        elseif st.currentpaletteindex == "palette5" then
+          st.cursortype = "hold"
+        elseif st.currentpaletteindex == "palette6" then
+          st.cursortype = "minehold"
+        end
+      elseif st.currenttab == "tab3" then
+      elseif st.currenttab == "tab4" then
+      end
+
       --Scroll through level
       st.scrollzoom = helpers.clamp(st.scrollzoom, 0.5, 3)
       
@@ -619,12 +829,12 @@ function st.draw()
             if v.type == "beat" then
               local angle = v.endangle or v.angle
               local pos = helpers.rotate(evrad, angle, screencenter.x, screencenter.y)
-              love.graphics.draw(st.sprbeat,pos[1],pos[2],0,1,1,8,8)
+              love.graphics.draw(sprites.beat.square,pos[1],pos[2],0,1,1,8,8)
   
             elseif v.type == "inverse" then
               local angle = v.endangle or v.angle
               local pos = helpers.rotate(evrad, angle, screencenter.x, screencenter.y)
-              love.graphics.draw(st.sprinverse,pos[1],pos[2],0,1,1,8,8)
+              love.graphics.draw(sprites.beat.inverse,pos[1],pos[2],0,1,1,8,8)
   
             elseif v.type == "slice" or v.type == "sliceinvert" then
               local angle = v.endangle or v.angle
@@ -654,7 +864,7 @@ function st.draw()
               local pos2 = helpers.rotate(evrad2, angle2, screencenter.x, screencenter.y)
               local completion = math.max(0, (cs.cbeat - 0 ) / v.duration)
               if v.type == "hold" then
-                helpers.drawhold(screencenter.x, screencenter.y, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, st.sprhold, v.holdease, v.type)
+                helpers.drawhold(screencenter.x, screencenter.y, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, sprites.beat.hold, v.holdease, v.type)
               else
                 helpers.drawhold(screencenter.x, screencenter.y, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, sprites.beat.minehold, v.holdease, v.type)
               end
@@ -666,20 +876,20 @@ function st.draw()
       --Cursor
       love.graphics.setColor(1, 1, 1, 0.5)
       local cursorrad = st.beattoscrollrad(st.cursorpos.beat)
-      if cursorrad >= st.beatcircleminrad then
+      if cursorrad >= st.beatcircleminrad and not st.editorsuppression then
         local angle = st.cursorpos.angle
         local pos = helpers.rotate(cursorrad, angle, screencenter.x, screencenter.y)
         
         if st.cursortype == "beat" then
-          love.graphics.draw(st.sprbeat, pos[1], pos[2],0,1,1,8,8)
+          love.graphics.draw(sprites.beat.square, pos[1], pos[2],0,1,1,8,8)
         elseif st.cursortype == "inverse" then
-          love.graphics.draw(st.sprinverse, pos[1], pos[2],0,1,1,8,8)
+          love.graphics.draw(sprites.beat.inverse, pos[1], pos[2],0,1,1,8,8)
         elseif st.cursortype == "mine" then
           love.graphics.draw(sprites.beat.mine, pos[1], pos[2],0,1,1,8,8)
         elseif st.cursortype == "side" then
           love.graphics.draw(sprites.beat.side, pos[1], pos[2],0,1,1,12,10)
         elseif st.cursortype == "hold" then
-          love.graphics.draw(st.sprhold, pos[1], pos[2],0,1,1,8,8)
+          love.graphics.draw(sprites.beat.hold, pos[1], pos[2],0,1,1,8,8)
         elseif st.cursortype == "minehold" then
           love.graphics.draw(sprites.beat.minehold, pos[1], pos[2],0,1,1,8,8)
         elseif st.cursortype == "slice" or st.cursortype == "sliceinvert" then
@@ -693,12 +903,103 @@ function st.draw()
         end
       end
 
-      --r my bad implementation of the textbox
-      if st.degreesnaptextbox == true then
-        love.graphics.setColor(1, 0, 0, 1)
-        love.graphics.print("New angle snap:",30,10)
-        love.graphics.print(st.degreesnaptypedtext,30,30)
+      --editor UI (drawing)
+      love.graphics.setColor(1, 1, 1, 1)
+      love.graphics.draw(st.sprEditorSquare,1,1)
+      love.graphics.draw(st.sprEditorSquare,26,1)
+      love.graphics.draw(st.sprEditorSquare,51,1)
+      love.graphics.draw(st.sprEditorSquare,76,1)
+      love.graphics.draw(st.sprEditorRect51x26,348,1)
+      love.graphics.draw(st.sprEditorPalette,1,26)
+      love.graphics.draw(st.sprEditorPalette,348,26)
+      love.graphics.draw(st.sprEditorRect41x33,306,206)
+      love.graphics.draw(st.sprEditorPlaySymbol,312,212)
+      
+      --draw modules
+      local regspace = 23 --this is just for spacing out modules
+      
+      --place the modules
+      if st.selectedeventindex ~= nil then
+        local et = st.level.events[st.selectedeventindex].type
+        if et=="beat" or et=="inverse" or et=="side" or et=="mine" or et=="slice" or et=="sliceinvert" then
+          st.drawmodule(st.selectedeventindex,"time","numberinput",28,"Time")
+          st.drawmodule(st.selectedeventindex,"endangle","numberinput",28 + regspace,"HitAngle")
+          st.drawmodule(st.selectedeventindex,"angle","numberinput",28 + (2*regspace),"StartAngle")
+          st.drawmodule(st.selectedeventindex,"speedmult","numberinput",28 + (3*regspace),"SpeedMult")
+        elseif et=="hold" or et=="minehold" then
+          st.drawmodule(st.selectedeventindex,"time","numberinput",28,"Time")
+          st.drawmodule(st.selectedeventindex,"duration","numberinput",28 + regspace,"Duration")
+          st.drawmodule(st.selectedeventindex,"angle1","numberinput",28 + (2*regspace),"Angle1")
+          st.drawmodule(st.selectedeventindex,"angle2","numberinput",28 + (3*regspace),"Angle2")
+          st.drawmodule(st.selectedeventindex,"holdease","textinput",28 + (4*regspace),"HoldEase")
+          st.drawmodule(st.selectedeventindex,"speedmult","numberinput",28 + (5*regspace),"SpeedMult")
+        end
       end
+      
+      for i=1,4,1 do
+        if tonumber(string.sub(st.currenttab,4,4)) == i then --helpers.iscursorinrectangle((25*i)-24,(25*i)+1,1,26,mouseX,mouseY)
+          love.graphics.draw(st.sprEditorSelected,(25*i)-22,3)
+        end
+      end
+      
+      for i=1,st.eventsintab(st.currenttab),1 do
+        if tonumber(string.sub(st.currentpaletteindex,8,8)) == i then
+          if i % 2 == 1 then
+            love.graphics.draw(st.sprEditorSelected,3,(25*((i+1)/2))+3)
+          elseif i % 2 == 0 then
+            love.graphics.draw(st.sprEditorSelected,28,(25*(i/2))+3)
+          end
+        end
+      end
+      
+      --TABS AND PALETTE (drawing)
+      love.graphics.draw(sprites.beat.square,39,14,0,1,1,8,8)
+        --Events on tab 1
+        if st.currenttab == "tab1" then
+
+        --Events on tab 2
+        elseif st.currenttab == "tab2" then
+          love.graphics.draw(sprites.beat.square,14,39,0,1,1,8,8)
+          love.graphics.draw(sprites.beat.inverse,39,39,0,1,1,8,8)
+          love.graphics.draw(sprites.beat.side,14,64,0,1,1,12,10)
+          love.graphics.draw(sprites.beat.mine,39,64,0,1,1,8,8)
+          love.graphics.draw(sprites.beat.hold,14,89,0,1,1,8,8)
+          love.graphics.draw(sprites.beat.minehold,39,89,0,1,1,8,8)
+        elseif st.currenttab == "tab3" then
+        elseif st.currenttab == "tab4" then
+        end
+      
+      --modules
+      if st.selectedeventindex ~= nil then
+        if st.level.events[st.selectedeventindex].type == "beat" then
+          love.graphics.draw(sprites.beat.square,373,14,0,1,1,8,8)
+        elseif st.level.events[st.selectedeventindex].type == "inverse" then
+          love.graphics.draw(sprites.beat.inverse,373,14,0,1,1,8,8)
+        elseif st.level.events[st.selectedeventindex].type == "side" then
+          love.graphics.draw(sprites.beat.side,373,14,0,1,1,12,10)
+        elseif st.level.events[st.selectedeventindex].type == "mine" then
+          love.graphics.draw(sprites.beat.mine,373,14,0,1,1,8,8)
+        elseif st.level.events[st.selectedeventindex].type == "hold" then
+          love.graphics.draw(sprites.beat.hold,373,14,0,1,1,8,8)
+        elseif st.level.events[st.selectedeventindex].type == "minehold" then
+          love.graphics.draw(sprites.beat.minehold,373,14,0,1,1,8,8)
+        end
+      end
+      
+      --debug
+      love.graphics.setColor(0, 0, 0, 1)
+      love.graphics.printf(tostring(st.cursoruiindex), 0, 60, screencenter.x * 2, "center", 0, 1, 1)
+      love.graphics.printf(st.currenttab, 0, 40, screencenter.x * 2, "center", 0, 1, 1)
+      love.graphics.printf(st.currentpaletteindex, 0, 20, screencenter.x * 2, "center", 0, 1, 1)
+      --love.graphics.printf(tostring(st.selectedeventindex), 0, 80, screencenter.x * 2, "center", 0, 1, 1)
+      love.graphics.printf(tostring(st.editingtext), 0, 100, screencenter.x * 2, "center", 0, 1, 1)
+
+      --r my bad implementation of the textbox
+      --if st.degreesnaptextbox == true then
+      --  love.graphics.setColor(1, 0, 0, 1)
+      --  love.graphics.print("New angle snap:",30,10)
+      --  love.graphics.print(st.degreesnaptypedtext,30,30)
+      --end
     end
   if st.editmode then
     em.draw()
@@ -774,6 +1075,9 @@ function st.deleteeventatcursor()
     end
     
   end
+  
+  --added line: deselect deleted event
+  st.selectedeventindex = nil
 
   if delindex ~= nil then
     table.remove(st.level.events, delindex)
@@ -864,6 +1168,9 @@ function st.addeventatcursor(type)
   end
 
   table.insert(st.level.events, 1, newevent)
+  
+  --added line: select new event
+  st.selectedeventindex = st.findeventatcursor()  
 end
 
 function st.playlevel()

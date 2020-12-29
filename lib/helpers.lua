@@ -414,4 +414,15 @@ function helpers.isanglebetween(a1,a2,a3)
     return false
   end
 end
+--check if cursor is inside of (or on) a rectangle (x1 is left, x2 is right, y1 is top, y2 is bottom)
+function helpers.iscursorinrectangle(x1,x2,y1,y2,cursorx,cursory)
+  if x2 >= cursorx and cursorx >= x1 and y2 >= cursory and cursory >= y1 then
+    return true
+  else
+    return false
+  end
+end
+--check if cursor is inside of (or on) an ellipse
+function helpers.iscursorinellipse(x1,x2,y1,y2,cursorx,cursory)
+end
 return helpers
