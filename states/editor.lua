@@ -987,12 +987,12 @@ function st.draw()
       end
       
       --debug
-      love.graphics.setColor(0, 0, 0, 1)
-      love.graphics.printf(tostring(st.cursoruiindex), 0, 60, screencenter.x * 2, "center", 0, 1, 1)
-      love.graphics.printf(st.currenttab, 0, 40, screencenter.x * 2, "center", 0, 1, 1)
-      love.graphics.printf(st.currentpaletteindex, 0, 20, screencenter.x * 2, "center", 0, 1, 1)
+      --love.graphics.setColor(0, 0, 0, 1)
+      --love.graphics.printf(tostring(st.cursoruiindex), 0, 60, screencenter.x * 2, "center", 0, 1, 1)
+      --love.graphics.printf(st.currenttab, 0, 40, screencenter.x * 2, "center", 0, 1, 1)
+      --love.graphics.printf(st.currentpaletteindex, 0, 20, screencenter.x * 2, "center", 0, 1, 1)
       --love.graphics.printf(tostring(st.selectedeventindex), 0, 80, screencenter.x * 2, "center", 0, 1, 1)
-      love.graphics.printf(tostring(st.editingtext), 0, 100, screencenter.x * 2, "center", 0, 1, 1)
+      --love.graphics.printf(tostring(st.editingtext), 0, 100, screencenter.x * 2, "center", 0, 1, 1)
 
       --r my bad implementation of the textbox
       --if st.degreesnaptextbox == true then
