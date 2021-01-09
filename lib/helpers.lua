@@ -117,7 +117,7 @@ helpers.eases = {
   end,
   
   ["OutInQuad"] = function (t)
-    return t<0.5 and 1-math.pow(1-t, 2)*2 or math.pow(t, 2)*2
+    return t<0.5 and 0.5-math.pow(0.5-t, 2)*2 or 0.5+math.pow(0.5-t, 2)*2
   end,
 
   ["InCubic"] = function (t)
@@ -129,11 +129,7 @@ helpers.eases = {
   end,
   
   ["InOutCubic"] = function (t)
-    return t<0.5 and math.pow(t, 3)*2 or 1 - math.pow(1 - t, 3)*2
-  end,
-  
-  ["OutInCubic"] = function (t)
-    return t<0.5 and 1-math.pow(1-t, 3)*2 or math.pow(t, 3)*2
+    return t<0.5 and math.pow(t, 3)*4 or 1 - math.pow(1 - t, 3)*4
   end,
 
   ["InQuart"] = function (t)
@@ -145,11 +141,7 @@ helpers.eases = {
   end,
   
   ["InOutQuart"] = function (t)
-    return t<0.5 and math.pow(t, 4)*2 or 1 - math.pow(1 - t, 4)*2
-  end,
-  
-  ["OutInQuart"] = function (t)
-    return t<0.5 and 1-math.pow(1-t, 4)*2 or math.pow(t, 4)*2
+    return t<0.5 and math.pow(t, 4)*8 or 1 - math.pow(1 - t, 4)*8
   end,
 
   ["InQuint"] = function (t)
@@ -161,11 +153,7 @@ helpers.eases = {
   end,
   
   ["InOutQuint"] = function (t)
-    return t<0.5 and math.pow(t, 5)*2 or 1 - math.pow(1 - t, 5)*2
-  end,
-  
-  ["OutInQuint"] = function (t)
-    return t<0.5 and 1-math.pow(1-t, 5)*2 or math.pow(t, 5)*2
+    return t<0.5 and math.pow(t, 5)*16 or 1 - math.pow(1 - t, 5)*16
   end,
 
   ["InExpo"] = function (t)
@@ -174,14 +162,6 @@ helpers.eases = {
 
   ["OutExpo"] = function (t)
     return 1 - math.pow(2, (10 * (-t)))
-  end,
-  
-  ["InOutExpo"] = function (t)
-    return t<0.5 and math.pow(2, (10 * (t - 1)))*2 or 1 - math.pow(2, (10 * (-t)))*2
-  end,
-  
-  ["OutInExpo"] = function (t)
-    return t<0.5 and 1 - math.pow(2, (10 * (-t)))*2 or math.pow(2, (10 * (t - 1)))*2
   end,
   
   ["InSine"] = function (t)
@@ -193,11 +173,7 @@ helpers.eases = {
   end,
 
   ["InOutSine"] = function (t)
-    return t<0.5 and 1 - math.cos(t * (math.pi * .5)) or math.cos((1 - t) * (math.pi * .5))
-  end,
-  
-  ["OutInSine"] = function (t)
-    return t<0.5 and math.cos((1 - t) * (math.pi * .5)) or 1 - math.cos(t * (math.pi * .5))
+    return (math.cos((t+1)*math.pi)*0.5)+0.5
   end,
 
   ["InCirc"] = function (t)
@@ -207,14 +183,6 @@ helpers.eases = {
   ["OutCirc"] = function (t)
     return math.sqrt(1 - (math.pow(1 - t, 2)))
   end,
-  
-  ["InOutCirc"] = function (t)
-    return t<0.5 and 1 - math.sqrt(1 - (math.pow(t, 2))) or math.sqrt(1 - (math.pow(1 - t, 2)))
-  end,
-  
-  ["OutInCirc"] = function (t)
-    return t<0.5 and math.sqrt(1 - (math.pow(1 - t, 2))) or 1 - math.sqrt(1 - (math.pow(t, 2)))
-  end,
 
   ["InBack"] = function (t)
     return math.pow(t, 2) * (2.7 * t - 1.7)
@@ -222,14 +190,6 @@ helpers.eases = {
 
   ["OutBack"] = function (t)
     return 1 - math.pow(1 - t, 2) * (2.7 * (1 - t) - 1.7)
-  end,
-  
-  ["InOutBack"] = function (t)
-    return t<0.5 and math.pow(t, 2) * (2.7 * t - 1.7) or 1 - math.pow(1 - t, 2) * (2.7 * (1 - t) - 1.7)
-  end,
-  
-  ["OutInBack"] = function (t)
-    return t<0.5 and 1 - math.pow(1 - t, 2) * (2.7 * (1 - t) - 1.7) or math.pow(t, 2) * (2.7 * t - 1.7)
   end,
 
   ["InElastic"] = function (t)
@@ -239,14 +199,6 @@ helpers.eases = {
   ["OutElastic"] = function (t)
     return 1 + (2^(10 * (-t)) * math.sin(((1 - t) - 1.075) * (math.pi * 2) / .3))
   end,
-  
-  ["InOutElastic"] = function (t)
-    return t<0.5 and -(2^(10 * (t - 1)) * math.sin((t - 1.075) * (math.pi * 2) / .3)) or 1 + (2^(10 * (-t)) * math.sin(((1 - t) - 1.075) * (math.pi * 2) / .3))
-  end,
-  
-  ["OutInBack"] = function (t)
-    return t<0.5 and 1 + (2^(10 * (-t)) * math.sin(((1 - t) - 1.075) * (math.pi * 2) / .3)) or -(2^(10 * (t - 1)) * math.sin((t - 1.075) * (math.pi * 2) / .3))
-  end
   
   -- doing that was a pain - moplo
 }
