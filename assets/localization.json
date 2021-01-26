@@ -68,6 +68,9 @@
   "time": {
     "en": "time"
   },
+  "pressspace": {
+    "en": "Press Space to start!"
+  },
   "cancel": {
     "en": "cancel"
   }

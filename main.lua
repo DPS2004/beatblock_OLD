@@ -169,8 +169,7 @@ function love.load()
       }
     },
     title = {
-      logo = love.graphics.newImage("assets/title/logo.png"),
-      spacetostart = love.graphics.newImage("assets/title/spacetostart.png")
+      logo = love.graphics.newImage("assets/title/logo.png")
     }
   }
   --load select sounds
