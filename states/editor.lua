@@ -201,7 +201,7 @@ function st.update()
           st.scrollzoom = st.scrollzoom - 0.5
         end
 
-        --change hold easing with , and .
+        --change hold easing with , and . and /
         if maininput:pressed("comma") and st.findholdtypeatcursor() ~= nil then
           if st.level.events[st.findeventatcursor()].holdease ~= "InQuad" then
             st.level.events[st.findeventatcursor()].holdease = "InQuad"
@@ -213,6 +213,14 @@ function st.update()
         if maininput:pressed("period") and st.findholdtypeatcursor() ~= nil then
           if st.level.events[st.findeventatcursor()].holdease ~= "OutQuad" then
             st.level.events[st.findeventatcursor()].holdease = "OutQuad"
+          else
+            st.level.events[st.findeventatcursor()].holdease = "Linear"
+          end
+        end
+        
+        if maininput:pressed("slash") and st.findholdtypeatcursor() ~= nil then
+          if st.level.events[st.findeventatcursor()].holdease ~= "InOutQuad" then
+            st.level.events[st.findeventatcursor()].holdease = "InOutQuad"
           else
             st.level.events[st.findeventatcursor()].holdease = "Linear"
           end

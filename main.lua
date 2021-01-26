@@ -198,6 +198,7 @@ function love.load()
         rightbracket = {"key:]"},
         comma = {"key:,"},
         period = {"key:."},
+        slash = {"key:/"},
         s = {"key:s"},
         x = {"key:x"},
         a = {"key:a"},
