@@ -5,6 +5,7 @@ end
 
 function st.enter(prev)
   st.i=0
+  st.pstext = loc.get("pressspace")
 end
 
 
@@ -38,6 +39,7 @@ end
 
 
 function st.draw()
+    
   love.graphics.setFont(font1)
   --push:start()
   shuv.start()
@@ -48,7 +50,14 @@ function st.draw()
 
   em.draw()
   love.graphics.draw(sprites.title.logo,32,32+math.sin(st.i*0.03)*10) -- TODO: actually animate this
-  love.graphics.draw(sprites.title.spacetostart)
+  for a=128,130 do
+    for b=155,157 do
+      love.graphics.print(st.pstext,a,b)
+    end
+  end
+  love.graphics.setColor(0,0,0)
+  love.graphics.print(st.pstext,129,156)
+  love.graphics.setColor(1,1,1)
   shuv.finish()
 end
 
