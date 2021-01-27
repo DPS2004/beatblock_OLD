@@ -44,7 +44,7 @@ function obj.update(dt)
         obj.angle = obj.angle - 7
       elseif maininput:down("right") and not love.joystick.getJoysticks()[1] then
         obj.angle = obj.angle + 7
-      else
+      elseif love.joystick.getJoysticks()[1] then
         obj.angleprevframe = obj.angle
         obj.angle = math.deg(math.atan2(love.joystick.getJoysticks()[1]:getAxis(2), love.joystick.getJoysticks()[1]:getAxis(1)))+90
       end
