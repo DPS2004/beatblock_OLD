@@ -40,10 +40,13 @@ function obj.update(dt)
       obj.angleprevframe = obj.angle --this way obj.angleprevframe is always 1 frame behind obj.angle
       obj.angle = 0-math.deg(math.atan2(obj.y - love.mouse.getY()/shuv.scale, love.mouse.getX()/shuv.scale - obj.x)) +90
     else
-      if maininput:down("left") then
+      if maininput:down("left") and not love.joystick.getJoysticks()[1] then
         obj.angle = obj.angle - 7
-      elseif maininput:down("right") then
+      elseif maininput:down("right") and not love.joystick.getJoysticks()[1] then
         obj.angle = obj.angle + 7
+      else
+        obj.angleprevframe = obj.angle
+        obj.angle = math.deg(math.atan2(love.joystick.getJoysticks()[1]:getAxis(2), love.joystick.getJoysticks()[1]:getAxis(1)))+90
       end
     end
   end
