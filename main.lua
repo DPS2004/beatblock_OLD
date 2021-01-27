@@ -180,15 +180,14 @@ function love.load()
   }
 
   --setup input
-  maininput = baton.new {
-      controls = {
-        left = {"key:left",  "axis:leftx-", "button:dpleft"},
-        right = {"key:right",  "axis:leftx+", "button:dpright"},
-        up = {"key:up", "key:w", "axis:lefty-", "button:dpup"},
-        down = {"key:down", "key:s", "axis:lefty+", "button:dpdown"},
+  ctrls = {
+        left = {"key:left",  "axis:rightx-", "button:dpleft"},
+        right = {"key:right",  "axis:rightx+", "button:dpright"},
+        up = {"key:up", "key:w", "axis:righty-", "button:dpup"},
+        down = {"key:down", "key:s", "axis:righty+", "button:dpdown"},
         accept = {"key:space", "key:return", "button:a"},
         back = {"key:escape", "button:b"},
-        ctrl = {"key:lctrl", "key:rctrl"},
+        ctrl = {},
         shift = {"key:lshift", "key:rshift"},
         backspace = {"key:backspace"},
         plus = {"key:+", "key:="},
@@ -218,7 +217,16 @@ function love.load()
         mouse1 = {"mouse:1"},
         mouse2 = {"mouse:2"},
         mouse3 = {"mouse:3"}
-      },
+      }
+      
+      if love.system.getOS() == "OS X" then --appease eventual mac users
+        ctrls.ctrl = {"rgui","lgui"}
+      else 
+        ctrls.ctrl = {"rctrl","lctrl"}
+      end
+      
+  maininput = baton.new {
+      controls = ctrls,
       pairs = {
         lr = {"left", "right", "up", "down"}
       },
