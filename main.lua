@@ -220,9 +220,9 @@ function love.load()
       }
       
       if love.system.getOS() == "OS X" then --appease eventual mac users
-        ctrls.ctrl = {"rgui","lgui"}
+        ctrls.ctrl = {"key:rgui","key:lgui"}
       else 
-        ctrls.ctrl = {"rctrl","lctrl"}
+        ctrls.ctrl = {"key:rctrl","key:lctrl"}
       end
       
   maininput = baton.new {
