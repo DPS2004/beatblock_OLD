@@ -13,17 +13,23 @@ function love.load()
   screencenter = {x = gameWidth/2, y = gameHeight/2}
   -- font is https://tepokato.itch.io/axolotl-font
   -- https://www.dafont.com/digital-disco.font
-  font2 = love.graphics.newFont("assets/Axolotl.ttf", 16)
-  font2:setFilter("nearest", "nearest",0)
-  font1 = love.graphics.newFont("assets/DigitalDisco-Thin.ttf", 16)
-  font1:setFilter("nearest", "nearest",0)
+  if not is3ds then
+    font2 = love.graphics.newFont("assets/Axolotl.ttf", 16)
+    font2:setFilter("nearest", "nearest",0)
+    font1 = love.graphics.newFont("assets/DigitalDisco-Thin.ttf", 16)
+    font1:setFilter("nearest", "nearest",0)
+  else
+    love.graphics.setFont = function() end
+  end
   love.graphics.setFont(font1)
   -- accurate deltatime
   acdelt = true
-  love.graphics.setDefaultFilter("nearest","nearest")
+  --love.graphics.setDefaultFilter("nearest","nearest")
 
   -- import libraries
   
+  -- custom functions, snippets, etc
+  helpers = require "lib.helpers"
     
   -- json handler
   json = require "lib.json"
@@ -35,8 +41,7 @@ function love.load()
   loc = require "lib.loc"
   loc.load("assets/localization.json")
 
-  -- custom functions, snippets, etc
-  helpers = require "lib.helpers"
+
 
   -- gamestate, manages gamestates
   gs = require "lib.gamestate"
@@ -91,11 +96,13 @@ function love.load()
 
   
   -- set rescaling filter
-  love.graphics.setDefaultFilter("nearest", "nearest")
+  --love.graphics.setDefaultFilter("nearest", "nearest")
   
   -- set line style
-  love.graphics.setLineStyle("rough")
-  love.graphics.setLineJoin("miter")
+  if not is3ds then
+    love.graphics.setLineStyle("rough")
+    love.graphics.setLineJoin("miter")
+  end
 
   -- set game canvas size
 
@@ -107,7 +114,9 @@ function love.load()
     pixelperfect = true
     })
   push:setBorderColor{0,0,0}
-  love.window.setTitle(gamename)
+  if not is3ds then
+    love.window.setTitle(gamename)
+  end
   paused = false
 
   -- start colors table with default colors

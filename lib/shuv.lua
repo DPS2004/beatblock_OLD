@@ -6,7 +6,7 @@ local shuv = {
 
 function shuv.init()
   shuv.canvas = love.graphics.newCanvas(gameWidth,gameHeight)
-  if ismobile then shuv.scale = 1 end
+  if ismobile or is3ds then shuv.scale = 1 end
   
 end
 
