@@ -11,6 +11,7 @@ local obj = {
   hb=0,
   movetime=0,
   smult=1,
+  randomvalue=math.random(),
   inverse = false,
   hityet = false,
   hold = false,
@@ -18,12 +19,16 @@ local obj = {
   side = false,
   sidehityet = false,
   minehold = false,
+  ringcw = false,
+  ringccw = false,
   spr = sprites.beat.square,
   spr2 = sprites.beat.inverse,
   spr3 = sprites.beat.hold,
   spr4 = sprites.beat.mine,
   spr5 = sprites.beat.side,
-  spr6 = sprites.beat.minehold
+  spr6 = sprites.beat.minehold,
+  spr7 = sprites.beat.ringcw,
+  spr8 = sprites.beat.ringccw
 }
 obj.ox = obj.x
 obj.oy = obj.y
@@ -71,7 +76,7 @@ function obj.update(dt)
   obj.x = p1[1]
   obj.y = p1[2]  
 
-  if (obj.hb - cs.cbeat) <= 0 and not obj.side then
+  if (obj.hb - cs.cbeat) <= 0 and not obj.side and not obj.ringcw and not obj.ringccw then
     if not obj.mine then
       if not obj.hold and not obj.minehold then
         if helpers.angdistance(obj.angle,cs.p.angle) <= cs.p.paddle_size / 2 then 
@@ -199,7 +204,7 @@ function obj.update(dt)
           local mp = em.init("misspart",screencenter.x,screencenter.x)
           mp.angle = obj.angle
           mp.distance = (obj.hb - cs.cbeat)*cs.level.properties.speed+cs.length
-          mp.spr = obj.spr6 --Set the miss part's sprite to that of a hold
+          mp.spr = obj.spr6 --Set the miss part's sprite to that of a mine hold
           mp.update()
           obj.delete = true
           pq = pq .. "   player hit mine hold!"
@@ -290,11 +295,11 @@ function obj.update(dt)
         cs.p.emotimer = 0
         cs.p.cemotion = "idle"
       end
-    elseif obj.hb - cs.cbeat <= -1/4 then
+    elseif obj.hb - cs.cbeat < -1/4 then
       local mp = em.init("misspart",screencenter.x,screencenter.x)
       mp.angle = obj.angle
       mp.distance = (obj.hb - cs.cbeat)*cs.level.properties.speed+cs.length
-      mp.spr = (obj.inverse and not obj.slice and obj.spr2) or (obj.spr5) --Determine which sprite the misspart should use
+      mp.spr = obj.spr5 --Determine which sprite the misspart should use
       mp.update()
       obj.delete = true
       pq = pq .. "   player missed!"
@@ -307,7 +312,7 @@ function obj.update(dt)
       local mp = em.init("misspart",screencenter.x,screencenter.x)
       mp.angle = obj.angle
       mp.distance = (obj.hb - cs.cbeat)*cs.level.properties.speed+cs.length
-      mp.spr = (obj.inverse and not obj.slice and obj.spr2) or (obj.spr5) --Determine which sprite the misspart should use
+      mp.spr = obj.spr5 --Determine which sprite the misspart should use
       mp.update()
       obj.delete = true
       pq = pq .. "   player missed!"
@@ -320,20 +325,67 @@ function obj.update(dt)
         te.play(sounds.mine,"static")
       end
     end
+  elseif obj.ringcw or obj.ringccw then
+    --ring notes
+    --if the player starts moving too early, that's fine; they'll still hit the note from moving correctly anyways. issue is if the player's a bit late
+    --for this reason if you're not moving you don't actually miss until 1/4 a beat later
+    local status = nil
+    local direction = 1
+    if obj.ringccw then
+      direction = -1
+    end
+    if ((cs.p.angle - cs.p.angleprevframe) * direction > 0 or (cs.p.angle - cs.p.angleprevframe - 180) * direction > 0) and (obj.hb - cs.cbeat) <= 0 then
+      status = "hit"
+    elseif ((cs.p.angle - cs.p.angleprevframe) * direction < 0 and (cs.p.angle - cs.p.angleprevframe - 180) * direction > 0) and (obj.hb - cs.cbeat) <= 0 then
+      status = "wrongdir"
+    elseif obj.hb - cs.cbeat < -1/4 then
+      status = "miss"
+    end
+    if status == "hit" then
+      --TODO: add hit particle for rings
+      obj.delete = true
+      pq = pq .. "   player hit!"
+      cs.hits = cs.hits + 1
+      cs.combo = cs.combo + 1
+      if cs.beatsounds then
+        te.play(sounds.click,"static")
+      end
+      if cs.p.cemotion == "miss" then
+        cs.p.emotimer = 0
+        cs.p.cemotion = "idle"
+      end
+    elseif status == "wrongdir" or status == "miss" then
+      obj.delete = true
+      pq = pq .. "   player missed!"
+      cs.misses = cs.misses + 1
+      cs.combo = 0
+      cs.p.emotimer = 100
+      cs.p.cemotion = "miss"
+      cs.p.hurtpulse()
+      if cs.beatsounds then
+        te.play(sounds.mine,"static")
+      end
+    end
+    
+  
   end
-
 end
 
 function obj.draw()  
   if not obj.slice then
     love.graphics.setColor(1,1,1,1)
     if not obj.hold and not obj.minehold then
+      local scaleval = ((obj.hb-cs.cbeat)*cs.level.properties.speed*obj.smult)/37+1.25
       if obj.inverse then
         love.graphics.draw(obj.spr2,obj.x,obj.y,0,1,1,8,8)
       elseif obj.mine then
         love.graphics.draw(obj.spr4,obj.x,obj.y,0,1,1,8,8)
       elseif obj.side then
         love.graphics.draw(obj.spr5,obj.x,obj.y,math.rad(obj.angle),1,1,12,10)
+      elseif obj.ringcw then
+        love.graphics.draw(obj.spr7,200,120,math.rad(30*obj.spinrate*(cs.cbeat-obj.hb)+(360*obj.randomvalue)),scaleval,scaleval,39,39)
+      elseif obj.ringccw then
+        love.graphics.draw(obj.spr8,200,120,math.rad(-30*obj.spinrate*(cs.cbeat-obj.hb)+(360*obj.randomvalue)),scaleval,scaleval,39,39)
       else
         love.graphics.draw(obj.spr,obj.x,obj.y,0,1,1,8,8)
       end

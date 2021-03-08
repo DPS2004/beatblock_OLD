@@ -29,6 +29,8 @@
       "y": 120,
       "delta": 10
     },
+    {"type": "ringcw","speedmult": 1,   "time": 0},
+    {"type": "ringccw","speedmult": 1,   "time": 8},
     {"type": "beat","speedmult": 1,"angle": -45,   "time": 0},
     {"type": "beat","speedmult": 1,"angle": 45,   "time": 0.5},
     {"type": "beat","speedmult": 1,"angle": -45,  "time": 1},
