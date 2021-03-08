@@ -13,17 +13,23 @@ function love.load()
   screencenter = {x = gameWidth/2, y = gameHeight/2}
   -- font is https://tepokato.itch.io/axolotl-font
   -- https://www.dafont.com/digital-disco.font
-  font2 = love.graphics.newFont("assets/Axolotl.ttf", 16)
-  font2:setFilter("nearest", "nearest",0)
-  font1 = love.graphics.newFont("assets/DigitalDisco-Thin.ttf", 16)
-  font1:setFilter("nearest", "nearest",0)
+  if not is3ds then
+    font2 = love.graphics.newFont("assets/Axolotl.ttf", 16)
+    font2:setFilter("nearest", "nearest",0)
+    font1 = love.graphics.newFont("assets/DigitalDisco-Thin.ttf", 16)
+    font1:setFilter("nearest", "nearest",0)
+  else
+    love.graphics.setFont = function() end
+  end
   love.graphics.setFont(font1)
   -- accurate deltatime
   acdelt = true
-  love.graphics.setDefaultFilter("nearest","nearest")
+  --love.graphics.setDefaultFilter("nearest","nearest")
 
   -- import libraries
   
+  -- custom functions, snippets, etc
+  helpers = require "lib.helpers"
     
   -- json handler
   json = require "lib.json"
@@ -35,8 +41,7 @@ function love.load()
   loc = require "lib.loc"
   loc.load("assets/localization.json")
 
-  -- custom functions, snippets, etc
-  helpers = require "lib.helpers"
+
 
   -- gamestate, manages gamestates
   gs = require "lib.gamestate"
@@ -91,11 +96,13 @@ function love.load()
 
   
   -- set rescaling filter
-  love.graphics.setDefaultFilter("nearest", "nearest")
+  --love.graphics.setDefaultFilter("nearest", "nearest")
   
   -- set line style
-  love.graphics.setLineStyle("rough")
-  love.graphics.setLineJoin("miter")
+  if not is3ds then
+    love.graphics.setLineStyle("rough")
+    love.graphics.setLineJoin("miter")
+  end
 
   -- set game canvas size
 
@@ -107,7 +114,9 @@ function love.load()
     pixelperfect = true
     })
   push:setBorderColor{0,0,0}
-  love.window.setTitle(gamename)
+  if not is3ds then
+    love.window.setTitle(gamename)
+  end
   paused = false
 
   -- start colors table with default colors
@@ -171,8 +180,7 @@ function love.load()
       }
     },
     title = {
-      logo = love.graphics.newImage("assets/title/logo.png"),
-      spacetostart = love.graphics.newImage("assets/title/spacetostart.png")
+      logo = love.graphics.newImage("assets/title/logo.png")
     }
   }
   --load select sounds
@@ -183,15 +191,14 @@ function love.load()
   }
 
   --setup input
-  maininput = baton.new {
-      controls = {
-        left = {"key:left",  "axis:leftx-", "button:dpleft"},
-        right = {"key:right",  "axis:leftx+", "button:dpright"},
-        up = {"key:up", "key:w", "axis:lefty-", "button:dpup"},
-        down = {"key:down", "key:s", "axis:lefty+", "button:dpdown"},
+  ctrls = {
+        left = {"key:left",  "axis:rightx-", "button:dpleft"},
+        right = {"key:right",  "axis:rightx+", "button:dpright"},
+        up = {"key:up", "key:w", "axis:righty-", "button:dpup"},
+        down = {"key:down", "key:s", "axis:righty+", "button:dpdown"},
         accept = {"key:space", "key:return", "button:a"},
         back = {"key:escape", "button:b"},
-        ctrl = {"key:lctrl", "key:rctrl"},
+        ctrl = {},
         shift = {"key:lshift", "key:rshift"},
         backspace = {"key:backspace"},
         plus = {"key:+", "key:="},
@@ -200,6 +207,7 @@ function love.load()
         rightbracket = {"key:]"},
         comma = {"key:,"},
         period = {"key:."},
+        slash = {"key:/"},
         s = {"key:s"},
         x = {"key:x"},
         a = {"key:a"},
@@ -220,7 +228,16 @@ function love.load()
         mouse1 = {"mouse:1"},
         mouse2 = {"mouse:2"},
         mouse3 = {"mouse:3"}
-      },
+      }
+      
+      if love.system.getOS() == "OS X" then --appease eventual mac users
+        ctrls.ctrl = {"key:rgui","key:lgui"}
+      else 
+        ctrls.ctrl = {"key:rctrl","key:lctrl"}
+      end
+      
+  maininput = baton.new {
+      controls = ctrls,
       pairs = {
         lr = {"left", "right", "up", "down"}
       },

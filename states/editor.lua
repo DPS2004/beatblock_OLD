@@ -201,7 +201,7 @@ function st.update()
           st.scrollzoom = st.scrollzoom - 0.5
         end
 
-        --change hold easing with , and .
+        --change hold easing with , and . and /
         if maininput:pressed("comma") and st.findholdtypeatcursor() ~= nil then
           if st.level.events[st.findeventatcursor()].holdease ~= "InQuad" then
             st.level.events[st.findeventatcursor()].holdease = "InQuad"
@@ -213,6 +213,14 @@ function st.update()
         if maininput:pressed("period") and st.findholdtypeatcursor() ~= nil then
           if st.level.events[st.findeventatcursor()].holdease ~= "OutQuad" then
             st.level.events[st.findeventatcursor()].holdease = "OutQuad"
+          else
+            st.level.events[st.findeventatcursor()].holdease = "Linear"
+          end
+        end
+        
+        if maininput:pressed("slash") and st.findholdtypeatcursor() ~= nil then
+          if st.level.events[st.findeventatcursor()].holdease ~= "InOutQuad" then
+            st.level.events[st.findeventatcursor()].holdease = "InOutQuad"
           else
             st.level.events[st.findeventatcursor()].holdease = "Linear"
           end
@@ -460,7 +468,7 @@ function st.update()
                   pup.h = 100 
                   pup.text = loc.get("editing") .. " " .. loc.get("holdease") .. ":"
                   pup.buttons = {}
-                  pup.textinput= {text=tostring(st.level.events[st.eventindex].holdease),y=50,show=true,numberonly=false}
+                  pup.textinput= {text=tostring(st.level.events[st.eventindex].holdease or ""),y=50,show=true,numberonly=false}
                   pup.newbutton({x=100,y=90,w=50,h=16,text=loc.get("ok"),onclick = function() cs.level.events[st.eventindex].holdease =   pup.textinput.text paused = false pup.delete = true end})
                   pup.newbutton({x=100,y=70,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
               end})

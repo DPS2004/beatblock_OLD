@@ -111,6 +111,14 @@ helpers.eases = {
   ["OutQuad"] = function (t)
     return 1 - math.pow(1 - t, 2)
   end,
+  
+  ["InOutQuad"] = function (t)
+    return t<0.5 and math.pow(t, 2)*2 or 1 - math.pow(1 - t, 2)*2
+  end,
+  
+  ["OutInQuad"] = function (t)
+    return t<0.5 and 0.5-math.pow(0.5-t, 2)*2 or 0.5+math.pow(0.5-t, 2)*2
+  end,
 
   ["InCubic"] = function (t)
     return math.pow(t, 3)
@@ -118,6 +126,10 @@ helpers.eases = {
 
   ["OutCubic"] = function (t)
     return 1 - math.pow(1 - t, 3)
+  end,
+  
+  ["InOutCubic"] = function (t)
+    return t<0.5 and math.pow(t, 3)*4 or 1 - math.pow(1 - t, 3)*4
   end,
 
   ["InQuart"] = function (t)
@@ -127,6 +139,10 @@ helpers.eases = {
   ["OutQuart"] = function (t)
     return 1 - math.pow(1 - t, 4)
   end,
+  
+  ["InOutQuart"] = function (t)
+    return t<0.5 and math.pow(t, 4)*8 or 1 - math.pow(1 - t, 4)*8
+  end,
 
   ["InQuint"] = function (t)
     return math.pow(t, 5)
@@ -134,6 +150,10 @@ helpers.eases = {
 
   ["OutQuint"] = function (t)
     return 1 - math.pow(1 - t, 5)
+  end,
+  
+  ["InOutQuint"] = function (t)
+    return t<0.5 and math.pow(t, 5)*16 or 1 - math.pow(1 - t, 5)*16
   end,
 
   ["InExpo"] = function (t)
@@ -150,6 +170,10 @@ helpers.eases = {
 
   ["OutSine"] = function (t)
     return math.cos((1 - t) * (math.pi * .5))
+  end,
+
+  ["InOutSine"] = function (t)
+    return (math.cos((t+1)*math.pi)*0.5)+0.5
   end,
 
   ["InCirc"] = function (t)
@@ -174,7 +198,9 @@ helpers.eases = {
 
   ["OutElastic"] = function (t)
     return 1 + (2^(10 * (-t)) * math.sin(((1 - t) - 1.075) * (math.pi * 2) / .3))
-  end
+  end,
+  
+  -- doing that was a pain - moplo
 }
 
 function helpers.interpolate(a, b, t, ease)
