@@ -137,7 +137,7 @@ function love.load()
       side = love.graphics.newImage("assets/game/side.png"),
       minehold = love.graphics.newImage("assets/game/minehold.png"),
       ringcw = love.graphics.newImage("assets/game/ringcw.png"),
-      ringccw = love.graphics.newImage("assets/game/ringccw.png"),
+      ringccw = love.graphics.newImage("assets/game/ringccw.png")
     },
     player = {
       idle = love.graphics.newImage("assets/game/cranky/idle.png"),
