@@ -38,7 +38,16 @@ function obj.update(dt)
   if not cs.autoplay then
     if obj.cmode then
       obj.angleprevframe = obj.angle --this way obj.angleprevframe is always 1 frame behind obj.angle
-      obj.angle = 0-math.deg(math.atan2(obj.y - love.mouse.getY()/shuv.scale, love.mouse.getX()/shuv.scale - obj.x)) +90
+      if is3ds then
+        local touchx, touchy = 0,0
+        for i,v in ipairs(love.touch.getTouches()) do
+          touchx,touchy=love.touch.getPosition(v)
+        end
+        obj.angle = 0-math.deg(math.atan2(120 - touchy/shuv.scale, touchx/shuv.scale - 160))
+      else
+      
+        obj.angle = 0-math.deg(math.atan2(obj.y - love.mouse.getY()/shuv.scale, love.mouse.getX()/shuv.scale - obj.x)) +90
+      end
     else
       if maininput:down("left") and not love.joystick.getJoysticks()[1] then
         obj.angle = obj.angle - 7

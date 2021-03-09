@@ -11,10 +11,14 @@ function loc.setlang(l)
   print("set language")
 end
 function loc.get(s)
-  if loc.json[s][loc.lang] then
-    return loc.json[s][loc.lang]
+  if loc.json[s] then
+    if loc.json[s][loc.lang] then
+      return loc.json[s][loc.lang]
+    else
+      return(loc.lang .. "."..s)
+    end
   else
-    return(loc.lang .. "."..s)
+    return("NIL")
   end
 end
 return loc

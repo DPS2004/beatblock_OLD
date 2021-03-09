@@ -66,19 +66,31 @@ local sourceFunction = {keyboardMouse = {}, joystick = {}}
 
 -- checks whether a keyboard key is down or not
 function sourceFunction.keyboardMouse.key(key)
-	return love.keyboard.isDown(key) and 1 or 0
+  if is3ds then
+    return 0
+  else
+    return love.keyboard.isDown(key) and 1 or 0
+  end
 end
 
 -- checks whether a keyboard key is down or not,
 -- but it takes a scancode as an input
 function sourceFunction.keyboardMouse.sc(sc)
-	return love.keyboard.isScancodeDown(sc) and 1 or 0
+  if is3ds then
+    return 0
+  else
+    return love.keyboard.isScancodeDown(sc) and 1 or 0
+  end
 end
 
 -- checks whether a mouse buttons is down or not.
 -- note that baton doesn't detect mouse movement, just the buttons
 function sourceFunction.keyboardMouse.mouse(button)
-	return love.mouse.isDown(tonumber(button)) and 1 or 0
+  if is3ds then
+    return 0
+  else
+    return love.mouse.isDown(tonumber(button)) and 1 or 0
+  end
 end
 
 -- checks the position of a joystick axis
@@ -196,7 +208,11 @@ function Player:_setActiveDevice()
 			local type, value = parseSource(source)
 			if sourceFunction.keyboardMouse[type] then
 				if sourceFunction.keyboardMouse[type](value) > self.config.deadzone then
-					self._activeDevice = 'kbm'
+          if is3ds then
+            self._activeDevice = 'joy'
+          else
+            self._activeDevice = 'kbm'
+          end
 					return
 				end
 			elseif self.config.joystick and sourceFunction.joystick[type] then

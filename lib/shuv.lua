@@ -36,16 +36,24 @@ function shuv.check()
 end
 
 
-function shuv.start()
+function shuv.start(screen)
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.setCanvas(shuv.canvas)
-  love.graphics.setBlendMode("alpha", "premultiplied")
+  if not is3ds then
+    love.graphics.setCanvas(shuv.canvas)
+    love.graphics.setBlendMode("alpha", "premultiplied")
+  else
+    if screen == "bottom" then
+      return
+    end
+  end
 end
 
 
 function shuv.finish()
-  love.graphics.setCanvas()
-  love.graphics.draw(shuv.canvas,0,0,0,shuv.scale,shuv.scale)
+  if not is3ds then
+    love.graphics.setCanvas()
+    love.graphics.draw(shuv.canvas,0,0,0,shuv.scale,shuv.scale)
+  end
   helpers.doswap()
   tinput = ""
 end
