@@ -1,5 +1,5 @@
 function love.conf(t)
-  release = false
+  release = true
   ismobile = false
   mobileoverride = false
   t.externalstorage = true
