@@ -25,7 +25,7 @@ function obj.resetlevel()
   obj.currst.combo = 0
   obj.currst.maxhits = 0
   for i,v in ipairs(obj.currst.level.events) do
-    if v.type == "beat" or v.type == "slice" or v.type == "sliceinvert" or v.type == "inverse" or v.type == "hold" or v.type == "mine" or v.type == "side" or v.type == "minehold" then
+    if v.type == "beat" or v.type == "slice" or v.type == "sliceinvert" or v.type == "inverse" or v.type == "hold" or v.type == "mine" or v.type == "side" or v.type == "minehold" or v.type == "ringcw" or v.type == "ringccw" then
       obj.currst.maxhits = obj.currst.maxhits + 1
     end
   end
@@ -172,6 +172,28 @@ function obj.update(dt)
         newbeat.hb = v.time
         newbeat.smult = v.speedmult
         newbeat.side=true
+        pq = pq .. "    ".. "spawn here!"
+        newbeat.update()
+      end
+      if v.type == "ringcw" then
+        v.played = true
+        local newbeat = em.init("beat",screencenter.x,screencenter.y)
+        newbeat.spinrate = v.spinrate or 1 -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
+        newbeat.spinease = v.spinease or "linear" -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
+        newbeat.hb = v.time
+        newbeat.smult = v.speedmult
+        newbeat.ringcw=true
+        pq = pq .. "    ".. "spawn here!"
+        newbeat.update()
+      end
+      if v.type == "ringccw" then
+        v.played = true
+        local newbeat = em.init("beat",screencenter.x,screencenter.y)
+        newbeat.spinrate = v.spinrate or 1 -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
+        newbeat.spinease = v.spinease or "linear" -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
+        newbeat.hb = v.time
+        newbeat.smult = v.speedmult
+        newbeat.ringccw=true
         pq = pq .. "    ".. "spawn here!"
         newbeat.update()
       end

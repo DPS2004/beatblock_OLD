@@ -38,11 +38,11 @@ function st.update()
 end
 
 
-function st.draw()
+function st.draw(screen)
     
   love.graphics.setFont(font1)
   --push:start()
-  shuv.start()
+  shuv.start(screen)
   love.graphics.setColor(1,1,1)
 
   love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
