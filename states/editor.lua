@@ -124,7 +124,7 @@ function st.update()
     
       st.cursorpos.angle = nearestangle % 360
       st.cursorpos.beat = st.scrollradtobeat(mouserad+10, true)
-      if maininput:pressed("p") then
+      if maininput:pressed("p") and st.editingtext == nil then
         if maininput:down("shift") then
           st.startbeat = st.scrollradtobeat((st.beatcircleminrad + st.beatcirclestartrad) * st.scrollzoom, false)
         else
@@ -739,7 +739,7 @@ paused = true
       --Scroll through level
       st.scrollzoom = helpers.clamp(st.scrollzoom, 0.5, 3)
       
-      if st.scrolldir == 1 then
+      if st.scrolldir == 1 and not maininput:down("ctrl") then
         if not maininput:down("shift") then
           st.scrollpos = st.scrollpos + 0.5 / st.scrollzoom
         else
@@ -747,7 +747,7 @@ paused = true
         end
       end
     
-      if st.scrolldir == -1 then
+      if st.scrolldir == -1 and not maininput:down("ctrl") then
         if not maininput:down("shift") then
           st.scrollpos = st.scrollpos - 0.5 / st.scrollzoom
         else
