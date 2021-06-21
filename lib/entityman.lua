@@ -2,13 +2,16 @@ local em = {
   deep = deeper.init()
 }
 
-function em.init(en,x,y)
-  local path = "obj/" .. en .. ".lua"
+function em.init(en,x,y,kvtable)
+  local path = "obj/" .. en .. ".lua" --todo fix this
   local code = love.filesystem.load(path)
   local new = code()
-
+  if not kvtable then kvtable = {} end
   new.x = x
   new.y = y
+  for k,v in pairs(kvtable) do
+    new[k] = v
+  end
   new.name = en
   table.insert(entities,new)
 
@@ -25,12 +28,15 @@ function em.update(dt)
       em.deep.queue(v.uplayer, em.update2, v, dt)
     end
   end
+  em.deep.execute() -- OH MY FUCKING GOD IM SUCH A DINGUS
 end
 
 
 function em.draw()
   for i, v in ipairs(entities) do
-    em.deep.queue(v.layer, v.draw)
+    if not v.skiprender then
+      em.deep.queue(v.layer, v.draw)
+    end
   end
   em.deep.execute()
   for i,v in ipairs(entities) do

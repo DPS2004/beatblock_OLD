@@ -14,6 +14,7 @@ function love.load()
   -- font is https://tepokato.itch.io/axolotl-font
   -- https://www.dafont.com/digital-disco.font
   if not is3ds then
+    love.graphics.setDefaultFilter("nearest", "nearest")
     font2 = love.graphics.newFont("assets/Axolotl.ttf", 16)
     font2:setFilter("nearest", "nearest",0)
     font1 = love.graphics.newFont("assets/DigitalDisco-Thin.ttf", 16)
@@ -224,6 +225,7 @@ function love.load()
         k6 = {"key:6"},
         k7 = {"key:7"},
         k8 = {"key:8"},
+        f4 = {"key:f4"},
         f5 = {"key:f5"},
         mouse1 = {"mouse:1"},
         mouse2 = {"mouse:2"},

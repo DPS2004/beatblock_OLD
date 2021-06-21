@@ -1,0 +1,1177 @@
+{
+    "metadata": {
+        "artist": "Camellia",
+        "songname": "BAD ACCESS (FROM A MOE MAID)",
+        "charter": "moplo",
+        "description": "0 segments go brr"
+    },
+    "bpm": 150,
+    "events": [
+        {
+            "angle1": 165,
+            "duration": 0.25,
+            "holdease": "InOutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 195,
+            "played": false,
+            "type": "hold",
+            "time": 87.25
+        },
+        {
+            "angle1": 195,
+            "duration": 0.5,
+            "holdease": "InOutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 165,
+            "played": false,
+            "type": "hold",
+            "time": 86.75
+        },
+        {
+            "angle1": 165,
+            "duration": 0.25,
+            "holdease": "InOutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 195,
+            "played": false,
+            "type": "hold",
+            "time": 86.5
+        },
+        {
+            "angle1": 195,
+            "duration": 0.5,
+            "holdease": "InOutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 165,
+            "played": false,
+            "type": "hold",
+            "time": 86
+        },
+        {
+            "angle1": 150,
+            "duration": 1,
+            "holdease": "OutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 195,
+            "played": false,
+            "type": "hold",
+            "time": 85
+        },
+        {
+            "angle1": 180,
+            "duration": 0.5,
+            "holdease": "InQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 150,
+            "played": false,
+            "type": "hold",
+            "time": 84.5
+        },
+        {
+            "angle1": 210,
+            "duration": 0.5,
+            "holdease": "OutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 180,
+            "played": false,
+            "type": "hold",
+            "time": 84
+        },
+        {
+            "angle1": 180,
+            "duration": 0.5,
+            "holdease": "InQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 210,
+            "played": false,
+            "type": "hold",
+            "time": 83.5
+        },
+        {
+            "angle1": 150,
+            "duration": 0.5,
+            "holdease": "OutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 180,
+            "played": false,
+            "type": "hold",
+            "time": 83
+        },
+        {
+            "angle1": 210,
+            "duration": 1,
+            "holdease": "InOutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 150,
+            "played": false,
+            "type": "hold",
+            "time": 82
+        },
+        {
+            "angle1": 150,
+            "duration": 1,
+            "holdease": "InOutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 210,
+            "played": false,
+            "type": "hold",
+            "time": 81
+        },
+        {
+            "angle1": 225,
+            "duration": 1,
+            "holdease": "InOutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 150,
+            "played": false,
+            "type": "hold",
+            "time": 80
+        },
+        {
+            "angle1": 180,
+            "duration": 0.5,
+            "holdease": "InQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 225,
+            "played": false,
+            "type": "hold",
+            "time": 79.5
+        },
+        {
+            "angle1": 135,
+            "duration": 0.5,
+            "holdease": "OutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 180,
+            "played": false,
+            "type": "hold",
+            "time": 79
+        },
+        {
+            "angle1": 180,
+            "duration": 0.5,
+            "holdease": "InQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 135,
+            "played": false,
+            "type": "hold",
+            "time": 78.5
+        },
+        {
+            "angle1": 135,
+            "duration": 0.5,
+            "holdease": "OutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 180,
+            "played": false,
+            "type": "hold",
+            "time": 78
+        },
+        {
+            "angle1": 180,
+            "duration": 0.5,
+            "holdease": "InQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 135,
+            "played": false,
+            "type": "hold",
+            "time": 77.5
+        },
+        {
+            "angle1": 135,
+            "duration": 0.5,
+            "holdease": "OutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 180,
+            "played": false,
+            "type": "hold",
+            "time": 77
+        },
+        {
+            "angle1": 180,
+            "duration": 0.5,
+            "holdease": "InQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 135,
+            "played": false,
+            "type": "hold",
+            "time": 76.5
+        },
+        {
+            "angle1": 135,
+            "duration": 0.5,
+            "holdease": "OutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 180,
+            "played": false,
+            "type": "hold",
+            "time": 76
+        },
+        {
+            "angle1": 180,
+            "duration": 0.5,
+            "holdease": "InQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 135,
+            "played": false,
+            "type": "hold",
+            "time": 75.5
+        },
+        {
+            "angle1": 225,
+            "duration": 0.5,
+            "holdease": "OutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 180,
+            "played": false,
+            "type": "hold",
+            "time": 75
+        },
+        {
+            "angle1": 270,
+            "duration": 0.5,
+            "holdease": "InQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 225,
+            "played": false,
+            "type": "hold",
+            "time": 74.5
+        },
+        {
+            "angle1": 225,
+            "duration": 0.5,
+            "holdease": "OutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 270,
+            "played": false,
+            "type": "hold",
+            "time": 74
+        },
+        {
+            "angle1": 270,
+            "duration": 0.5,
+            "holdease": "InQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 225,
+            "played": false,
+            "type": "hold",
+            "time": 73.5
+        },
+        {
+            "angle1": 225,
+            "duration": 0.5,
+            "holdease": "OutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 270,
+            "played": false,
+            "type": "hold",
+            "time": 73
+        },
+        {
+            "angle1": 270,
+            "duration": 0.5,
+            "holdease": "InQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 225,
+            "played": false,
+            "type": "hold",
+            "time": 72.5
+        },
+        {
+            "angle1": 225,
+            "duration": 0.5,
+            "holdease": "OutQuad",
+            "speedmult": 2,
+            "autoplayed": false,
+            "angle2": 270,
+            "played": false,
+            "type": "hold",
+            "time": 72
+        },
+        {
+            "angle1": 180,
+            "duration": 0.25,
+            "holdease": "OutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 210,
+            "played": false,
+            "type": "hold",
+            "time": 70.25
+        },
+        {
+            "angle": 150,
+            "played": false,
+            "type": "beat",
+            "endangle": 150,
+            "time": 69.5,
+            "autoplayed": false,
+            "speedmult": 4
+        },
+        {
+            "angle1": 120,
+            "duration": 0.25,
+            "holdease": "OutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 150,
+            "played": false,
+            "type": "hold",
+            "time": 68.75
+        },
+        {
+            "angle": 90,
+            "played": false,
+            "type": "beat",
+            "endangle": 90,
+            "time": 68,
+            "autoplayed": false,
+            "speedmult": 3.5
+        },
+        {
+            "angle1": 60,
+            "duration": 0.25,
+            "holdease": "OutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 90,
+            "played": false,
+            "type": "hold",
+            "time": 67.25
+        },
+        {
+            "angle": 30,
+            "played": false,
+            "speedmult": 2.5,
+            "type": "beat",
+            "time": 66.5,
+            "autoplayed": false,
+            "endangle": 30
+        },
+        {
+            "angle1": 0,
+            "duration": 0.25,
+            "holdease": "OutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 30,
+            "played": false,
+            "type": "hold",
+            "time": 65.75
+        },
+        {
+            "angle": 330,
+            "played": false,
+            "speedmult": 2,
+            "type": "beat",
+            "time": 65,
+            "autoplayed": false,
+            "endangle": 330
+        },
+        {
+            "angle": 660,
+            "played": false,
+            "endangle": 300,
+            "type": "side",
+            "speedmult": 3,
+            "autoplayed": false,
+            "time": 64
+        },
+        {
+            "angle": 660,
+            "played": false,
+            "endangle": 210,
+            "type": "side",
+            "speedmult": 2,
+            "autoplayed": false,
+            "time": 63.25
+        },
+        {
+            "angle": -420,
+            "played": false,
+            "type": "beat",
+            "endangle": 150,
+            "time": 63,
+            "autoplayed": false,
+            "speedmult": 1
+        },
+        {
+            "angle": -390,
+            "played": false,
+            "type": "beat",
+            "endangle": 120,
+            "time": 62.25,
+            "autoplayed": false,
+            "speedmult": 0.9375
+        },
+        {
+            "angle": -360,
+            "played": false,
+            "type": "beat",
+            "endangle": 90,
+            "time": 61.5,
+            "autoplayed": false,
+            "speedmult": 0.875
+        },
+        {
+            "angle": -330,
+            "played": false,
+            "type": "beat",
+            "endangle": 60,
+            "time": 60.75,
+            "autoplayed": false,
+            "speedmult": 0.8125
+        },
+        {
+            "angle": -300,
+            "played": false,
+            "type": "beat",
+            "endangle": 30,
+            "time": 60,
+            "autoplayed": false,
+            "speedmult": 0.75
+        },
+        {
+            "angle": -270,
+            "played": false,
+            "type": "beat",
+            "endangle": 0,
+            "time": 59.25,
+            "autoplayed": false,
+            "speedmult": 0.6875
+        },
+        {
+            "angle": 120,
+            "played": false,
+            "type": "beat",
+            "endangle": 330,
+            "time": 58.5,
+            "autoplayed": false,
+            "speedmult": 0.625
+        },
+        {
+            "angle": 150,
+            "played": false,
+            "type": "beat",
+            "endangle": 300,
+            "time": 57.75,
+            "autoplayed": false,
+            "speedmult": 0.5625
+        },
+        {
+            "angle": 180,
+            "played": false,
+            "type": "beat",
+            "endangle": 270,
+            "time": 57,
+            "autoplayed": false,
+            "speedmult": 0.5
+        },
+        {
+            "angle": 180,
+            "played": false,
+            "endangle": 270,
+            "type": "side",
+            "speedmult": 2.5,
+            "autoplayed": false,
+            "time": 56
+        },
+        {
+            "angle1": 135,
+            "duration": 0.25,
+            "holdease": "OutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 150,
+            "played": false,
+            "type": "hold",
+            "time": 55
+        },
+        {
+            "angle2": 135,
+            "angle1": 165,
+            "duration": 0.1667,
+            "played": false,
+            "type": "hold",
+            "speedmult": 1,
+            "autoplayed": false,
+            "time": 54.8334
+        },
+        {
+            "angle1": 135,
+            "duration": 0.3334,
+            "holdease": "InQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 165,
+            "played": false,
+            "type": "hold",
+            "time": 54.5
+        },
+        {
+            "angle": 120,
+            "played": false,
+            "speedmult": 2,
+            "type": "beat",
+            "time": 54.25,
+            "autoplayed": false,
+            "endangle": 120
+        },
+        {
+            "angle": 90,
+            "played": false,
+            "speedmult": 2.25,
+            "type": "beat",
+            "time": 53.5,
+            "autoplayed": false,
+            "endangle": 90
+        },
+        {
+            "angle": 60,
+            "played": false,
+            "speedmult": 2.5,
+            "type": "beat",
+            "time": 52.75,
+            "autoplayed": false,
+            "endangle": 60
+        },
+        {
+            "angle": 30,
+            "played": false,
+            "speedmult": 2.75,
+            "type": "beat",
+            "time": 52,
+            "autoplayed": false,
+            "endangle": 30
+        },
+        {
+            "angle": 0,
+            "played": false,
+            "speedmult": 3,
+            "type": "beat",
+            "time": 51.25,
+            "autoplayed": false,
+            "endangle": 0
+        },
+        {
+            "angle": 330,
+            "played": false,
+            "speedmult": 3.25,
+            "type": "beat",
+            "time": 50.5,
+            "autoplayed": false,
+            "endangle": 330
+        },
+        {
+            "angle": 300,
+            "played": false,
+            "speedmult": 3.5,
+            "type": "beat",
+            "time": 49.75,
+            "autoplayed": false,
+            "endangle": 300
+        },
+        {
+            "angle": 270,
+            "played": false,
+            "speedmult": 3.75,
+            "type": "beat",
+            "time": 49,
+            "autoplayed": false,
+            "endangle": 270
+        },
+        {
+            "angle": 270,
+            "played": false,
+            "speedmult": 4,
+            "type": "side",
+            "time": 48,
+            "autoplayed": false,
+            "endangle": 270
+        },
+        {
+            "angle": 75,
+            "played": false,
+            "speedmult": 4,
+            "type": "side",
+            "time": 47.25,
+            "autoplayed": false,
+            "endangle": 120
+        },
+        {
+            "angle": 90,
+            "played": false,
+            "speedmult": 3.75,
+            "type": "beat",
+            "time": 47,
+            "autoplayed": false,
+            "endangle": 90
+        },
+        {
+            "angle": 60,
+            "played": false,
+            "speedmult": 3.5,
+            "type": "beat",
+            "time": 46.25,
+            "autoplayed": false,
+            "endangle": 60
+        },
+        {
+            "angle": 30,
+            "played": false,
+            "speedmult": 3.25,
+            "type": "beat",
+            "time": 45.5,
+            "autoplayed": false,
+            "endangle": 30
+        },
+        {
+            "angle": 0,
+            "played": false,
+            "speedmult": 3,
+            "type": "beat",
+            "time": 44.75,
+            "autoplayed": false,
+            "endangle": 0
+        },
+        {
+            "angle": 330,
+            "played": false,
+            "speedmult": 2.75,
+            "type": "beat",
+            "time": 44,
+            "autoplayed": false,
+            "endangle": 330
+        },
+        {
+            "angle": 300,
+            "played": false,
+            "speedmult": 2.5,
+            "type": "beat",
+            "time": 43.25,
+            "autoplayed": false,
+            "endangle": 300
+        },
+        {
+            "angle": 270,
+            "played": false,
+            "speedmult": 2.25,
+            "type": "beat",
+            "time": 42.5,
+            "autoplayed": false,
+            "endangle": 270
+        },
+        {
+            "angle": 240,
+            "played": false,
+            "speedmult": 2,
+            "type": "beat",
+            "time": 41.75,
+            "autoplayed": false,
+            "endangle": 240
+        },
+        {
+            "angle": 210,
+            "played": false,
+            "speedmult": 1.75,
+            "type": "beat",
+            "time": 41,
+            "autoplayed": false,
+            "endangle": 210
+        },
+        {
+            "angle": 180,
+            "played": false,
+            "speedmult": 1.5,
+            "type": "side",
+            "time": 40,
+            "autoplayed": false,
+            "endangle": 180
+        },
+        {
+            "angle1": 135,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 105,
+            "played": false,
+            "type": "hold",
+            "time": 39.5
+        },
+        {
+            "angle1": 120,
+            "duration": 0.1667,
+            "segments": 0,
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 135,
+            "played": false,
+            "type": "hold",
+            "time": 39.3334
+        },
+        {
+            "angle1": 150,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 120,
+            "played": false,
+            "type": "hold",
+            "time": 39
+        },
+        {
+            "angle1": 135,
+            "duration": 0.1667,
+            "segments": 0,
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 150,
+            "played": false,
+            "type": "hold",
+            "time": 38.8334
+        },
+        {
+            "angle1": 165,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 135,
+            "played": false,
+            "type": "hold",
+            "time": 38.5
+        },
+        {
+            "angle1": 150,
+            "duration": 0.1667,
+            "segments": 0,
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 165,
+            "played": false,
+            "type": "hold",
+            "time": 38.3334
+        },
+        {
+            "angle1": 180,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 150,
+            "played": false,
+            "type": "hold",
+            "time": 38
+        },
+        {
+            "angle1": 270,
+            "duration": 1,
+            "holdease": "InOutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 180,
+            "played": false,
+            "type": "hold",
+            "time": 36
+        },
+        {
+            "angle1": 0,
+            "duration": 3,
+            "holdease": "InOutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": -90,
+            "played": false,
+            "type": "hold",
+            "time": 32
+        },
+        {
+            "angle1": 345,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 375,
+            "played": false,
+            "type": "hold",
+            "time": 31.5
+        },
+        {
+            "angle1": 15,
+            "duration": 0.1667,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": -15,
+            "played": false,
+            "type": "hold",
+            "time": 31.3334
+        },
+        {
+            "angle1": 345,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 375,
+            "played": false,
+            "type": "hold",
+            "time": 31
+        },
+        {
+            "angle1": 15,
+            "duration": 0.1667,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": -15,
+            "played": false,
+            "type": "hold",
+            "time": 30.8334
+        },
+        {
+            "angle1": 345,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 375,
+            "played": false,
+            "type": "hold",
+            "time": 30.5
+        },
+        {
+            "angle1": 15,
+            "duration": 0.1667,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": -15,
+            "played": false,
+            "type": "hold",
+            "time": 30.3334
+        },
+        {
+            "angle1": 345,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 375,
+            "played": false,
+            "type": "hold",
+            "time": 30
+        },
+        {
+            "angle": 0,
+            "played": false,
+            "endangle": 0,
+            "type": "inverse",
+            "speedmult": 1,
+            "autoplayed": false,
+            "time": 30
+        },
+        {
+            "angle1": 90,
+            "duration": 1,
+            "holdease": "InOutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 0,
+            "played": false,
+            "type": "hold",
+            "time": 28
+        },
+        {
+            "angle": 180,
+            "played": false,
+            "endangle": 180,
+            "type": "inverse",
+            "speedmult": 1,
+            "autoplayed": false,
+            "time": 22
+        },
+        {
+            "angle1": 195,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 165,
+            "played": false,
+            "type": "hold",
+            "time": 23.5
+        },
+        {
+            "angle1": 165,
+            "duration": 0.1667,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 195,
+            "played": false,
+            "type": "hold",
+            "time": 23.3334
+        },
+        {
+            "angle1": 195,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 165,
+            "played": false,
+            "type": "hold",
+            "time": 23
+        },
+        {
+            "angle1": 165,
+            "duration": 0.1667,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 195,
+            "played": false,
+            "type": "hold",
+            "time": 22.8334
+        },
+        {
+            "angle1": 195,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 165,
+            "played": false,
+            "type": "hold",
+            "time": 22.5
+        },
+        {
+            "angle1": 195,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 165,
+            "played": false,
+            "type": "hold",
+            "time": 22
+        },
+        {
+            "angle1": 165,
+            "duration": 0.1667,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 195,
+            "played": false,
+            "type": "hold",
+            "time": 22.3334
+        },
+        {
+            "angle1": 180,
+            "duration": 3,
+            "holdease": "InOutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 90,
+            "played": false,
+            "type": "hold",
+            "time": 24
+        },
+        {
+            "angle1": 270,
+            "duration": 1,
+            "holdease": "InOutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 180,
+            "played": false,
+            "type": "hold",
+            "time": 20
+        },
+        {
+            "angle1": 0,
+            "duration": 3,
+            "holdease": "InOutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": -90,
+            "played": false,
+            "type": "hold",
+            "time": 16
+        },
+        {
+            "angle": 0,
+            "played": false,
+            "endangle": 0,
+            "type": "inverse",
+            "speedmult": 1,
+            "autoplayed": false,
+            "time": 14
+        },
+        {
+            "angle1": 345,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 375,
+            "played": false,
+            "type": "hold",
+            "time": 15.5
+        },
+        {
+            "angle1": 15,
+            "duration": 0.1667,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": -15,
+            "played": false,
+            "type": "hold",
+            "time": 15.3334
+        },
+        {
+            "angle1": 345,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 375,
+            "played": false,
+            "type": "hold",
+            "time": 15
+        },
+        {
+            "angle1": 15,
+            "duration": 0.1666,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": -15,
+            "played": false,
+            "type": "hold",
+            "time": 14.8334
+        },
+        {
+            "angle1": 345,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 375,
+            "played": false,
+            "type": "hold",
+            "time": 14.5
+        },
+        {
+            "angle1": 15,
+            "duration": 0.1666,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": -15,
+            "played": false,
+            "type": "hold",
+            "time": 14.3334
+        },
+        {
+            "angle1": 345,
+            "duration": 0.3334,
+            "segments": 0,
+            "speedmult": 0,
+            "autoplayed": false,
+            "angle2": 375,
+            "played": false,
+            "type": "hold",
+            "time": 14
+        },
+        {
+            "angle1": 90,
+            "duration": 1,
+            "holdease": "InOutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 0,
+            "played": false,
+            "type": "hold",
+            "time": 12
+        },
+        {
+            "angle1": 180,
+            "duration": 3,
+            "holdease": "InOutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 90,
+            "played": false,
+            "type": "hold",
+            "time": 8
+        },
+        {
+            "angle1": 270,
+            "duration": 3,
+            "holdease": "InOutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": 180,
+            "played": false,
+            "type": "hold",
+            "time": 4
+        },
+        {
+            "angle1": 0,
+            "duration": 3,
+            "holdease": "InOutQuad",
+            "speedmult": 1,
+            "autoplayed": false,
+            "angle2": -90,
+            "played": false,
+            "type": "hold",
+            "time": 0
+        },
+        {
+            "bpm": 150,
+            "played": false,
+            "type": "play",
+            "time": 0,
+            "autoplayed": false,
+            "file": "BAD ACCESS.ogg"
+        }
+    ],
+    "properties": {
+        "offset": 8,
+        "startbeat": 0,
+        "speed": 40
+    }
+}

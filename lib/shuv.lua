@@ -1,6 +1,7 @@
 local shuv = {
   scale = 2,
-  update = true
+  update = true,
+  fullscreen = false
 }
 
 
@@ -13,12 +14,29 @@ end
 
 function shuv.check()
   if not ismobile then
+    if maininput:pressed("f4") then
+      if not shuv.fullscreen then
+        love.window.setFullscreen(true)
+        shuv.scale = love.graphics.getHeight() / gameHeight
+        shuv.update = true
+        shuv.fullscreen = true
+      else
+        love.window.setFullscreen(false)
+        shuv.scale = 1
+        shuv.update = true
+        shuv.fullscreen = false
+        love.window.setMode(gameWidth*shuv.scale, gameHeight*shuv.scale)
+      end
+    end
     if maininput:pressed("f5") then
+      
       shuv.scale = shuv.scale + 1
       if shuv.scale > 3 then
         shuv.scale = 1
       end
+      shuv.fullscreen = false
       shuv.update = true
+      love.window.setMode(gameWidth*shuv.scale, gameHeight*shuv.scale)
     end
   end
 
@@ -29,9 +47,10 @@ function shuv.check()
       love.window.setMode(0,0)
       love.window.setFullscreen(true)
       shuv.scale = love.graphics.getHeight() / gameHeight
-    else
+    elseif shuv.fulscreen == false then
       love.window.setMode(gameWidth*shuv.scale, gameHeight*shuv.scale)
     end
+    
   end
 end
 
