@@ -8,7 +8,7 @@ local em = {
 }
 
 function em.init(en,x,y,kvtable)
-  local new = keys[en]
+  local new = keys[en]()
   if not kvtable then kvtable = {} end
   new.x = x
   new.y = y
@@ -16,6 +16,7 @@ function em.init(en,x,y,kvtable)
     new[k] = v
   end
   new.name = en
+
   table.insert(entities,new)
 
   return entities[#entities]

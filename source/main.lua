@@ -9,6 +9,11 @@ playdate.clearConsole()
 gfx = playdate.graphics
 snd = playdate.sound
 
+lastFrame = playdate.getCurrentTimeMilliseconds()
+updateDt = function ()
+  dt = (playdate.getCurrentTimeMilliseconds() - lastFrame)
+  lastFrame = playdate.getCurrentTimeMilliseconds()
+end
 dt = 1
 clevel = "cannery.json"
 gamename = "BeatBlock"
@@ -25,6 +30,8 @@ screencenter = {x = gameWidth/2, y = gameHeight/2}
 -- https://www.dafont.com/digital-disco.font
 -- TODO: fonts
 -- font2 = love.graphics.newFont("assets/Axolotl.ttf", 16)
+font2 = gfx.font.new("assets/fonts/Axolotl-12")
+font1 = gfx.font.new("assets/fonts/DigitalDisco-16")
 -- font2:setFilter("nearest", "nearest",0)
 -- font1 = love.graphics.newFont("assets/DigitalDisco-Thin.ttf", 16)
 -- font1:setFilter("nearest", "nearest",0)
@@ -216,16 +223,13 @@ em = import "lib/entityman"
 
 entities = {}
 -- init states
-newswap = false
--- states = {
---   songselect = import "states/songselect",
---   title =
+-- import "states/songselect"
 import "states/title"
-  -- game = import "states/game",
-  --rdconvert = import "states.rdconvert",
-  -- editor = import "states/editor",
---   results = import "states/results",
--- }
+-- game = import "states/game"
+-- rdconvert = import "states/rdconvert"
+-- editor = import "states/editor"
+-- results = import "states/results"
+
 
 
 Noble.new(TitleScene)
