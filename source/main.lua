@@ -92,10 +92,6 @@ colors = {
   {1/2,1/2,1/2}
 }
 
-test, _ = gfx.image.new("circle")
-assert(test, _)
-
-
 --load sprites into memory, so that we are not loading 50 bajillion copies of the beats in a level
 sprites = {
   beat= {
