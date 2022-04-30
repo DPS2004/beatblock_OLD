@@ -28,7 +28,7 @@ end
 
 function obj.draw()
   -- love.graphics.setColor(1,1,1,1)
-  obj:draw(obj.x-8,obj.y-8)
+  obj.spr:draw(obj.x,obj.y)
   -- love.graphics.draw(obj.spr,obj.x,obj.y,0,1,1,8,8)
 
 end
