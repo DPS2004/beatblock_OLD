@@ -1,5 +1,6 @@
 local keys = {
-  titleparticle = import "obj/titleparticle"
+  titleparticle = import "obj/titleparticle",
+  player = import "obj/player"
 }
 
 

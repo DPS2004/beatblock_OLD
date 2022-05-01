@@ -86,7 +86,7 @@ te = import"lib/tesound"
 ez = import "lib/ezanim"
 
 -- tween manager
--- flux = import "lib/flux"
+flux = import "lib/flux"
 
 paused = false
 
@@ -223,7 +223,8 @@ em = import "lib/entityman"
 
 entities = {}
 -- init states
--- import "states/songselect"
+import "states/template"
+import "states/songselect"
 import "states/title"
 -- game = import "states/game"
 -- rdconvert = import "states/rdconvert"

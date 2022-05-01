@@ -1,45 +1,36 @@
-local st = {}
-function st.init()
+TemplateScene = {}
+
+class("TemplateScene").extends(NobleScene)
+TemplateScene.baseColor = Graphics.kColorWhite
+
+function TemplateScene:init()
+	TemplateScene.super.init(self)
 
 end
 
-function st.enter(prev)
+function TemplateScene:enter(prev)
+	TemplateScene.super.enter(self)
+end
 
+function TemplateScene:exit(prev)
+	TemplateScene.super.exit(self)
 end
 
 
-function st.leave()
 
+
+function TemplateScene:update()
+  -- do things here
+  em.update(dt)
+  flux.update(dt)
 end
 
 
-function st.resume()
-
-end
-
-
-function st.update()
-  if not paused then
-
-    -- do things here
-    flux.update(1)
-    em.update(dt)
-  end
-end
-
-
-function st.draw()
-  --push:start()
-  shuv.start()
-  love.graphics.setColor(1,1,1)
-
-  love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
-
+function TemplateScene:draw()
 
   em.draw()
-
-  shuv.finish()
+  
+  gfx.drawText("Hello from template Scene!",129,156)
+  
 end
 
-
-return st
