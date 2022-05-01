@@ -1,0 +1,3 @@
+[submodule "source/lib/noble"]
+	path = source/lib/noble
+	url = https://github.com/DPS2004/NobleEngine
