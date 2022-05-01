@@ -52,7 +52,7 @@ function obj.draw()
   love.graphics.setLineWidth(1)
   love.graphics.setColor(0,0,0,1)
   love.graphics.rectangle("line",obj.x-obj.w/2,obj.y-obj.h/2,obj.w,obj.h)
-  love.graphics.setFont(font2)
+  love.graphics.setFont(Axolotl12)
   love.graphics.printf(obj.text,obj.x-obj.w/2,obj.y-obj.h/2,obj.w,"center")
   if obj.textinput.show then
     love.graphics.printf(obj.textinput.text,obj.x-obj.w/2,(obj.y-obj.h/2)+obj.textinput.y,obj.w,"center")
@@ -67,7 +67,7 @@ function obj.draw()
     love.graphics.setLineWidth(1)
     love.graphics.setColor(0,0,0,1)
     love.graphics.rectangle("line",v.x-v.w/2+(obj.x-obj.w/2),v.y-v.h/2+(obj.y-obj.h/2),v.w,v.h)
-    love.graphics.setFont(font2)
+    love.graphics.setFont(Axolotl12)
     love.graphics.printf(v.text,v.x-v.w/2+(obj.x-obj.w/2),v.y-v.h/2+(obj.y-obj.h/2),v.w,"center")
   end
 end

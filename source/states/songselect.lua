@@ -43,6 +43,8 @@ function SongSelectScene:enter(prev)
   self.selection = 1
   self.move = false
   self.dispy = -60
+
+  cs = Noble.currentScene()
 end
 
 
@@ -119,17 +121,20 @@ end
 
 
 function SongSelectScene:draw()
-  --love.graphics.setFont(font1)
 
-  love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
-  love.graphics.draw(self.fg,2,-2)
-  helpers.color(2)
+  gfx.fillRect(0,0,gameWidth,gameHeight)
+  self.fg:draw(2, -2)
+  gfx.setColor(0)
+
   for i,v in ipairs(self.levels) do
     if v.islevel then
-      love.graphics.print(v.songname,10,70+i*60+self.dispy,0,2,2)
-      love.graphics.print(v.artist,10,100+i*60+self.dispy)
+      gfx.setFont(DigitalDisco24)
+      gfx.drawText(v.songname,10,70+i*60+self.dispy)
+      gfx.setFont(DigitalDisco16)
+      gfx.drawText(v.artist,10,100+i*60+self.dispy)
     else
-      love.graphics.print(v.name,10,76+i*60+self.dispy,0,2,2)
+      gfx.setFont(DigitalDisco24)
+      gfx.drawText(v.name,10,76+i*60+self.dispy)
       --love.graphics.print(v.artist,10,100+i*60+self.dispy)
     end
   end

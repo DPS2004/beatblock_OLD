@@ -19,11 +19,6 @@ function helpers.rotate(rad, angle, x, y)
 end
 
 
-function helpers.color(c)
-  love.graphics.setColor(colors[c])
-end
-
-
 function helpers.read(path)
   local content = love.filesystem.read(path) -- r read mode and b binary mode
   return content
@@ -60,8 +55,9 @@ end
 
 
 function helpers.swap(tsw)
-  toswap = tsw
-  newswap = true
+  -- toswap = tsw
+  -- newswap = true
+  Noble.transition(tsw)
 end
 
 
@@ -249,21 +245,21 @@ function helpers.drawhold(xo, yo, x1, y1, x2, y2, completion, a1, a2, segments, 
   -- need at least 2 points to draw a line ,
   if #points >= 4 then
     -- draw the black outline
-    helpers.color(2)
+    gfx.setColor(0)
     love.graphics.setLineWidth(16)
     love.graphics.line(points)
     -- draw a white line, to make the black actually look like an outline
-    helpers.color(1)
+    gfx.setColor(1)
     love.graphics.setLineWidth(12)
     love.graphics.line(points)
     --the added line for mine holds
     if colortype ~= "hold" then
-      helpers.color(2)
+      gfx.setColor(0)
       love.graphics.setLineWidth(10)
       love.graphics.line(points)
     end
   end
-  helpers.color(1)
+  gfx.setColor(1)
 
   -- draw beginning and end of hold
   love.graphics.draw(sprhold,x1,y1,0,1,1,8,8)
@@ -279,7 +275,7 @@ function helpers.drawslice (ox, oy, rad, angle, inverse, alpha)
   end
   love.graphics.setColor(0,0,0,alpha)
   love.graphics.setLineWidth(2)
-  love.graphics.push()
+  gfx.pushContext()
   love.graphics.translate(p[1], p[2])
   love.graphics.rotate((angle - 90) * math.pi / 180)
 
@@ -311,14 +307,14 @@ function helpers.drawslice (ox, oy, rad, angle, inverse, alpha)
     ((cs.p.paddle_distance + cs.extend) + cs.p.paddle_width) * math.cos(-paddle_angle),
     ((cs.p.paddle_distance + cs.extend) + cs.p.paddle_width) * math.sin(-paddle_angle)
   )
-  love.graphics.pop()
+  gfx.popContext()
 
-  helpers.color(1)
+  gfx.setColor(1)
   love.graphics.circle("fill",p[1],p[2],4+cs.extend/2)
-  helpers.color(2)
+  gfx.setColor(0)
   love.graphics.circle("line",p[1],p[2],4+cs.extend/2)
 
-  helpers.color(1)
+  gfx.setColor(1)
  -- love.graphics.draw(cs.p.spr[cs.p.cemotion],obj.x,obj.y,0,1,1,16,16)
 
   return p[1], p[2]
@@ -345,15 +341,15 @@ function helpers.drawgame()
   end
   love.graphics.draw(cs.bg)
 
-  helpers.color(1)
+  gfx.setColor(1)
   em.draw()
-  helpers.color(2)
+  gfx.setColor(0)
   --love.graphics.print(cs.hits.." / " .. (cs.misses+cs.hits),10,10)
   if cs.combo >= 10 then
-    love.graphics.setFont(font1)
+    love.graphics.setFont(DigitalDisco16)
     love.graphics.print(cs.combo..gfx.getLocalizedText("combo"),10,220)
   end
-  helpers.color(1)
+  gfx.setColor(1)
 end
 
 function helpers.rliid(fname)

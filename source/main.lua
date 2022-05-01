@@ -17,6 +17,7 @@ end
 dt = 1
 clevel = "cannery.json"
 gamename = "BeatBlock"
+cs = nil
 
 -- if love.system.getOS( ) == "Android" or mobileoverride then
 --   ismobile = true
@@ -26,20 +27,18 @@ pressed = 0
 mx,my = 0,0
 ispush = false
 screencenter = {x = gameWidth/2, y = gameHeight/2}
+
 -- font is https://tepokato.itch.io/axolotl-font
 -- https://www.dafont.com/digital-disco.font
--- TODO: fonts
--- font2 = love.graphics.newFont("assets/Axolotl.ttf", 16)
-font2 = gfx.font.new("assets/fonts/Axolotl-12")
-font1 = gfx.font.new("assets/fonts/DigitalDisco-16")
--- font2:setFilter("nearest", "nearest",0)
--- font1 = love.graphics.newFont("assets/DigitalDisco-Thin.ttf", 16)
--- font1:setFilter("nearest", "nearest",0)
+Axolotl12 = gfx.font.new("assets/fonts/Axolotl-12")
+DigitalDisco16 = gfx.font.new("assets/fonts/DigitalDisco-16")
+DigitalDisco24 = gfx.font.new("assets/fonts/DigitalDisco-24")
 
--- love.graphics.setFont(font1)
+
+-- love.graphics.setFont(DigitalDisco16)
 -- accurate deltatime
 acdelt = true
---love.graphics.setDefaultFilter("nearest","nearest")
+
 
 -- import libraries
 
@@ -50,13 +49,8 @@ helpers = import "lib/helpers"
 -- quickly load json files
 -- dpf = import "lib/dpf"
 
--- localization
--- loc = import "lib/loc"
--- loc.load("assets/localization.json")
-
-
 -- gamestate, manages gamestates
-gs = import "lib/gamestate"
+-- gs = import "lib/gamestate"
 
 -- baton, manages input handling
 baton = import "lib/baton"
@@ -91,13 +85,6 @@ flux = import "lib/flux"
 paused = false
 
 -- start colors table with default colors
-colors = {
-  {1,1,1},
-  {0,0,0},
-  {1,0,77/255},
-  {1,0,0},
-  {1/2,1/2,1/2}
-}
 
 --load sprites into memory, so that we are not loading 50 bajillion copies of the beats in a level
 sprites = {
@@ -165,10 +152,10 @@ sounds = {
 
 --setup input
 ctrls = {
-      left = {"key:left",  "axis:rightx-", "button:dpleft"},
-      right = {"key:right",  "axis:rightx+", "button:dpright"},
-      up = {"key:up", "key:w", "axis:righty-", "button:dpup"},
-      down = {"key:down", "key:s", "axis:righty+", "button:dpdown"},
+      left = playdate.kButtonLeft,
+      right = playdate.kButtonRight,
+      up = playdate.kButtonUp,
+      down = playdate.kButtonDown,
       accept = playdate.kButtonA,
       back = {"key:escape", "button:b"},
       ctrl = {},
@@ -217,6 +204,15 @@ ctrls = {
 --     },
 --       joystick = love.joystick.getJoysticks()[1],
 --   }
+maininput = {}
+-- Just pressed this frame
+maininput.pressed = function (key)
+  return playdate.buttonJustPressed(ctrls[key])
+end
+
+maininput.down = function (key)
+  return playdate.buttonIsPressed(ctrls[key])
+end
 
 -- entity manager
 em = import "lib/entityman"

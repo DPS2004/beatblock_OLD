@@ -121,7 +121,7 @@ end
 
 
 function st.draw()
-  love.graphics.setFont(font1)
+  love.graphics.setFont(DigitalDisco16)
   --push:start()
   shuv.start()
   love.graphics.setColor(1,1,1)
