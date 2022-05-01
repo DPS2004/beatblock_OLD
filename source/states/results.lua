@@ -84,7 +84,7 @@ end
 function st.update()
   pq = ""
   if not paused then
-    if maininput:pressed("up") then
+    if maininput.pressed("up") then
       st.selection = 1
       st.ease = flux.to(st.cselectionbounds,30,{
         x=st.selectionbounds[1].x,
@@ -94,7 +94,7 @@ function st.update()
 
       }):ease("outExpo")
     end
-    if maininput:pressed("down") then
+    if maininput.pressed("down") then
       st.selection = 2
       st.ease = flux.to(st.cselectionbounds,30,{
         x=st.selectionbounds[2].x,
@@ -104,7 +104,7 @@ function st.update()
 
       }):ease("outExpo")
     end
-    if maininput:pressed("accept") then
+    if maininput.pressed("accept") then
       if st.selection == 1 then
         helpers.swap(states.songselect)
       else

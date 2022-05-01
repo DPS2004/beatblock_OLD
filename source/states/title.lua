@@ -12,12 +12,15 @@ function TitleScene:init()
   }
   self.pstext = gfx.getLocalizedText("pressspace")
   self.textWidth = Axolotl12:getTextWidth(self.pstext)
+  self.logo = NobleSprite("assets/title/logo")
+  self.logo:setCenter(0,0)
+
 end
 
 function TitleScene:enter()
   TitleScene.super.enter(self)
   cs = Noble.currentScene()
-
+  self.logo:add()
   self.i = 0
 
 end
@@ -49,7 +52,7 @@ function TitleScene:draw()
   -- TODO FONTS
   gfx.setFont(DigitalDisco16)
 
-  sprites.title.logo:draw(32,32+math.sin(self.i*0.03)*10) -- TODO: actually animate this
+  self.logo:moveTo(32,32+math.sin(self.i*0.03)*10) -- TODO: actually animate this
   -- make text bold by drawing the sprite far too many times
   -- for a=128,130 do
   --   for b=155,157 do

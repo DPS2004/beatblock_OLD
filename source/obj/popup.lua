@@ -23,7 +23,7 @@ function obj.update(dt)
     else
       obj.textinput.text = obj.textinput.text.. tinput
     end
-    if maininput:pressed("backspace") then -- copied from https://love2d.org/wiki/utf8
+    if maininput.pressed("backspace") then -- copied from https://love2d.org/wiki/utf8
       -- TODO
       -- local byteoffset = utf8.offset(obj.textinput.text, -1)
       -- if byteoffset then

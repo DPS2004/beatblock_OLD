@@ -19,7 +19,7 @@ function st.enter(prev)
         ty = "inverse"
       end
       table.insert(st.level.events,{type=ty,time=(v.beat-1)+(v.bar-1)*8,angle=v.angle,speedmult =v.scale[1]})
-      
+
     end
     if v.type == "PlaySong" then
       table.insert(st.level.events,{type="play",time=(v.beat-1)+(v.bar-1)*8,file=v.filename})
@@ -31,7 +31,7 @@ function st.enter(prev)
       newevent.time = (v.beat-1)+(v.bar-1)*8
       table.insert(st.level.events,newevent)
     end
-    
+
   end
   helpers.write("output.json",json.encode(st.level))
   clevel = "output.json"
@@ -52,7 +52,7 @@ end
 function st.update()
   pq = ""
   if not paused then
-    if maininput:pressed("back") then
+    if maininput.pressed("back") then
       helpers.swap(states.songselect)
     end
 
@@ -67,14 +67,14 @@ function st.draw()
 
   love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
   love.graphics.setCanvas(st.canv)
-    
-    
-    
+
+
+
     love.graphics.setBlendMode("alpha")
     love.graphics.setColor(1, 1, 1, 1)
 
-    
-    
+
+
     em.draw()
   love.graphics.setCanvas(shuv.canvas)
   love.graphics.setColor(1, 1, 1, 1)

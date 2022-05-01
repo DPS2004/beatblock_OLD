@@ -96,7 +96,7 @@ end
 
 function st.update()
   if not paused then
-    if maininput:pressed("back") then
+    if maininput.pressed("back") then
       if st.editmode and st.selectedeventindex == nil then
         paused = true
         local pup = em.init("popup",screencenter.x,screencenter.y)
@@ -124,7 +124,7 @@ function st.update()
 
       st.cursorpos.angle = nearestangle % 360
       st.cursorpos.beat = st.scrollradtobeat(mouserad+10, true)
-      if maininput:pressed("p") and st.editingtext == nil then
+      if maininput.pressed("p") and st.editingtext == nil then
         if maininput:down("shift") then
           st.startbeat = st.scrollradtobeat((st.beatcircleminrad + st.beatcirclestartrad) * st.scrollzoom, false)
         else
@@ -136,7 +136,7 @@ function st.update()
 
       --Hotkeys
       if maininput:down("ctrl") then
-        if maininput:pressed("r") then
+        if maininput.pressed("r") then
           print("ctrl+r")
           paused = true
 
@@ -147,7 +147,7 @@ function st.update()
           pup.newbutton({x=100,y=90,w=16,h=16,text=gfx.getLocalizedText("ok"),onclick = function() cs.level = json.decodeFile(clevel.."level.json",{}) paused = false pup.delete = true end})
           pup.newbutton({x=100,y=70,w=50,h=16,text=gfx.getLocalizedText("cancel"),onclick = function() paused = false pup.delete = true end})
         end
-        if maininput:pressed("s") then
+        if maininput.pressed("s") then
           st.savelevel()
           st.p.hurtpulse() --Little animation to confirm that you indeed saved
         end
@@ -160,49 +160,49 @@ function st.update()
         end
       elseif st.editingtext == nil then
         -- Set type of event on cursor
-        if maininput:pressed("k1") then
+        if maininput.pressed("k1") then
           st.cursortype = "beat"
         end
 
-        if maininput:pressed("k2") then
+        if maininput.pressed("k2") then
           st.cursortype = "inverse"
         end
 
-        if maininput:pressed("k3") then
+        if maininput.pressed("k3") then
           st.cursortype = "hold"
         end
 
-        if maininput:pressed("k4") then
+        if maininput.pressed("k4") then
           st.cursortype = "slice"
         end
 
-        if maininput:pressed("k5") then
+        if maininput.pressed("k5") then
           st.cursortype = "sliceinvert"
         end
 
-        if maininput:pressed("k6") then
+        if maininput.pressed("k6") then
           st.cursortype = "mine"
         end
 
-        if maininput:pressed("k7") then
+        if maininput.pressed("k7") then
           st.cursortype = "side"
         end
 
-        if maininput:pressed("k8") then
+        if maininput.pressed("k8") then
           st.cursortype = "minehold"
         end
 
         --Set zoom
-        if maininput:pressed("up") then
+        if maininput.pressed("up") then
           st.scrollzoom = st.scrollzoom + 0.5
         end
 
-        if maininput:pressed("down") then
+        if maininput.pressed("down") then
           st.scrollzoom = st.scrollzoom - 0.5
         end
 
         --change hold easing with , and . and /
-        if maininput:pressed("comma") and st.findholdtypeatcursor() ~= nil then
+        if maininput.pressed("comma") and st.findholdtypeatcursor() ~= nil then
           if st.level.events[st.findeventatcursor()].holdease ~= "InQuad" then
             st.level.events[st.findeventatcursor()].holdease = "InQuad"
           else
@@ -210,7 +210,7 @@ function st.update()
           end
         end
 
-        if maininput:pressed("period") and st.findholdtypeatcursor() ~= nil then
+        if maininput.pressed("period") and st.findholdtypeatcursor() ~= nil then
           if st.level.events[st.findeventatcursor()].holdease ~= "OutQuad" then
             st.level.events[st.findeventatcursor()].holdease = "OutQuad"
           else
@@ -218,7 +218,7 @@ function st.update()
           end
         end
 
-        if maininput:pressed("slash") and st.findholdtypeatcursor() ~= nil then
+        if maininput.pressed("slash") and st.findholdtypeatcursor() ~= nil then
           if st.level.events[st.findeventatcursor()].holdease ~= "InOutQuad" then
             st.level.events[st.findeventatcursor()].holdease = "InOutQuad"
           else
@@ -227,7 +227,7 @@ function st.update()
         end
 
         --Beat snap
-        if maininput:pressed("minus") then
+        if maininput.pressed("minus") then
           if st.beatsnap == 1 then
             st.beatsnap = 0.5
           elseif st.beatsnap == 0.5 then
@@ -241,7 +241,7 @@ function st.update()
           end
         end
 
-        if maininput:pressed("plus") then
+        if maininput.pressed("plus") then
           if st.beatsnap == 0.125 then
             st.beatsnap = 0.1666
           elseif st.beatsnap == 0.1666 then
@@ -256,7 +256,7 @@ function st.update()
         end
 
         --Angle snap
-        if maininput:pressed("rightbracket") then
+        if maininput.pressed("rightbracket") then
           if st.degreesnap == 5 then
             st.degreesnap = 5.625
           elseif st.degreesnap == 5.625 then
@@ -280,7 +280,7 @@ function st.update()
           end
         end
 
-        if maininput:pressed("leftbracket") then
+        if maininput.pressed("leftbracket") then
           if st.degreesnap == 90 then
             st.degreesnap = 45
           elseif st.degreesnap == 45 then
@@ -300,12 +300,12 @@ function st.update()
           end
         end
 
-        if maininput:pressed("back") then
+        if maininput.pressed("back") then
           st.selectedeventindex = nil
         end
 
         --Adding/deleting/dragging events
-        if maininput:pressed("mouse1") and not st.editorsuppression then
+        if maininput.pressed("mouse1") and not st.editorsuppression then
           st.draggingeventindex = st.findeventatcursor()
           st.draggingeventpart = st.findholdtypeatcursor()
         end
@@ -437,7 +437,7 @@ function st.update()
           st.deleteeventatcursor()
         end
         -- edit events with e or mid click
-        if maininput:pressed("e") or maininput:pressed("mouse3") or st.openpup == true then
+        if maininput.pressed("e") or maininput.pressed("mouse3") or st.openpup == true then
           st.openpup = false
           st.eventindex = st.findeventatcursor()
           if st.eventindex then
@@ -560,12 +560,12 @@ paused = true
               st.editingtext = tostring(st.level.events[eventid][modifyingvariable])
             end
             st.editingtext = st.editingtext .. tinput
-            if maininput:pressed("backspace") then
+            if maininput.pressed("backspace") then
               st.editingtext = string.sub(st.editingtext,1,-2)
             end
             st.editorsuppression = true
             --if the textbox is being edited and the mouse is pressed outside of the textbox, set st.level.events[eventid][modifyingvariable] to st.editingtext, then set st.editingtext to nil
-            if (st.cursoruiindex ~= st.moduleindex and maininput:released("mouse1")) or maininput:pressed("back") or maininput:pressed("accept") then
+            if (st.cursoruiindex ~= st.moduleindex and maininput:released("mouse1")) or maininput.pressed("back") or maininput.pressed("accept") then
               if moduletype == "numberinput" or moduletype == "numberinputwithtoggle" then
                 st.level.events[eventid][modifyingvariable] = tonumber(st.editingtext)
               else
@@ -681,7 +681,7 @@ paused = true
         end
       end
 
-      if maininput:pressed("mouse1") then
+      if maininput.pressed("mouse1") then
         st.cursorpresseduiindex = st.cursoruiindex
         if st.cursoruiindex ~= nil then
           st.editorsuppression = true
@@ -824,7 +824,7 @@ function st.draw()
       for j=1, snaplines, 1 do
         local snaplinestart = helpers.rotate(math.max(st.beatcircles[1], st.beatcircleminrad), j * st.degreesnap, screencenter.x, screencenter.y)
         local snaplineend = helpers.rotate(st.beatcirclemaxrad, j * st.degreesnap, screencenter.x, screencenter.y)
-        love.graphics.line(snaplinestart[1], snaplinestart[2], snaplineend[1], snaplineend[2])
+        gfx.drawLine(snaplinestart[1], snaplinestart[2], snaplineend[1], snaplineend[2])
       end
 
       --Events

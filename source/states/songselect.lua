@@ -1,7 +1,7 @@
 SongSelectScene = {}
 
 class("SongSelectScene").extends(NobleScene)
-SongSelectScene.baseColor = Graphics.kColorWhite
+SongSelectScene.backgroundColor = Graphics.kColorWhite
 
 function SongSelectScene:init()
 	SongSelectScene.super.init(self)
@@ -59,15 +59,16 @@ end
 function SongSelectScene:update()
   pq = ""
     local newselection = self.selection
-    if maininput:pressed("up") then
+    if maininput.pressed("up") then
+      print("up")
       newselection = self.selection - 1
       self.move = true
     end
-    if maininput:pressed("down") then
+    if maininput.pressed("down") then
       newselection = self.selection + 1
       self.move = true
     end
-    if maininput:pressed("accept") then
+    if maininput.pressed("accept") then
       if self.levels[self.selection].islevel then
         clevel = self.levels[self.selection].filename
         helpers.swap(states.game)
@@ -88,7 +89,7 @@ function SongSelectScene:update()
         newselection = 1
       end
     end
-    if maininput:pressed("e") then
+    if maininput.pressed("e") then
       if self.levels[self.selection].islevel then
         clevel = self.levels[self.selection].filename
         helpers.swap(states.editor)
@@ -115,14 +116,14 @@ function SongSelectScene:update()
       self.move = false
     end
 
-    em.update(dt)
+  em.update(dt)
 	flux.update(dt)
 end
 
 
 function SongSelectScene:draw()
 
-  gfx.fillRect(0,0,gameWidth,gameHeight)
+  -- gfx.fillRect(0,0,gameWidth,gameHeight)
   self.fg:draw(2, -2)
   gfx.setColor(0)
 

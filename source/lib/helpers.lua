@@ -247,16 +247,16 @@ function helpers.drawhold(xo, yo, x1, y1, x2, y2, completion, a1, a2, segments, 
     -- draw the black outline
     gfx.setColor(0)
     love.graphics.setLineWidth(16)
-    love.graphics.line(points)
+    gfx.drawLine(points)
     -- draw a white line, to make the black actually look like an outline
     gfx.setColor(1)
     love.graphics.setLineWidth(12)
-    love.graphics.line(points)
+    gfx.drawLine(points)
     --the added line for mine holds
     if colortype ~= "hold" then
       gfx.setColor(0)
       love.graphics.setLineWidth(10)
-      love.graphics.line(points)
+      gfx.drawLine(points)
     end
   end
   gfx.setColor(1)
@@ -280,12 +280,12 @@ function helpers.drawslice (ox, oy, rad, angle, inverse, alpha)
   love.graphics.rotate((angle - 90) * math.pi / 180)
 
   -- draw the lines connecting the player to the paddle
-  love.graphics.line(
+  gfx.drawLine(
     0, 0,
     (cs.p.paddle_distance + cs.extend) * math.cos(15 * math.pi / 180),
     (cs.p.paddle_distance + cs.extend) * math.sin(15 * math.pi / 180)
   )
-  love.graphics.line(
+  gfx.drawLine(
     0, 0,
     (cs.p.paddle_distance + cs.extend) * math.cos(-15 * math.pi / 180),
     (cs.p.paddle_distance + cs.extend) * math.sin(-15 * math.pi / 180)
@@ -295,13 +295,13 @@ function helpers.drawslice (ox, oy, rad, angle, inverse, alpha)
   local paddle_angle = 30 / 2 * math.pi / 180
   love.graphics.arc('line', 'open', 0, 0, (cs.p.paddle_distance + cs.extend), paddle_angle, -paddle_angle)
   love.graphics.arc('line', 'open', 0, 0, (cs.p.paddle_distance + cs.extend) + cs.p.paddle_width, paddle_angle, -paddle_angle)
-  love.graphics.line(
+  gfx.drawLine(
     (cs.p.paddle_distance + cs.extend) * math.cos(paddle_angle),
     (cs.p.paddle_distance + cs.extend) * math.sin(paddle_angle),
     ((cs.p.paddle_distance + cs.extend) + cs.p.paddle_width) * math.cos(paddle_angle),
     ((cs.p.paddle_distance + cs.extend) + cs.p.paddle_width) * math.sin(paddle_angle)
   )
-  love.graphics.line(
+  gfx.drawLine(
     (cs.p.paddle_distance + cs.extend) * math.cos(-paddle_angle),
     (cs.p.paddle_distance + cs.extend) * math.sin(-paddle_angle),
     ((cs.p.paddle_distance + cs.extend) + cs.p.paddle_width) * math.cos(-paddle_angle),

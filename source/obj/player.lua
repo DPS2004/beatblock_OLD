@@ -33,7 +33,7 @@ function player()
 		if obj.emotimer <= 0 then
 			obj.cemotion = "idle"
 		end
-		if maininput:pressed("a") then
+		if maininput.pressed("a") then
 			obj.cmode = not obj.cmode
 		end
 		if not cs.autoplay then
@@ -71,16 +71,16 @@ function player()
 
 		-- draw the paddle
 		gfx.pushContext()
-		love.graphics.translate(obj.x, obj.y)
-		love.graphics.rotate((obj.angle - 90) * math.pi / 180)
+		-- love.graphics.translate(obj.x, obj.y)
+		-- love.graphics.rotate((obj.angle - 90) * math.pi / 180)
 
 		-- draw the lines connecting the player to the paddle
-		love.graphics.line(
+		gfx.drawLine(
 			0, 0,
 			(obj.paddle_distance + cs.extend) * math.cos(obj.handle_size * math.pi / 180),
 			(obj.paddle_distance + cs.extend) * math.sin(obj.handle_size * math.pi / 180)
 		)
-		love.graphics.line(
+		gfx.drawLine(
 			0, 0,
 			(obj.paddle_distance + cs.extend) * math.cos(-obj.handle_size * math.pi / 180),
 			(obj.paddle_distance + cs.extend) * math.sin(-obj.handle_size * math.pi / 180)
@@ -88,15 +88,15 @@ function player()
 
 		-- draw the paddle
 		local paddle_angle = obj.paddle_size / 2 * math.pi / 180
-		love.graphics.arc('line', 'open', 0, 0, (obj.paddle_distance + cs.extend), paddle_angle, -paddle_angle)
-		love.graphics.arc('line', 'open', 0, 0, (obj.paddle_distance + cs.extend) + obj.paddle_width, paddle_angle, -paddle_angle)
-		love.graphics.line(
+		gfx.drawArc(0, 0, (obj.paddle_distance + cs.extend), paddle_angle, -paddle_angle)
+		gfx.drawArc(0, 0, (obj.paddle_distance + cs.extend) + obj.paddle_width, paddle_angle, -paddle_angle)
+		gfx.drawLine(
 			(obj.paddle_distance + cs.extend) * math.cos(paddle_angle),
 			(obj.paddle_distance + cs.extend) * math.sin(paddle_angle),
 			((obj.paddle_distance + cs.extend) + obj.paddle_width) * math.cos(paddle_angle),
 			((obj.paddle_distance + cs.extend) + obj.paddle_width) * math.sin(paddle_angle)
 		)
-		love.graphics.line(
+		gfx.drawLine(
 			(obj.paddle_distance + cs.extend) * math.cos(-paddle_angle),
 			(obj.paddle_distance + cs.extend) * math.sin(-paddle_angle),
 			((obj.paddle_distance + cs.extend) + obj.paddle_width) * math.cos(-paddle_angle),
@@ -107,7 +107,7 @@ function player()
 		gfx.pushContext()
 		-- scaling circle and face for hurt animation
 		local ouchpulsescale = 1 + obj.ouchpulse
-		love.graphics.scale(ouchpulsescale)
+		-- love.graphics.scale(ouchpulsescale)
 
 		-- adjusting x and y so they're unaffected by scaling
 		local finalx = obj.x / ouchpulsescale
@@ -115,16 +115,16 @@ function player()
 
 		-- draw the circle
 		gfx.setColor(1)
-		love.graphics.circle("fill", finalx, finaly, 16 + cs.extend / 2 + (math.sin(obj.bobi)) / 2)
+		gfx.fillCircleAtPoint(finalx, finaly, 16 + cs.extend / 2 + (math.sin(obj.bobi)) / 2)
 		gfx.setColor(0)
-		love.graphics.circle("line", finalx, finaly, 16 + cs.extend / 2 + (math.sin(obj.bobi)) / 2)
+		gfx.drawCircleAtPoint(finalx, finaly, 16 + cs.extend / 2 + (math.sin(obj.bobi)) / 2)
 
 		-- draw the eyes
 		gfx.setColor(1)
 		-- determine x and y offsets of the eyes
 		local eyex = (obj.lookradius) * math.cos((obj.angle - 90) * math.pi / 180)
 		local eyey = (obj.lookradius) * math.sin((obj.angle - 90) * math.pi / 180)
-		love.graphics.draw(obj.spr[obj.cemotion], finalx + eyex, finaly + eyey, 0, 1, 1, 16, 16)
+		-- love.graphics.draw(obj.spr[obj.cemotion], finalx + eyex, finaly + eyey, 0, 1, 1, 16, 16)
 		gfx.popContext()
 	end
 
