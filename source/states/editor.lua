@@ -581,7 +581,7 @@ paused = true
       end
 
       function st.drawmodule(eventid,modifyingvariable,moduletype,posy,header)
-        love.graphics.setFont(font2)
+        love.graphics.setFont(Axolotl12)
         --draw the header
         love.graphics.setColor(0, 0, 0, 1)
         love.graphics.printf(header, 351, posy-2, screencenter.x * 2, "left", 0, 1, 1)
@@ -604,7 +604,7 @@ paused = true
 
         elseif moduletype == "easing" then
         end
-        love.graphics.setFont(font1)
+        love.graphics.setFont(DigitalDisco16)
       end
 
       function st.eventsintab(tab)
@@ -778,7 +778,7 @@ end
 
 
 function st.draw()
-  love.graphics.setFont(font1)
+  love.graphics.setFont(DigitalDisco16)
   shuv.start()
 
   love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)

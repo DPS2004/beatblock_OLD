@@ -136,13 +136,13 @@ end
 
 function push:start()
   if self._canvas then
-    love.graphics.push()
+    gfx.pushContext()
     love.graphics.setCanvas({ self.canvases[1].canvas, stencil = self.canvases[1].stencil })
 
   else
     love.graphics.translate(self._OFFSET.x, self._OFFSET.y)
     love.graphics.setScissor(self._OFFSET.x, self._OFFSET.y, self._WWIDTH*self._SCALE.x, self._WHEIGHT*self._SCALE.y)
-    love.graphics.push()
+    gfx.pushContext()
     love.graphics.scale(self._SCALE.x, self._SCALE.y)
   end
 end
@@ -161,7 +161,7 @@ function push:applyShaders(canvas, shaders)
       _tmp = self:getCanvasTable("_tmp")
     end
 
-    love.graphics.push()
+    gfx.pushContext()
     love.graphics.origin()
     local outputCanvas
     for i = 1, #shaders do
@@ -173,7 +173,7 @@ function push:applyShaders(canvas, shaders)
       love.graphics.draw(inputCanvas)
       love.graphics.setCanvas(inputCanvas)
     end
-    love.graphics.pop()
+    gfx.popContext()
 
     love.graphics.setCanvas(_canvas)
     love.graphics.draw(outputCanvas)
@@ -187,7 +187,7 @@ function push:finish(shader)
   if self._canvas then
     local _render = self:getCanvasTable("_render")
 
-    love.graphics.pop()
+    gfx.popContext()
 
     local white = love11 and 1 or 255
     love.graphics.setColor(white, white, white)
@@ -207,10 +207,10 @@ function push:finish(shader)
     --draw render
     love.graphics.translate(self._OFFSET.x, self._OFFSET.y)
     local shader = shader or _render.shader
-    love.graphics.push()
+    gfx.pushContext()
     love.graphics.scale(self._SCALE.x, self._SCALE.y)
     self:applyShaders(_render.canvas, type(shader) == "table" and shader or { shader })
-    love.graphics.pop()
+    gfx.popContext()
 
     --clear canvas
     for i = 1, #self.canvases do
@@ -221,7 +221,7 @@ function push:finish(shader)
     love.graphics.setCanvas()
     love.graphics.setShader()
   else
-    love.graphics.pop()
+    gfx.popContext()
     love.graphics.setScissor()
   end
   --print('dt:'..dt)
