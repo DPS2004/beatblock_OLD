@@ -257,10 +257,11 @@ function love.load()
     --rdconvert = require "states.rdconvert",
     editor = require "states.editor",
     results = require "states.results",
+    prerender = require "states.prerender",
   }
 
   gs.registerEvents()
-  gs.switch(states.title)
+  gs.switch(states.prerender)
 end
 
 function love.textinput(t)

@@ -100,7 +100,8 @@ function obj.draw()
       ((obj.paddle_distance + cs.extend) + obj.paddle_width) * math.sin(-paddle_angle)
     )
   love.graphics.pop()
-
+  
+  --[[
   love.graphics.push()
     -- scaling circle and face for hurt animation
     local ouchpulsescale = 1 + obj.ouchpulse
@@ -123,6 +124,7 @@ function obj.draw()
     local eyey = (obj.lookradius) * math.sin((obj.angle - 90) * math.pi / 180)
     love.graphics.draw(obj.spr[obj.cemotion],finalx + eyex,finaly + eyey,0,1,1,16,16)
   love.graphics.pop()
+  ]]--
 end
 
 function obj.hurtpulse()

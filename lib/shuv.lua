@@ -1,5 +1,5 @@
 local shuv = {
-  scale = 2,
+  scale = 1,
   update = true,
   fullscreen = false
 }
