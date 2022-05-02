@@ -99,10 +99,10 @@ function SongSelectScene:update()
       if newselection >= 1 and newselection <= self.levelcount then --Only move the cursor if it's within the bounds of the level list
         self.selection = newselection
         te.play(sounds.click,"static")
-        self.ease = flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
+        self.ease = flux.to(st,30,{dispy=self.selection*-60}):ease("outExpo")
       end
       if self.levels[self.selection].islevel then
-        local curjson = json.decodeFile(st.levels[self.selection].filename .. "level.json")
+        local curjson = json.decodeFile(self.levels[self.selection].filename .. "level.json")
         if self.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter] then
           local cpct = self.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter].pctgrade
           local sn,ch = helpers.gradecalc(cpct)

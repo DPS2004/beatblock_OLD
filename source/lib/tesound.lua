@@ -17,6 +17,8 @@ TEsound.pitchLevels = {}  -- Pitch levels that multiply the pitches of sounds wi
 -- @param pitch A number which specifies the speed/pitch the sound will be played it. If the sound has a tag which a pitch has been specified for, it will multiply this number.
 -- @param func A function which will be called when the sound is finished playing (it's passed one parameter - a list with the sound's volume and pitch). If omitted, no function will be used.
 function TEsound.play(sound, sourceType, tags, volume, pitch, func)
+  sound:play()
+  --[[
   if type(sound) == "table" then
     assert(#sound > 0, "The list of sounds must have at least one sound.")
     sound = sound[love.math.random(#sound)]
@@ -49,6 +51,7 @@ function TEsound.playLooping(sound, sourceType, tags, n, volume, pitch)
   return TEsound.play( sound, sourceType, tags, volume, pitch,
     (not n or n > 1) and function(d) TEsound.playLooping(sound, sourceType, tags, (n and n-1), d[1], d[2]) end
   )
+  ]]--
 end
 
 

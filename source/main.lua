@@ -145,7 +145,7 @@ sprites = {
 
 --load select sounds
 sounds = {
-  click = snd.sampleplayer.new("assets/click2.ogg"),
+  click = snd.sampleplayer.new("assets/click.wav"),
   hold = snd.sampleplayer.new("assets/hold1.ogg"),
   mine = snd.sampleplayer.new("assets/mine.ogg")
 }
