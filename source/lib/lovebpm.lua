@@ -1,5 +1,5 @@
 --
--- lovebpm
+-- pdbpm
 --
 -- Copyright (c) 2016 rxi
 --
@@ -7,14 +7,15 @@
 -- under the terms of the MIT license. See LICENSE for details.
 --
 
-local lovebpm = { _version = "0.0.0" }
+local pdbpm = { _version = "0.0.1" }
 
 local Track = {}
 Track.__index = Track
 
-
-function lovebpm.newTrack()
+-- function pdbpm.newTrack(sample)
+function pdbpm.newTrack()
   local self = setmetatable({}, Track)
+  self.source = sample
   self.source = nil
   self.offset = 0
   self.volume = 1
@@ -28,12 +29,10 @@ function lovebpm.newTrack()
   self.time = 0
   self.totalTime = 0
   self.dtMultiplier = 1
-  self.lastBPMChange = { beat = 0, time = 0}
   return self
 end
 
-
-function lovebpm.detectBPM(filename, opts)
+function pdbpm.detectBPM(filename, opts)
   -- Init options table
   opts = opts or {}
   local t = { minbpm = 75, maxbpm = 300 }
@@ -49,26 +48,26 @@ function lovebpm.detectBPM(filename, opts)
   else
     data = filename
   end
-  local channels = data:getChannels()
+  local channels = 2 -- data:getChannels() -- no playdate function for getChannels, so assume 2.
   local samplerate = data:getSampleRate()
 
   -- Gets max amplitude over a number of samples at `n` seconds
   local function getAmplitude(n)
     local count = samplerate * channels / 200
     local at = n * channels * samplerate
-    if at + count > data:getSampleCount() then
+    if at + count > data:getSampleCount() then -- no playdate function for getSampleCount
       return 0
     end
     local a = 0
     for i = 0, count - 1 do
-      a = math.max(a, math.abs( data:getSample(at + i) ))
+      a = math.max(a, math.abs(data:getSample(at + i) )) -- no playdate function for getSample - is it possible to get the value at a point in time?
     end
     return a
   end
 
   -- Get track duration and init results table
-  local dur = data:getDuration("seconds")
-  local results = {}
+  local dur = data:getLength("seconds")
+    local results = {}
 
   -- Get maximum allowed BPM
   local step = 8
@@ -78,19 +77,19 @@ function lovebpm.detectBPM(filename, opts)
   -- Fill table with BPMs and their average on-the-beat amplitude until the
   -- minimum allowed BPM is reached
   while true do
-    local bpm = n / dur * 60
-    if bpm < opts.minbpm then
-      break
-    end
-    local acc = 0
-    for i = 0, n - 1 do
-      acc = acc + getAmplitude(dur / n * i)
-    end
-    -- Round BPM to 3 decimal places
-    bpm = math.floor(bpm * 1000 + .5) / 1000
-    -- Add result to table
-    table.insert(results, { bpm = bpm, avg = acc / n })
-    n = n - step
+  local bpm = n / dur * 60
+  if bpm < opts.minbpm then
+    break
+  end
+  local acc = 0
+  for i = 0, n - 1 do
+    acc = acc + getAmplitude(dur / n * i)
+  end
+  -- Round BPM to 3 decimal places
+  bpm = math.floor(bpm * 1000 + .5) / 1000
+  -- Add result to table
+  table.insert(results, { bpm = bpm, avg = acc / n })
+  n = n - step
   end
 
   -- Sort table by greatest average on-the-beat amplitude. The one with the
@@ -99,65 +98,55 @@ function lovebpm.detectBPM(filename, opts)
   return results[1].bpm
 end
 
-
 function Track:load(filename)
   -- Deinit old source
   self:stop()
   -- Init new source
   -- "static" mode is used here instead of "stream" as the time returned by
   -- :tell() seems to go out of sync after the first loop otherwise
-  self.source = love.audio.newSource(filename, "static")
+  self.source = (filename)
   self:setLooping(self.looping)
   self:setVolume(self.volume)
   self:setPitch(self.pitch)
-  self.totalTime = self.source:getDuration("seconds")
+  self.totalTime = self.source:getLength()
   self:stop()
+  print("sample test: " .. tostring(self.source:getSample(2)))
   return self
 end
 
-
-function Track:setBPM(n, at)
-  at = at or 0
-  self.lastBPMChange.time = self.lastBPMChange.time + self.period * (at - self.lastBPMChange.beat)
-  self.lastBPMChange.beat = at
-
+function Track:setBPM(n)
   self.period = 60 / n
   return self
 end
-
 
 function Track:setOffset(n)
   self.offset = n or 0
   return self
 end
 
-
 function Track:setVolume(volume)
   self.volume = volume or 1
-  if self.source then
-    self.source:setVolume(self.volume)
-  end
+  -- if self.source then
+  -- self.source:setVolume(self.volume)
+  -- end
   return self
 end
-
 
 function Track:setPitch(pitch)
   self.pitch = pitch or 1
-  if self.source then
-    self.source:setPitch(self.pitch)
-  end
+  -- if self.source then
+  -- self.source:setPitch(self.pitch)
+  -- end
   return self
 end
-
 
 function Track:setLooping(loop)
   self.looping = loop
-  if self.source then
-    self.source:setLooping(self.looping)
-  end
+  -- if self.source then
+  -- self.source:setLooping(self.looping)
+  -- end
   return self
 end
-
 
 function Track:on(name, fn)
   self.listeners[name] = self.listeners[name] or {}
@@ -165,26 +154,23 @@ function Track:on(name, fn)
   return self
 end
 
-
 function Track:emit(name, ...)
   if self.listeners[name] then
-    for i, fn in ipairs(self.listeners[name]) do
-      fn(...)
-    end
+  for i, fn in ipairs(self.listeners[name]) do
+    fn(...)
+  end
   end
   return self
 end
-
 
 function Track:play(restart)
   if not self.source then return self end
   if self.restart then
-    self:stop()
+  self:stop()
   end
   self.source:play()
   return self
 end
-
 
 function Track:pause()
   if not self.source then return self end
@@ -192,18 +178,16 @@ function Track:pause()
   return self
 end
 
-
 function Track:stop()
   self.lastBeat = nil
   self.time = 0
   self.lastUpdateTime = nil
   self.lastSourceTime = 0
   if self.source then
-    self.source:stop()
+  self.source:stop()
   end
   return self
 end
-
 
 function Track:setTime(n)
   if not self.source then return end
@@ -214,46 +198,39 @@ function Track:setTime(n)
   return self
 end
 
-
 function Track:setBeat(n)
   return self:setTime(n * self.period)
 end
-
 
 function Track:getTotalTime()
   return self.totalTime
 end
 
-
 function Track:getTotalBeats()
   if not self.source then
-    return 0
+  return 0
   end
   return math.floor(self:getTotalTime() / self.period + 0.5)
 end
-
 
 function Track:getTime()
   return self.time
 end
 
-
 function Track:getBeat(multiplier)
   multiplier = multiplier or 1
   local period = self.period * multiplier
-  local beat = (self.time - self.lastBPMChange.time) / period + self.lastBPMChange.beat
-  return math.floor(beat), beat - math.floor(beat)
+  return math.floor(self.time / period), (self.time % period) / period
 end
 
-
-function Track:update()
+function Track:update(dt)
   if not self.source then return self end
 
   -- Get delta time: getTime() is used for time-keeping as the value returned by
   -- :tell() is updated at a potentially lower rate than the framerate
-  local t = love.timer.getTime()
-  local dt = self.lastUpdateTime and (t - self.lastUpdateTime) or 0
-  self.lastUpdateTime = t
+  -- local t = playdate.getCurrentTimeMilliseconds()
+  -- local dt = (t - lastUpdateTime) * 1000 --and (t - lastUpdateTime) or 0
+  -- self.lastUpdateTime = t
 
   -- Set new time
   local time
@@ -264,7 +241,7 @@ function Track:update()
   end
 
   -- Get source time and apply offset
-  local sourceTime = self.source:tell("seconds")
+  local sourceTime = self.source:getOffset()
   sourceTime = sourceTime + self.offset
 
   -- If the value returned by the :tell() function has updated we check to see
@@ -284,8 +261,8 @@ function Track:update()
   end
 
   -- Assure time is within proper bounds in case the offset or added
-  -- frame-delta-time made it overshoot
-  time = time % self.totalTime
+  -- 	frame-delta-time made it overshoot
+  --time = time % self.totalTime
 
   -- Calculate deltatime and emit update event; set time
   if self.lastBeat then
@@ -323,14 +300,15 @@ function Track:update()
           b = b + total
         else
           self:emit("end")
-          print("end")
           self:stop()
         end
       end
     end
     -- Emit beat event for each passed beat
     while x <= b do
-      self:emit("beat", x % total)
+      --self:emit("beat", x % total)
+      --self:emit("beat", "x % total")
+      self:emit("beat", x)
       x = x + 1
     end
   end
@@ -339,4 +317,4 @@ function Track:update()
 end
 
 
-return lovebpm
+return pdbpm

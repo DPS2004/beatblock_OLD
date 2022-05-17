@@ -17,6 +17,7 @@ TEsound.pitchLevels = {}  -- Pitch levels that multiply the pitches of sounds wi
 -- @param pitch A number which specifies the speed/pitch the sound will be played it. If the sound has a tag which a pitch has been specified for, it will multiply this number.
 -- @param func A function which will be called when the sound is finished playing (it's passed one parameter - a list with the sound's volume and pitch). If omitted, no function will be used.
 function TEsound.play(sound, sourceType, tags, volume, pitch, func)
+  --print("TEsound.play sound:" .. tostring(sound))
   sound:play()
   --[[
   if type(sound) == "table" then

@@ -6,15 +6,17 @@ import("lib/noble/Noble")
 -- Clear console for easier debugging
 playdate.clearConsole()
 
+-- alias playdate.graphics and playdate.sound
 gfx = playdate.graphics
 snd = playdate.sound
 
+-- implement delta time as dt
 lastFrame = playdate.getCurrentTimeMilliseconds()
 updateDt = function ()
-  dt = (playdate.getCurrentTimeMilliseconds() - lastFrame)
+  dt = (playdate.getCurrentTimeMilliseconds() - lastFrame) / 1000
   lastFrame = playdate.getCurrentTimeMilliseconds()
 end
-dt = 1
+
 clevel = "cannery.json"
 gamename = "BeatBlock"
 cs = nil
@@ -31,20 +33,18 @@ screencenter = {x = gameWidth/2, y = gameHeight/2}
 -- font is https://tepokato.itch.io/axolotl-font
 -- https://www.dafont.com/digital-disco.font
 Axolotl12 = gfx.font.new("assets/fonts/Axolotl-12")
+DigitalDisco12 = gfx.font.new("assets/fonts/DigitalDisco-12")
 DigitalDisco16 = gfx.font.new("assets/fonts/DigitalDisco-16")
 DigitalDisco24 = gfx.font.new("assets/fonts/DigitalDisco-24")
+gfx.setFont(DigitalDisco16)
 
-
--- love.graphics.setFont(DigitalDisco16)
 -- accurate deltatime
 acdelt = true
-
 
 -- import libraries
 
 -- custom functions, snippets, etc
 helpers = import "lib/helpers"
-
 
 -- quickly load json files
 -- dpf = import "lib/dpf"
@@ -56,7 +56,7 @@ helpers = import "lib/helpers"
 baton = import "lib/baton"
 
 -- lovebpm, syncs stuff to music
-lovebpm = import "lib/lovebpm"
+pdbpm = import "lib/pdbpm"
 
 -- shuv = import "lib/shuv"
 -- shuv.init()
@@ -81,10 +81,10 @@ ez = import "lib/ezanim"
 
 -- tween manager
 flux = import "lib/flux"
-
 paused = false
 
 -- start colors table with default colors
+
 
 --load sprites into memory, so that we are not loading 50 bajillion copies of the beats in a level
 sprites = {
@@ -122,7 +122,6 @@ sprites = {
       bminus = gfx.image.new("assets/results/small/bminus"),
       cminus = gfx.image.new("assets/results/small/cminus"),
       dminus = gfx.image.new("assets/results/small/dminus")
-
     }
   },
   results = {
@@ -146,8 +145,8 @@ sprites = {
 --load select sounds
 sounds = {
   click = snd.sampleplayer.new("assets/click.wav"),
-  hold = snd.sampleplayer.new("assets/hold1.ogg"),
-  mine = snd.sampleplayer.new("assets/mine.ogg")
+  hold = snd.sampleplayer.new("assets/hold1.wav"),
+  mine = snd.sampleplayer.new("assets/mine.wav")
 }
 
 --setup input
@@ -204,7 +203,9 @@ ctrls = {
 --     },
 --       joystick = love.joystick.getJoysticks()[1],
 --   }
+
 maininput = {}
+
 -- Just pressed this frame
 maininput.pressed = function (key)
   return playdate.buttonJustPressed(ctrls[key])
@@ -216,17 +217,15 @@ end
 
 -- entity manager
 em = import "lib/entityman"
-
 entities = {}
--- init states
+
+-- init states (Noble Scenes)
 import "states/template"
 import "states/songselect"
 import "states/title"
--- game = import "states/game"
+import "states/game"
 -- rdconvert = import "states/rdconvert"
 -- editor = import "states/editor"
--- results = import "states/results"
-
-
+import "states/results"
 
 Noble.new(TitleScene)

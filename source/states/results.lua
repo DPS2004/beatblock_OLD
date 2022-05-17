@@ -1,159 +1,127 @@
-local st = {}
+ResultsScene = {}
 
+class("ResultsScene").extends(NobleScene)
 
-function st.init()
+function ResultsScene:init()
+  ResultsScene.super.init(self)
 end
 
-
-function st.enter(prev)
+function ResultsScene:enter(prev)
+  cs.gm.currst.source.source:stop()
+  ResultsScene.super.enter(self)
   entities = {}
-  st.selection = 1
-  st.selectionbounds = {
-    {x=167,y=201,w=64,h=14},
+  self.selection = 1
+  self.selectionbounds = {
+    {x=165,y=200,w=68,h=16},
     {x=179,y=218,w=40,h=17}
   }
-  st.cselectionbounds = {x=167,y=201,w=64,h=14}
-  st.goffset = 0
-  st.pctgrade = ((states.game.maxhits - states.game.misses) / states.game.maxhits)*100
-  st.lgrade,st.lgradepm = helpers.gradecalc(st.pctgrade)
-  st.pljson = json.decodeFile("savedata/playedlevels.json",{})
-  st.timesplayed = 0
-  st.storepctgrade = st.pctgrade
-  st.storemisses = states.game.misses
-  if st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter] then
-    st.timesplayed = st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].timesplayed
-    st.timesplayed = st.timesplayed + 1
-    if st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].misses < st.storemisses then
-      st.storemisses = st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].misses
-    end
-    if st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].pctgrade > st.storepctgrade then
-      st.storepctgrade = st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].pctgrade
-    end
-  else
-    st.timesplayed = 1
-  end
-  st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter]={pctgrade=st.storepctgrade,misses=st.storemisses,timesplayed=st.timesplayed}
-  json.encodeToFile("savedata/playedlevels.json", st.pljson)
+  self.cselectionbounds = self.selectionbounds[1]
+  self.goffset = 0
+  self.pctgrade = ((cs.gm.currst.maxhits - cs.gm.currst.misses) / cs.gm.currst.maxhits)*100
+  self.lgrade, self.lgradepm = helpers.gradecalc(self.pctgrade)
+  -- self.pljson = json.decodeFile("savedata/playedlevels.json",{})
+  self.timesplayed = 0
+  self.storepctgrade = self.pctgrade
+  self.storemisses = cs.misses
+  -- if self.pljson ~= nil then
+  --   self.timesplayed = 1
+  -- else
+  --   if self.pljson[cs.level.metadata.songname.."_"..cs.level.metadata.charter] then
+  --     self.timesplayed = self.pljson[cs.level.metadata.songname.."_"..cs.level.metadata.charter].timesplayed
+  --     self.timesplayed = self.timesplayed + 1
+  --     if self.pljson[cs.level.metadata.songname.."_"..cs.level.metadata.charter].misses < self.storemisses then
+  --       self.storemisses = self.pljson[cs.level.metadata.songname.."_"..cs.level.metadata.charter].misses
+  --     end
+  --     if self.pljson[cs.level.metadata.songname.."_"..cs.level.metadata.charter].pctgrade > self.storepctgrade then
+  --       self.storepctgrade = self.pljson[cs.level.metadata.songname.."_"..cs.level.metadata.charter].pctgrade
+  --     end
+  --   end
+  --   self.pljson[cs.level.metadata.songname.."_"..cs.level.metadata.charter]={pctgrade=self.storepctgrade,misses=self.storemisses,timesplayed=self.timesplayed}
+  --   json.encodeToFile("savedata/playedlevels.json", self.pljson)
+  -- end
 end
 
 
-function st.leave()
-
+function ResultsScene:exit()
+  ResultsScene.super.exit(self)
 end
 
 
-function st.resume()
+function ResultsScene:resume()
 
 end
 
-function st.mousepressed(x,y,b,t,p)
-
-end
-
-function st.mousepressed(x,y,b,t,p)
-  if ismobile then
-    if (love.mouse.getY()/shuv.scale) < 240/3 then -- up
-      st.selection = 1
-      st.ease = flux.to(st.cselectionbounds,30,{
-        x=st.selectionbounds[1].x,
-        y=st.selectionbounds[1].y,
-        w=st.selectionbounds[1].w,
-        h=st.selectionbounds[1].h,
-
-      }):ease("outExpo")
-    elseif (love.mouse.getY()/shuv.scale) > 240/3*2 then -- down
-      st.selection = 2
-      st.ease = flux.to(st.cselectionbounds,30,{
-        x=st.selectionbounds[2].x,
-        y=st.selectionbounds[2].y,
-        w=st.selectionbounds[2].w,
-        h=st.selectionbounds[2].h,
-
-      }):ease("outExpo")
-    else -- center
-      if st.selection == 1 then
-        helpers.swap(states.songselect)
-      else
-        helpers.swap(states.game)
-      end
-
-    end
-  end
-end
-
-function st.update()
+function ResultsScene:update()
+  updateDt()
+  flux.update(dt)
   pq = ""
   if not paused then
     if maininput.pressed("up") then
-      st.selection = 1
-      st.ease = flux.to(st.cselectionbounds,30,{
-        x=st.selectionbounds[1].x,
-        y=st.selectionbounds[1].y,
-        w=st.selectionbounds[1].w,
-        h=st.selectionbounds[1].h,
-
-      }):ease("outExpo")
+      self.selection = 1
+      self.cselectionbounds = self.selectionbounds[self.selection]
+      --flux.to(self.cselectionbounds, 30, self.selectionbounds[self.selection]):ease("outExpo")
     end
     if maininput.pressed("down") then
-      st.selection = 2
-      st.ease = flux.to(st.cselectionbounds,30,{
-        x=st.selectionbounds[2].x,
-        y=st.selectionbounds[2].y,
-        w=st.selectionbounds[2].w,
-        h=st.selectionbounds[2].h,
-
-      }):ease("outExpo")
+      self.selection = 2
+      self.cselectionbounds = self.selectionbounds[self.selection]
+      --flux.to(self.cselectionbounds, 30, self.selectionbounds[self.selection]):ease("outExpo")
     end
     if maininput.pressed("accept") then
-      if st.selection == 1 then
-        helpers.swap(states.songselect)
+      if self.selection == 1 then
+        Noble.transition(SongSelectScene)
       else
-        helpers.swap(states.game)
+        Noble.transition(GameScene)
       end
     end
 
-
-
-    flux.update(1)
     em.update(dt)
   end
 end
 
+function ResultsScene:draw()
 
-function st.draw()
-  love.graphics.setFont(DigitalDisco16)
-  --push:start()
-  shuv.start()
-  love.graphics.setColor(1,1,1)
+  flux.update(dt)
+  
+  -- clear the screen
+  gfx.clear()
+  
+  -- draw metadata bar
+  gfx.setColor(playdate.graphics.kColorBlack)
+  gfx.setFont(DigitalDisco16)
+  meta_text = (cs.level.metadata.artist .. " - " .. cs.level.metadata.songname)
+  gfx.drawTextAligned(meta_text, 200, 10, kTextAlignment.center)
+  gfx.fillRect(0, 33, 400, 2)
 
-  love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
-
-  love.graphics.setColor(0,0,0)
-  --metadata bar
-  love.graphics.printf(states.game.level.metadata.artist .. " - " .. states.game.level.metadata.songname,0,10,400,"center")
-  love.graphics.rectangle("fill",0,33,400,2)
-
-  --results circle
-    love.graphics.setLineWidth(2)
-  love.graphics.circle("line",200,139,100)
-  love.graphics.printf(gfx.getLocalizedText("grade"),0,45,400,"center")
-  love.graphics.setColor(1,1,1)
-  love.graphics.draw(sprites.results.grades[st.lgrade],175+st.goffset,62)
-  if st.lgradepm ~= "none" then
-    love.graphics.draw(sprites.results.grades[st.lgradepm],202,61)
+  -- draw results
+  gfx.setLineWidth(2)
+  gfx.drawCircleAtPoint(200, 139, 100)
+  sprites.results.grades[self.lgrade]:draw (175+self.goffset,62)
+  if self.lgradepm ~= "none" then
+    sprites.results.grades[self.lgradepm]:draw(202,61)
   end
-  love.graphics.setColor(0,0,0)
-  love.graphics.printf(gfx.getLocalizedText("misses") .. states.game.misses,0,135,400,"center")
-  love.graphics.printf(gfx.getLocalizedText("continue"),0,201,400,"center")
-  love.graphics.printf(gfx.getLocalizedText("retry"),0,218,400,"center")
-  love.graphics.setLineWidth(1)
-  love.graphics.rectangle("line",st.cselectionbounds.x,st.cselectionbounds.y,st.cselectionbounds.w,st.cselectionbounds.h)
-  love.graphics.setColor(1,1,1)
-
+  gfx.drawTextAligned("hits: " .. cs.gm.currst.hits, 200, 135, kTextAlignment.center)
+  gfx.drawTextAligned("misses: " .. cs.gm.currst.misses, 200, 158, kTextAlignment.center)
+  
+  -- draw buttons
+  gfx.setFont(DigitalDisco12)
+  if self.ease then 
+    gfx.fillRoundRect(self.ease.x,self.ease.y,self.ease.w,self.ease.h,3)
+  else 
+    gfx.fillRoundRect(self.cselectionbounds.x,self.cselectionbounds.y,self.cselectionbounds.w,self.cselectionbounds.h,3)
+  end
+  gfx.setImageDrawMode(gfx.kDrawModeNXOR)
+  if self.selection == 1 then 
+    gfx.drawTextAligned("continue", 200, 201, kTextAlignment.center)
+    gfx.drawTextAligned("retry", 200, 218, kTextAlignment.center)
+  else
+    gfx.drawTextAligned("continue", 200, 201, kTextAlignment.center)
+    gfx.drawTextAligned("retry", 200, 218, kTextAlignment.center)
+  end
+  gfx.setImageDrawMode(gfx.kDrawModeCopy)
+  
   em.draw()
 
-  shuv.finish()
 end
 
 
-return st
+return ResultsScene

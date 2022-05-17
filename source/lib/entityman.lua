@@ -1,14 +1,22 @@
 local keys = {
-  titleparticle = import "obj/titleparticle",
-  player = import "obj/player"
+  beat = import "obj/beat",
+  circlevfx = import "obj/circlevfx",
+  gamemanager = import "obj/gamemanager",
+  hitpart = import "obj/hitpart",
+  misspart = import "obj/misspart",
+  player = import "obj/player",
+  --popup = import "obj/popup", -- Don't think this is needed?
+  --square = import "obj/square", -- ditto, looks like it's empty
+  squarevfx = import "obj/squarevfx",
+  titleparticle = import "obj/titleparticle"
 }
-
 
 local em = {
   deep = deeper.init()
 }
 
 function em.init(en,x,y,kvtable)
+  --print(en,x,y,kvtable)
   local new = keys[en]()
   if not kvtable then kvtable = {} end
   new.x = x
