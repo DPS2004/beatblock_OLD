@@ -50,7 +50,7 @@ end
 
 function SongSelectScene:exit(prev)
 	SongSelectScene.super.exit(self)
-  self.p.delete = true
+  --self.p.delete = true
   self.p=nil
 end
 
