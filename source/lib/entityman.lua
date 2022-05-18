@@ -42,7 +42,7 @@ function em.update(dt)
 end
 
 function em.draw()
-  for i, v in ipairs (entities) do
+  for i = #entities, 1, -1 do
     entities[i].draw()
   end
 end
