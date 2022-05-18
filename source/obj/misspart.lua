@@ -22,7 +22,7 @@ function misspart()
   
   function obj.draw()
     --gfx.setColor(1)
-    obj.spr:draw(obj.x,obj.y)--,0,1,1,16,16)
+    obj.spr:drawCentered(obj.x,obj.y)--,0,1,1,16,16)
   
   end
   
