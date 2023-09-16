@@ -97,6 +97,8 @@ function helpers.updatemouse()
   
   mouse.x = (love.mouse.getX()/love.graphics.getWidth())
   mouse.y = (love.mouse.getY()/love.graphics.getHeight())
+  mouse.rx = mouse.x * project.res.x
+  mouse.ry = mouse.y * project.res.y
 end
 
 

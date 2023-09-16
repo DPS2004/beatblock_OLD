@@ -5,7 +5,7 @@ st:setinit(function(self)
   self.fg = sprites.songselect.fg
 	
   self.cdir = "levels/"
-  --self.p = em.init("player",{x=350,y=120})
+  self.p = em.init("player",{x=350,y=120})
   self.length = 42
   self.extend = 0
   self.levels = self:refresh()
@@ -163,9 +163,6 @@ st:setupdate(function(self,dt)
       end
       self.move = false
     end
-
-    flux.update(1)
-    em.update(dt)
   end
 end)
 
