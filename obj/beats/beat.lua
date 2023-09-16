@@ -3,6 +3,8 @@ Beat = class('Beat',Entity)
 --all other beat types will now be separate selfects.
 
 function Beat:initialize(params)
+	self.name = 'beat'
+	
 	self.layer = -1
 	self.uplayer = 3
 	
@@ -97,6 +99,53 @@ function Beat:getpositions()
 	return helpers.rotate((self.hb - cs.cbeat)*cs.level.properties.speed*self.smult+cs.extend+cs.length,self.angle,self.ox,self.oy)
 end
 
+function Beat:updatepositions()
+	local p1, p2 = self:getpositions()
+	
+  self.x = p1[1]
+  self.y = p1[2]  
+	if p2 then
+		self.x2 = p2[1]
+		self.y2 = p2[2]
+	end
+end
+
+function Beat:checkifactive()
+	return ((self.hb - cs.cbeat) <= 0)
+end
+
+function Beat:checktouchingpaddle(a)
+	return (helpers.angdistance(a,cs.p.angle) <= cs.p.paddle_size / 2)
+end
+
+
+function Beat:onhit()
+	self:makeparticles(true)
+	pq = pq .. "   player hit " ..self.name.."!"
+	cs.hits = cs.hits + 1
+	cs.combo = cs.combo + 1
+	if cs.beatsounds then
+		te.play(sounds.click,"static")
+	end
+	if cs.p.cemotion == "miss" then
+		cs.p.emotimer = 0
+		cs.p.cemotion = "idle"
+	end
+	self.delete = true
+end
+
+function Beat:onmiss()
+	self:makeparticles(false)
+	pq = pq .. "   player missed " ..self.name.."!"
+	cs.misses = cs.misses + 1
+	cs.combo = 0
+	cs.p.emotimer = 100
+	cs.p.cemotion = "miss"
+
+	cs.p:hurtpulse()
+	self.delete = true
+end
+
 function Beat:makeparticles(hit)
 	if hit then
 		em.init("hitpart",{x=self.x,y=self.y})
@@ -117,37 +166,16 @@ function Beat:update(dt)
   self:updateprogress()
   self:updateangle()
   
-	local p1 = self:getpositions()
-	
-  self.x = p1[1]
-  self.y = p1[2]  
+	self:updatepositions()
 
-  if (self.hb - cs.cbeat) <= 0 then -- pretty much all of this should be split up into separate functions for other beat types to use!!!
-		if helpers.angdistance(self.endangle,cs.p.angle) <= cs.p.paddle_size / 2 then 
-			self:makeparticles(true)
-			pq = pq .. "   player hit!"
-			cs.hits = cs.hits + 1
-			cs.combo = cs.combo + 1
-			if cs.beatsounds then
-				te.play(sounds.click,"static")
-			end
-			if cs.p.cemotion == "miss" then
-				cs.p.emotimer = 0
-				cs.p.cemotion = "idle"
-			end
-			self.delete = true
+  if self:checkifactive() then
+		if self:checktouchingpaddle(self.endangle) then 
+			self:onhit()
 		else
-			self:makeparticles(false)
-			pq = pq .. "   player missed!"
-			cs.misses = cs.misses + 1
-			cs.combo = 0
-			cs.p.emotimer = 100
-			cs.p.cemotion = "miss"
-
-			cs.p:hurtpulse()
-			self.delete = true
+			self:onmiss()
 		end
 	end
+	
   prof.pop('beat update')
 end
 

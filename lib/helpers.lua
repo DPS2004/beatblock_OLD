@@ -117,103 +117,103 @@ function helpers.map(x, in_min, in_max, out_min, out_max)
 end
 
 helpers.eases = {
-  ["Linear"] = function (t)
+  ["linear"] = function (t)
     return t
   end,
 
-  ["InQuad"] = function (t)
+  ["inquad"] = function (t)
     return math.pow(t, 2)
   end,
 
-  ["OutQuad"] = function (t)
+  ["outquad"] = function (t)
     return 1 - math.pow(1 - t, 2)
   end,
   
-  ["InOutQuad"] = function (t)
+  ["inoutquad"] = function (t)
     return t<0.5 and math.pow(t, 2)*2 or 1 - math.pow(1 - t, 2)*2
   end,
   
-  ["OutInQuad"] = function (t)
+  ["outinquad"] = function (t)
     return t<0.5 and 0.5-math.pow(0.5-t, 2)*2 or 0.5+math.pow(0.5-t, 2)*2
   end,
 
-  ["InCubic"] = function (t)
+  ["incubic"] = function (t)
     return math.pow(t, 3)
   end,
 
-  ["OutCubic"] = function (t)
+  ["outcubic"] = function (t)
     return 1 - math.pow(1 - t, 3)
   end,
   
-  ["InOutCubic"] = function (t)
+  ["inoutcubic"] = function (t)
     return t<0.5 and math.pow(t, 3)*4 or 1 - math.pow(1 - t, 3)*4
   end,
 
-  ["InQuart"] = function (t)
+  ["inquart"] = function (t)
     return math.pow(t, 4)
   end,
 
-  ["OutQuart"] = function (t)
+  ["outquart"] = function (t)
     return 1 - math.pow(1 - t, 4)
   end,
   
-  ["InOutQuart"] = function (t)
+  ["inoutquart"] = function (t)
     return t<0.5 and math.pow(t, 4)*8 or 1 - math.pow(1 - t, 4)*8
   end,
 
-  ["InQuint"] = function (t)
+  ["inquint"] = function (t)
     return math.pow(t, 5)
   end,
 
-  ["OutQuint"] = function (t)
+  ["outquint"] = function (t)
     return 1 - math.pow(1 - t, 5)
   end,
   
-  ["InOutQuint"] = function (t)
+  ["inoutquint"] = function (t)
     return t<0.5 and math.pow(t, 5)*16 or 1 - math.pow(1 - t, 5)*16
   end,
 
-  ["InExpo"] = function (t)
+  ["inexpo"] = function (t)
     return math.pow(2, (10 * (t - 1)))
   end,
 
-  ["OutExpo"] = function (t)
+  ["outexpo"] = function (t)
     return 1 - math.pow(2, (10 * (-t)))
   end,
   
-  ["InSine"] = function (t)
+  ["insine"] = function (t)
     return 1 - math.cos(t * (math.pi * .5))
   end,
 
-  ["OutSine"] = function (t)
+  ["outsine"] = function (t)
     return math.cos((1 - t) * (math.pi * .5))
   end,
 
-  ["InOutSine"] = function (t)
+  ["inoutsine"] = function (t)
     return (math.cos((t+1)*math.pi)*0.5)+0.5
   end,
 
-  ["InCirc"] = function (t)
+  ["incirc"] = function (t)
     return 1 - math.sqrt(1 - (math.pow(t, 2)))
   end,
 
-  ["OutCirc"] = function (t)
+  ["outcirc"] = function (t)
     return math.sqrt(1 - (math.pow(1 - t, 2)))
   end,
 
-  ["InBack"] = function (t)
+  ["inback"] = function (t)
     return math.pow(t, 2) * (2.7 * t - 1.7)
   end,
 
-  ["OutBack"] = function (t)
+  ["outback"] = function (t)
     return 1 - math.pow(1 - t, 2) * (2.7 * (1 - t) - 1.7)
   end,
 
-  ["InElastic"] = function (t)
+  ["inelastic"] = function (t)
     return -(2^(10 * (t - 1)) * math.sin((t - 1.075) * (math.pi * 2) / .3))
   end,
 
-  ["OutElastic"] = function (t)
+  ["outelastic"] = function (t)
     return 1 + (2^(10 * (-t)) * math.sin(((1 - t) - 1.075) * (math.pi * 2) / .3))
   end,
   
@@ -222,10 +222,11 @@ helpers.eases = {
 
 function helpers.interpolate(a, b, t, ease)
   local q
+	ease = string.lower((ease or 'linear'))
   if helpers.eases[ease] then
     q = helpers.eases[ease] (t)
   else
-    q = helpers.eases["Linear"] (t)
+    q = helpers.eases["linear"] (t)
   end
 
   return helpers.lerp (a, b, q)
