@@ -1,29 +1,39 @@
-local obj = {
-  layer = -2,
-  uplayer = 9,
-  x=screencenter.x,
-  y=screencenter.y,
-  ox=screencenter.x,
-  oy=screencenter.y,
-  angle=0,
-  distance=42,
-  spr = love.graphics.newImage("assets/game/square.png")
-}
+Misspart = class('Misspart',Entity)
 
 
-function obj.update(dt)
-  flux.to(obj,15,{distance=0}):ease("outExpo"):oncomplete(function(f) obj.delete=true end)
-  local p1 = helpers.rotate(obj.distance+cs.extend,obj.angle,obj.ox,obj.oy)
-  obj.x = p1[1]
-  obj.y = p1[2]
+function Misspart:initialize(params)
+	self.layer = -2
+	self.uplayer = 9
+	self.x = project.res.cx
+	self.y = project.res.cy
+	self.ox = self.x
+	self.oy = self.y
+	self.angle = 0
+	self.distance = 42
+	self.spr = love.graphics.newImage("assets/game/square.png")
+	
+  Entity.initialize(self,params)
+	
 end
 
 
-function obj.draw()
+
+function Misspart:update(dt)
+  prof.push('misspart update')
+  flux.to(self,15,{distance=0}):ease("outExpo"):oncomplete(function(f) self.delete=true end)
+  local p1 = helpers.rotate(self.distance+cs.extend,self.angle,self.ox,self.oy)
+  self.x = p1[1]
+  self.y = p1[2]
+  prof.pop('misspart update')
+end
+
+
+function Misspart:draw()
+  prof.push('misspart draw')
   love.graphics.setColor(1,1,1,1)
-  love.graphics.draw(obj.spr,obj.x,obj.y,0,1,1,8,8)
-
+  love.graphics.draw(self.spr,self.x,self.y,0,1,1,8,8)
+  prof.pop('misspart draw')
 end
 
 
-return obj
+return Misspart

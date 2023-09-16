@@ -8,4 +8,6 @@ em.new('obj/beat.lua','beat')
 
 
 em.new('obj/hitpart.lua','hitpart')
+em.new('obj/misspart.lua','misspart')
+
 em.new('obj/titleparticle.lua','titleparticle')

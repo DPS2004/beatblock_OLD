@@ -13,17 +13,21 @@ function Hitpart:initialize(params)
 end
 
 function Hitpart:update(dt)
+  prof.push('hitpart update')
   self.rad = self.rad - dt
   if self.rad <= 0 then
     self.delete = true
   end
+  prof.pop('hitpart update')
 end
 
 
 function Hitpart:draw()
+  prof.push('hitpart draw')
   love.graphics.setLineWidth(1)
   love.graphics.setColor(0,0,0,1)
   love.graphics.circle("line",self.x,self.y,self.rad)
+  prof.pop('hitpart draw')
 end
 
 

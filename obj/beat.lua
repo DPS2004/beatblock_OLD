@@ -10,7 +10,6 @@ function Beat:initialize(params)
 	self.y = project.res.cy
 	
   self.angle = 0
-	self.endangle = 0
 	
 	self.smult = 1
 	
@@ -96,7 +95,7 @@ function Beat:getpositions()
 end
 
 function Beat:update(dt)
-  
+  prof.push('beat update')
   self:updateprogress()
 
 
@@ -110,7 +109,7 @@ function Beat:update(dt)
   self.x = p1[1]
   self.y = p1[2]  
 
-  if (self.hb - cs.cbeat) <= 0 then
+  if (self.hb - cs.cbeat) <= 0 then -- pretty much all of this should be split up into separate functions for other beat types to use!!!
 		if helpers.angdistance(self.endangle,cs.p.angle) <= cs.p.paddle_size / 2 then 
 			em.init("hitpart",{x=self.x,y=self.y})
 			self.delete = true
@@ -125,11 +124,14 @@ function Beat:update(dt)
 				cs.p.cemotion = "idle"
 			end
 		else
-			local mp = em.init("misspart",screencenter.x,screencenter.x)
-			mp.angle = self.angle
-			mp.distance = (self.hb - cs.cbeat)*cs.level.properties.speed+cs.length
-			mp.spr = (self.inverse and not self.slice and self.spr2) or (self.spr) --Determine which sprite the misspart should use
-			mp.update()
+			local mp = em.init("misspart",{
+				x = project.res.cx,
+				y = project.res.cy,
+				angle = self.angle,
+				distance = (self.hb - cs.cbeat)*cs.level.properties.speed+cs.length,
+				spr = self.spr
+			})
+			mp:update(dt)
 			self.delete = true
 			pq = pq .. "   player missed!"
 			cs.misses = cs.misses + 1
@@ -137,14 +139,17 @@ function Beat:update(dt)
 			cs.p.emotimer = 100
 			cs.p.cemotion = "miss"
 
-			cs.p.hurtpulse()
+			cs.p:hurtpulse()
 		end
 	end
+  prof.pop('beat update')
 end
 
 function Beat:draw()
+  prof.push('beat draw')
 	color()
 	love.graphics.draw(self.spr,self.x,self.y,0,1,1,8,8)
+  prof.push('beat draw')
 end
 
 return Beat

@@ -322,7 +322,10 @@ function Gamemanager:update(dt)
         
       end
       if v.type == "showresults" then
-        flux.to(cs.p,60,{ouchpulse=300,lookradius=0}):ease("inExpo"):oncomplete(function(f) helpers.swap(states.results) end )
+        flux.to(cs.p,60,{ouchpulse=300,lookradius=0}):ease("inExpo"):oncomplete(function(f) 
+					cs = bs.load('results')
+					cs:init()
+				end )
         
       end
       if v.type == "lua" then
