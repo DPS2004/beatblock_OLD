@@ -1,58 +1,57 @@
-local st = {ease = nil}
+local st = Gamestate:new('songselect')
 
 
-function st.init()
-  st.fg = sprites.songselect.fg
-end
+st:setinit(function(self)
+  self.fg = sprites.songselect.fg
+	
+  self.cdir = "levels/"
+  --self.p = em.init("player",{x=350,y=120})
+  self.length = 42
+  self.extend = 0
+  self.levels = self:refresh()
 
-function st.refresh()
-  local clist = love.filesystem.getDirectoryItems(st.cdir)
+  self.levelcount = #self.levels --Get the # of levels in the songlist
+  self.crank = "none"
+  self.selection = 1
+  self.move = false
+  self.dispy = -60
+end)
+
+function st:refresh()
+  local clist = love.filesystem.getDirectoryItems(self.cdir)
   local levels = {}
   for i,v in ipairs(clist) do
-    if love.filesystem.getInfo(st.cdir .. v .. "/level.json") then
-      local clevelj = dpf.loadjson(st.cdir .. v .. "/level.json")
-      table.insert(levels,{islevel = true,songname=clevelj.metadata.songname,artist=clevelj.metadata.artist,filename=st.cdir .. v .. "/"})
-    elseif love.filesystem.getInfo(st.cdir .. v .. "/").type == "directory" then
+    if love.filesystem.getInfo(self.cdir .. v .. "/level.json") then
+      local clevelj = dpf.loadjson(self.cdir .. v .. "/level.json")
+      table.insert(levels,{islevel = true,songname=clevelj.metadata.songname,artist=clevelj.metadata.artist,filename=self.cdir .. v .. "/"})
+    elseif love.filesystem.getInfo(self.cdir .. v .. "/").type == "directory" then
       
-      table.insert(levels,{islevel = false,name = v,filename=st.cdir .. v .. "/"})
+      table.insert(levels,{islevel = false,name = v,filename=self.cdir .. v .. "/"})
     end
   end
-  if st.cdir ~= "levels/" then
-    local fname = st.cdir
+  if self.cdir ~= "levels/" then
+    local fname = self.cdir
     table.insert(levels,{islevel=false,name=loc.get("back"),filename=helpers.rliid(fname)})
   end
-  st.selection = 1
-  st.pljson = dpf.loadjson("savedata/playedlevels.json",{})
+  self.selection = 1
+  self.pljson = dpf.loadjson("savedata/playedlevels.json",{})
   return levels
   
 end
 
-function st.enter(prev)
-  st.cdir = "levels/"
-  st.p = em.init("player",350,120)
-  st.length = 42
-  st.extend = 0
-  st.levels = st.refresh()
-
-  st.levelcount = #st.levels --Get the # of levels in the songlist
-  st.crank = "none"
-  st.selection = 1
-  st.move = false
-  st.dispy = -60
-end
 
 
 
-function st.leave()
-  st.p.delete = true
-  st.p=nil
+function st:leave()
+  self.p.delete = true
+  self.p=nil
 end
 
 
 function st.resume()
 
 end
-
+--[[
 function st.mousepressed(x,y,b,t,p)
   if ismobile then
     local newselection = st.selection
@@ -99,102 +98,113 @@ function st.mousepressed(x,y,b,t,p)
     end
   end
 end
+]]
 
-
-function st.update()
+st:setupdate(function(self,dt)
   pq = ""
   if not paused then
-    local newselection = st.selection
+    local newselection = self.selection
     if maininput:pressed("up") then
-      newselection = st.selection - 1
-      st.move = true
+      newselection = self.selection - 1
+      self.move = true
     end
     if maininput:pressed("down") then
-      newselection = st.selection + 1
-      st.move = true
+      newselection = self.selection + 1
+      self.move = true
     end
     if maininput:pressed("accept") then
-      if st.levels[st.selection].islevel then
-        clevel = st.levels[st.selection].filename
-        helpers.swap(states.game)
+      if self.levels[self.selection].islevel then
+        clevel = self.levels[self.selection].filename
+				self:leave()
+        cs = bs.load('game')
+				cs:init()
       else
-        st.cdir = st.levels[st.selection].filename
-        st.levels = st.refresh()
+        self.cdir = self.levels[self.selection].filename
+        self.levels = self:refresh()
         
-        st.levelcount = #st.levels --Get the # of levels in the songlist
-        if st.ease then
-          st.ease:stop()
+        self.levelcount = #self.levels --Get the # of levels in the songlist
+        if self.ease then
+          self.ease:stop()
         end
-        st.selection = 1
-        st.move = true
+        self.selection = 1
+        self.move = true
         te.play(sounds.click,"static")
-        st.ease = flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
-        --st.dispy = -60
+        self.ease = flux.to(self,30,{dispy=self.selection*-60}):ease("outExpo")
+        --self.dispy = -60
 
         newselection = 1
       end
     end
     if maininput:pressed("e") then
-      if st.levels[st.selection].islevel then
-        clevel = st.levels[st.selection].filename
-        helpers.swap(states.editor)
+      if self.levels[self.selection].islevel then
+        clevel = self.levels[self.selection].filename
+				self:leave()
+        cs = bs.load('editor')
+				cs:init()
       end
     end
-    if st.move then
-      if newselection >= 1 and newselection <= st.levelcount then --Only move the cursor if it's within the bounds of the level list
-        st.selection = newselection
+    if self.move then
+      if newselection >= 1 and newselection <= self.levelcount then --Only move the cursor if it's within the bounds of the level list
+        self.selection = newselection
         te.play(sounds.click,"static")
-        st.ease = flux.to(st,30,{dispy=st.selection*-60}):ease("outExpo")
+        self.ease = flux.to(self,30,{dispy=self.selection*-60}):ease("outExpo")
       end
-      if st.levels[st.selection].islevel then
-        local curjson = dpf.loadjson(st.levels[st.selection].filename .. "level.json")
-        if st.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter] then
-          local cpct = st.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter].pctgrade
+      if self.levels[self.selection].islevel then
+        local curjson = dpf.loadjson(self.levels[self.selection].filename .. "level.json")
+        if self.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter] then
+          local cpct = self.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter].pctgrade
           local sn,ch = helpers.gradecalc(cpct)
-          st.crank = sn .. ch
+          self.crank = sn .. ch
         else
-          st.crank = "none"
+          self.crank = "none"
         end
       else
-        st.crank = "none"
+        self.crank = "none"
       end
-      st.move = false
+      self.move = false
     end
 
     flux.update(1)
     em.update(dt)
   end
-end
+end)
 
 
-function st.draw()
-  love.graphics.setFont(font1)
+st:setbgdraw(function(self)
+  love.graphics.setFont(fonts.digitaldisco)
   --push:start()
-  shuv.start()
 
-  love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
-  love.graphics.draw(st.fg,2,-2)
-  helpers.color(2)
-  for i,v in ipairs(st.levels) do
+  color('white')
+  love.graphics.rectangle('fill',0,0,project.res.x,project.res.y)
+	
+  love.graphics.draw(self.fg,2,-2)
+  color('black')
+	
+  for i,v in ipairs(self.levels) do
     if v.islevel then
-      love.graphics.print(v.songname,10,70+i*60+st.dispy,0,2,2)
-      love.graphics.print(v.artist,10,100+i*60+st.dispy)
+      love.graphics.print(v.songname,10,70+i*60+self.dispy,0,2,2)
+      love.graphics.print(v.artist,10,100+i*60+self.dispy)
     else
-      love.graphics.print(v.name,10,76+i*60+st.dispy,0,2,2)
-      --love.graphics.print(v.artist,10,100+i*60+st.dispy)
+      love.graphics.print(v.name,10,76+i*60+self.dispy,0,2,2)
+      --love.graphics.print(v.artist,10,100+i*60+self.dispy)
     end
   end
-  em.draw()
-  if cs.crank ~= "none" then
-    love.graphics.draw(sprites.songselect.grades[cs.crank],320,20)
+end)
+
+
+--em.draw()
+st:setfgdraw(function(self)
+	color()
+  if self.crank ~= "none" then
+    love.graphics.draw(sprites.songselect.grades[self.crank],320,20)
   end
   if pq ~= "" then
-    print(helpers.round(st.cbeat*6,true)/6 .. pq)
+    --print(helpers.round(self.cbeat*6,true)/6 .. pq)
     
   end
 
   shuv.finish()
-end
+end)
 
 
 return st

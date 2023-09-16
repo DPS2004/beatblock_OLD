@@ -220,6 +220,10 @@ function love.load()
   
   --colors
   colors = require('preload.colors')
+	
+	--sounds
+  sounds = require('preload.sounds')
+	
   
   function color(c)
     c = c or 'white'
