@@ -1,23 +1,20 @@
-local st = {}
-function st.init()
+local st = Gamestate:new('game')
 
-end
+st:setinit(function(self)
+	
+  self.gm = em.init("gamemanager")
 
+  self.canv = love.graphics.newCanvas(gameWidth,gameHeight)
 
-function st.enter(prev)
-  st.p = em.init("player",screencenter.x,screencenter.y)
-  st.gm = em.init("gamemanager",screencenter.x,screencenter.y)
-  st.gm.init(st)
-
-  st.canv = love.graphics.newCanvas(gameWidth,gameHeight)
-
-  st.level = dpf.loadjson(clevel .. "level.json")
-  st.gm.resetlevel()
-  st.gm.on = true
-end
+  self.level = dpf.loadjson(clevel .. "level.json")
+  self.gm.resetlevel()
+  self.gm.on = true
+	
+	self.holdentitydraw = true
+end)
 
 
-function st.leave()
+function st:leave()
   entities = {}
   if st.source ~= nil then
     st.source:stop()
@@ -32,37 +29,35 @@ function st.resume()
 end
 
 
-function st.update()
+st:setupdate(function(self,dt)
   if not paused then
+		self.gm:update(dt)
     if maininput:pressed("back") then
-      helpers.swap(states.songselect)
+			self:leave()
+      cs = bs.load('songselect')
+			cs:init()
     end
-    --if maininput:pressed("a") then
-      --helpers.swap(states.rdconvert)
-    --end
-
-    flux.update(1)
-    em.update(dt)
   end
-end
+end)
 
 
-function st.draw()
-  shuv.start()
 
-  love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
-  love.graphics.setCanvas(st.canv)
+st:setfgdraw(function(self)
+
+  color('white')
+  love.graphics.rectangle('fill',0,0,project.res.x,project.res.y)
+  love.graphics.setCanvas(self.canv)
   
-    helpers.drawgame()
+		self.gm:draw()
+    --helpers.drawgame()
   love.graphics.setCanvas(shuv.canvas)
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.draw(st.canv)
+  love.graphics.draw(self.canv)
   if pq ~= "" then
-    print(helpers.round(st.cbeat*8,true)/8 .. pq)
+    print(helpers.round(self.cbeat*8,true)/8 .. pq)
   end
-  shuv.finish()
 
-end
+end)
 
 
 return st

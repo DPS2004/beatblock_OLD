@@ -160,9 +160,11 @@ function love.load()
     self:bgdrawfunc()
     prof.pop("bg draw")
     
-    prof.push("entityman draw")
-    em.draw()
-    prof.pop("entityman draw")
+		if not self.holdentitydraw then
+			prof.push("entityman draw")
+			em.draw()
+			prof.pop("entityman draw")
+		end
     
     prof.push("fg draw")
     self:fgdrawfunc()
