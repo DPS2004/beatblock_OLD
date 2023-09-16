@@ -19,13 +19,16 @@ function Beat:initialize(params)
 	
 	self.progress = 0
 	
+	self.hityet = false
+	
+  self.spr = sprites.beat.square
+	
+	self.spinease = 'linear'
+	
   Entity.initialize(self,params)
 	
 	self.startangle = self.startangle or self.angle
 	self.endangle = self.endangle or self.angle
-	self.spinease = self.spinease or 'linear'
-	
-  self.spr = sprites.beat.square
 	
 	if self.movetime == 0 then
     self.movetime = self.hb - cs.cbeat
@@ -94,25 +97,34 @@ function Beat:getpositions()
 	return helpers.rotate((self.hb - cs.cbeat)*cs.level.properties.speed*self.smult+cs.extend+cs.length,self.angle,self.ox,self.oy)
 end
 
+function Beat:makeparticles(hit)
+	if hit then
+		em.init("hitpart",{x=self.x,y=self.y})
+	else
+		em.init("misspart",{
+			x = project.res.cx,
+			y = project.res.cy,
+			angle = self.angle,
+			distance = cs.length,
+			spr = self.spr
+		})
+	end
+end
+
 function Beat:update(dt)
   prof.push('beat update')
+	
   self:updateprogress()
-
-
   self:updateangle()
   
-  local p1 = nil --position 1
-  local p2 = nil --position 2
-  
-	p1 = self:getpositions()
+	local p1 = self:getpositions()
 	
   self.x = p1[1]
   self.y = p1[2]  
 
   if (self.hb - cs.cbeat) <= 0 then -- pretty much all of this should be split up into separate functions for other beat types to use!!!
 		if helpers.angdistance(self.endangle,cs.p.angle) <= cs.p.paddle_size / 2 then 
-			em.init("hitpart",{x=self.x,y=self.y})
-			self.delete = true
+			self:makeparticles(true)
 			pq = pq .. "   player hit!"
 			cs.hits = cs.hits + 1
 			cs.combo = cs.combo + 1
@@ -123,16 +135,9 @@ function Beat:update(dt)
 				cs.p.emotimer = 0
 				cs.p.cemotion = "idle"
 			end
-		else
-			local mp = em.init("misspart",{
-				x = project.res.cx,
-				y = project.res.cy,
-				angle = self.angle,
-				distance = (self.hb - cs.cbeat)*cs.level.properties.speed+cs.length,
-				spr = self.spr
-			})
-			mp:update(dt)
 			self.delete = true
+		else
+			self:makeparticles(false)
 			pq = pq .. "   player missed!"
 			cs.misses = cs.misses + 1
 			cs.combo = 0
@@ -140,6 +145,7 @@ function Beat:update(dt)
 			cs.p.cemotion = "miss"
 
 			cs.p:hurtpulse()
+			self.delete = true
 		end
 	end
   prof.pop('beat update')

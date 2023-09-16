@@ -12,6 +12,8 @@ function Misspart:initialize(params)
 	self.distance = 42
 	self.spr = love.graphics.newImage("assets/game/square.png")
 	
+  flux.to(self,15,{distance=0}):ease("outExpo"):oncomplete(function(f) self.delete=true end)
+	
   Entity.initialize(self,params)
 	
 end
@@ -20,7 +22,6 @@ end
 
 function Misspart:update(dt)
   prof.push('misspart update')
-  flux.to(self,15,{distance=0}):ease("outExpo"):oncomplete(function(f) self.delete=true end)
   local p1 = helpers.rotate(self.distance+cs.extend,self.angle,self.ox,self.oy)
   self.x = p1[1]
   self.y = p1[2]
