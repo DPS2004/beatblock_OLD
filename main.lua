@@ -27,6 +27,11 @@ function love.load()
   
   -- import libraries
   
+	
+  -- lovebpm, syncs stuff to music
+  lovebpm = require "lib.lovebpm"
+
+
   -- json handler
   json = require "lib.json" -- i would use a submodule, but the git repo has .lua in the name??????
   

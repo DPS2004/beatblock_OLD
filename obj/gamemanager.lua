@@ -11,6 +11,8 @@ function Gamemanager:initialize(params)
   self.y=0
   self.songfinished = false
 	
+  Entity.initialize(self,params)
+	
 	cs.p = em.init("player",{x=project.res.cx,y=project.res.cy})
 end
 
@@ -50,6 +52,7 @@ end
 
 
 function Gamemanager:update(dt)
+	prof.push("gamemanager update")
   if not self.on then
     return
   end
@@ -59,7 +62,6 @@ function Gamemanager:update(dt)
 
   -- read the level
 	
-	--[[
 	
   for i,v in ipairs(cs.level.events) do
   -- preload events such as beats
@@ -73,16 +75,19 @@ function Gamemanager:update(dt)
       end
       if v.type == "beat" then
         v.played = true
-        local newbeat = em.init("beat",project.res.cx,project.res.cy)
-        newbeat.angle = v.angle
-        newbeat.startangle = v.angle
-        newbeat.endangle = v.endangle or v.angle -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
-        newbeat.spinease = v.spinease or "linear" -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
-        newbeat.hb = v.time
-        newbeat.smult = v.speedmult
+        local newbeat = em.init("beat",{
+					x=project.res.cx,
+					y=project.res.cy,
+					angle = v.angle,
+					endangle = v.endangle,
+					spinease = v.spinease,
+					hb = v.time,
+					smult = v.speedmult
+				})
         pq = pq .. "    ".. "spawn here!"
-        newbeat.update()
+        newbeat:update(dt)
       end
+			--[[
       if v.type == "slice" then
         v.played = true
         local newbeat = em.init("beat",project.res.cx,project.res.cy)
@@ -204,6 +209,7 @@ function Gamemanager:update(dt)
         pq = pq .. "    ".. "spawn here!"
         newbeat.update()
       end
+			]]--
 
     end
           -- autoplay
@@ -341,13 +347,12 @@ function Gamemanager:update(dt)
     --print("player should be happy")
   end
 	
-	]]--
-  
+  prof.pop("gamemanager update")
 end
 
 
 function Gamemanager:draw()
-	
+	prof.push("gamemanager draw")
   if not cs.vfx.hom then
     love.graphics.clear()
   end
@@ -373,10 +378,11 @@ function Gamemanager:draw()
 	color('black')
   --love.graphics.print(cs.hits.." / " .. (cs.misses+cs.hits),10,10)
   if cs.combo >= 10 then
-    love.graphics.setFont(font1)
+    love.graphics.setFont(fonts.digitaldisco)
     love.graphics.print(cs.combo..loc.get("combo"),10,220)
   end
   color()
+	prof.pop("gamemanager draw")
 
 end
 

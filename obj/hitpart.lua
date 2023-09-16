@@ -1,25 +1,30 @@
-local obj = {
-  layer = -2,
-  uplayer = 9,
-  x=0,
-  y=0,
-  rad=9
-}
+Hitpart = class('Hitpart',Entity)
 
 
-function obj.update(dt)
-  obj.rad = obj.rad - 1
-  if obj.rad <= 0 then
-    obj.delete = true
+function Hitpart:initialize(params)
+	self.layer = -2
+	self.uplayer = 9
+	self.x = 0
+	self.y = 0
+	self.rad = 9
+	
+  Entity.initialize(self,params)
+	
+end
+
+function Hitpart:update(dt)
+  self.rad = self.rad - dt
+  if self.rad <= 0 then
+    self.delete = true
   end
 end
 
 
-function obj.draw()
+function Hitpart:draw()
   love.graphics.setLineWidth(1)
   love.graphics.setColor(0,0,0,1)
-  love.graphics.circle("line",obj.x,obj.y,obj.rad)
+  love.graphics.circle("line",self.x,self.y,self.rad)
 end
 
 
-return obj
+return Hitpart
