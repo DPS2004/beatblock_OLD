@@ -50,6 +50,34 @@ function Gamemanager:resetlevel()
   cs.lastsigbeat = math.floor(cs.cbeat)
 end
 
+function Gamemanager:gradecalc(pct) --idk where else to put this, but it shouldn't go into helpers because its so game specific.
+  local lgrade = ""
+  local lgradepm = ""
+  
+  if pct == 100 then
+    lgrade = "s"
+  elseif pct >= 90 then
+    lgrade = "a"
+  elseif pct >= 80 then
+    lgrade = "b"
+  elseif pct >= 70 then
+    lgrade = "c"
+  elseif pct >= 60 then
+    lgrade = "d"
+  else
+    lgrade = "f"
+  end
+  lgradepm = "none"
+  if lgrade ~= "s" and lgrade ~= "f" then
+    if pct % 10 <= 3 then
+      lgradepm = "minus"
+    elseif pct % 10 >= 7 then
+      lgradepm = "plus"
+    end
+  end
+  return lgrade, lgradepm
+end
+
 
 function Gamemanager:update(dt)
 	prof.push("gamemanager update")
@@ -323,8 +351,7 @@ function Gamemanager:update(dt)
       end
       if v.type == "showresults" then
         flux.to(cs.p,60,{ouchpulse=300,lookradius=0}):ease("inExpo"):oncomplete(function(f) 
-					cs = bs.load('results')
-					cs:init()
+					cs:gotoresults()
 				end )
         
       end

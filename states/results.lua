@@ -1,136 +1,117 @@
-local st = {}
+local st = Gamestate:new('results')
 
-
-function st.init()
-end
-
-
-function st.enter(prev)
+st:setinit(function(self)
   entities = {}
-  st.selection = 1
-  st.selectionbounds = {
+  self.selection = 1
+  self.selectionbounds = {
     {x=167,y=201,w=64,h=14},
     {x=179,y=218,w=40,h=17}
   }
-  st.cselectionbounds = {x=167,y=201,w=64,h=14}
-  st.goffset = 0
-  st.pctgrade = ((states.game.maxhits - states.game.misses) / states.game.maxhits)*100
-  st.lgrade,st.lgradepm = helpers.gradecalc(st.pctgrade)
-  st.pljson = dpf.loadjson("savedata/playedlevels.json",{})
-  st.timesplayed = 0
-  st.storepctgrade = st.pctgrade
-  st.storemisses = states.game.misses
-  if st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter] then
-    st.timesplayed = st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].timesplayed
-    st.timesplayed = st.timesplayed + 1
-    if st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].misses < st.storemisses then
-      st.storemisses = st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].misses
+  self.cselectionbounds = {x=167,y=201,w=64,h=14}
+  self.goffset = 0
+  self.pctgrade = ((self.maxhits - self.misses) / self.maxhits)*100
+  self.lgrade,self.lgradepm = Gamemanager:gradecalc(self.pctgrade)
+  self.pljson = dpf.loadjson("savedata/playedlevels.json",{})
+  self.timesplayed = 0
+  self.storepctgrade = self.pctgrade
+  self.storemisses = self.misses
+  if self.pljson[self.level.metadata.songname.."_"..self.level.metadata.charter] then --hey what the FUCK is this
+    self.timesplayed = self.pljson[self.level.metadata.songname.."_"..self.level.metadata.charter].timesplayed
+    self.timesplayed = self.timesplayed + 1
+    if self.pljson[self.level.metadata.songname.."_"..self.level.metadata.charter].misses < self.storemisses then
+      self.storemisses = self.pljson[self.level.metadata.songname.."_"..self.level.metadata.charter].misses
     end
-    if st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].pctgrade > st.storepctgrade then
-      st.storepctgrade = st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter].pctgrade
+    if self.pljson[self.level.metadata.songname.."_"..self.level.metadata.charter].pctgrade > self.storepctgrade then
+      self.storepctgrade = self.pljson[self.level.metadata.songname.."_"..self.level.metadata.charter].pctgrade
     end
   else
-    st.timesplayed = 1
+    self.timesplayed = 1
   end
-  st.pljson[states.game.level.metadata.songname.."_"..states.game.level.metadata.charter]={pctgrade=st.storepctgrade,misses=st.storemisses,timesplayed=st.timesplayed}
-  dpf.savejson("savedata/playedlevels.json", st.pljson)
-end
+  self.pljson[self.level.metadata.songname.."_"..self.level.metadata.charter]={pctgrade=self.storepctgrade,misses=self.storemisses,timesplayed=self.timesplayed}
+  dpf.savejson("savedata/playedlevels.json", self.pljson)
+end)
 
-
-function st.leave()
-
-end
-
-
-function st.resume()
-
-end
-
-function st.mousepressed(x,y,b,t,p)
-
-end
-
+--[[
 function st.mousepressed(x,y,b,t,p)
   if ismobile then
     if (love.mouse.getY()/shuv.scale) < 240/3 then -- up
-      st.selection = 1
-      st.ease = flux.to(st.cselectionbounds,30,{
-        x=st.selectionbounds[1].x,
-        y=st.selectionbounds[1].y,
-        w=st.selectionbounds[1].w,
-        h=st.selectionbounds[1].h,
+      self.selection = 1
+      self.ease = flux.to(self.cselectionbounds,30,{
+        x=self.selectionbounds[1].x,
+        y=self.selectionbounds[1].y,
+        w=self.selectionbounds[1].w,
+        h=self.selectionbounds[1].h,
         
       }):ease("outExpo")
     elseif (love.mouse.getY()/shuv.scale) > 240/3*2 then -- down
-      st.selection = 2
-      st.ease = flux.to(st.cselectionbounds,30,{
-        x=st.selectionbounds[2].x,
-        y=st.selectionbounds[2].y,
-        w=st.selectionbounds[2].w,
-        h=st.selectionbounds[2].h,
+      self.selection = 2
+      self.ease = flux.to(self.cselectionbounds,30,{
+        x=self.selectionbounds[2].x,
+        y=self.selectionbounds[2].y,
+        w=self.selectionbounds[2].w,
+        h=self.selectionbounds[2].h,
         
       }):ease("outExpo")
     else -- center
-      if st.selection == 1 then
-        helpers.swap(states.songselect)
+      if self.selection == 1 then
+				cs = bs.load('songselect')
+				cs:init()
       else
-        helpers.swap(states.game)
+        cs = bs.load('game')
+				cs:init()
       end
     
     end
   end
 end
+]]--
 
-function st.update()
+
+st:setupdate(function(self,dt)
   pq = ""
   if not paused then
     if maininput:pressed("up") then
-      st.selection = 1
-      st.ease = flux.to(st.cselectionbounds,30,{
-        x=st.selectionbounds[1].x,
-        y=st.selectionbounds[1].y,
-        w=st.selectionbounds[1].w,
-        h=st.selectionbounds[1].h,
+      self.selection = 1
+      self.ease = flux.to(self.cselectionbounds,30,{
+        x=self.selectionbounds[1].x,
+        y=self.selectionbounds[1].y,
+        w=self.selectionbounds[1].w,
+        h=self.selectionbounds[1].h,
         
       }):ease("outExpo")
     end
     if maininput:pressed("down") then
-      st.selection = 2
-      st.ease = flux.to(st.cselectionbounds,30,{
-        x=st.selectionbounds[2].x,
-        y=st.selectionbounds[2].y,
-        w=st.selectionbounds[2].w,
-        h=st.selectionbounds[2].h,
+      self.selection = 2
+      self.ease = flux.to(self.cselectionbounds,30,{
+        x=self.selectionbounds[2].x,
+        y=self.selectionbounds[2].y,
+        w=self.selectionbounds[2].w,
+        h=self.selectionbounds[2].h,
         
       }):ease("outExpo")
     end
     if maininput:pressed("accept") then
-      if st.selection == 1 then
-        helpers.swap(states.songselect)
+      if self.selection == 1 then
+				cs = bs.load('songselect')
+				cs:init()
       else
-        helpers.swap(states.game)
+        cs = bs.load('game')
+				cs:init()
       end
     end
-
-      
-
-    flux.update(1)
-    em.update(dt)
   end
-end
+end)
 
 
-function st.draw()
-  love.graphics.setFont(font1)
-  --push:start()
-  shuv.start()
-  love.graphics.setColor(1,1,1)
+st:setbgdraw(function(self)
+  love.graphics.setFont(fonts.digitaldisco)
 
-  love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
+  color('white')
+  love.graphics.rectangle('fill',0,0,project.res.x,project.res.y)
 
   love.graphics.setColor(0,0,0)
   --metadata bar 
-  love.graphics.printf(states.game.level.metadata.artist .. " - " .. states.game.level.metadata.songname,0,10,400,"center")
+  love.graphics.printf(self.level.metadata.artist .. " - " .. self.level.metadata.songname,0,10,400,"center")
   love.graphics.rectangle("fill",0,33,400,2)
   
   --results circle
@@ -138,22 +119,19 @@ function st.draw()
   love.graphics.circle("line",200,139,100)
   love.graphics.printf(loc.get("grade"),0,45,400,"center")
   love.graphics.setColor(1,1,1)
-  love.graphics.draw(sprites.results.grades[st.lgrade],175+st.goffset,62)
-  if st.lgradepm ~= "none" then
-    love.graphics.draw(sprites.results.grades[st.lgradepm],202,61)
+  love.graphics.draw(sprites.results.grades[self.lgrade],175+self.goffset,62)
+  if self.lgradepm ~= "none" then
+    love.graphics.draw(sprites.results.grades[self.lgradepm],202,61)
   end
   love.graphics.setColor(0,0,0)
-  love.graphics.printf(loc.get("misses") .. states.game.misses,0,135,400,"center")
+  love.graphics.printf(loc.get("misses") .. self.misses,0,135,400,"center")
   love.graphics.printf(loc.get("continue"),0,201,400,"center")
   love.graphics.printf(loc.get("retry"),0,218,400,"center")
   love.graphics.setLineWidth(1)
-  love.graphics.rectangle("line",st.cselectionbounds.x,st.cselectionbounds.y,st.cselectionbounds.w,st.cselectionbounds.h)
+  love.graphics.rectangle("line",self.cselectionbounds.x,self.cselectionbounds.y,self.cselectionbounds.w,self.cselectionbounds.h)
   love.graphics.setColor(1,1,1)
   
-  em.draw()
-
-  shuv.finish()
-end
+end)
 
 
 return st

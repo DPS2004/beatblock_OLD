@@ -23,6 +23,17 @@ function st:leave()
   st.sounddata = nil
 end
 
+function st:gotoresults()
+	cs = bs.load('results')
+	--transfer data
+	cs.level = self.level
+	cs.misses = self.misses
+	cs.maxhits = self.maxhits
+	
+	self:leave()
+	cs:init()
+	
+end
 
 function st.resume()
 

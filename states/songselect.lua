@@ -153,7 +153,7 @@ st:setupdate(function(self,dt)
         local curjson = dpf.loadjson(self.levels[self.selection].filename .. "level.json")
         if self.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter] then
           local cpct = self.pljson[curjson.metadata.songname.."_"..curjson.metadata.charter].pctgrade
-          local sn,ch = helpers.gradecalc(cpct)
+          local sn,ch = Gamemanager:gradecalc(cpct)
           self.crank = sn .. ch
         else
           self.crank = "none"
