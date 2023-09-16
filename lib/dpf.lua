@@ -2,6 +2,7 @@ dpf = {}
 
 
 function dpf.loadjson(f,w)
+  w = w or {}
   print("dpf loading "..f)
   local cf = love.filesystem.read(f)
   if cf == nil then

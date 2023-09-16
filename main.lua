@@ -1,81 +1,83 @@
 function love.load()
+
+  dofile = function(fname) return love.filesystem.load(fname)() end
+  
   dt = 1
-  clevel = "cannery.json"
-  gamename = "BeatBlock"
-
-  if love.system.getOS( ) == "Android" or mobileoverride then
-    ismobile = true
-    
-  end
-  pressed = 0
-  mx,my = 0,0
-  ispush = false
-  screencenter = {x = gameWidth/2, y = gameHeight/2}
+  
+  freeze = 0
+  
+  -- set rescaling filter
+  love.graphics.setDefaultFilter("nearest", "nearest")
+  
+  love.graphics.setLineStyle("rough")
+  love.graphics.setLineJoin("miter")
+  
+  fonts ={
+    main = love.graphics.newFont("assets/fonts/Axmolotl.ttf", 16),
+    digitaldisco = love.graphics.newFont("assets/DigitalDisco-Thin.ttf", 16)
+  }
+  
   -- font is https://tepokato.itch.io/axolotl-font
-  -- https://www.dafont.com/digital-disco.font
-  if not is3ds then
-    love.graphics.setDefaultFilter("nearest", "nearest")
-    font2 = love.graphics.newFont("assets/Axolotl.ttf", 16)
-    font2:setFilter("nearest", "nearest",0)
-    font1 = love.graphics.newFont("assets/DigitalDisco-Thin.ttf", 16)
-    font1:setFilter("nearest", "nearest",0)
-  else
-    love.graphics.setFont = function() end
+  
+  for i,v in ipairs(fonts) do
+    v:setFilter("nearest", "nearest",0)
   end
-  love.graphics.setFont(font1)
-  -- accurate deltatime
-  acdelt = true
-  --love.graphics.setDefaultFilter("nearest","nearest")
-
+  
+  love.graphics.setFont(fonts.main)
+  
   -- import libraries
+  
+  -- json handler
+  json = require "lib.json" -- i would use a submodule, but the git repo has .lua in the name??????
   
   -- custom functions, snippets, etc
   helpers = require "lib.helpers"
-    
-  -- json handler
-  json = require "lib.json"
   
   -- quickly load json files
   dpf = require "lib.dpf"
   
   -- localization
   loc = require "lib.loc"
-  loc.load("assets/localization.json")
+  loc.load("data/localization.json")
+  
 
-
-
-  -- gamestate, manages gamestates
-  gs = require "lib.gamestate"
+  -- manages gamestates
+  bs = require "lib.basestate"
 
   -- baton, manages input handling
-  baton = require "lib.baton"
+  baton = require "lib/baton/baton"
 
-  -- lovebpm, syncs stuff to music
-  lovebpm = require "lib.lovebpm"
-
-  shuv = require "lib.shuv"
-  shuv.init()
-  
+  if project.res.useshuv then
+    shuv = require "lib.shuv"
+    shuv.init(project)
+    shuv.hackyfix()
+  end
   -- what it says on the tin
   utf8 = require("utf8")
-  -- push, graphics helper, makes screen resolution stuff easy
-  if ispush then
-    push = require "lib.push"
-  else
-    push = require "lib.pushstripped"
-  end
+
 
   -- deeper, modification of deep, queue functions, now with even more queue
-  deeper = require "lib.deeper"
+  deeper = require "lib/deeper/deeper"
 
   -- tesound, sound playback
   te = require"lib.tesound"
 
 
+  -- jprof, profiling
+  
+  PROF_CAPTURE = project.doprofile
+  
+  prof = require "lib/profiling/jprof"
+  
+  prof.enabled(project.doprofile)
+  
+  if project.doprofile then
+    print("profiling enabled!")
+  end
 
-  -- lovebird,debugging console
-  if (not release) or ismobile then 
-    lovebird = require "lib.lovebird"
+  -- lovebird, debugging console
+  if (not project.release)  then 
+    lovebird = require "lib/lovebird/lovebird"
   else
     lovebird = require "lib.lovebirdstripped"
   end
@@ -84,183 +86,213 @@ function love.load()
   em = require "lib.entityman"
 
   -- spritesheet manager
-  ez = require "lib.ezanim"
+  ez = require "lib.ezanim_rewrite"
 
   -- tween manager
-  flux = require "lib.flux"
+  flux = require "lib/flux/flux"
   
-
+  rw = require "lib/ricewine"
   
-
-
-  -- set size of window
-
   
-  -- set rescaling filter
-  --love.graphics.setDefaultFilter("nearest", "nearest")
   
-  -- set line style
-  if not is3ds then
-    love.graphics.setLineStyle("rough")
-    love.graphics.setLineJoin("miter")
+  class = require "lib/middleclass/middleclass"
+  
+  Gamestate = class('Gamestate')
+  
+  function Gamestate:initialize(name)
+    self.name = name or 'newstate'
+    self.updatefunc = function() end
+    self.bgdrawfunc = function() end
+    self.fgdrawfunc = function() end
   end
-
-  -- set game canvas size
-
   
-  -- send these arguments to push
-  push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {
-    fullscreen = release,
-    resizable = false,
-    pixelperfect = true
-    })
-  push:setBorderColor{0,0,0}
-  if not is3ds then
-    love.window.setTitle(gamename)
+  function Gamestate:setinit(initfunc)
+    self.initfunc = initfunc
   end
+    
+  function Gamestate:setupdate(updatefunc)
+    self.updatefunc = updatefunc
+  end
+  
+  function Gamestate:setbgdraw(drawfunc)
+    self.bgdrawfunc = drawfunc
+  end
+  
+  function Gamestate:setfgdraw(drawfunc)
+    self.fgdrawfunc = drawfunc
+  end
+  
+  function Gamestate:init(...)
+    self:initfunc(...)
+  end
+  
+  function Gamestate:update(dt)
+    maininput:update()
+    lovebird.update()
+    helpers.updatemouse()
+    
+    prof.push("gamestate update")
+    self:updatefunc(dt)
+    prof.pop("gamestate update")
+    
+    prof.push("ricewine update")
+    rw:update()
+    prof.pop("ricewine update")
+    
+    prof.push("flux update")
+    flux.update(dt)
+    prof.pop("flux update")
+    
+    prof.push("entityman update")
+    em.update(dt)
+    prof.pop("entityman update")
+    
+    te.cleanup()
+  end
+  
+  
+  function Gamestate:draw()
+    if project.res.useshuv then
+      shuv.start()
+    end
+    
+    prof.push("bg draw")
+    self:bgdrawfunc()
+    prof.pop("bg draw")
+    
+    prof.push("entityman draw")
+    em.draw()
+    prof.pop("entityman draw")
+    
+    prof.push("fg draw")
+    self:fgdrawfunc()
+    prof.pop("fg draw")
+    
+    love.graphics.setColor(1,1,1,1)
+    
+    if project.res.useshuv then
+      shuv.finish()
+    end
+  end
+  
+  
+  
+  Entity = class('Entity')
+  
+  
+  function Entity:initialize(params)
+    params = params or {}
+    self.layer = self.layer or 0
+    self.uplayer = self.uplayer or 0
+    self.delete = false
+    
+    for k,v in pairs(params) do
+      self[k] = v
+    end
+  end
+  
+  function Entity:update(dt)
+  end
+  function Entity:draw(dt)
+  end
+  
+  
+  
+  love.window.setTitle(project.name)
   paused = false
 
-  -- start colors table with default colors
-  colors = {
-    {1,1,1},
-    {0,0,0},
-    {1,0,77/255},
-    {1,0,0},
-    {1/2,1/2,1/2}
-  }
-  --load sprites into memory, so that we are not loading 50 bajillion copies of the beats in a level
-  sprites = {
-    beat= {
-      square = love.graphics.newImage("assets/game/square.png"),
-      inverse = love.graphics.newImage("assets/game/inverse.png"),
-      hold = love.graphics.newImage("assets/game/hold.png"),
-      mine = love.graphics.newImage("assets/game/mine.png"),
-      side = love.graphics.newImage("assets/game/side.png"),
-      minehold = love.graphics.newImage("assets/game/minehold.png"),
-      ringcw = love.graphics.newImage("assets/game/ringcw.png"),
-      ringccw = love.graphics.newImage("assets/game/ringccw.png")
-    },
-    player = {
-      idle = love.graphics.newImage("assets/game/cranky/idle.png"),
-      happy = love.graphics.newImage("assets/game/cranky/happy.png"),
-      miss = love.graphics.newImage("assets/game/cranky/miss.png")
-    },
-    songselect = {
-      fg = love.graphics.newImage("assets/game/selectfg.png"),
-      grades = {
-        fnone = love.graphics.newImage("assets/results/small/fnone.png"),
-        snone = love.graphics.newImage("assets/results/small/snone.png"),
-        anone = love.graphics.newImage("assets/results/small/anone.png"),
-        bnone = love.graphics.newImage("assets/results/small/bnone.png"),
-        cnone = love.graphics.newImage("assets/results/small/cnone.png"),
-        dnone = love.graphics.newImage("assets/results/small/dnone.png"),
+  --load sprites
 
-        aplus = love.graphics.newImage("assets/results/small/aplus.png"),
-        bplus = love.graphics.newImage("assets/results/small/bplus.png"),
-        cplus = love.graphics.newImage("assets/results/small/cplus.png"),
-        dplus = love.graphics.newImage("assets/results/small/dplus.png"),
+  sprites = require('preload.sprites')
+  
+  -- make ezanim templates
+  animations = require('preload.animations')
 
-        aminus = love.graphics.newImage("assets/results/small/aminus.png"),
-        bminus = love.graphics.newImage("assets/results/small/bminus.png"),
-        cminus = love.graphics.newImage("assets/results/small/cminus.png"),
-        dminus = love.graphics.newImage("assets/results/small/dminus.png")
+  
+  -- make quads
+  
+  quads = require('preload.quads')
+  
+  
+  -- load shaderss
+  
+  shaders = require('preload.shaders')
+  
+  --colors
+  colors = require('preload.colors')
+  
+  function color(c)
+    c = c or 'white'
+    love.graphics.setColor(colors[c])    
+  end
 
-      }
-    },
-    results = {
-      grades = {
-        a = love.graphics.newImage("assets/results/big/a.png"),
-        b = love.graphics.newImage("assets/results/big/b.png"),
-        c = love.graphics.newImage("assets/results/big/c.png"),
-        d = love.graphics.newImage("assets/results/big/d.png"),
-        f = love.graphics.newImage("assets/results/big/f.png"),
-        plus = love.graphics.newImage("assets/results/big/plus.png"),
-        minus = love.graphics.newImage("assets/results/big/minus.png"),
-        none = love.graphics.newImage("assets/results/big/none.png"),
-        s = love.graphics.newImage("assets/results/big/s.png")
-      }
-    },
-    title = {
-      logo = love.graphics.newImage("assets/title/logo.png")
-    }
-  }
-  --load select sounds
-  sounds = {
-    click = love.sound.newSoundData("assets/click2.ogg"),
-    hold = love.sound.newSoundData("assets/hold1.ogg"),
-    mine = love.sound.newSoundData("assets/mine.ogg")
-  }
+  
+  
+  
+  
+  
 
-  --setup input
-  ctrls = {
-        left = {"key:left",  "axis:rightx-", "button:dpleft"},
-        right = {"key:right",  "axis:rightx+", "button:dpright"},
-        up = {"key:up", "key:w", "axis:righty-", "button:dpup"},
-        down = {"key:down", "key:s", "axis:righty+", "button:dpdown"},
-        accept = {"key:space", "key:return", "button:a"},
-        back = {"key:escape", "button:b"},
-        ctrl = {},
-        shift = {"key:lshift", "key:rshift"},
-        backspace = {"key:backspace"},
-        plus = {"key:+", "key:="},
-        minus = {"key:-"},
-        leftbracket = {"key:["},
-        rightbracket = {"key:]"},
-        comma = {"key:,"},
-        period = {"key:."},
-        slash = {"key:/"},
-        s = {"key:s"},
-        x = {"key:x"},
-        a = {"key:a"},
-        c = {"key:c"},
-        e = {"key:e"},
-        p = {"key:p"},
-        r = {"key:r"},
-        pause = {"key:tab"},
-        k1 = {"key:1"},
-        k2 = {"key:2"},
-        k3 = {"key:3"},
-        k4 = {"key:4"},
-        k5 = {"key:5"},
-        k6 = {"key:6"},
-        k7 = {"key:7"},
-        k8 = {"key:8"},
-        f4 = {"key:f4"},
-        f5 = {"key:f5"},
-        mouse1 = {"mouse:1"},
-        mouse2 = {"mouse:2"},
-        mouse3 = {"mouse:3"}
-      }
-      
-      if love.system.getOS() == "OS X" then --appease eventual mac users
-        ctrls.ctrl = {"key:rgui","key:lgui"}
-      else 
-        ctrls.ctrl = {"key:rctrl","key:lctrl"}
-      end
-      
+  print("setting up controls")
+
+  
+  
   maininput = baton.new {
-      controls = ctrls,
-      pairs = {
-        lr = {"left", "right", "up", "down"}
-      },
-        joystick = love.joystick.getJoysticks()[1],
-    }
+    controls = project.ctrls,
+    pairs = {
+      udlr = {"up", "down","left", "right"}
+    },
+      joystick = love.joystick.getJoysticks()[1],
+  }
+  
+  
+  -- load savefile
+  local defaultsave = dpf.loadjson(project.defaultsaveloc)
     
+  if project.nosaves then
+    savedata = defaultsave
+  else
+    savedata = dpf.loadjson(project.saveloc,defaultsave)
+  end
+  
+  
+  
+  
+  
+  
+  sdfunc = {}
+  function sdfunc.save()
+    dpf.savejson(project.saveloc,savedata)
+  end
+  
+  function sdfunc.updatevol()
+    if project.name ~= 'roomedit' then
+      te.volume('sfx',savedata.options.audio.sfxvolume/10)
+      te.volume('music',savedata.options.audio.sfxvolume/10)
+    end
+  end
+  
+  sdfunc.updatevol()
+  sdfunc.save()
+
   entities = {}
-  -- init states
+  -- load entities
+  dofile('preload/entities.lua')
+  
+  -- load states
+
+  dofile('preload/states.lua')
+  
+  
+  -- load levels
+  
+  
+  
   toswap = nil
   newswap = false
-  states = {
-    songselect = require "states.songselect",
-    title = require "states.title",
-    game = require "states.game",
-    --rdconvert = require "states.rdconvert",
-    editor = require "states.editor",
-    results = require "states.results",
-  }
-
-  gs.registerEvents()
-  gs.switch(states.title)
+  
+  cs = bs.load(project.initstate)
+	cs:init()
+  
 end
 
 function love.textinput(t)
@@ -268,42 +300,44 @@ function love.textinput(t)
 end
 
 function love.update(d)
-  maininput:update()
-  lovebird.update()
-  if maininput:pressed("pause") then
-    paused = not paused
-    if cs.source then
-      if paused then
-        cs.source:pause()
-      else
-        cs.source:play()
+  prof.push("frame")
 
-      end
+  if (not project.frameadvance) or maininput:pressed("k1") or maininput:down("k2") then
+    debugprint = true
+
+    if project.res.useshuv then
+      shuv.check()
     end
-  end
-  cs = gs.current()
-  shuv.check()
-  if not acdelt then
-    dt = 1
-  else
-    dt = d * 60
-  end
-  if dt >=2 then
-    dt = 2
-  end
-  if paused then
-    if cs.source then
-      cs.source:update()
+    if not project.acdelt then
+      dt = 1
+    else
+      dt = d * 60
     end
-    em.update(dt) -- for text boxes
+    if dt >=6 then
+      dt = 6
+    end
+    
+    if freeze <= 0 then
+      cs:update(dt)
+    else
+      freeze = freeze - dt
+    end
+    
+    
   end
-  --print(tinput)
-  
+end
+
+function love.draw()
+  cs:draw()
+  debugprint = false
+  prof.pop("frame")
 end
 
 
 
-
-function love.resize(w, h)
-  push:resize(w, h)
+function love.quit()
+  if project.doprofile then
+    print('saving profile')
+    prof.write("prof.mpack")
+  end
 end

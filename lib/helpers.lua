@@ -10,6 +10,11 @@ function helpers.collide( a, b )
    return overlap
 end
 
+function helpers.collidexy( a, b )
+  if not( a.x + a.width < b.x  or b.x + b.width < a.x)  and not(a.y + a.height < b.y or b.y + b.height < a.y ) then
+    return not(a.x + a.width < b.x  or b.x + b.width < a.x), not(a.y + a.height < b.y or b.y + b.height < a.y)
+  else return false,false end
+end
 
 function helpers.rotate(rad, angle, x, y)
   return({
@@ -36,7 +41,7 @@ end
 
 
 function helpers.round(i,fb)
-  fb = fb or false
+  fb = fb or true
   if i % 1 > 0.5 then
     return math.ceil(i)
   elseif i % 1 < 0.5 then
@@ -66,19 +71,32 @@ end
 
 
 function helpers.updatemouse()
-  if pressed == -1 then
-    pressed = 0
+  if not mouse then mouse = {x = 0, y = 0, pressed = 0,altpress=0} end
+  if mouse.pressed == -1 then
+    mouse.pressed = 0
   end
   if love.mouse.isDown(1) then
-    pressed = pressed + 1
-  elseif pressed >=1 then
-    pressed = -1
+    mouse.pressed = mouse.pressed + 1
+  elseif mouse.pressed >=1 then
+    mouse.pressed = -1
   else
-    pressed = 0
+    mouse.pressed = 0
   end
-  mx = helpers.round(((love.mouse.getX()/love.graphics.getWidth())*160),true)
-  my = helpers.round(((love.mouse.getY()/love.graphics.getHeight())*90),true)
-  print('fps:'..love.timer.getFPS())
+  
+  
+  if mouse.altpress == -1 then
+    mouse.altpress = 0
+  end
+  if love.mouse.isDown(2) then
+    mouse.altpress = mouse.altpress + 1
+  elseif mouse.altpress >=1 then
+    mouse.altpress = -1
+  else
+    mouse.altpress = 0
+  end
+  
+  mouse.x = (love.mouse.getX()/love.graphics.getWidth())
+  mouse.y = (love.mouse.getY()/love.graphics.getHeight())
 end
 
 
@@ -88,15 +106,12 @@ function helpers.clamp(val, lower, upper)
 end
 
 
-function helpers.doswap()
-  if newswap then
-    gs.switch(toswap)
-    newswap = false
-  end
-end
-
 function helpers.lerp(a, b, t)
   return a + (b - a) * t
+end
+
+function helpers.map(x, in_min, in_max, out_min, out_max)
+  return out_min + ((out_max - out_min) / (in_max - in_min)) * (x - in_min)
 end
 
 helpers.eases = {
@@ -218,149 +233,8 @@ function helpers.anglepoints(x,y,a,b)
   return math.deg(math.atan2(x-a,y-b))*-1
 end
 
-function helpers.drawhold(xo, yo, x1, y1, x2, y2, completion, a1, a2, segments, sprhold, ease, holdtype)
-  local interp = ease or "Linear"
-  local colortype = holdtype or "hold"
-
-  -- distances to the beginning and the end of the hold
-  local len1 = helpers.distance({xo, yo}, {x1, y1})
-  local len2 = helpers.distance({xo, yo}, {x2, y2})
-  local points = {}
-
-  -- how many segments to draw
-  -- based on the beat's angles by default, but can be overridden in the json
-  if segments == nil then
-    if interp == "Linear" then
-      segments = (math.abs(a2 - a1) / 8 + 1)
-    else
-      segments = (math.abs(a2 - a1) + 1)
-    end
-  end
-  for i = 0, segments do
-    local t = i / segments
-    local angle_t = t * (1 - completion) + completion
-    -- coordinates of the next point
-    local nextAngle = math.rad(helpers.interpolate(a1, a2, angle_t, interp) - 90)
-    local nextDistance = helpers.lerp(len1, len2, t)
-    points[#points+1] = math.cos(nextAngle) * nextDistance + screencenter.x
-    points[#points+1] = math.sin(nextAngle) * nextDistance + screencenter.y
-  end
-
-  -- idk why but sometimes the last point doesn't reach the end of the slider
-  -- so add it manually if needed
-  if (points[#points] ~= y2) then
-    points[#points+1] = x2
-    points[#points+1] = y2
-  end
-
-  -- need at least 2 points to draw a line ,
-  if #points >= 4 then
-    -- draw the black outline
-    helpers.color(2)
-    love.graphics.setLineWidth(16)
-    love.graphics.line(points)
-    -- draw a white line, to make the black actually look like an outline
-    helpers.color(1)
-    love.graphics.setLineWidth(12)
-    love.graphics.line(points)
-    --the added line for mine holds
-    if colortype ~= "hold" then
-      helpers.color(2)
-      love.graphics.setLineWidth(10)
-      love.graphics.line(points)
-    end
-  end
-  helpers.color(1)
-
-  -- draw beginning and end of hold
-  love.graphics.draw(sprhold,x1,y1,0,1,1,8,8)
-  love.graphics.draw(sprhold,x2,y2,0,1,1,8,8)
-end
-
-function helpers.drawslice (ox, oy, rad, angle, inverse, alpha)
-  local p = {}
-  if inverse then
-    p = helpers.rotate(-rad,angle,ox,oy)
-  else
-    p = helpers.rotate(rad,angle,ox,oy)
-  end
-  love.graphics.setColor(0,0,0,alpha)
-  love.graphics.setLineWidth(2)
-  love.graphics.push()
-  love.graphics.translate(p[1], p[2])
-  love.graphics.rotate((angle - 90) * math.pi / 180)
-
-  -- draw the lines connecting the player to the paddle
-  love.graphics.line(
-    0, 0,
-    (cs.p.paddle_distance + cs.extend) * math.cos(15 * math.pi / 180),
-    (cs.p.paddle_distance + cs.extend) * math.sin(15 * math.pi / 180)
-  )
-  love.graphics.line(
-    0, 0,
-    (cs.p.paddle_distance + cs.extend) * math.cos(-15 * math.pi / 180),
-    (cs.p.paddle_distance + cs.extend) * math.sin(-15 * math.pi / 180)
-  )
-
-  -- draw the paddle
-  local paddle_angle = 30 / 2 * math.pi / 180
-  love.graphics.arc('line', 'open', 0, 0, (cs.p.paddle_distance + cs.extend), paddle_angle, -paddle_angle)
-  love.graphics.arc('line', 'open', 0, 0, (cs.p.paddle_distance + cs.extend) + cs.p.paddle_width, paddle_angle, -paddle_angle)
-  love.graphics.line(
-    (cs.p.paddle_distance + cs.extend) * math.cos(paddle_angle),
-    (cs.p.paddle_distance + cs.extend) * math.sin(paddle_angle),
-    ((cs.p.paddle_distance + cs.extend) + cs.p.paddle_width) * math.cos(paddle_angle),
-    ((cs.p.paddle_distance + cs.extend) + cs.p.paddle_width) * math.sin(paddle_angle)
-  )
-  love.graphics.line(
-    (cs.p.paddle_distance + cs.extend) * math.cos(-paddle_angle),
-    (cs.p.paddle_distance + cs.extend) * math.sin(-paddle_angle),
-    ((cs.p.paddle_distance + cs.extend) + cs.p.paddle_width) * math.cos(-paddle_angle),
-    ((cs.p.paddle_distance + cs.extend) + cs.p.paddle_width) * math.sin(-paddle_angle)
-  )
-  love.graphics.pop()
-
-  helpers.color(1)
-  love.graphics.circle("fill",p[1],p[2],4+cs.extend/2)
-  helpers.color(2)
-  love.graphics.circle("line",p[1],p[2],4+cs.extend/2)
-
-  helpers.color(1)
- -- love.graphics.draw(cs.p.spr[cs.p.cemotion],obj.x,obj.y,0,1,1,16,16)
-
-  return p[1], p[2]
-end
-function helpers.drawgame()
-  
-  if not cs.vfx.hom then
-    love.graphics.clear()
-  end
-  
-  love.graphics.setBlendMode("alpha")
-  love.graphics.setColor(1, 1, 1, 1)
-
-  --if cs.vfx.hom then
-    --for i=0,cs.vfx.homint do
-      --love.graphics.points(math.random(0,400),math.random(0,240))
-    --end 
-    
-  --end
-  --ouch the lag
-  if cs.vfx.bgnoise.enable then
-    love.graphics.setColor(cs.vfx.bgnoise.r,cs.vfx.bgnoise.g,cs.vfx.bgnoise.b,cs.vfx.bgnoise.a)
-    love.graphics.draw(cs.vfx.bgnoise.image,math.random(-2048+gameWidth,0),math.random(-2048+gameHeight,0))
-  end
-  love.graphics.draw(cs.bg)
-
-  helpers.color(1)
-  em.draw()
-  helpers.color(2)
-  --love.graphics.print(cs.hits.." / " .. (cs.misses+cs.hits),10,10)
-  if cs.combo >= 10 then
-    love.graphics.setFont(font1)
-    love.graphics.print(cs.combo..loc.get("combo"),10,220)
-  end
-  helpers.color(1)
+function helpers.trim(s)
+  return s:match "^%s*(.-)%s*$"
 end
 
 function helpers.rliid(fname)
@@ -377,33 +251,6 @@ function helpers.rliid(fname)
   else
     return ""
   end
-end
-function helpers.gradecalc(pct)
-  local lgrade = ""
-  local lgradepm = ""
-  
-  if pct == 100 then
-    lgrade = "s"
-  elseif pct >= 90 then
-    lgrade = "a"
-  elseif pct >= 80 then
-    lgrade = "b"
-  elseif pct >= 70 then
-    lgrade = "c"
-  elseif pct >= 60 then
-    lgrade = "d"
-  else
-    lgrade = "f"
-  end
-  lgradepm = "none"
-  if lgrade ~= "s" and lgrade ~= "f" then
-    if pct % 10 <= 3 then
-      lgradepm = "minus"
-    elseif pct % 10 >= 7 then
-      lgradepm = "plus"
-    end
-  end
-  return lgrade, lgradepm
 end
 
 function helpers.isanglebetween(a1,a2,a3)
@@ -441,7 +288,7 @@ function helpers.isanglebetween(a1,a2,a3)
   end
 end
 --check if cursor is inside of (or on) a rectangle (x1 is left, x2 is right, y1 is top, y2 is bottom)
-function helpers.iscursorinrectangle(x1,x2,y1,y2,cursorx,cursory)
+function helpers.inrect(x1,x2,y1,y2,cursorx,cursory)
   if x2 >= cursorx and cursorx >= x1 and y2 >= cursory and cursory >= y1 then
     return true
   else
@@ -451,4 +298,81 @@ end
 --check if cursor is inside of (or on) an ellipse
 function helpers.iscursorinellipse(x1,x2,y1,y2,cursorx,cursory)
 end
+
+function helpers.copy(orig, copies)
+  copies = copies or {}
+  local orig_type = type(orig)
+  local copy
+  if orig_type == 'table' then
+    if copies[orig] then
+      copy = copies[orig]
+    else
+      copy = {}
+      copies[orig] = copy
+      for orig_key, orig_value in next, orig, nil do
+        copy[helpers.copy(orig_key, copies)] = helpers.copy(orig_value, copies)
+      end
+      setmetatable(copy, helpers.copy(getmetatable(orig), copies))
+    end
+  else -- number, string, boolean, etc
+    copy = orig
+  end
+  return copy
+end
+
+
+function helpers.drawbordered(df,bcol,lightborder)
+  bcol = bcol or 'black'
+  if bcol == 'black' then
+    love.graphics.setColor({0,0,0,1})
+  else
+    love.graphics.setShader(shaders.whiteout)
+  end
+  
+  for x=-1,1 do
+    for y=-1,1 do
+      if not (x== 0 and y == 0) then
+        if (not lightborder) or (x == 0 or y == 0) then
+          df(x,y)
+        end
+      end
+    end
+  end
+  
+  love.graphics.setColor({1,1,1,1})
+  if bcol == 'white' then
+    love.graphics.setShader()
+  end
+  df(0,0)
+
+end
+
+function helpers.circlimit(x,y,r)
+  local ox, oy = x,y
+  local len = math.sqrt(x^2 + y^2)
+  if len > r then
+    ox, oy = ox/ (len/r), oy / (len/r)
+  end
+  return ox,oy
+end
+
+function helpers.firstupper(str)
+    return str:gsub("^%1", string.upper)
+end
+
+function helpers.tablematch(val,t)
+  for i,v in ipairs(t) do
+    if v == val then
+      return true
+    end
+  end
+  return false
+end
+
+function helpers.startswith(str,start)
+  if string.sub(str,1,#start) == start then
+    return string.sub(str,#start+1,-1)
+  end
+end
+
 return helpers

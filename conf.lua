@@ -1,16 +1,29 @@
 function love.conf(t)
-  release = true
-  ismobile = false
-  mobileoverride = false
+	if love.filesystem.getInfo('project.lua') then
+		project = require('project')
+	else
+		project = require('projects/debug')
+	end
+	project.res.cx = project.res.x / 2
+	project.res.cy = project.res.y / 2
+	t.externalstorage = true
+
+	if project.name == 'roomedit' then
+		t.identity = 'roomedit'
+		project.saveloc = 'savedata/main.sav'
+		project.defaultsaveloc = 'data/defaultsave.json'
+	else
+		t.identity = 'lovetemplate'
+		project.saveloc = 'savedata/main.sav'
+		project.defaultsaveloc = 'data/defaultsave.json'
+	end
+	t.window.usedpiscale = false
+	if not project.release then
+		t.console = true
+	end
+
+	t.window.width = project.res.x
+	t.window.height = project.res.y
+
   
-  t.externalstorage = true
-  is3ds = false
-  gameWidth, gameHeight = 400,240 -- WARNING: SETTING THESE TO ANYTHING OTHER THAN 400,240 MAY CAUSE UNDESIRED EFFECTS!!!
-  windowWidth, windowHeight = 800, 480
-  t.window.usedpiscale = false
-  if not release then
-    --t.console = true
-  end
-  t.window.width = 800
-  t.window.height = 480 
 end

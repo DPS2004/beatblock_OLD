@@ -45,6 +45,7 @@ for k, v in pairs(easing) do
       return .5 * (1 - ($e)) + .5
     end
   ]], v)
+
 end
 
 
@@ -91,7 +92,7 @@ function tween.new(obj, time, vars)
   self.rate = time > 0 and 1 / time or 0
   self.progress = time > 0 and 0 or 1
   self._delay = 0
-  self._ease = "quadout"
+  self._ease = "linear"
   self.vars = {}
   for k, v in pairs(vars) do
     if type(v) ~= "number" then

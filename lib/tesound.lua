@@ -32,9 +32,7 @@ function TEsound.play(sound, sourceType, tags, volume, pitch, func)
   local s = TEsound.channels[#TEsound.channels]
   s[1]:play()
   s[1]:setVolume( (volume or 1) * TEsound.findVolume(tags) * (TEsound.volumeLevels.all or 1) )
-  if not is3ds then
-    s[1]:setPitch( (pitch or 1) * TEsound.findPitch(tags) * (TEsound.pitchLevels.all or 1) )
-  end
+  s[1]:setPitch( (pitch or 1) * TEsound.findPitch(tags) * (TEsound.pitchLevels.all or 1) )
   return #TEsound.channels
 end
 

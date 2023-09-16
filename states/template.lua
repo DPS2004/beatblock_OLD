@@ -1,45 +1,24 @@
-local st = {}
-function st.init()
+local st = Gamestate:new('templatestate')
 
-end
-
-function st.enter(prev)
-
-end
+st:setinit(function(self)
+  em.init('templateobj',{x=128,y=72})
+end)
 
 
-function st.leave()
+st:setupdate(function(self,dt)
+  
+end)
 
-end
-
-
-function st.resume()
-
-end
-
-
-function st.update()
-  if not paused then
-
-    -- do things here
-    flux.update(1)
-    em.update(dt)\
-  end
-end
-
-
-function st.draw()
-  --push:start()
-  shuv.start()
-  love.graphics.setColor(1,1,1)
-
-  love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
-
-
-  em.draw()
-
-  shuv.finish()
-end
-
+st:setbgdraw(function(self)
+  color('black')
+  love.graphics.rectangle('fill',0,0,project.res.x,project.res.y)
+end)
+--entities are drawn here
+st:setfgdraw(function(self)
+  
+  color('red')
+  love.graphics.print(loc.get('helloworld'),10,10)
+  
+end)
 
 return st

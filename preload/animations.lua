@@ -1,0 +1,3 @@
+local animations = {}
+
+return animations

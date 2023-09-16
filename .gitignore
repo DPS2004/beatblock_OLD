@@ -1,2 +1,10 @@
-release
-boon.exe
+/release
+/boon.exe
+/release_pc
+/release_web
+/release_editor
+.DS_Store
+.vscode/
+/release_debug
+switchassets/love.elf
+/release_switch
