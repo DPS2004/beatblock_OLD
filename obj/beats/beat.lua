@@ -27,6 +27,8 @@ function Beat:initialize(params)
 	
 	self.spinease = 'linear'
 	
+	self.positionoffset = 0
+	
   Entity.initialize(self,params)
 	
 	self.startangle = self.startangle or self.angle
@@ -96,7 +98,7 @@ function Beat:updateangle()
 end
 
 function Beat:getpositions()
-	return helpers.rotate((self.hb - cs.cbeat)*cs.level.properties.speed*self.smult+cs.extend+cs.length,self.angle,self.ox,self.oy)
+	return helpers.rotate((self.hb - cs.cbeat)*cs.level.properties.speed*self.smult+cs.extend+cs.length-self.positionoffset,self.angle,self.ox,self.oy)
 end
 
 function Beat:updatepositions()
@@ -192,10 +194,10 @@ function Beat:update(dt)
 end
 
 function Beat:draw()
-  prof.push('beat draw')
+  prof.push('beat (generic) draw')
 	color()
 	love.graphics.draw(self.spr,self.x,self.y,0,1,1,8,8)
-  prof.push('beat draw')
+  prof.push('beat (generic) draw')
 end
 
 return Beat

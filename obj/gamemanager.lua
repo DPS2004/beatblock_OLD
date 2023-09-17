@@ -31,7 +31,20 @@ function Gamemanager:resetlevel()
   cs.hits = 0
   cs.combo = 0
   cs.maxhits = 0
-  for i,v in ipairs(cs.level.events) do
+	
+	--deal with new level format
+	cs.allevents = {}
+	if cs.chart then
+		for i,v in ipairs(cs.chart) do
+			table.insert(cs.allevents,v)
+		end
+	end
+	for i,v in ipairs(cs.level.events) do
+		table.insert(cs.allevents,v)
+	end
+	--from now on cs.level.events should be cs.allevents
+	
+  for i,v in ipairs(cs.allevents) do
     if v.type == "beat" or v.type == "slice" or v.type == "sliceinvert" or v.type == "inverse" or v.type == "hold" or v.type == "mine" or v.type == "side" or v.type == "minehold" or v.type == "ringcw" or v.type == "ringccw" then
       cs.maxhits = cs.maxhits + 1
     end
@@ -41,7 +54,7 @@ function Gamemanager:resetlevel()
 
   cs.beatsounds = true
   cs.extend = 0
-  for i,v in ipairs(cs.level.events) do
+  for i,v in ipairs(cs.allevents) do
     v.played = false
     v.autoplayed = false
   end
@@ -49,6 +62,16 @@ function Gamemanager:resetlevel()
   cs.vfx.hom = false
   cs.vfx.bgnoise = {enable=false,image=love.graphics.newImage("assets/game/noise/0noiseatlas.png"),r=1,b=1,g=1}
   cs.lastsigbeat = math.floor(cs.cbeat)
+end
+
+function Gamemanager:beattoms(beat,bpm) --you gotta Trust me that the numbers check out here
+	bpm = bpm or cs.level.bpm
+	return beat * (60000/bpm)
+end
+
+function Gamemanager:mstobeat(ms,bpm)
+	bpm = bpm or cs.level.bpm
+	return ms / (60000/bpm) 
 end
 
 function Gamemanager:gradecalc(pct) --idk where else to put this, but it shouldn't go into helpers because its so game specific.
@@ -92,7 +115,7 @@ function Gamemanager:update(dt)
   -- read the level
 	
 	
-  for i,v in ipairs(cs.level.events) do
+  for i,v in ipairs(cs.allevents) do
   -- preload events such as beats
     if v.time <= cs.cbeat+cs.offset and v.played == false then
       if v.type == "play" and cs.sounddata == nil then
@@ -148,6 +171,39 @@ function Gamemanager:update(dt)
         pq = pq .. "    ".. "mine here!"
         newbeat:update(dt)
       end
+      if v.type == "minehold" then
+        v.played = true
+        local newbeat = em.init("minehold",{
+					x = project.res.cx,
+					y = project.res.cy,
+					segments = v.segments,
+					duration = v.duration,
+					holdease = v.holdease,
+					angle = v.angle1,
+					angle2 = v.angle2,
+					endangle = v.endangle,
+					spinease = v.spinease,
+					hb = v.time,
+					smult = v.speedmult
+				})
+        pq = pq .. "    ".. "mine hold spawn here!"
+				newbeat:update(dt)
+      end
+			
+      if v.type == "side" then
+        v.played = true
+        local newbeat = em.init("side",{
+					x=project.res.cx,
+					y=project.res.cy,
+					angle = v.angle,
+					endangle = v.endangle,
+					spinease = v.spinease,
+					hb = v.time,
+					smult = v.speedmult
+				})
+        pq = pq .. "    ".. "side here!"
+        newbeat:update(dt)
+      end
 			--[[
       if v.type == "slice" then
         v.played = true
@@ -187,23 +243,6 @@ function Gamemanager:update(dt)
         newbeat.inverse = true
         pq = pq .. "    ".. "spawn here!"
         newbeat.update()
-      end
-      if v.type == "minehold" then
-        v.played = true
-        local newbeat = em.init("beat",project.res.cx,project.res.cy)
-        newbeat.segments = v.segments or nil
-        newbeat.minehold = true
-        newbeat.duration = v.duration
-        newbeat.holdease = v.holdease or nil
-        newbeat.startangle = v.angle1
-        newbeat.angle = v.angle1
-        newbeat.angle1 = v.angle1
-        newbeat.angle2 = v.angle2 or v.angle1
-        newbeat.endangle = v.endangle or v.angle1 -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
-        newbeat.hb = v.time
-        newbeat.smult = v.speedmult
-        pq = pq .. "    ".. "mine hold here!"
-                newbeat.update()
       end
       if v.type == "side" then
         v.played = true
@@ -267,6 +306,7 @@ function Gamemanager:update(dt)
       
       v.played = true
       if v.type == "setBPM" then
+				cs.level.bpm = v.bpm
         cs.source:setBPM(v.bpm, v.time)
         pq = pq .. "    set bpm to "..v.bpm .. " !!"
       end
@@ -294,7 +334,7 @@ function Gamemanager:update(dt)
         cs.extend = 10
         flux.to(cs,10,{extend=0}):ease("linear")
         for i=1,v.reps do
-          table.insert(cs.level.events,{type="singlepulse",time=v.time+v.delay*i,played=false})
+          table.insert(cs.allevents,{type="singlepulse",time=v.time+v.delay*i,played=false})
         end
       end
 
