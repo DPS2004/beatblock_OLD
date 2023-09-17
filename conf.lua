@@ -8,15 +8,11 @@ function love.conf(t)
 	project.res.cy = project.res.y / 2
 	t.externalstorage = true
 
-	if project.name == 'roomedit' then
-		t.identity = 'roomedit'
-		project.saveloc = 'savedata/main.sav'
-		project.defaultsaveloc = 'data/defaultsave.json'
-	else
-		t.identity = 'lovetemplate'
-		project.saveloc = 'savedata/main.sav'
-		project.defaultsaveloc = 'data/defaultsave.json'
-	end
+	
+	t.identity = 'beatblock'
+	project.saveloc = 'savedata/main.sav'
+	project.defaultsaveloc = 'data/defaultsave.json'
+	
 	t.window.usedpiscale = false
 	if not project.release then
 		t.console = true

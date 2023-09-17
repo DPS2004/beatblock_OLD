@@ -62,6 +62,7 @@ function Hold:update(dt)
 end
 
 function Hold:draw()
+  prof.push('hold draw')
 	local completion = math.max(0, (cs.cbeat - self.hb) / self.duration)
 
   -- distances to the beginning and the end of the hold
@@ -120,6 +121,7 @@ function Hold:draw()
   love.graphics.draw(self.spr,self.x,self.y,0,1,1,8,8)
   love.graphics.draw(self.spr,self.x2,self.y2,0,1,1,8,8)
 	
+  prof.pop('hold draw')
 end
 
 return Hold

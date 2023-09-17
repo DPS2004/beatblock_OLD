@@ -4,8 +4,8 @@ project.release = false
 
 project.name = 'BeatBlock'
 
-project.initstate = 'game'
-clevel = 'levels/Finished Levels/bappy/'
+project.initstate = 'songselect'
+--clevel = 'levels/Finished Levels/bappy/'
 
 --project.frameadvance = true
 

@@ -19,6 +19,7 @@ end
 
 function Gamemanager:resetlevel()
   cs.offset = cs.level.properties.offset
+	cs.songoffset = 0
   cs.startbeat = cs.startbeat or 0
   cs.cbeat = 0-cs.offset +cs.startbeat
   cs.autoplay = false
@@ -97,10 +98,9 @@ function Gamemanager:update(dt)
       if v.type == "play" and cs.sounddata == nil then
         cs.level.bpm = v.bpm
         cs.sounddata = love.sound.newSoundData(clevel..v.file)
-        
-       pq = pq .. "      loaded sounddata"
-
+				pq = pq .. "      loaded sounddata"
       end
+
       if v.type == "beat" then
         v.played = true
         local newbeat = em.init("beat",{
@@ -131,21 +131,22 @@ function Gamemanager:update(dt)
 					hb = v.time,
 					smult = v.speedmult
 				})
-				--[[
-        newbeat.segments = v.segments or nil
-        newbeat.hold = true
-        newbeat.duration = v.duration
-        newbeat.holdease = v.holdease or nil
-        newbeat.startangle = v.angle1
-        newbeat.angle = v.angle1
-        newbeat.angle1 = v.angle1
-        newbeat.angle2 = v.angle2 or v.angle1
-        newbeat.endangle = v.endangle or v.angle1 -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
-        newbeat.hb = v.time
-        newbeat.smult = v.speedmult
-				]]--
         pq = pq .. "    ".. "hold spawn here!"
 				newbeat:update(dt)
+      end
+			if v.type == "mine" then
+        v.played = true
+        local newbeat = em.init("mine",{
+					x=project.res.cx,
+					y=project.res.cy,
+					angle = v.angle,
+					endangle = v.endangle,
+					spinease = v.spinease,
+					hb = v.time,
+					smult = v.speedmult
+				})
+        pq = pq .. "    ".. "mine here!"
+        newbeat:update(dt)
       end
 			--[[
       if v.type == "slice" then
@@ -203,19 +204,6 @@ function Gamemanager:update(dt)
         newbeat.smult = v.speedmult
         pq = pq .. "    ".. "mine hold here!"
                 newbeat.update()
-      end
-      if v.type == "mine" then
-        v.played = true
-        local newbeat = em.init("beat",project.res.cx,project.res.cy)
-        newbeat.angle = v.angle
-        newbeat.startangle = v.angle
-        newbeat.endangle = v.endangle or v.angle -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
-        newbeat.spinease = v.spinease or "linear" -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
-        newbeat.hb = v.time
-        newbeat.smult = v.speedmult
-        newbeat.mine=true
-        pq = pq .. "    ".. "mine here!"
-        newbeat.update()
       end
       if v.type == "side" then
         v.played = true
@@ -285,8 +273,8 @@ function Gamemanager:update(dt)
           :setLooping(false)
           :play()
           :on("end", function(f) print("song finished!!!!!!!!!!") self.songfinished = true end)
-        
-        cs.source:setBeat(cs.cbeat)
+        cs.songoffset = v.time
+        cs.source:setBeat(cs.cbeat - v.time)
         pq = pq .. "    ".. "now playing ".. v.file
       end
       
@@ -383,7 +371,7 @@ function Gamemanager:update(dt)
   else
     cs.source:update()
     local b,sb = cs.source:getBeat(1)
-    cs.cbeat = b+sb
+    cs.cbeat = b+sb + cs.songoffset
     --print(b+sb)
   end
   if cs.combo >= math.floor(cs.maxhits / 4) then
@@ -414,7 +402,7 @@ function Gamemanager:draw()
   --ouch the lag
   if cs.vfx.bgnoise.enable then
     love.graphics.setColor(cs.vfx.bgnoise.r,cs.vfx.bgnoise.g,cs.vfx.bgnoise.b,cs.vfx.bgnoise.a)
-    love.graphics.draw(cs.vfx.bgnoise.image,math.random(-2048+gameWidth,0),math.random(-2048+gameHeight,0))
+    love.graphics.draw(cs.vfx.bgnoise.image,math.random(-2048+project.res.x,0),math.random(-2048+project.res.y,0))
   end
   love.graphics.draw(cs.bg)
 

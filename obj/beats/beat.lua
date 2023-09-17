@@ -119,12 +119,16 @@ function Beat:checktouchingpaddle(a)
 end
 
 
-function Beat:onhit()
+function Beat:onhit(mine)
 	self:makeparticles(true)
-	pq = pq .. "   player hit " ..self.name.."!"
+	if mine then
+		pq = pq .. "   player dodged " ..self.name.."!"
+	else
+		pq = pq .. "   player hit " ..self.name.."!"
+	end
 	cs.hits = cs.hits + 1
 	cs.combo = cs.combo + 1
-	if cs.beatsounds then
+	if cs.beatsounds and (not mine) then
 		te.play(sounds.click,"static")
 	end
 	if cs.p.cemotion == "miss" then
@@ -134,9 +138,17 @@ function Beat:onhit()
 	self.delete = true
 end
 
-function Beat:onmiss()
+function Beat:onmiss(mine)
 	self:makeparticles(false)
-	pq = pq .. "   player missed " ..self.name.."!"
+	if mine then
+		pq = pq .. "   player hit " ..self.name.."!"
+		if cs.beatsounds then
+			te.play(sounds.mine,"static")
+		end
+	else
+		pq = pq .. "   player missed " ..self.name.."!"
+	end
+		
 	cs.misses = cs.misses + 1
 	cs.combo = 0
 	cs.p.emotimer = 100
