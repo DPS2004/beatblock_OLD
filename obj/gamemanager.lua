@@ -241,6 +241,10 @@ function Gamemanager:update(dt)
         newbeat.update()
       end
 			]]--
+			if v.type == "videobg" and cs.videobg == nil then
+        cs.videobg = love.graphics.newVideo(clevel..v.file)
+				pq = pq .. "      loaded videobg"
+      end
 
     end
           -- autoplay
@@ -352,6 +356,13 @@ function Gamemanager:update(dt)
         nc.update()
         
       end
+			
+			if v.type == "videobg" then
+        pq = pq .. "    ".. "playing videobg"
+				cs.drawvideobg = true
+        cs.videobg:play()
+      end
+			
       if v.type == "showresults" then
         flux.to(cs.p,60,{ouchpulse=300,lookradius=0}):ease("inExpo"):oncomplete(function(f) 
 					cs:gotoresults()
@@ -405,6 +416,12 @@ function Gamemanager:draw()
     love.graphics.draw(cs.vfx.bgnoise.image,math.random(-2048+project.res.x,0),math.random(-2048+project.res.y,0))
   end
   love.graphics.draw(cs.bg)
+	
+	if cs.drawvideobg then
+		love.graphics.setShader(shaders.videoshader)
+		love.graphics.draw(cs.videobg)
+		love.graphics.setShader()
+	end
 
   color()
   em.draw()
