@@ -139,6 +139,22 @@ function Gamemanager:update(dt)
         newbeat:update(dt)
       end
 			
+      if v.type == "inverse" then
+        v.played = true
+        local newbeat = em.init("beat",{
+					x=project.res.cx,
+					y=project.res.cy,
+					angle = v.angle,
+					endangle = v.endangle,
+					spinease = v.spinease,
+					hb = v.time,
+					smult = v.speedmult,
+					inverse = true
+				})
+        pq = pq .. "    ".. "spawn here!"
+        newbeat:update(dt)
+      end
+			
       if v.type == "hold" then
         v.played = true
         local newbeat = em.init("hold",{
@@ -379,7 +395,7 @@ function Gamemanager:update(dt)
           pq = pq .. "    ".. "BG Noise disabled"
         end
       end
-
+			--[[
       if v.type == "circle" then
         pq = pq .. "    ".. "circle spawned"
         local nc = em.init("circlevfx",v.x,v.y)
@@ -396,6 +412,7 @@ function Gamemanager:update(dt)
         nc.update()
         
       end
+			]]--
 			
 			if v.type == "videobg" then
         pq = pq .. "    ".. "playing videobg"

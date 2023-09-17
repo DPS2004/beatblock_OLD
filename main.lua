@@ -55,7 +55,7 @@ function love.load()
   if project.res.useshuv then
     shuv = require "lib.shuv"
     shuv.init(project)
-    shuv.hackyfix()
+    --shuv.hackyfix()
   end
   -- what it says on the tin
   utf8 = require("utf8")

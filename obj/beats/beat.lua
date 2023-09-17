@@ -27,9 +27,17 @@ function Beat:initialize(params)
 	
 	self.spinease = 'linear'
 	
-	self.positionoffset = 0
+	self.inverse = false
 	
   Entity.initialize(self,params)
+	
+	if self.inverse then
+		self.positionoffset = 24
+		self.spr = sprites.beat.inverse
+		self.layer = 1
+	else
+		self.positionoffset = 0
+	end
 	
 	self.startangle = self.startangle or self.angle
 	self.endangle = self.endangle or self.angle
@@ -98,7 +106,11 @@ function Beat:updateangle()
 end
 
 function Beat:getpositions()
-	return helpers.rotate((self.hb - cs.cbeat)*cs.level.properties.speed*self.smult+cs.extend+cs.length-self.positionoffset,self.angle,self.ox,self.oy)
+	local invmul = 1
+	if self.inverse then
+		invmul = -1
+	end
+	return helpers.rotate(((self.hb - cs.cbeat)*cs.level.properties.speed*self.smult*invmul)+cs.extend+cs.length-self.positionoffset,self.angle,self.ox,self.oy)
 end
 
 function Beat:updatepositions()
@@ -168,7 +180,7 @@ function Beat:makeparticles(hit)
 			x = project.res.cx,
 			y = project.res.cy,
 			angle = self.angle,
-			distance = cs.length,
+			distance = cs.length - self.positionoffset,
 			spr = self.spr
 		})
 	end
