@@ -1,5 +1,31 @@
 Gamemanager = class('Gamemanager',Entity)
 
+Event = {}
+Event.onload = {}
+Event.onoffset = {}
+Event.onbeat = {}
+
+local elist = love.filesystem.getDirectoryItems('levelformat/events/')
+for i,v in ipairs(elist) do
+	if v ~= '_TEMPLATE.lua' then
+			local einfo, eonload, eonoffset, eonbeat = dofile('levelformat/events/'..v)
+			local etype = ''
+			if eonload then
+				Event.onload[einfo.event] = eonload
+				etype = etype .. ' onload'
+			end
+			if eonoffset then
+				Event.onoffset[einfo.event] = eonoffset
+				etype = etype .. ' onoffset'
+			end
+			if eonbeat then
+				Event.onbeat[einfo.event] = eonbeat
+				etype = etype .. ' onbeat'
+			end
+			
+			print('loaded event "'..einfo.name..'" ('..einfo.event..etype..')')
+	end
+end
 
 function Gamemanager:initialize(params)
 	
@@ -15,6 +41,7 @@ function Gamemanager:initialize(params)
 	
 	cs.p = em.init("player",{x=project.res.cx,y=project.res.cy})
 end
+
 
 
 function Gamemanager:resetlevel()
@@ -62,6 +89,20 @@ function Gamemanager:resetlevel()
   cs.vfx.hom = false
   cs.vfx.bgnoise = {enable=false,image=love.graphics.newImage("assets/game/noise/0noiseatlas.png"),r=1,b=1,g=1}
   cs.lastsigbeat = math.floor(cs.cbeat)
+	
+	--onload pass
+	print('running onload events...')
+	local oltotal = 0
+  for i,v in ipairs(cs.allevents) do
+		if Event.onload[v.type] then
+			if (not v.play_onload) then
+				Event.onload[v.type](v)
+				v.play_onload = true
+				oltotal = oltotal + 1
+			end
+		end
+	end
+	print('ran ' .. oltotal .. ' events')
 end
 
 function Gamemanager:beattoms(beat,bpm) --you gotta Trust me that the numbers check out here
@@ -104,40 +145,37 @@ end
 
 
 function Gamemanager:update(dt)
+	--IMPORTANT:
+	--The way that this is set up will 100% be a performance bottleneck in the future.
+	--But for now, it works well enough, even on stuff like Waves From Nothing (jit is amazing!)
+	--If more complicated levels start chugging, this is where you will want to optimize.
 	prof.push("gamemanager update")
   if not self.on then
     return
   end
 
   pq = ""
-  
+  if cs.source == nil or self.songfinished then
+    cs.cbeat = cs.cbeat + (cs.level.bpm/60) * love.timer.getDelta()
+  else
+    cs.source:update()
+    local b,sb = cs.source:getBeat(1)
+    cs.cbeat = b+sb + cs.songoffset
+    --print(b+sb)
+  end
 
   -- read the level
 	
 	
-  for i,v in ipairs(cs.allevents) do
+  for i,v in ipairs(cs.allevents) do -- onoffset + onbeat pass
   -- preload events such as beats
-    if v.time <= cs.cbeat+cs.offset and v.played == false then
-      if v.type == "play" and cs.sounddata == nil then
-        cs.level.bpm = v.bpm
-        cs.sounddata = love.sound.newSoundData(clevel..v.file)
-				pq = pq .. "      loaded sounddata"
-      end
-
-      if v.type == "beat" then
-        v.played = true
-        local newbeat = em.init("beat",{
-					x=project.res.cx,
-					y=project.res.cy,
-					angle = v.angle,
-					endangle = v.endangle,
-					spinease = v.spinease,
-					hb = v.time,
-					smult = v.speedmult
-				})
-        pq = pq .. "    ".. "spawn here!"
-        newbeat:update(dt)
-      end
+    if Event.onoffset[v.type] then 
+			if v.time <= cs.cbeat+cs.offset and (not v.play_onoffset) then
+				Event.onoffset[v.type](v)
+				v.play_onoffset = true
+			end
+			
+			--[[
 			
       if v.type == "inverse" then
         v.played = true
@@ -220,7 +258,6 @@ function Gamemanager:update(dt)
         pq = pq .. "    ".. "side here!"
         newbeat:update(dt)
       end
-			--[[
       if v.type == "slice" then
         v.played = true
         local newbeat = em.init("beat",project.res.cx,project.res.cy)
@@ -295,29 +332,24 @@ function Gamemanager:update(dt)
         pq = pq .. "    ".. "spawn here!"
         newbeat.update()
       end
-			]]--
+			
 			if v.type == "videobg" and cs.videobg == nil then
         cs.videobg = love.graphics.newVideo(clevel..v.file)
 				pq = pq .. "      loaded videobg"
       end
+			]]--
 
     end
-          -- autoplay
-      if v.time-0.05 <= cs.cbeat and cs.autoplay and v.autoplayed == false then
-        if v.type == "beat" or v.type == "inverse" then
-          v.autoplayed = true
-          if cs.ce ~= nil then
-            cs.ce:stop()
-            cs.ce = nil
-          end
-          cs.ce = flux.to(cs.p,0,{angle = v.angle}):ease("outExpo")
-          pq = pq..("     easing to "..v.angle)
-          
-        end
-      end
-
-
+		
     -- load other events on the beat
+		if Event.onbeat[v.type] then
+			if v.time <= cs.cbeat and (not v.play_onbeat) then
+				Event.onbeat[v.type](v)
+				v.play_onbeat = true
+			end
+		end
+		
+		--[[
     if v.time <= cs.cbeat and v.played == false then
       
       v.played = true
@@ -364,7 +396,6 @@ function Gamemanager:update(dt)
         cs.bg = love.graphics.newImage("assets/bgs/".. v.file)
         pq = pq.. "     set bg to " .. v.file
       end
-
       if v.type == "hom" then
         cs.vfx.hom = v.enable
 
@@ -395,7 +426,6 @@ function Gamemanager:update(dt)
           pq = pq .. "    ".. "BG Noise disabled"
         end
       end
-			--[[
       if v.type == "circle" then
         pq = pq .. "    ".. "circle spawned"
         local nc = em.init("circlevfx",v.x,v.y)
@@ -412,7 +442,6 @@ function Gamemanager:update(dt)
         nc.update()
         
       end
-			]]--
 			
 			if v.type == "videobg" then
         pq = pq .. "    ".. "playing videobg"
@@ -432,16 +461,10 @@ function Gamemanager:update(dt)
         code()  --haha loadstring go brrr
       end
     end
+		]]--
   end
   
-  if cs.source == nil or self.songfinished then
-    cs.cbeat = cs.cbeat + (cs.level.bpm/60) * love.timer.getDelta()
-  else
-    cs.source:update()
-    local b,sb = cs.source:getBeat(1)
-    cs.cbeat = b+sb + cs.songoffset
-    --print(b+sb)
-  end
+  
   if cs.combo >= math.floor(cs.maxhits / 4) then
     cs.p.cemotion = "happy"
     cs.p.emotimer = 2

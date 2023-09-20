@@ -140,10 +140,11 @@ function love.load()
     self:updatefunc(dt)
     prof.pop("gamestate update")
     
+		--[[
     prof.push("ricewine update")
     rw:update()
     prof.pop("ricewine update")
-    
+    ]]--
     prof.push("flux update")
     flux.update(dt)
     prof.pop("flux update")

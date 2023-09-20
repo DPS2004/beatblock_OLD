@@ -5,7 +5,7 @@ local ricewine = {
   functween = {x=0},
   queuedtweens = {}
 }
-ricewine.flux = flux
+ricewine.flux = dofile("lib/flux/flux.lua")
 if not ricewine.flux then
   error('flux.lua not found!')
 end
@@ -15,8 +15,8 @@ function ricewine:easenow(start,length,easefn,val,obj,param)
     obj[param] = val
   else
   
-    start = (start - self.startbeat) * (1/self.bpm)*3600
-    length = length * (1/self.bpm)*3600
+    start = (start - self.startbeat)
+    length = length
     
     local kvtable = {}
     kvtable[param] = val
@@ -28,7 +28,7 @@ function ricewine:funcnow(start,dofunc)
   if start < self.startbeat then
     dofunc()
   else
-    start = (start - self.startbeat) * (1/self.bpm)*3600
+    start = (start - self.startbeat) 
     table.insert(self.tweens,self.flux.to(self.functween, 0, {x=0}):delay(start):onstart(dofunc))
   end
 end
@@ -55,7 +55,10 @@ function ricewine:stopall()
   end
 end
 
-function ricewine:update()
+function ricewine:update(beat)
+  local deltabeat = beat - self.beat
+  self.beat = beat
+  self.flux.update(deltabeat)
   for i,v in ipairs(self.tweens) do
     if v.doremove then
       table.remove(self.tweens,i)
@@ -69,17 +72,12 @@ function ricewine:to(a,b,c)
   return newtween
 end
 
-function ricewine:play(params)
-  params = params or {bpm = 60,startbeat=0}
-  if params.startbeat then
-    self.startbeat = params.startbeat
-  end
-  if params.bpm then 
-    self.bpm = params.bpm
-  end
-  if params.song then
-    self.funcnow(0,function() self.song = te.play(song,'stream',{'ricewine_music','music'}) end)
-  end
+function ricewine:play(beat)
+  
+  self.startbeat = beat
+  self.beat = beat
+
+
   for i,v in ipairs(self.queuedtweens) do
     v()
   end
