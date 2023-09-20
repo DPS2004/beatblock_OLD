@@ -4,7 +4,9 @@ local shuv = {
   update = true,
   xoffset = 0,
   yoffset = 0,
-  screensize_canvases = {}
+  screensize_canvases = {},
+	paldefault = {},
+	pal = {}
 }
 
 function shuv.makeCanvas()
@@ -29,8 +31,15 @@ function shuv.init(project)
   shuv.lastframe = love.graphics.newCanvas(project.res.x * shuv.internal_scale, project.res.y * shuv.internal_scale)
   shuv.scale = project.res.s
   if project.intscale then
-	shuv.internal_rescale(project.intscale)
-  end
+		shuv.internal_rescale(project.intscale)
+	end
+	
+	shuv.paldefault[0] = {r=255,g=255,b=255}
+	shuv.paldefault[1] = {r=0,  g=0,  b=0  }
+	shuv.paldefault[2] = {r=127,g=127,b=127}
+	shuv.paldefault[3] = {r=191,g=191,b=191}
+	shuv.pal = helpers.copy(shuv.paldefault)
+	
 end
 
 function shuv.internal_rescale(scale)
@@ -101,6 +110,21 @@ function shuv.check()
   end
 end
 
+function shuv.updatepal()
+	local newpal = {}
+	for c=0,3 do
+		local col = shuv.pal[c]
+		local coltable = {}
+		table.insert(coltable,col.r/255)
+		table.insert(coltable,col.g/255)
+		table.insert(coltable,col.b/255)
+		table.insert(coltable,1)
+		
+		table.insert(newpal,coltable)
+	end
+  shaders.palshader:send('newcolors',unpack(newpal))
+end
+
 
 function shuv.start()
   love.graphics.setColor(1, 1, 1, 1)
@@ -111,8 +135,13 @@ end
 
 function shuv.finish()
   love.graphics.setCanvas()
+	
+	shuv.updatepal()
+	
+	love.graphics.setShader(shaders.palshader)
   love.graphics.draw(shuv.canvas,shuv.xoffset,shuv.yoffset,0,shuv.scale / shuv.internal_scale,shuv.scale / shuv.internal_scale)
-  tinput = ""
+	love.graphics.setShader()
+	tinput = ""
   
   love.graphics.setCanvas(shuv.lastframe)
   love.graphics.draw(shuv.canvas,0,0)

@@ -4,7 +4,7 @@ project.release = false
 
 project.name = 'BeatBlock'
 
-project.initstate = 'songselect'
+project.initstate = 'title'
 --clevel = 'levels/Finished Levels/lawrence/'
 --project.startbeat = 340
 --project.frameadvance = true

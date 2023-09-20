@@ -20,7 +20,7 @@ end
 function Gamemanager:resetlevel()
   cs.offset = cs.level.properties.offset
 	cs.songoffset = 0
-  cs.startbeat = cs.startbeat or or project.startbeat 0
+  cs.startbeat = cs.startbeat or project.startbeat or 0
   cs.cbeat = 0-cs.offset +cs.startbeat
   cs.autoplay = false
   cs.length = 42
