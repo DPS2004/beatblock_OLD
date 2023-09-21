@@ -21,7 +21,7 @@ local function onbeat(event)
 		:setBPM(event.bpm)
 		:setLooping(false)
 		:play()
-		:on("end", function(f) print("song finished!!!!!!!!!!") self.songfinished = true end)
+		:on("end", function(f) print("song finished!!!!!!!!!!") cs.gm.songfinished = true end)
 	cs.songoffset = event.time
 	cs.source:setBeat(cs.cbeat - event.time)
 	pq = pq .. "    ".. "now playing ".. event.file

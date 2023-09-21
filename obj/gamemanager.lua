@@ -177,87 +177,6 @@ function Gamemanager:update(dt)
 			
 			--[[
 			
-      if v.type == "inverse" then
-        v.played = true
-        local newbeat = em.init("beat",{
-					x=project.res.cx,
-					y=project.res.cy,
-					angle = v.angle,
-					endangle = v.endangle,
-					spinease = v.spinease,
-					hb = v.time,
-					smult = v.speedmult,
-					inverse = true
-				})
-        pq = pq .. "    ".. "spawn here!"
-        newbeat:update(dt)
-      end
-			
-      if v.type == "hold" then
-        v.played = true
-        local newbeat = em.init("hold",{
-					x = project.res.cx,
-					y = project.res.cy,
-					segments = v.segments,
-					duration = v.duration,
-					holdease = v.holdease,
-					angle = v.angle1,
-					angle2 = v.angle2,
-					endangle = v.endangle,
-					spinease = v.spinease,
-					hb = v.time,
-					smult = v.speedmult
-				})
-        pq = pq .. "    ".. "hold spawn here!"
-				newbeat:update(dt)
-      end
-			if v.type == "mine" then
-        v.played = true
-        local newbeat = em.init("mine",{
-					x=project.res.cx,
-					y=project.res.cy,
-					angle = v.angle,
-					endangle = v.endangle,
-					spinease = v.spinease,
-					hb = v.time,
-					smult = v.speedmult
-				})
-        pq = pq .. "    ".. "mine here!"
-        newbeat:update(dt)
-      end
-      if v.type == "minehold" then
-        v.played = true
-        local newbeat = em.init("minehold",{
-					x = project.res.cx,
-					y = project.res.cy,
-					segments = v.segments,
-					duration = v.duration,
-					holdease = v.holdease,
-					angle = v.angle1,
-					angle2 = v.angle2,
-					endangle = v.endangle,
-					spinease = v.spinease,
-					hb = v.time,
-					smult = v.speedmult
-				})
-        pq = pq .. "    ".. "mine hold spawn here!"
-				newbeat:update(dt)
-      end
-			
-      if v.type == "side" then
-        v.played = true
-        local newbeat = em.init("side",{
-					x=project.res.cx,
-					y=project.res.cy,
-					angle = v.angle,
-					endangle = v.endangle,
-					spinease = v.spinease,
-					hb = v.time,
-					smult = v.speedmult
-				})
-        pq = pq .. "    ".. "side here!"
-        newbeat:update(dt)
-      end
       if v.type == "slice" then
         v.played = true
         local newbeat = em.init("beat",project.res.cx,project.res.cy)
@@ -285,31 +204,6 @@ function Gamemanager:update(dt)
         pq = pq .. "    ".. "spawn here!"
         newbeat.update()
       end
-      if v.type == "inverse" then
-        v.played = true
-        local newbeat = em.init("beat",project.res.cx,project.res.cy)
-        newbeat.angle = v.angle
-        newbeat.startangle = v.angle
-        newbeat.endangle = v.endangle or v.angle -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
-        newbeat.hb = v.time
-        newbeat.smult = v.speedmult
-        newbeat.inverse = true
-        pq = pq .. "    ".. "spawn here!"
-        newbeat.update()
-      end
-      if v.type == "side" then
-        v.played = true
-        local newbeat = em.init("beat",project.res.cx,project.res.cy)
-        newbeat.angle = v.angle
-        newbeat.startangle = v.angle
-        newbeat.endangle = v.endangle or v.angle -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
-        newbeat.spinease = v.spinease or "linear" -- Funny or to make sure nothing bad happens if endangle isn't specified in the json
-        newbeat.hb = v.time
-        newbeat.smult = v.speedmult
-        newbeat.side=true
-        pq = pq .. "    ".. "spawn here!"
-        newbeat.update()
-      end
       if v.type == "ringcw" then
         v.played = true
         local newbeat = em.init("beat",project.res.cx,project.res.cy)
@@ -333,10 +227,6 @@ function Gamemanager:update(dt)
         newbeat.update()
       end
 			
-			if v.type == "videobg" and cs.videobg == nil then
-        cs.videobg = love.graphics.newVideo(clevel..v.file)
-				pq = pq .. "      loaded videobg"
-      end
 			]]--
 
     end
@@ -353,29 +243,7 @@ function Gamemanager:update(dt)
     if v.time <= cs.cbeat and v.played == false then
       
       v.played = true
-      if v.type == "setBPM" then
-				cs.level.bpm = v.bpm
-        cs.source:setBPM(v.bpm, v.time)
-        pq = pq .. "    set bpm to "..v.bpm .. " !!"
-      end
-      if v.type == "play" then
-        cs.source = lovebpm.newTrack()
-          :load(cs.sounddata)
-          :setBPM(v.bpm)
-          :setLooping(false)
-          :play()
-          :on("end", function(f) print("song finished!!!!!!!!!!") self.songfinished = true end)
-        cs.songoffset = v.time
-        cs.source:setBeat(cs.cbeat - v.time)
-        pq = pq .. "    ".. "now playing ".. v.file
-      end
       
-      if v.type == "width" then
-
-        
-        flux.to(cs.p,v.duration,{paddle_size=v.newwidth}):ease("linear")
-        pq = pq.. "    width set to " .. v.newwidth
-      end
       
       if v.type == "multipulse" then
         pq = pq.. "    pulsing, generating other pulses"
@@ -395,15 +263,6 @@ function Gamemanager:update(dt)
       if v.type == "setbg" then
         cs.bg = love.graphics.newImage("assets/bgs/".. v.file)
         pq = pq.. "     set bg to " .. v.file
-      end
-      if v.type == "hom" then
-        cs.vfx.hom = v.enable
-
-        if v.enable then
-          pq = pq .. "    ".. "Hall Of Mirrors enabled"
-        else
-          pq = pq .. "    ".. "Hall Of Mirrors disabled"
-        end
       end
       if v.type == "bgnoise" then
         cs.vfx.bgnoise.enable = v.enable
@@ -443,18 +302,7 @@ function Gamemanager:update(dt)
         
       end
 			
-			if v.type == "videobg" then
-        pq = pq .. "    ".. "playing videobg"
-				cs.drawvideobg = true
-        cs.videobg:play()
-      end
 			
-      if v.type == "showresults" then
-        flux.to(cs.p,60,{ouchpulse=300,lookradius=0}):ease("inExpo"):oncomplete(function(f) 
-					cs:gotoresults()
-				end )
-        
-      end
       if v.type == "lua" then
         pq = pq .. "    ".. "ran lua code"
         local code = loadstring(v.code) -- NOOOOOO YOU CANT RUN ARBITRARY CODE THATS A SECURITY RISK
