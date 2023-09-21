@@ -1,6 +1,7 @@
 local info = {
 	event = 'setbpm',
 	name = 'Set BPM',
+	storeinchart = false,
 	description = [[Parameters:
 time: Beat to change BPM on
 bpm: The BPM to change to

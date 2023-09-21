@@ -1,6 +1,7 @@
 local info = {
 	event = 'hold',
 	name = 'Spawn Hold',
+	storeinchart = true,
 	description = [[Parameters:
 time: Beat to spawn on
 angle1: First Angle to spawn at

@@ -1,6 +1,7 @@
 local info = {
 	event = 'hom',
 	name = 'Hall of Mirrors',
+	storeinchart = false,
 	description = [[Parameters:
 time: Beat to toggle HOM on
 enable: Turns on/off HOM

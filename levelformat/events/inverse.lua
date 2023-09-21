@@ -1,6 +1,7 @@
 local info = {
 	event = 'inverse',
 	name = 'Spawn Inverse Beat',
+	storeinchart = true,
 	description = [[Parameters:
 time: Beat to spawn on
 angle: Angle to spawn at

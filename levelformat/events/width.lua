@@ -1,6 +1,7 @@
 local info = {
 	event = 'width',
 	name = 'Set Width',
+	storeinchart = false,
 	description = [[Parameters:
 time: Beat to start width change
 newwidth: New width to ease to

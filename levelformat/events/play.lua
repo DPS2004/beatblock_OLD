@@ -1,6 +1,7 @@
 local info = {
 	event = 'play',
 	name = 'Play song',
+	storeinchart = false,
 	description = [[Parameters:
 time: Beat to start playing song
 file: Filename of song 

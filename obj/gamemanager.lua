@@ -87,7 +87,7 @@ function Gamemanager:resetlevel()
   end
   cs.vfx = {}
   cs.vfx.hom = false
-  cs.vfx.bgnoise = {enable=false,image=love.graphics.newImage("assets/game/noise/0noiseatlas.png"),r=1,b=1,g=1}
+  cs.vfx.bgnoise = {enable=false,image=nil,r=1,g=1,b=1,a=1}
   cs.lastsigbeat = math.floor(cs.cbeat)
 	
 	--onload pass
@@ -244,47 +244,7 @@ function Gamemanager:update(dt)
       
       v.played = true
       
-      
-      if v.type == "multipulse" then
-        pq = pq.. "    pulsing, generating other pulses"
-        cs.extend = 10
-        flux.to(cs,10,{extend=0}):ease("linear")
-        for i=1,v.reps do
-          table.insert(cs.allevents,{type="singlepulse",time=v.time+v.delay*i,played=false})
-        end
-      end
 
-      if v.type == "singlepulse" then
-        cs.extend = 10
-        flux.to(cs,10,{extend=0}):ease("linear")
-        pq = pq.. "    pulsing"
-      end
-      
-      if v.type == "setbg" then
-        cs.bg = love.graphics.newImage("assets/bgs/".. v.file)
-        pq = pq.. "     set bg to " .. v.file
-      end
-      if v.type == "bgnoise" then
-        cs.vfx.bgnoise.enable = v.enable
-        if v.enable then
-          cs.vfx.bgnoise.image = love.graphics.newImage("assets/game/noise/" .. v.filename)
-          cs.vfx.bgnoise.r = v.r or 1
-          cs.vfx.bgnoise.g = v.g or 1
-          cs.vfx.bgnoise.b = v.b or 1
-          cs.vfx.bgnoise.a = v.a or 1
-        else
-          cs.vfx.bgnoise.image = love.graphics.newImage("assets/game/noise/0noiseatlas.png")
-          cs.vfx.bgnoise.r = 1
-          cs.vfx.bgnoise.g = 1
-          cs.vfx.bgnoise.b = 1
-          cs.vfx.bgnoise.a = 0
-        end
-        if v.enable then
-          pq = pq .. "    ".. "BG Noise enabled with filename of " .. v.filename
-        else
-          pq = pq .. "    ".. "BG Noise disabled"
-        end
-      end
       if v.type == "circle" then
         pq = pq .. "    ".. "circle spawned"
         local nc = em.init("circlevfx",v.x,v.y)

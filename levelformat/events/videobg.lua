@@ -1,6 +1,7 @@
 local info = {
 	event = 'videobg',
 	name = 'Play Videobg',
+	storeinchart = false,
 	description = [[Parameters:
 time: Beat to start playing video
 file: Filename of video, MUST BE OGV

@@ -1,6 +1,7 @@
 local info = {
 	event = 'side',
 	name = 'Spawn Side',
+	storeinchart = true,
 	description = [[Parameters:
 time: Beat to spawn on
 angle: Angle to spawn at

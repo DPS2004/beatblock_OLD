@@ -1,6 +1,7 @@
 local info = {
 	event = 'mine',
 	name = 'Spawn Mine',
+	storeinchart = true,
 	description = [[Parameters:
 time: Beat to spawn on
 angle: Angle to spawn at

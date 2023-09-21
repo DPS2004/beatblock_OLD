@@ -1,6 +1,7 @@
 local info = {
 	event = 'showresults',
 	name = 'Show Results',
+	storeinchart = false,
 	description = [[Parameters:
 time: Beat to show results on
 ]]
