@@ -55,5 +55,14 @@ sprites.title = {
 	logo = love.graphics.newImage("assets/title/logo.png")
 }
 
+sprites.editor = {
+	Square = love.graphics.newImage("assets/editor/editorSquare.png"),
+  Palette = love.graphics.newImage("assets/editor/editorPalette.png"),
+  Rect51x26 = love.graphics.newImage("assets/editor/editorRect51x26.png"),
+  Rect41x33 = love.graphics.newImage("assets/editor/editorRect41x33.png"),
+  Selected = love.graphics.newImage("assets/editor/editorSelected.png"),
+  PlaySymbol = love.graphics.newImage("assets/editor/editorPlaySymbol.png"),
+  TextBox = love.graphics.newImage("assets/editor/editorTextBox.png")
+}
 
 return sprites

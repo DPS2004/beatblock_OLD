@@ -4,7 +4,7 @@ st:setinit(function(self)
 	
   self.gm = em.init("gamemanager")
 
-  self.canv = love.graphics.newCanvas(gameWidth,gameHeight)
+  self.canv = love.graphics.newCanvas(project.res.x,project.res.y)
 
   self.level = dpf.loadjson(clevel .. "level.json")
 	if self.level.properties.formatversion then
@@ -21,11 +21,11 @@ end)
 
 function st:leave()
   entities = {}
-  if st.source ~= nil then
-    st.source:stop()
-    st.source = nil
+  if self.source ~= nil then
+    self.source:stop()
+    self.source = nil
   end
-  st.sounddata = nil
+  self.sounddata = nil
 end
 
 function st:gotoresults()

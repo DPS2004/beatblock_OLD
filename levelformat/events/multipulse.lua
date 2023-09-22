@@ -16,7 +16,7 @@ local function onbeat(event)
 	cs.extend = event.intensity or 10
 	flux.to(cs,10,{extend=0}):ease("linear")
 	for i=1,event.reps do
-		table.insert(cs.allevents,{type="singlepulse",time=event.time+event.delay*i,intensity=event.intensity})
+		table.insert(cs.playevents,{type="singlepulse",time=event.time+event.delay*i,intensity=event.intensity})
 	end
 end
 

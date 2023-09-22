@@ -60,18 +60,18 @@ function Gamemanager:resetlevel()
   cs.maxhits = 0
 	
 	--deal with new level format
-	cs.allevents = {}
+	cs.playevents = {}
 	if cs.chart then
 		for i,v in ipairs(cs.chart) do
-			table.insert(cs.allevents,v)
+			table.insert(cs.playevents,v)
 		end
 	end
 	for i,v in ipairs(cs.level.events) do
-		table.insert(cs.allevents,v)
+		table.insert(cs.playevents,v)
 	end
-	--from now on cs.level.events should be cs.allevents
+	--from now on cs.level.events should be cs.playevents
 	
-  for i,v in ipairs(cs.allevents) do
+  for i,v in ipairs(cs.playevents) do
     if v.type == "beat" or v.type == "slice" or v.type == "sliceinvert" or v.type == "inverse" or v.type == "hold" or v.type == "mine" or v.type == "side" or v.type == "minehold" or v.type == "ringcw" or v.type == "ringccw" then
       cs.maxhits = cs.maxhits + 1
     end
@@ -81,7 +81,7 @@ function Gamemanager:resetlevel()
 
   cs.beatsounds = true
   cs.extend = 0
-  for i,v in ipairs(cs.allevents) do
+  for i,v in ipairs(cs.playevents) do
     v.played = false
     v.autoplayed = false
   end
@@ -90,19 +90,21 @@ function Gamemanager:resetlevel()
   cs.vfx.bgnoise = {enable=false,image=nil,r=1,g=1,b=1,a=1}
   cs.lastsigbeat = math.floor(cs.cbeat)
 	
-	--onload pass
-	print('running onload events...')
-	local oltotal = 0
-  for i,v in ipairs(cs.allevents) do
-		if Event.onload[v.type] then
-			if (not v.play_onload) then
-				Event.onload[v.type](v)
-				v.play_onload = true
-				oltotal = oltotal + 1
+	if not cs.editmode then
+		--onload pass
+		print('running onload events...')
+		local oltotal = 0
+		for i,v in ipairs(cs.playevents) do
+			if Event.onload[v.type] then
+				if (not v.play_onload) then
+					Event.onload[v.type](v)
+					v.play_onload = true
+					oltotal = oltotal + 1
+				end
 			end
 		end
+		print('ran ' .. oltotal .. ' events')
 	end
-	print('ran ' .. oltotal .. ' events')
 end
 
 function Gamemanager:beattoms(beat,bpm) --you gotta Trust me that the numbers check out here
@@ -167,7 +169,7 @@ function Gamemanager:update(dt)
   -- read the level
 	
 	
-  for i,v in ipairs(cs.allevents) do -- onoffset + onbeat pass
+  for i,v in ipairs(cs.playevents) do -- onoffset + onbeat pass
   -- preload events such as beats
     if Event.onoffset[v.type] then 
 			if v.time <= cs.cbeat+cs.offset and (not v.play_onoffset) then
