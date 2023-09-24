@@ -61,9 +61,33 @@ function Hold:update(dt)
   prof.pop('hold update')
 end
 
-function Hold:draw()
+function Hold.drawhold(ox, oy, x, y, x2, y2, completion, endangle, angle2, segments, sprite, holdease, htype)
+	local newhold = {
+		ox = ox, 
+		oy = oy,
+		x = x,
+		y = y,
+		x2 = x2,
+		y2 = y2,
+		endangle = endangle,
+		angle2 = angle2 ,
+		segments = segments,
+		holdease = holdease
+	}
+	if htype == 'hold' then
+		newhold.minestripe = false
+		newhold.spr = sprites.beat.hold
+	else
+		newhold.minestripe = true
+		newhold.spr = sprites.beat.minehold
+	end
+	
+	Hold.draw(newhold, completion)
+end
+
+function Hold:draw(completion)
   prof.push('hold draw')
-	local completion = math.max(0, (cs.cbeat - self.hb) / self.duration)
+	completion = completion or  math.max(0, (cs.cbeat - self.hb) / self.duration)
 
   -- distances to the beginning and the end of the hold
   local len1 = helpers.distance({self.ox, self.oy}, {self.x, self.y})

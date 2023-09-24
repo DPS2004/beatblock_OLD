@@ -6,7 +6,8 @@ local shuv = {
   yoffset = 0,
   screensize_canvases = {},
 	paldefault = {},
-	pal = {}
+	pal = {},
+	showbadcolors = false
 }
 
 function shuv.makeCanvas()
@@ -123,6 +124,11 @@ function shuv.updatepal()
 		table.insert(newpal,coltable)
 	end
   shaders.palshader:send('newcolors',unpack(newpal))
+	if shuv.showbadcolors then
+		shaders.palshader:send('showbadcolors', 1)
+	else
+		shaders.palshader:send('showbadcolors', 0)
+	end
 end
 
 

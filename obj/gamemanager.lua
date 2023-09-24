@@ -82,8 +82,9 @@ function Gamemanager:resetlevel()
   cs.beatsounds = true
   cs.extend = 0
   for i,v in ipairs(cs.playevents) do
-    v.played = false
-    v.autoplayed = false
+    v.play_onload = nil
+		v.play_onoffset = nil
+		v.play_onbeat = nil
   end
   cs.vfx = {}
   cs.vfx.hom = false
@@ -152,9 +153,6 @@ function Gamemanager:update(dt)
 	--But for now, it works well enough, even on stuff like Waves From Nothing (jit is amazing!)
 	--If more complicated levels start chugging, this is where you will want to optimize.
 	prof.push("gamemanager update")
-  if not self.on then
-    return
-  end
 
   pq = ""
   if cs.source == nil or self.songfinished then

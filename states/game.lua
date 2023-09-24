@@ -12,8 +12,7 @@ st:setinit(function(self)
 			self.chart = dpf.loadjson(clevel .. "chart.json")
 		end
 	end
-  self.gm.resetlevel()
-  self.gm.on = true
+  self.gm:resetlevel()
 	
 	self.holdentitydraw = true
 end)

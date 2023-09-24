@@ -67,6 +67,9 @@ st:setinit(function(self)
   for i=1,5000,1 do
     self.beatcircles[i] = 1
   end
+	
+	self.holdentitydraw = true
+	shuv.showbadcolors = true
 end)
 
 
@@ -102,12 +105,235 @@ end
 
 
 
-function self:savelevel()
+function st:savelevel()
 	--does not account for new format
   dpf.savejson(clevel.."level.json",self.level)
 end
 
 
+--"module" stuff, was originally in update
+--editor UI
+--module functions
+function st:newmodule(eventid,modifyingvariable,moduletype,posy)
+	if helpers.tablematch(moduletype,{"textinput", "numberinput", "textinputwithtoggle", "numberinputwithtoggle"}) then
+		--if the cursor is hovering over the textbox, set self.cursoruiindex to "module" .. modifyingvariable .. "textbox"
+		if helpers.inrect(350,397,posy+20-9,posy+32-9,mouse.rx,mouse.ry) then
+			self.cursoruiindex = "module" .. modifyingvariable .. "textbox"
+		end
+		--if the textbox is being edited, set self.editingtext to self.level.events[eventid][modifyingvariable] if self.editingtext is nil, else self.editingtext = self.editingtext .. tinput
+		if self.moduleindex == "module" .. modifyingvariable .. "textbox" then
+			if self.editingtext == nil then
+				self.editingtext = tostring(self.level.events[eventid][modifyingvariable])
+			end
+			self.editingtext = self.editingtext .. tinput
+			if maininput:pressed("backspace") then
+				self.editingtext = string.sub(self.editingtext,1,-2)
+			end
+			self.editorsuppression = true
+			--if the textbox is being edited and the mouse is pressed outside of the textbox, set self.level.events[eventid][modifyingvariable] to self.editingtext, then set self.editingtext to nil
+			if (self.cursoruiindex ~= self.moduleindex and maininput:released("mouse1")) or maininput:pressed("back") or maininput:pressed("accept") then
+				if moduletype == "numberinput" or moduletype == "numberinputwithtoggle" then
+					self.level.events[eventid][modifyingvariable] = tonumber(self.editingtext)
+				else
+					self.level.events[eventid][modifyingvariable] = self.editingtext
+				end
+				self.editingtext = nil
+				self.moduleindex = nil
+				self.resetsuppressionnextframe = true
+			end
+		end
+	elseif moduletype == "easing" then
+	end
+end
+
+function st:drawmodule(eventid,modifyingvariable,moduletype,posy,header)
+	love.graphics.setFont(fonts.main)
+	--draw the header
+	love.graphics.setColor(0, 0, 0, 1)
+	love.graphics.printf(header, 351, posy-2, project.res.cx * 2, "left", 0, 1, 1)
+	love.graphics.setColor(1, 1, 1, 1)
+	if helpers.tablematch(moduletype,{"textinput", "numberinput", "textinputwithtoggle", "numberinputwithtoggle"}) then
+		--draw the textbox
+		love.graphics.draw(sprites.editor.TextBox,350,posy+11)
+		--check if a textbox is being edited, and if so if the textbox being edited is this one
+		if self.moduleindex == "module" .. modifyingvariable .. "textbox" and self.editingtext ~= nil then
+			--if so, draw the current text
+			love.graphics.setColor(0, 0, 0, 1)
+			love.graphics.printf(self.editingtext .. "|", 352, posy+9, project.res.cx * 2, "left", 0, 1, 1)
+			love.graphics.setColor(1, 1, 1, 1)
+		--elsewise, draw the current value
+		else
+			love.graphics.setColor(0, 0, 0, 1)
+			love.graphics.printf(tostring(self.level.events[eventid][modifyingvariable]), 352, posy+9, project.res.cx * 2, "left", 0, 1, 1)
+			love.graphics.setColor(1, 1, 1, 1)
+		end
+		
+	elseif moduletype == "easing" then
+	end
+	love.graphics.setFont(fonts.digitaldisco)
+end
+
+function st:eventsintab(tab)
+	if tab == "tab1" then
+		return 1 --the number of events in tab 1
+	elseif tab == "tab2" then
+		return 6 --the number of events in tab 2
+	elseif tab == "tab3" then
+		return 1 --the number of events in tab 3
+	elseif tab == "tab4" then
+		return 1 --the number of events in tab 4
+	end
+end--what.
+
+
+
+--The radius of beatcircle [beat]
+function st:beattoscrollrad(beat)
+  return self.beatcirclestartrad - (self.scrollpos - self.beatcircledistance * beat) * (self.scrollzoom * 10)
+end
+
+--Find the beat that's nearest to the given radius
+function st:scrollradtobeat(rad, snap)
+  local nearestbeat = 0
+  --Should beat snap be taken into account?
+  local snapfactor = (snap and self.beatsnap) or 0
+  while self:beattoscrollrad(nearestbeat + snapfactor)  < rad do
+    nearestbeat = nearestbeat + self.beatsnap
+  end
+  return nearestbeat
+end
+
+--Delete the first event that overlaps the cursor's current position
+function st:deleteeventatcursor()
+  local delindex = nil
+  for i,v in ipairs(self.level.events) do
+    if v.type ~= "hold" and v.type ~= "minehold" then
+      if v.time == self.cursorpos.beat then
+        local evangle = v.endangle or v.angle or nil
+        if evangle ~= nil then
+          if v.type == "sliceinvert" then
+            evangle = evangle + 180
+          end
+          if evangle % 360 == self.cursorpos.angle % 360  then
+            delindex = i
+            break
+          end
+        end
+      end
+    else
+      if v.time == self.cursorpos.beat then
+        local evangle = v.angle1 or nil
+        if evangle ~= nil and evangle % 360 == self.cursorpos.angle % 360 then
+          delindex = i
+          break
+        end
+      elseif v.time + v.duration == self.cursorpos.beat then
+        local evangle = v.angle2 or nil
+        if evangle ~= nil and evangle % 360 == self.cursorpos.angle % 360 then
+          delindex = i
+          break
+        end
+      end
+    end
+    
+  end
+  
+  --added line: deselect deleted event
+  self.selectedeventindex = nil
+
+  if delindex ~= nil then
+    table.remove(self.level.events, delindex)
+  end
+end
+--find the first event at the cursor
+function st:findeventatcursor()
+  local returndex = nil
+  for i,v in ipairs(self.level.events) do
+    if v.type ~= "hold" and v.type ~= "minehold" then
+      if v.time == self.cursorpos.beat then
+      
+        local evangle = v.endangle or v.angle or nil
+        if evangle ~= nil then
+          if v.type == "sliceinvert" then
+            evangle = evangle + 180
+          end
+          if evangle % 360 == self.cursorpos.angle % 360  then
+            returndex = i
+            break
+          end
+        end
+      end
+    else
+      if v.time == self.cursorpos.beat then
+        local evangle = v.angle1 or nil
+        if evangle ~= nil and evangle % 360 == self.cursorpos.angle % 360 then
+          returndex = i
+          break
+        end
+      elseif v.time + v.duration == self.cursorpos.beat then
+        local evangle = v.angle2 or nil
+        if evangle ~= nil and evangle % 360 == self.cursorpos.angle % 360 then
+          returndex = i
+          break
+        end
+      end
+    end
+    
+  end
+
+  return returndex
+end
+--determine if a hold on the cursor is a hold start or hold end
+function st:findholdtypeatcursor()
+  local returndex = nil
+  for i,v in ipairs(self.level.events) do
+    if v.type ~= "hold" and v.type ~= "minehold" then
+      returndex = nil
+    else
+      if v.time == self.cursorpos.beat then
+        local evangle = v.angle1 or nil
+        if evangle ~= nil and evangle % 360 == self.cursorpos.angle % 360 then
+          returndex = "holdstart"
+          break
+        end
+      elseif v.time + v.duration == self.cursorpos.beat then
+        local evangle = v.angle2 or nil
+        if evangle ~= nil and evangle % 360 == self.cursorpos.angle % 360 then
+          returndex = "holdend"
+          break
+        end
+      end
+    end
+    
+  end
+
+  return returndex
+end
+
+--Add an event of type [type] at the cursor's current position
+function st:addeventatcursor(type)
+  local newevent = {time = self.cursorpos.beat, type = type}
+  if type == "beat" or type == "inverse" or type == "slice" or type == "sliceinvert" or type == "mine" or type == "side" then
+    local evangle = self.cursorpos.angle
+    if type == "sliceinvert" then
+      evangle = (evangle + 180) % 360 --Sliceinverts are weird
+    end
+    newevent.angle = evangle
+    newevent.endangle = evangle
+    newevent.speedmult = 1
+  elseif type == "hold" or "minehold" then
+    --Barebones hold addition. Need to be able to set both angles
+    newevent.angle1 = self.cursorpos.angle
+    newevent.angle2 = self.cursorpos.angle
+    newevent.duration = 1
+    newevent.speedmult = 1
+  end
+
+  table.insert(self.level.events, 1, newevent)
+  
+  --added line: select new event
+  self.selectedeventindex = self:findeventatcursor()  
+end
 
 st:setupdate(function(self,dt)
   if not paused then
@@ -532,7 +758,7 @@ st:setupdate(function(self,dt)
               pup:newbutton({x=100,y=160,w=50,h=16,text=loc.get("cancel"),onclick = function() paused = false pup.delete = true end})
             elseif self.level.events[self.eventindex].type == "beat" or self.level.events[self.eventindex].type == "slice" or self.level.events[self.eventindex].type == "sliceinvert" or self.level.events[self.eventindex].type == "inverse" or self.level.events[self.eventindex].type == "mine" or self.level.events[self.eventindex].type == "side" then
 paused = true
-              local pos = helpers.rotate(self.beattoscrollrad(self.cursorpos.beat), self.cursorpos.angle, project.res.cx, project.res.cy)
+              local pos = helpers.rotate(self:beattoscrollrad(self.cursorpos.beat), self.cursorpos.angle, project.res.cx, project.res.cy)
               local pup = em.init("popup",{
 								x = project.res.cx,
 								y = project.res.cy,
@@ -581,80 +807,8 @@ paused = true
         end
       end
     
-			--got to here, taking a break
 
-      --editor UI
-      --module functions
-      function self.newmodule(eventid,modifyingvariable,moduletype,posy)
-        if moduletype == "textinput" or moduletype == "numberinput" or moduletype == "textinputwithtoggle" or moduletype == "numberinputwithtoggle" then
-          --if the cursor is hovering over the textbox, set self.cursoruiindex to "module" .. modifyingvariable .. "textbox"
-          if helpers.iscursorinrectangle(350,397,posy+20-9,posy+32-9,mouse.rx,mouse.ry) then
-            self.cursoruiindex = "module" .. modifyingvariable .. "textbox"
-          end
-          --if the textbox is being edited, set self.editingtext to self.level.events[eventid][modifyingvariable] if self.editingtext is nil, else self.editingtext = self.editingtext .. tinput
-          if self.moduleindex == "module" .. modifyingvariable .. "textbox" then
-            if self.editingtext == nil then
-              self.editingtext = tostring(self.level.events[eventid][modifyingvariable])
-            end
-            self.editingtext = self.editingtext .. tinput
-            if maininput:pressed("backspace") then
-              self.editingtext = string.sub(self.editingtext,1,-2)
-            end
-            self.editorsuppression = true
-            --if the textbox is being edited and the mouse is pressed outside of the textbox, set self.level.events[eventid][modifyingvariable] to self.editingtext, then set self.editingtext to nil
-            if (self.cursoruiindex ~= self.moduleindex and maininput:released("mouse1")) or maininput:pressed("back") or maininput:pressed("accept") then
-              if moduletype == "numberinput" or moduletype == "numberinputwithtoggle" then
-                self.level.events[eventid][modifyingvariable] = tonumber(self.editingtext)
-              else
-                self.level.events[eventid][modifyingvariable] = self.editingtext
-              end
-              self.editingtext = nil
-              self.moduleindex = nil
-              self.resetsuppressionnextframe = true
-            end
-          end
-        elseif moduletype == "easing" then
-        end
-      end
-
-      function self.drawmodule(eventid,modifyingvariable,moduletype,posy,header)
-        love.graphics.setFont(font2)
-        --draw the header
-        love.graphics.setColor(0, 0, 0, 1)
-        love.graphics.printf(header, 351, posy-2, project.res.cx * 2, "left", 0, 1, 1)
-        love.graphics.setColor(1, 1, 1, 1)
-        if moduletype == "textinput" or moduletype == "numberinput" or moduletype == "textinputwithtoggle" or moduletype == "numberinputwithtoggle" then
-          --draw the textbox
-          love.graphics.draw(self.sprites.editor.TextBox,350,posy+11)
-          --check if a textbox is being edited, and if so if the textbox being edited is this one
-          if self.moduleindex == "module" .. modifyingvariable .. "textbox" and self.editingtext ~= nil then
-            --if so, draw the current text
-            love.graphics.setColor(0, 0, 0, 1)
-            love.graphics.printf(self.editingtext .. "|", 352, posy+9, project.res.cx * 2, "left", 0, 1, 1)
-            love.graphics.setColor(1, 1, 1, 1)
-          --elsewise, draw the current value
-          else
-            love.graphics.setColor(0, 0, 0, 1)
-            love.graphics.printf(tostring(self.level.events[eventid][modifyingvariable]), 352, posy+9, project.res.cx * 2, "left", 0, 1, 1)
-            love.graphics.setColor(1, 1, 1, 1)
-          end
-          
-        elseif moduletype == "easing" then
-        end
-        love.graphics.setFont(font1)
-      end
-
-      function self.eventsintab(tab)
-        if tab == "tab1" then
-          return 1 --the number of events in tab 1
-        elseif tab == "tab2" then
-          return 6 --the number of events in tab 2
-        elseif tab == "tab3" then
-          return 1 --the number of events in tab 3
-        elseif tab == "tab4" then
-          return 1 --the number of events in tab 4
-        end
-      end
+      
         
       if self.resetsuppressionnextframe then
         self.editorsuppression = false
@@ -671,49 +825,49 @@ paused = true
       --place the modules
       if self.selectedeventindex ~= nil then
         local et = self.level.events[self.selectedeventindex].type
-        if et=="beat" or et=="inverse" or et=="side" or et=="mine" or et=="slice" or et=="sliceinvert" then
-          self.newmodule(self.selectedeventindex,"time","numberinput",28)
-          self.newmodule(self.selectedeventindex,"endangle","numberinput",28 + regspace)
-          self.newmodule(self.selectedeventindex,"angle","numberinput",28 + (2*regspace))
-          self.newmodule(self.selectedeventindex,"speedmult","numberinput",28 + (3*regspace))
-        elseif et=="hold" or et=="minehold" then
-          self.newmodule(self.selectedeventindex,"time","numberinput",28)
-          self.newmodule(self.selectedeventindex,"duration","numberinput",28 + regspace)
-          self.newmodule(self.selectedeventindex,"angle1","numberinput",28 + (2*regspace))
-          self.newmodule(self.selectedeventindex,"angle2","numberinput",28 + (3*regspace))
-          self.newmodule(self.selectedeventindex,"holdease","textinput",28 + (4*regspace))
-          self.newmodule(self.selectedeventindex,"speedmult","numberinput",28 + (5*regspace))
+				if helpers.tablematch(et,{'beat','inverse','side','mine','slice','sliceinvert'}) then
+          self:newmodule(self.selectedeventindex,"time","numberinput",28)
+          self:newmodule(self.selectedeventindex,"endangle","numberinput",28 + regspace)
+          self:newmodule(self.selectedeventindex,"angle","numberinput",28 + (2*regspace))
+          self:newmodule(self.selectedeventindex,"speedmult","numberinput",28 + (3*regspace))
+        elseif helpers.tablematch(et,{'hold','minehold'}) then
+          self:newmodule(self.selectedeventindex,"time","numberinput",28)
+          self:newmodule(self.selectedeventindex,"duration","numberinput",28 + regspace)
+          self:newmodule(self.selectedeventindex,"angle1","numberinput",28 + (2*regspace))
+          self:newmodule(self.selectedeventindex,"angle2","numberinput",28 + (3*regspace))
+          self:newmodule(self.selectedeventindex,"holdease","textinput",28 + (4*regspace))
+          self:newmodule(self.selectedeventindex,"speedmult","numberinput",28 + (5*regspace))
         end
       end
       
       --figure out what tab the cursor is over
       for i=1,4,1 do
-        if helpers.iscursorinrectangle((25*i)-24,(25*i)+1,1,26,mouse.rx,mouse.ry) then
+        if helpers.inrect((25*i)-24,(25*i)+1,1,26,mouse.rx,mouse.ry) then
           self.cursoruiindex = "tab" .. tostring(i)
         end
       end
       
       --figure out what palette event the cursor is over
-      for i=1,self.eventsintab(self.currenttab),1 do
+      for i=1,self:eventsintab(self.currenttab),1 do
         if i % 2 == 1 then
-          if helpers.iscursorinrectangle(1,26,(25*((i+1)/2))+1,(25*((i+1)/2))+26,mouse.rx,mouse.ry) then
+          if helpers.inrect(1,26,(25*((i+1)/2))+1,(25*((i+1)/2))+26,mouse.rx,mouse.ry) then
             self.cursoruiindex = "palette" .. tostring(i)
           end
         elseif i % 2 == 0 then
-          if helpers.iscursorinrectangle(26,51,(25*(i/2))+1,(25*(i/2))+26,mouse.rx,mouse.ry) then
+          if helpers.inrect(26,51,(25*(i/2))+1,(25*(i/2))+26,mouse.rx,mouse.ry) then
             self.cursoruiindex = "palette" .. tostring(i)
           end
         end
       end
       
       --play button
-      if helpers.iscursorinrectangle(306,346,206,238,mouse.rx,mouse.ry) then
+      if helpers.inrect(306,346,206,238,mouse.rx,mouse.ry) then
         self.cursoruiindex = "playlevel"
       end
       
       --is the cursor over a bar?
       if self.cursoruiindex == nil then
-        if helpers.iscursorinrectangle(1,51,1,238,mouse.rx,mouse.ry) or helpers.iscursorinrectangle(348,398,1,238,mouse.rx,mouse.ry) then
+        if helpers.inrect(1,51,1,238,mouse.rx,mouse.ry) or helpers.inrect(348,398,1,238,mouse.rx,mouse.ry) then
           self.cursoruiindex = "bar"
         end
       end
@@ -736,7 +890,7 @@ paused = true
           elseif string.sub(self.cursoruiindex,1,6) == "module" then
             self.moduleindex = self.cursoruiindex
           elseif self.cursoruiindex == "playlevel" then
-            self.playlevel()
+            self:playlevel()
           end
         elseif self.cursoruiindex == nil then
           self.resetsuppressionnextframe = true
@@ -802,23 +956,26 @@ paused = true
       
       --Scale editor circles based on scroll position and zoom level
       for i,v in ipairs(self.beatcircles) do
-        self.beatcircles[i] = self.beattoscrollrad(i - 1)
+        self.beatcircles[i] = self:beattoscrollrad(i - 1)
       end
     
       
     end
+		if not self.editmode then
+			self.gm:update(dt)
+		end
   end
 end)
 
 
-function self.draw()
-  love.graphics.setFont(font1)
-  shuv.start()
+st:setfgdraw(function(self)
+  love.graphics.setFont(fonts.digitaldisco)
 
-  love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
+  color('white')
+  love.graphics.rectangle('fill',0,0,project.res.x,project.res.y)
   love.graphics.setCanvas(self.canv)
     
-    helpers.drawgame()
+    self.gm:draw()
     --Only draw the following while in edit mode
     if self.editmode then
       --Beatcircles
@@ -839,7 +996,7 @@ function self.draw()
             love.graphics.setColor(0, 0, 0, 0.25)
             local snapcircles = math.floor((1 / self.beatsnap) + 0.5)
             for j=1, snapcircles - 1, 1 do
-              local snapcirclerad = self.beattoscrollrad(i - 1 - self.beatsnap * j)
+              local snapcirclerad = self:beattoscrollrad(i - 1 - self.beatsnap * j)
               if snapcirclerad >= self.beatcircleminrad then
                 love.graphics.circle("line", project.res.cx, project.res.cy, snapcirclerad)
               end
@@ -864,7 +1021,7 @@ function self.draw()
       --Events
       love.graphics.setColor(1, 1, 1, 1)
       for i,v in ipairs(self.level.events) do
-        local evrad = self.beattoscrollrad(v.time)
+        local evrad = self:beattoscrollrad(v.time)
         --Events only drawn if they would appear on screen (i.e. not inside the player at the center or off-screen)
         if evrad <= self.beatcirclemaxrad then
           if evrad >= self.beatcircleminrad then
@@ -897,7 +1054,7 @@ function self.draw()
           end
   
           if v.type == "hold" or v.type == "minehold" then
-            local evrad2 = self.beattoscrollrad(v.time + v.duration)
+            local evrad2 = self:beattoscrollrad(v.time + v.duration)
             if evrad2 >= self.beatcircleminrad then
               local evrad1 = (evrad >= self.beatcircleminrad and evrad) or self.beatcircleminrad
               local angle1 = v.angle1
@@ -906,9 +1063,9 @@ function self.draw()
               local pos2 = helpers.rotate(evrad2, angle2, project.res.cx, project.res.cy)
               local completion = math.max(0, (cs.cbeat - 0 ) / v.duration)
               if v.type == "hold" then
-                helpers.drawhold(project.res.cx, project.res.cy, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, sprites.beat.hold, v.holdease, v.type)
+                Hold.drawhold(project.res.cx, project.res.cy, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, sprites.beat.hold, v.holdease, v.type)
               else
-                helpers.drawhold(project.res.cx, project.res.cy, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, sprites.beat.minehold, v.holdease, v.type)
+                Hold.drawhold(project.res.cx, project.res.cy, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, sprites.beat.minehold, v.holdease, v.type)
               end
             end
           end
@@ -917,7 +1074,7 @@ function self.draw()
 
       --Cursor
       love.graphics.setColor(1, 1, 1, 0.5)
-      local cursorrad = self.beattoscrollrad(self.cursorpos.beat)
+      local cursorrad = self:beattoscrollrad(self.cursorpos.beat)
       if cursorrad >= self.beatcircleminrad and not self.editorsuppression then
         local angle = self.cursorpos.angle
         local pos = helpers.rotate(cursorrad, angle, project.res.cx, project.res.cy)
@@ -947,15 +1104,15 @@ function self.draw()
 
       --editor UI (drawing)
       love.graphics.setColor(1, 1, 1, 1)
-      love.graphics.draw(self.sprites.editor.Square,1,1)
-      love.graphics.draw(self.sprites.editor.Square,26,1)
-      love.graphics.draw(self.sprites.editor.Square,51,1)
-      love.graphics.draw(self.sprites.editor.Square,76,1)
-      love.graphics.draw(self.sprites.editor.Rect51x26,348,1)
-      love.graphics.draw(self.sprites.editor.Palette,1,26)
-      love.graphics.draw(self.sprites.editor.Palette,348,26)
-      love.graphics.draw(self.sprites.editor.Rect41x33,306,206)
-      love.graphics.draw(self.sprites.editor.PlaySymbol,312,212)
+      love.graphics.draw(sprites.editor.Square,1,1)
+      love.graphics.draw(sprites.editor.Square,26,1)
+      love.graphics.draw(sprites.editor.Square,51,1)
+      love.graphics.draw(sprites.editor.Square,76,1)
+      love.graphics.draw(sprites.editor.Rect51x26,348,1)
+      love.graphics.draw(sprites.editor.Palette,1,26)
+      love.graphics.draw(sprites.editor.Palette,348,26)
+      love.graphics.draw(sprites.editor.Rect41x33,306,206)
+      love.graphics.draw(sprites.editor.PlaySymbol,312,212)
       
       --draw modules
       local regspace = 23 --this is just for spacing out modules
@@ -964,32 +1121,32 @@ function self.draw()
       if self.selectedeventindex ~= nil then
         local et = self.level.events[self.selectedeventindex].type
         if et=="beat" or et=="inverse" or et=="side" or et=="mine" or et=="slice" or et=="sliceinvert" then
-          self.drawmodule(self.selectedeventindex,"time","numberinput",28,"Time")
-          self.drawmodule(self.selectedeventindex,"endangle","numberinput",28 + regspace,"HitAngle")
-          self.drawmodule(self.selectedeventindex,"angle","numberinput",28 + (2*regspace),"StartAngle")
-          self.drawmodule(self.selectedeventindex,"speedmult","numberinput",28 + (3*regspace),"SpeedMult")
+          self:drawmodule(self.selectedeventindex,"time","numberinput",28,"Time")
+          self:drawmodule(self.selectedeventindex,"endangle","numberinput",28 + regspace,"HitAngle")
+          self:drawmodule(self.selectedeventindex,"angle","numberinput",28 + (2*regspace),"StartAngle")
+          self:drawmodule(self.selectedeventindex,"speedmult","numberinput",28 + (3*regspace),"SpeedMult")
         elseif et=="hold" or et=="minehold" then
-          self.drawmodule(self.selectedeventindex,"time","numberinput",28,"Time")
-          self.drawmodule(self.selectedeventindex,"duration","numberinput",28 + regspace,"Duration")
-          self.drawmodule(self.selectedeventindex,"angle1","numberinput",28 + (2*regspace),"Angle1")
-          self.drawmodule(self.selectedeventindex,"angle2","numberinput",28 + (3*regspace),"Angle2")
-          self.drawmodule(self.selectedeventindex,"holdease","textinput",28 + (4*regspace),"HoldEase")
-          self.drawmodule(self.selectedeventindex,"speedmult","numberinput",28 + (5*regspace),"SpeedMult")
+          self:drawmodule(self.selectedeventindex,"time","numberinput",28,"Time")
+          self:drawmodule(self.selectedeventindex,"duration","numberinput",28 + regspace,"Duration")
+          self:drawmodule(self.selectedeventindex,"angle1","numberinput",28 + (2*regspace),"Angle1")
+          self:drawmodule(self.selectedeventindex,"angle2","numberinput",28 + (3*regspace),"Angle2")
+          self:drawmodule(self.selectedeventindex,"holdease","textinput",28 + (4*regspace),"HoldEase")
+          self:drawmodule(self.selectedeventindex,"speedmult","numberinput",28 + (5*regspace),"SpeedMult")
         end
       end
       
       for i=1,4,1 do
-        if tonumber(string.sub(self.currenttab,4,4)) == i then --helpers.iscursorinrectangle((25*i)-24,(25*i)+1,1,26,mouse.rx,mouse.ry)
-          love.graphics.draw(self.sprites.editor.Selected,(25*i)-22,3)
+        if tonumber(string.sub(self.currenttab,4,4)) == i then --helpers.inrect((25*i)-24,(25*i)+1,1,26,mouse.rx,mouse.ry)
+          love.graphics.draw(sprites.editor.Selected,(25*i)-22,3)
         end
       end
       
-      for i=1,self.eventsintab(self.currenttab),1 do
+      for i=1,self:eventsintab(self.currenttab),1 do
         if tonumber(string.sub(self.currentpaletteindex,8,8)) == i then
           if i % 2 == 1 then
-            love.graphics.draw(self.sprites.editor.Selected,3,(25*((i+1)/2))+3)
+            love.graphics.draw(sprites.editor.Selected,3,(25*((i+1)/2))+3)
           elseif i % 2 == 0 then
-            love.graphics.draw(self.sprites.editor.Selected,28,(25*(i/2))+3)
+            love.graphics.draw(sprites.editor.Selected,28,(25*(i/2))+3)
           end
         end
       end
@@ -1044,7 +1201,7 @@ function self.draw()
       --end
     end
   if self.editmode then
-    em.draw()
+    em.draw() --??
   end
   love.graphics.setCanvas(shuv.canvas)
   love.graphics.setColor(1, 1, 1, 1)
@@ -1053,166 +1210,16 @@ function self.draw()
     print(helpers.round(self.cbeat*6,true)/6 .. pq)
   end
 
-  shuv.finish()
-
-end
-
+end)
+--move this elsewhere
 function love.wheelmoved(x, y)
   if (y > 0) then
-    self.scrolldir = 1
+    cs.scrolldir = 1
   elseif (y < 0) then
-    self.scrolldir = -1
+    cs.scrolldir = -1
   else
-    self.scrolldir = 0
+    cs.scrolldir = 0
   end
-end
-
---The radius of beatcircle [beat]
-function self.beattoscrollrad(beat)
-  return self.beatcirclestartrad - (self.scrollpos - self.beatcircledistance * beat) * (self.scrollzoom * 10)
-end
-
---Find the beat that's nearest to the given radius
-function self.scrollradtobeat(rad, snap)
-  local nearestbeat = 0
-  --Should beat snap be taken into account?
-  local snapfactor = (snap and self.beatsnap) or 0
-  while self.beattoscrollrad(nearestbeat + snapfactor)  < rad do
-    nearestbeat = nearestbeat + self.beatsnap
-  end
-  return nearestbeat
-end
-
---Delete the first event that overlaps the cursor's current position
-function self.deleteeventatcursor()
-  local delindex = nil
-  for i,v in ipairs(self.level.events) do
-    if v.type ~= "hold" and v.type ~= "minehold" then
-      if v.time == self.cursorpos.beat then
-        local evangle = v.endangle or v.angle or nil
-        if evangle ~= nil then
-          if v.type == "sliceinvert" then
-            evangle = evangle + 180
-          end
-          if evangle % 360 == self.cursorpos.angle % 360  then
-            delindex = i
-            break
-          end
-        end
-      end
-    else
-      if v.time == self.cursorpos.beat then
-        local evangle = v.angle1 or nil
-        if evangle ~= nil and evangle % 360 == self.cursorpos.angle % 360 then
-          delindex = i
-          break
-        end
-      elseif v.time + v.duration == self.cursorpos.beat then
-        local evangle = v.angle2 or nil
-        if evangle ~= nil and evangle % 360 == self.cursorpos.angle % 360 then
-          delindex = i
-          break
-        end
-      end
-    end
-    
-  end
-  
-  --added line: deselect deleted event
-  self.selectedeventindex = nil
-
-  if delindex ~= nil then
-    table.remove(self.level.events, delindex)
-  end
-end
---find the first event at the cursor
-function self.findeventatcursor()
-  local returndex = nil
-  for i,v in ipairs(self.level.events) do
-    if v.type ~= "hold" and v.type ~= "minehold" then
-      if v.time == self.cursorpos.beat then
-      
-        local evangle = v.endangle or v.angle or nil
-        if evangle ~= nil then
-          if v.type == "sliceinvert" then
-            evangle = evangle + 180
-          end
-          if evangle % 360 == self.cursorpos.angle % 360  then
-            returndex = i
-            break
-          end
-        end
-      end
-    else
-      if v.time == self.cursorpos.beat then
-        local evangle = v.angle1 or nil
-        if evangle ~= nil and evangle % 360 == self.cursorpos.angle % 360 then
-          returndex = i
-          break
-        end
-      elseif v.time + v.duration == self.cursorpos.beat then
-        local evangle = v.angle2 or nil
-        if evangle ~= nil and evangle % 360 == self.cursorpos.angle % 360 then
-          returndex = i
-          break
-        end
-      end
-    end
-    
-  end
-
-  return returndex
-end
---determine if a hold on the cursor is a hold start or hold end
-function self.findholdtypeatcursor()
-  local returndex = nil
-  for i,v in ipairs(self.level.events) do
-    if v.type ~= "hold" and v.type ~= "minehold" then
-      returndex = nil
-    else
-      if v.time == self.cursorpos.beat then
-        local evangle = v.angle1 or nil
-        if evangle ~= nil and evangle % 360 == self.cursorpos.angle % 360 then
-          returndex = "holdstart"
-          break
-        end
-      elseif v.time + v.duration == self.cursorpos.beat then
-        local evangle = v.angle2 or nil
-        if evangle ~= nil and evangle % 360 == self.cursorpos.angle % 360 then
-          returndex = "holdend"
-          break
-        end
-      end
-    end
-    
-  end
-
-  return returndex
-end
-
---Add an event of type [type] at the cursor's current position
-function self.addeventatcursor(type)
-  local newevent = {time = self.cursorpos.beat, type = type}
-  if type == "beat" or type == "inverse" or type == "slice" or type == "sliceinvert" or type == "mine" or type == "side" then
-    local evangle = self.cursorpos.angle
-    if type == "sliceinvert" then
-      evangle = (evangle + 180) % 360 --Sliceinverts are weird
-    end
-    newevent.angle = evangle
-    newevent.endangle = evangle
-    newevent.speedmult = 1
-  elseif type == "hold" or "minehold" then
-    --Barebones hold addition. Need to be able to set both angles
-    newevent.angle1 = self.cursorpos.angle
-    newevent.angle2 = self.cursorpos.angle
-    newevent.duration = 1
-    newevent.speedmult = 1
-  end
-
-  table.insert(self.level.events, 1, newevent)
-  
-  --added line: select new event
-  self.selectedeventindex = self.findeventatcursor()  
 end
 
 
