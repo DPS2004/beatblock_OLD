@@ -54,7 +54,7 @@ function Gamemanager:resetlevel()
   cs.length = 42
   cs.pt = 0
   cs.bg = love.graphics.newImage("assets/bgs/nothing.png")  
-
+	cs.bgcolor = 'white'
   cs.misses= 0
   cs.hits = 0
   cs.combo = 0
@@ -105,6 +105,7 @@ function Gamemanager:resetlevel()
 				end
 			end
 		end
+		rw:play(cs.cbeat)
 		print('ran ' .. oltotal .. ' events')
 	end
 end
@@ -273,7 +274,7 @@ function Gamemanager:update(dt)
 		]]--
   end
   
-  
+  rw:update(cs.cbeat)
   if cs.combo >= math.floor(cs.maxhits / 4) then
     cs.p.cemotion = "happy"
     cs.p.emotimer = 2
@@ -286,12 +287,14 @@ end
 
 function Gamemanager:draw()
 	prof.push("gamemanager draw")
+	
+  color(cs.bgcolor)
   if not cs.vfx.hom then
     love.graphics.clear()
+		love.graphics.rectangle('fill',0,0,project.res.x,project.res.y)
   end
   
   love.graphics.setBlendMode("alpha")
-  color()
 
   --if cs.vfx.hom then
     --for i=0,cs.vfx.homint do

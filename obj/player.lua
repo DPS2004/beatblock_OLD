@@ -16,7 +16,7 @@ function Player:initialize(params)
   self.angleprevframe = 0
   self.extend = 0
   self.paddle_size = 70
-  self.handle_size = 15
+  self.handle_size = 10
   self.paddle_width = 10
   self.paddle_distance = 25
   self.cmode = not love.joystick.getJoysticks()[1]
@@ -69,34 +69,46 @@ function Player:draw()
     love.graphics.translate(self.x, self.y)
     love.graphics.rotate((self.angle - 90) * math.pi / 180)
 
-    -- draw the lines connecting the player to the paddle
-    love.graphics.line(
-      0, 0,
-      (self.paddle_distance + cs.extend) * math.cos(self.handle_size * math.pi / 180),
-      (self.paddle_distance + cs.extend) * math.sin(self.handle_size * math.pi / 180)
-    )
-    love.graphics.line(
-      0, 0,
-      (self.paddle_distance + cs.extend) * math.cos(-self.handle_size * math.pi / 180),
-      (self.paddle_distance + cs.extend) * math.sin(-self.handle_size * math.pi / 180)
-    )
+		--HANDLE
+		--fill in handle
+		color()
+		local dist = self.paddle_distance + cs.extend + self.paddle_width * 0.5
+		local x1 = dist * math.cos(self.handle_size * math.pi / 180)
+		local y1 = dist * math.sin(self.handle_size * math.pi / 180)
+		local x2 = dist * math.cos(-self.handle_size * math.pi / 180)
+		local y2 = dist * math.sin(-self.handle_size * math.pi / 180)
+		
+		love.graphics.polygon('fill',0,0, x1,y1, x2,y2)
+		color('black')
+    -- draw handle lines
+    love.graphics.line(0,0, x1,y1)
+    love.graphics.line(0,0, x2,y2)
 
-    -- draw the paddle
-    local paddle_angle = self.paddle_size / 2 * math.pi / 180
-    love.graphics.arc('line', 'open', 0, 0, (self.paddle_distance + cs.extend), paddle_angle, -paddle_angle)
-    love.graphics.arc('line', 'open', 0, 0, (self.paddle_distance + cs.extend) + self.paddle_width, paddle_angle, -paddle_angle)
-    love.graphics.line(
-      (self.paddle_distance + cs.extend) * math.cos(paddle_angle),
-      (self.paddle_distance + cs.extend) * math.sin(paddle_angle),
-      ((self.paddle_distance + cs.extend) + self.paddle_width) * math.cos(paddle_angle),
-      ((self.paddle_distance + cs.extend) + self.paddle_width) * math.sin(paddle_angle)
-    )
-    love.graphics.line(
-      (self.paddle_distance + cs.extend) * math.cos(-paddle_angle),
-      (self.paddle_distance + cs.extend) * math.sin(-paddle_angle),
-      ((self.paddle_distance + cs.extend) + self.paddle_width) * math.cos(-paddle_angle),
-      ((self.paddle_distance + cs.extend) + self.paddle_width) * math.sin(-paddle_angle)
-    )
+		
+		
+		--PADDLE
+		local paddle_angle = self.paddle_size / 2
+		local paddlepoly = {}
+		local segments = 10
+		local function addvert(pos)
+			table.insert(paddlepoly,pos[1])
+			table.insert(paddlepoly,pos[2])
+		end
+		for i=0,segments-1 do
+			addvert(helpers.rotate((self.paddle_distance + cs.extend), helpers.lerp(paddle_angle, -paddle_angle, i/(segments-1))+90,0,0))
+		end
+		
+		for i=0,segments-1 do
+			addvert(helpers.rotate((self.paddle_distance + cs.extend)+ self.paddle_width, helpers.lerp(paddle_angle, -paddle_angle, 1-i/(segments-1))+90,0,0))
+		end
+		
+		color()
+		for i,v in ipairs(love.math.triangulate(paddlepoly)) do
+			love.graphics.polygon('fill',v)
+		end
+		
+		color('black')
+		love.graphics.polygon('line',paddlepoly)
   love.graphics.pop()
 
   love.graphics.push()

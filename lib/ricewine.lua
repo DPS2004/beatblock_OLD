@@ -56,7 +56,10 @@ function ricewine:stopall()
 end
 
 function ricewine:update(beat)
-  local deltabeat = beat - self.beat
+  local deltabeat = 0
+	if self.beat then
+		deltabeat = beat - self.beat
+	end
   self.beat = beat
   self.flux.update(deltabeat)
   for i,v in ipairs(self.tweens) do

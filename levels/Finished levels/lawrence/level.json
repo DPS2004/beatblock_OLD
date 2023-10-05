@@ -15,14 +15,19 @@
   
   "events": [
     {
-      "type": "showresults",
-      "time": 701
-    },
-    {
+      "time": 0,    
+      "type": "play",  
       "bpm": 151.17,
-      "type": "play",
-      "time": 0,      
       "file": "Lawrence.ogg"
+    },
+	{
+		"time": -6,
+		"type": "setbgcolor",
+		"color": 2
+	},
+    {
+      "time": 701,
+      "type": "showresults"
     }
   ],
 }
