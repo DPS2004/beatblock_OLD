@@ -314,6 +314,10 @@ end
 function love.update(d)
   prof.push("frame")
 
+	if project.frameadvance then
+		maininput:update()
+		lovebird.update()
+	end
   if (not project.frameadvance) or maininput:pressed("k1") or maininput:down("k2") then
     debugprint = true
 

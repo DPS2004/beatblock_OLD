@@ -1,0 +1,10648 @@
+[
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 497,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 496.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 496,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 496,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 496,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 496.5,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 496.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 0,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 497,
+      
+      "endangle": 0
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 498,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle2": 180,
+      "angle1": 180,
+      "duration": 8,
+      
+      "type": "hold",
+      "time": 688,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 687.5,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 687,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 686.5,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 686,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 685.5,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 685,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 684.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 0,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 684,
+      
+      "endangle": 0
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 683.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 683,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 682.5,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 682,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 681.5,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 681,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 680.5,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 680,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 679.5,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 679,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 678.5,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 678,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 677.5,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 677,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 676.5,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 0,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 676,
+      
+      "endangle": 0
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 675.5,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 675,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 674.5,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 674,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 673.5,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 673,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 672.5,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 672,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 671.5,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 671,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 670.5,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 670,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 669.5,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 669,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 668.5,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 0,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 668,
+      
+      "endangle": 0
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 667.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 667,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 666.5,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 666,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 665.5,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 665,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 664.5,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 663.5,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 663,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 662.5,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 662,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 661.5,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 661,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 660.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 659.5,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 659,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 658.5,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 658,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 657.5,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 657,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 656.5,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 664,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 0,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 660,
+      
+      "endangle": 0
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 656,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 655.5,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 655,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 654.5,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 653.5,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 653,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 654,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 652,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 0,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 650,
+      
+      "endangle": 0
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 648,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 648.25,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 648.75,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 648.5,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 647,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 646.5,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 646,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 640.75,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 640.5,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 640.25,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 640,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 638.5,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 638.25,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 0,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 638,
+      
+      "endangle": 0
+    },
+    {
+      "angle": 0,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 636,
+      
+      "endangle": 0
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 632.5,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 632.25,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 632,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 630.5,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 630,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 630.25,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 627.5,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 627.25,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 627,
+      
+      "endangle": 180
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "nil",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 624
+    },
+    {
+      "angle1": 180,
+      "duration": 4,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "minehold",
+      "time": 620
+    },
+    {
+      "angle1": 0,
+      "duration": 4,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "minehold",
+      "time": 616
+    },
+    {
+      "angle1": 90,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 614
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "minehold",
+      "time": 612
+    },
+    {
+      "angle1": 180,
+      "duration": 4,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 608
+    },
+    {
+      "angle1": 0,
+      "duration": 4,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "minehold",
+      "time": 604
+    },
+    {
+      "angle1": 180,
+      "duration": 4,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "minehold",
+      "time": 600
+    },
+    {
+      "angle1": 270,
+      "duration": 2,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "minehold",
+      "time": 598
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -90,
+      
+      "type": "minehold",
+      "time": 596
+    },
+    {
+      "angle1": 90,
+      "duration": 2,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 594
+    },
+    {
+      "angle1": 180,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "minehold",
+      "time": 592
+    },
+    {
+      "angle2": 180,
+      "angle1": 157.5,
+      "duration": 0.5,
+      
+      "type": "minehold",
+      "time": 591.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle2": 157.5,
+      "angle1": 180,
+      "duration": 0.5,
+      
+      "type": "minehold",
+      "time": 591,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 135,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "minehold",
+      "time": 590
+    },
+    {
+      "angle1": 90,
+      "duration": 1,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 135,
+      
+      "type": "minehold",
+      "time": 589
+    },
+    {
+      "angle1": 45,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "minehold",
+      "time": 588
+    },
+    {
+      "angle1": 135,
+      "duration": 2,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 45,
+      
+      "type": "minehold",
+      "time": 586
+    },
+    {
+      "angle1": 225,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 135,
+      
+      "type": "minehold",
+      "time": 584
+    },
+    {
+      "angle1": 180,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 225,
+      
+      "type": "minehold",
+      "time": 583
+    },
+    {
+      "angle1": 225,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "minehold",
+      "time": 582
+    },
+    {
+      "angle1": 135,
+      "duration": 3,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 225,
+      
+      "type": "minehold",
+      "time": 579
+    },
+    {
+      "angle1": 45,
+      "duration": 3,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 135,
+      
+      "type": "minehold",
+      "time": 576
+    },
+    {
+      "angle1": 90,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 45,
+      
+      "type": "minehold",
+      "time": 575
+    },
+    {
+      "angle1": 45,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "minehold",
+      "time": 574
+    },
+    {
+      "angle1": 135,
+      "duration": 3,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 45,
+      
+      "type": "minehold",
+      "time": 571
+    },
+    {
+      "angle1": 225,
+      "duration": 3,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 135,
+      
+      "type": "minehold",
+      "time": 568
+    },
+    {
+      "angle2": 225,
+      "angle1": 202.5,
+      "duration": 0.5,
+      
+      "type": "minehold",
+      "time": 567.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle2": 202.5,
+      "angle1": 225,
+      "duration": 0.5,
+      
+      "type": "minehold",
+      "time": 567,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 180,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 225,
+      
+      "type": "minehold",
+      "time": 566
+    },
+    {
+      "angle2": 180,
+      "angle1": 180,
+      "duration": 2,
+      
+      "type": "hold",
+      "time": 624,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 0,
+      "duration": 4,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "hold",
+      "time": 620
+    },
+    {
+      "angle1": 180,
+      "duration": 4,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "hold",
+      "time": 616
+    },
+    {
+      "angle1": 270,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "hold",
+      "time": 614
+    },
+    {
+      "angle1": 180,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 270,
+      
+      "type": "hold",
+      "time": 612
+    },
+    {
+      "angle1": 0,
+      "duration": 4,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -180,
+      
+      "type": "hold",
+      "time": 608
+    },
+    {
+      "angle1": 180,
+      "duration": 4,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "hold",
+      "time": 604
+    },
+    {
+      "angle1": 0,
+      "duration": 4,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "hold",
+      "time": 600
+    },
+    {
+      "angle1": 90,
+      "duration": 2,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "hold",
+      "time": 598
+    },
+    {
+      "angle1": 180,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "hold",
+      "time": 596
+    },
+    {
+      "angle1": 270,
+      "duration": 2,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "hold",
+      "time": 594
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -90,
+      
+      "type": "hold",
+      "time": 592
+    },
+    {
+      "angle2": 360,
+      "angle1": 337.5,
+      "duration": 0.5,
+      
+      "type": "hold",
+      "time": 591.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 0,
+      "duration": 0.5,
+      "holdease": "nil",
+      "speedmult": 1,
+      
+      "angle2": -22.5,
+      
+      "type": "hold",
+      "time": 591
+    },
+    {
+      "angle1": 315,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "hold",
+      "time": 590
+    },
+    {
+      "angle1": 270,
+      "duration": 1,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 315,
+      
+      "type": "hold",
+      "time": 589
+    },
+    {
+      "angle1": 225,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 270,
+      
+      "type": "hold",
+      "time": 588
+    },
+    {
+      "angle1": 315,
+      "duration": 2,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 225,
+      
+      "type": "hold",
+      "time": 586
+    },
+    {
+      "angle1": 45,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -45,
+      
+      "type": "hold",
+      "time": 584
+    },
+    {
+      "angle1": 0,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 45,
+      
+      "type": "hold",
+      "time": 583
+    },
+    {
+      "angle1": 45,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "hold",
+      "time": 582
+    },
+    {
+      "angle1": 315,
+      "duration": 3,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 405,
+      
+      "type": "hold",
+      "time": 579
+    },
+    {
+      "angle1": 315,
+      "duration": 3,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 225,
+      
+      "type": "hold",
+      "time": 571
+    },
+    {
+      "angle1": 225,
+      "duration": 3,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 315,
+      
+      "type": "hold",
+      "time": 576
+    },
+    {
+      "angle1": 270,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 225,
+      
+      "type": "hold",
+      "time": 575
+    },
+    {
+      "angle1": 225,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 270,
+      
+      "type": "hold",
+      "time": 574
+    },
+    {
+      "angle1": 45,
+      "duration": 3,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -45,
+      
+      "type": "hold",
+      "time": 568
+    },
+    {
+      "angle2": 45,
+      "angle1": 22.5,
+      "duration": 0.5,
+      
+      "type": "hold",
+      "time": 567.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 45,
+      "duration": 0.5,
+      "holdease": "nil",
+      "speedmult": 1,
+      
+      "angle2": 22.5,
+      
+      "type": "hold",
+      "time": 567
+    },
+    {
+      "angle1": 0,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 45,
+      
+      "type": "hold",
+      "time": 566
+    },
+    {
+      "angle1": 180,
+      "duration": 6,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "hold",
+      "time": 560
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 559,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 558,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 557,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 556,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 555,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 554,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 553,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 552,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 550,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 548,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 547.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 547,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 546,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 544,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 299,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 298,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 297,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 296,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 523,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 522,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 521,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 520,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 542,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 541,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 540,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 538,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 537,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 536,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 534,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 532,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 530,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 528.25,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 528.75,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 529.25,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 529.75,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 529.75,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 529.25,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 529,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 529.5,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 529.5,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 529,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 528.5,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 527.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 527,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 528,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 526,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 524,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 523.75,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 523.5,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 518,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 517,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 516,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 515,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 514,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 513,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 512,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 510,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 508,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 506,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 504,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 502,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 500,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle1": 0,
+      "duration": 6,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "minehold",
+      "time": 560
+    },
+    {
+      "angle1": 180,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "minehold",
+      "time": 559
+    },
+    {
+      "angle2": 2700,
+      "angle1": 180,
+      "duration": 7,
+      
+      "type": "minehold",
+      "time": 552,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 180,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -180,
+      
+      "type": "minehold",
+      "time": 550
+    },
+    {
+      "angle1": 180,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 540,
+      
+      "type": "minehold",
+      "time": 548
+    },
+    {
+      "angle2": 180,
+      "angle1": 270,
+      "duration": 0.5,
+      
+      "type": "minehold",
+      "time": 547.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle2": 270,
+      "angle1": 180,
+      "duration": 0.5,
+      
+      "type": "minehold",
+      "time": 547,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 0,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -180,
+      
+      "type": "minehold",
+      "time": 546
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "minehold",
+      "time": 544
+    },
+    {
+      "angle1": 180,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 542
+    },
+    {
+      "angle2": -540,
+      "angle1": 180,
+      "duration": 2,
+      
+      "type": "minehold",
+      "time": 540,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "minehold",
+      "time": 538
+    },
+    {
+      "angle2": 720,
+      "angle1": 0,
+      "duration": 2,
+      
+      "type": "minehold",
+      "time": 536,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 270,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 534
+    },
+    {
+      "angle1": 90,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 270,
+      
+      "type": "minehold",
+      "time": 532
+    },
+    {
+      "angle1": 180,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "minehold",
+      "time": 530
+    },
+    {
+      "angle2": 0,
+      "angle1": 0,
+      "duration": 4,
+      
+      "type": "minehold",
+      "time": 524,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 180,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 523
+    },
+    {
+      "angle2": -900,
+      "angle1": 180,
+      "duration": 3,
+      
+      "type": "minehold",
+      "time": 520,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "minehold",
+      "time": 518
+    },
+    {
+      "angle2": 2160,
+      "angle1": 0,
+      "duration": 6,
+      
+      "type": "minehold",
+      "time": 512,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -360,
+      
+      "type": "minehold",
+      "time": 510
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "minehold",
+      "time": 508
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -360,
+      
+      "type": "minehold",
+      "time": 506
+    },
+    {
+      "angle1": 270,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 720,
+      
+      "type": "minehold",
+      "time": 504
+    },
+    {
+      "angle1": 90,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -90,
+      
+      "type": "minehold",
+      "time": 502
+    },
+    {
+      "angle1": 270,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 450,
+      
+      "type": "minehold",
+      "time": 500
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -90,
+      
+      "type": "minehold",
+      "time": 498
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 495.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 495,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 494.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle1": 90,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -90,
+      
+      "type": "minehold",
+      "time": 492
+    },
+    {
+      "angle1": 270,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "minehold",
+      "time": 492
+    },
+    {
+      "angle1": 180,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 492
+    },
+    {
+      "angle1": 0,
+      "duration": 4,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": -180,
+      
+      "type": "minehold",
+      "time": 488
+    },
+    {
+      "angle1": 180,
+      "duration": 8,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 450,
+      
+      "type": "minehold",
+      "time": 480
+    },
+    {
+      "angle1": 0,
+      "duration": 8,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 270,
+      
+      "type": "minehold",
+      "time": 480
+    },
+    {
+      "angle1": 225,
+      "duration": 8,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 45,
+      
+      "type": "minehold",
+      "time": 472
+    },
+    {
+      "angle1": 315,
+      "duration": 8,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 135,
+      
+      "type": "minehold",
+      "time": 472
+    },
+    {
+      "angle1": 90,
+      "duration": 8,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 270,
+      
+      "type": "minehold",
+      "time": 464
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -180,
+      
+      "type": "hold",
+      "time": 492
+    },
+    {
+      "angle1": 180,
+      "duration": 4,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "hold",
+      "time": 488
+    },
+    {
+      "angle1": 270,
+      "duration": 8,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 540,
+      
+      "type": "hold",
+      "time": 480
+    },
+    {
+      "angle1": 90,
+      "duration": 8,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": -90,
+      
+      "type": "hold",
+      "time": 472
+    },
+    {
+      "angle1": 270,
+      "duration": 8,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 450,
+      
+      "type": "hold",
+      "time": 464
+    },
+    {
+      "angle1": 0,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -90,
+      
+      "type": "hold",
+      "time": 463
+    },
+    {
+      "angle1": 90,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "hold",
+      "time": 462
+    },
+    {
+      "angle1": 180,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "hold",
+      "time": 461
+    },
+    {
+      "angle1": 270,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "hold",
+      "time": 460
+    },
+    {
+      "angle1": 180,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 270,
+      
+      "type": "hold",
+      "time": 459
+    },
+    {
+      "angle1": 90,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "hold",
+      "time": 458
+    },
+    {
+      "angle1": 0,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "hold",
+      "time": 457
+    },
+    {
+      "angle1": 270,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "hold",
+      "time": 456
+    },
+    {
+      "angle1": 180,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 270,
+      
+      "type": "hold",
+      "time": 455
+    },
+    {
+      "angle1": 270,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "hold",
+      "time": 454
+    },
+    {
+      "angle1": 0,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -90,
+      
+      "type": "hold",
+      "time": 453
+    },
+    {
+      "angle1": 45,
+      "duration": 0.5,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "hold",
+      "time": 452.5
+    },
+    {
+      "angle1": 315,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 405,
+      
+      "type": "hold",
+      "time": 451.5
+    },
+    {
+      "angle1": 225,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 315,
+      
+      "type": "hold",
+      "time": 450.5
+    },
+    {
+      "angle1": 135,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 225,
+      
+      "type": "hold",
+      "time": 449.5
+    },
+    {
+      "angle1": 180,
+      "duration": 0.5,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 135,
+      
+      "type": "hold",
+      "time": 449
+    },
+    {
+      "angle1": 270,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "hold",
+      "time": 448
+    },
+    {
+      "angle1": 180,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 270,
+      
+      "type": "hold",
+      "time": 447
+    },
+    {
+      "angle1": 90,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "hold",
+      "time": 446
+    },
+    {
+      "angle1": 180,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "hold",
+      "time": 445
+    },
+    {
+      "angle1": 90,
+      "duration": 2,
+      "holdease": "Linear",
+      "speedmult": 1,
+      
+      "angle2": -180,
+      
+      "type": "hold",
+      "time": 443
+    },
+    {
+      "angle1": 180,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "hold",
+      "time": 442
+    },
+    {
+      "angle1": 90,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "hold",
+      "time": 441
+    },
+    {
+      "angle1": 0,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "hold",
+      "time": 440
+    },
+    {
+      "angle1": 45,
+      "duration": 0.5,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "hold",
+      "time": 439.5
+    },
+    {
+      "angle1": 0,
+      "duration": 0.5,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 45,
+      
+      "type": "hold",
+      "time": 439
+    },
+    {
+      "angle1": 22.5,
+      "duration": 0.25,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "hold",
+      "time": 438.75
+    },
+    {
+      "angle1": 0,
+      "duration": 0.25,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 22.5,
+      
+      "type": "hold",
+      "time": 438.5
+    },
+    {
+      "angle1": 90,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "hold",
+      "time": 437.5
+    },
+    {
+      "angle1": 0,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "hold",
+      "time": 436.5
+    },
+    {
+      "angle1": 45,
+      "duration": 0.5,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "hold",
+      "time": 436
+    },
+    {
+      "angle1": 135,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 45,
+      
+      "type": "hold",
+      "time": 435
+    },
+    {
+      "angle1": 45,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 135,
+      
+      "type": "hold",
+      "time": 434
+    },
+    {
+      "angle1": 315,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 405,
+      
+      "type": "hold",
+      "time": 433
+    },
+    {
+      "angle1": 0,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -45,
+      
+      "type": "hold",
+      "time": 432
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 431.5
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 431
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 430.5
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 430
+    },
+    {
+      "angle2": 45,
+      "angle1": 90,
+      "duration": 0.5,
+      "speedmult": 1,
+      "type": "hold",
+      "time": 429,
+      
+      "played": false
+    },
+    {
+      "angle": 112.5,
+      
+      "endangle": 112.5,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 428.75
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 428.5
+    },
+    {
+      "angle": 157.5,
+      
+      "endangle": 157.5,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 428.25
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 428
+    },
+    {
+      "angle": 157.5,
+      
+      "endangle": 157.5,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 427.75
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 427.5
+    },
+    {
+      "angle": 112.5,
+      
+      "endangle": 112.5,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 427.25
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 427
+    },
+    {
+      "angle": 67.5,
+      
+      "endangle": 67.5,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 426.75
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 426.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 425.5
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 426
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 424
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 424.5
+    },
+    {
+      "angle": 337.5,
+      
+      "endangle": 337.5,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 423
+    },
+    {
+      "angle": 22.5,
+      
+      "endangle": 22.5,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 422
+    },
+    {
+      "angle1": 0,
+      "duration": 0.5,
+      "holdease": "Linear",
+      "speedmult": 1,
+      
+      "angle2": -22.5,
+      
+      "type": "hold",
+      "time": 421
+    },
+    {
+      "angle1": 90,
+      "duration": 0.5,
+      "holdease": "Linear",
+      "speedmult": 1,
+      
+      "angle2": 45,
+      
+      "type": "hold",
+      "time": 420
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 419.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 419
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 418.5
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 418
+    },
+    {
+      "angle": 22.5,
+      
+      "endangle": 22.5,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 406
+    },
+    {
+      "angle": 337.5,
+      
+      "endangle": 337.5,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 407
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 415.5
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 415
+    },
+    {
+      "angle": 22.5,
+      
+      "endangle": 22.5,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 414.5
+    },
+    {
+      "angle": 337.5,
+      
+      "endangle": 337.5,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 414
+    },
+    {
+      "angle": 22.5,
+      
+      "endangle": 22.5,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 410.75
+    },
+    {
+      "angle1": 315,
+      "duration": 1.5,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "hold",
+      "time": 416
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 413.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 413
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 412.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 409.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 412
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 411.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 411
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 410.5
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 410
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 409
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 408.5
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 408
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 405.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 405
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 404.5
+    },
+    {
+      "angle": 202.5,
+      
+      "endangle": 202.5,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 404.25
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 404
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 403.5
+    },
+    {
+      "angle": 292.5,
+      
+      "endangle": 292.5,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 402.75
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 403
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 402.5
+    },
+    {
+      "angle": 202.5,
+      
+      "endangle": 202.5,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 398.5
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 398.25
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 399.25
+    },
+    {
+      "angle": 157.5,
+      
+      "endangle": 157.5,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 399
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 399.5
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 402
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 401.5
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 401
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 400.5
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 400
+    },
+    {
+      "angle": 281.25,
+      
+      "endangle": 281.25,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 397
+    },
+    {
+      "angle": 258.75,
+      
+      "endangle": 258.75,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 398
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 396
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 395.5
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 395
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 394.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 394
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 393.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 393
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 392.5
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 392
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 391
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 390
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 389.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 389
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 388.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 388
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 387.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 387
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 386.5
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 386
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 385.5
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 385
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 384.5
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 384
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 383.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 383
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 382.5
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 382
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 381.5
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 381
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 380.5
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 380
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 379.5
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 379
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 378.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 378
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 377.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 377
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 376.5
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 376
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 375.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 375
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 374.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 373.5
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 374
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 373
+    },
+    {
+      "angle": 247.5,
+      
+      "endangle": 247.5,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 372.75
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 372.5
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 371.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 371
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 370.5
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 370
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 369.5
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 369
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 367
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 368
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 367.5
+    },
+    {
+      "angle1": 90,
+      "duration": 0.5,
+      "holdease": "Linear",
+      "speedmult": 1,
+      
+      "angle2": 45,
+      
+      "type": "hold",
+      "time": 366
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 365.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 365
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 364.5
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 364
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 363.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 363
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 362.5
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 362
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 361.5
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 361
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 360.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 360
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 359.5
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 359
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 358.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 358
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 357.5
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 357
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 356.5
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 356
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 355.5
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 355
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 354.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 354
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 353.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 353
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 352.5
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 352
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 351.5
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 351
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 350
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 343.5
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 342
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 338
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "side",
+      "speedmult": 1,
+      
+      "time": 346
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 350.5
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 349.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 349
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 348.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 348
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 347.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 347
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 346.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 345.5
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 345
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 344.5
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 344
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 343
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 342.5
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 341.5
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 341
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 340.5
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 340
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 339
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 339.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 338.5
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 336.5
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 337.5
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 337
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 336
+    },
+    {
+      "angle": 337.5,
+      
+      "type": "side",
+      "endangle": 337.5,
+      "time": 335,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 337.5,
+      
+      "type": "side",
+      "endangle": 337.5,
+      "time": 334,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 337.5,
+      
+      "type": "side",
+      "endangle": 337.5,
+      "time": 333,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 337.5,
+      
+      "type": "side",
+      "endangle": 337.5,
+      "time": 332,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 337.5,
+      
+      "type": "side",
+      "endangle": 337.5,
+      "time": 331,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 337.5,
+      
+      "type": "side",
+      "endangle": 337.5,
+      "time": 330,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 337.5,
+      
+      "type": "side",
+      "endangle": 337.5,
+      "time": 329,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 337.5,
+      
+      "type": "side",
+      "endangle": 337.5,
+      "time": 328,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 22.5,
+      
+      "type": "side",
+      "endangle": 22.5,
+      "time": 326,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 292.5,
+      
+      "type": "side",
+      "endangle": 292.5,
+      "time": 324,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 337.5,
+      
+      "type": "side",
+      "endangle": 337.5,
+      "time": 323.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 292.5,
+      
+      "type": "side",
+      "endangle": 292.5,
+      "time": 323,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 202.5,
+      
+      "type": "side",
+      "endangle": 202.5,
+      "time": 322,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 157.5,
+      
+      "type": "side",
+      "endangle": 157.5,
+      "time": 320,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 22.5,
+      
+      "type": "side",
+      "endangle": 22.5,
+      "time": 318,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 22.5,
+      
+      "type": "side",
+      "endangle": 22.5,
+      "time": 317,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 22.5,
+      
+      "type": "side",
+      "endangle": 22.5,
+      "time": 316,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 157.5,
+      
+      "type": "side",
+      "endangle": 157.5,
+      "time": 314,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 157.5,
+      
+      "type": "side",
+      "endangle": 157.5,
+      "time": 313,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 157.5,
+      
+      "type": "side",
+      "endangle": 157.5,
+      "time": 312,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 247.5,
+      
+      "type": "side",
+      "endangle": 247.5,
+      "time": 310,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 112.5,
+      
+      "type": "side",
+      "endangle": 112.5,
+      "time": 308,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 22.5,
+      
+      "type": "mine",
+      "endangle": 22.5,
+      "time": 304.25,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 202.5,
+      
+      "type": "mine",
+      "endangle": 202.5,
+      "time": 305.75,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 157.5,
+      
+      "type": "mine",
+      "endangle": 157.5,
+      "time": 305.75,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 112.5,
+      
+      "type": "mine",
+      "endangle": 112.5,
+      "time": 305.25,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 247.5,
+      
+      "type": "mine",
+      "endangle": 247.5,
+      "time": 305.25,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 67.5,
+      
+      "type": "mine",
+      "endangle": 67.5,
+      "time": 304.75,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 67.5,
+      
+      "type": "side",
+      "endangle": 67.5,
+      "time": 306,
+      
+      "speedmult": 1
+    },
+    {
+      "angle2": 0,
+      "angle1": 0,
+      "duration": 1,
+      "time": 336,
+      "type": "minehold",
+      "speedmult": 1,
+      
+      "played": false
+    },
+    {
+      "angle1": 180,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 335
+    },
+    {
+      "angle2": -2340,
+      "angle1": 180,
+      "duration": 7,
+      "time": 328,
+      "type": "minehold",
+      "speedmult": 1,
+      
+      "played": false
+    },
+    {
+      "angle1": 180,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 540,
+      
+      "type": "minehold",
+      "time": 326
+    },
+    {
+      "angle1": 180,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -180,
+      
+      "type": "minehold",
+      "time": 324
+    },
+    {
+      "angle2": 180,
+      "angle1": 90,
+      "duration": 0.5,
+      "time": 323.5,
+      "type": "minehold",
+      "speedmult": 1,
+      
+      "played": false
+    },
+    {
+      "angle2": 90,
+      "angle1": 180,
+      "duration": 0.5,
+      "time": 323,
+      "type": "minehold",
+      "speedmult": 1,
+      
+      "played": false
+    },
+    {
+      "angle1": 0,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "minehold",
+      "time": 322
+    },
+    {
+      "angle1": 360,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 320
+    },
+    {
+      "angle1": 180,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "minehold",
+      "time": 318
+    },
+    {
+      "angle2": 900,
+      "angle1": 180,
+      "duration": 2,
+      "time": 316,
+      "type": "minehold",
+      "speedmult": 1,
+      
+      "played": false
+    },
+    {
+      "angle1": 360,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "minehold",
+      "time": 314
+    },
+    {
+      "angle2": 0,
+      "angle1": 720,
+      "duration": 2,
+      "time": 312,
+      "type": "minehold",
+      "speedmult": 1,
+      
+      "played": false
+    },
+    {
+      "angle1": 90,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "minehold",
+      "time": 310
+    },
+    {
+      "angle": 270,
+      
+      "type": "mine",
+      "endangle": 270,
+      "time": 305,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "mine",
+      "endangle": 135,
+      "time": 305.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "mine",
+      "endangle": 90,
+      "time": 305,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 305.5,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 304.5,
+      
+      "endangle": 45
+    },
+    {
+      "angle1": 270,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "minehold",
+      "time": 308
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 302,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 0,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 273,
+      
+      "endangle": 0
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 272,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 272,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 304,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 303.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 303,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 300,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 299.75,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 299.5,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 286,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 284,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 282,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 280,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 278,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 276,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 274,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 269,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 270,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 269.5,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 269,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 270,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 270,
+      
+      "endangle": 90
+    },
+    {
+      "angle1": 180,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 270,
+      
+      "type": "minehold",
+      "time": 306
+    },
+    {
+      "angle2": 0,
+      "angle1": 0,
+      "duration": 4,
+      
+      "type": "minehold",
+      "time": 300,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 180,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "minehold",
+      "time": 299
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 294,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 293,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 292,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 291,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 290,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 289,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 288,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 268.5,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 268,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 270,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 270.5,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 273,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 272,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 270,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 271,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 270.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 271,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 271,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 271,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 269.5,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 269,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 268.5,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 268,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 268,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 268,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 268,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 266,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 266,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 266,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 266,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 264,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 264,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 264,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 264,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 267.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 267,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 266.5,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 265.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 265,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 264.5,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 263,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 262.5,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 262,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 261.5,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 261,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 260.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 260,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 259,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 258.5,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 258,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 257.5,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 257,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 256.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 264,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 263.5,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 263,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 262.5,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 262,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 261.5,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 261,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 260.5,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 260,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 259.5,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 259,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 258.5,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 258,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 257.5,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 257,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 256.5,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 254.5,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 254,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 253.5,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 253,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 252.5,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 253,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 252.5,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 252.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 252,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 251.5,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 252,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 251.5,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 251,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 251,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 250.5,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 250.5,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 252,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 251.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 251,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 250.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 255.5,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 255,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 254,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 253.5,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 253.5,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 253,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 253,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 254.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 254.5,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 254,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 254,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 253.5,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 253.5,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 256,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 255.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 254.5,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 254,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 253.5,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 252.5,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 252,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 251.5,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 252,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 250.5,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 249.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 250,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 251,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 250,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 251,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 248,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 249,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 248.5,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 249.5,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 249.5,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 249,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 248.5,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 250,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 250,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 248,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 248,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 248.5,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 250,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 249.5,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 249.5,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 157.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 249,
+      
+      "endangle": 157.5
+    },
+    {
+      "angle": 202.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 249,
+      
+      "endangle": 202.5
+    },
+    {
+      "angle2": 1260,
+      "angle1": 180,
+      "duration": 3,
+      
+      "type": "minehold",
+      "time": 296,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -180,
+      
+      "type": "minehold",
+      "time": 294
+    },
+    {
+      "angle2": -2160,
+      "angle1": 0,
+      "duration": 6,
+      
+      "type": "minehold",
+      "time": 288,
+      
+      "speedmult": 1
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -360,
+      
+      "type": "minehold",
+      "time": 284
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "minehold",
+      "time": 286
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "minehold",
+      "time": 282
+    },
+    {
+      "angle1": 90,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -360,
+      
+      "type": "minehold",
+      "time": 280
+    },
+    {
+      "angle1": 270,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 450,
+      
+      "type": "minehold",
+      "time": 278
+    },
+    {
+      "angle1": 450,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 270,
+      
+      "type": "minehold",
+      "time": 276
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 248.5,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 247.5,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 247.5,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 247,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 247,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 247.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 246.5,
+      
+      "endangle": 247.5
+    },
+    {
+      "angle": 112.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 246.5,
+      
+      "endangle": 112.5
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 244,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 244,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 246,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 270,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 246,
+      
+      "endangle": 270
+    },
+    {
+      "angle": 292.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 245.5,
+      
+      "endangle": 292.5
+    },
+    {
+      "angle": 67.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 245.5,
+      
+      "endangle": 67.5
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 245,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 337.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 244.5,
+      
+      "endangle": 337.5
+    },
+    {
+      "angle": 15,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 263.5,
+      
+      "endangle": 15
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 263,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 15,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 262.5,
+      
+      "endangle": 15
+    },
+    {
+      "angle": 15,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 261.5,
+      
+      "endangle": 15
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 261,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 15,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 260.5,
+      
+      "endangle": 15
+    },
+    {
+      "angle": 15,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 259.5,
+      
+      "endangle": 15
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 259,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 15,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 258.5,
+      
+      "endangle": 15
+    },
+    {
+      "angle": 15,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 257.5,
+      
+      "endangle": 15
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 257,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 256.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 255.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 30,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 255,
+      
+      "endangle": 30
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 254.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 253.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 30,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 253,
+      
+      "endangle": 30
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 252.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 251.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 250.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 249.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 22.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 248.5,
+      
+      "endangle": 22.5
+    },
+    {
+      "angle": 7.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 264,
+      
+      "endangle": 7.5
+    },
+    {
+      "angle": 7.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 262,
+      
+      "endangle": 7.5
+    },
+    {
+      "angle": 7.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 260,
+      
+      "endangle": 7.5
+    },
+    {
+      "angle": 7.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 258,
+      
+      "endangle": 7.5
+    },
+    {
+      "angle": 15,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 256,
+      
+      "endangle": 15
+    },
+    {
+      "angle": 15,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 254,
+      
+      "endangle": 15
+    },
+    {
+      "angle": 15,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 252,
+      
+      "endangle": 15
+    },
+    {
+      "angle": 15,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 250,
+      
+      "endangle": 15
+    },
+    {
+      "angle": 15,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 248,
+      
+      "endangle": 15
+    },
+    {
+      "angle": 7.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 267.5,
+      
+      "endangle": 7.5
+    },
+    {
+      "angle": 7.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 267,
+      
+      "endangle": 7.5
+    },
+    {
+      "angle": 7.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 266.5,
+      
+      "endangle": 7.5
+    },
+    {
+      "angle": 7.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 266,
+      
+      "endangle": 7.5
+    },
+    {
+      "angle": 7.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 265.5,
+      
+      "endangle": 7.5
+    },
+    {
+      "angle": 7.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 265,
+      
+      "endangle": 7.5
+    },
+    {
+      "angle": 7.5,
+      
+      "speedmult": 1,
+      "type": "mine",
+      "time": 264.5,
+      
+      "endangle": 7.5
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "minehold",
+      "time": 274
+    },
+    {
+      "angle": 5,
+      
+      "endangle": 5,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 270
+    },
+    {
+      "angle": 355,
+      
+      "endangle": 355,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 270
+    },
+    {
+      "angle1": 292.5,
+      "duration": 6,
+      "holdease": "InCubic",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "minehold",
+      "time": 264
+    },
+    {
+      "angle1": 67.5,
+      "duration": 6,
+      "holdease": "InCubic",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 264
+    },
+    {
+      "angle1": 315,
+      "duration": 14,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "minehold",
+      "time": 256
+    },
+    {
+      "angle1": 45,
+      "duration": 14,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 256
+    },
+    {
+      "angle1": 22.5,
+      "duration": 22,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 248
+    },
+    {
+      "angle1": 337.5,
+      "duration": 22,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 360,
+      
+      "type": "minehold",
+      "time": 248
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 245
+    },
+    {
+      "angle": 22.5,
+      
+      "endangle": 22.5,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 244.5
+    },
+    {
+      "angle": 67.5,
+      
+      "endangle": 67.5,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 243.5
+    },
+    {
+      "angle": 292.5,
+      
+      "endangle": 292.5,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 243.5
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 243
+    },
+    {
+      "angle": 292.5,
+      
+      "endangle": 292.5,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 242.5
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 243
+    },
+    {
+      "angle": 67.5,
+      
+      "endangle": 67.5,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 242.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 242
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 242
+    },
+    {
+      "angle": 112.5,
+      
+      "endangle": 112.5,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 241.5
+    },
+    {
+      "angle": 247.5,
+      
+      "endangle": 247.5,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 241.5
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 241
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 241
+    },
+    {
+      "angle": 157.5,
+      
+      "endangle": 157.5,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 240.5
+    },
+    {
+      "angle": 202.5,
+      
+      "endangle": 202.5,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 240.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 240
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 239.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 239
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 238.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 238
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 237.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 237
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 236.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 236
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 235.5
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 235
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 234.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 234
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 233.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 233
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 232.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 232
+    },
+    {
+      "angle1": 540,
+      "duration": 4,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 270,
+      
+      "type": "hold",
+      "time": 236
+    },
+    {
+      "angle1": 315,
+      "duration": 4,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 540,
+      
+      "type": "hold",
+      "time": 232
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 231.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 231
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 230.5
+    },
+    {
+      "angle1": 90,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -45,
+      
+      "type": "hold",
+      "time": 230
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 229.5
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 229
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 228.5
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 228
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 230
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 229.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 229
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 228.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 228
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 227.5
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 227
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 226.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 226
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 225.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 225
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 224.5
+    },
+    {
+      "angle1": 90,
+      "duration": 6,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": -630,
+      
+      "type": "hold",
+      "time": 224
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 224
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 223.5
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 223
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 222.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 222
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 221.5
+    },
+    {
+      "angle1": 225,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 450,
+      
+      "type": "hold",
+      "time": 222
+    },
+    {
+      "angle1": 45,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -135,
+      
+      "type": "hold",
+      "time": 220
+    },
+    {
+      "angle1": 45,
+      "duration": 4,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": -315,
+      
+      "type": "hold",
+      "time": 216
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 220.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 220
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 219.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 219
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 218.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 218
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 217.5
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 217
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 216.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 216
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 215.5
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 212.5
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 213
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 213.5
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 214
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 214.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 215
+    },
+    {
+      "angle1": 270,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 405,
+      
+      "type": "hold",
+      "time": 214
+    },
+    {
+      "angle1": 0,
+      "duration": 2,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -90,
+      
+      "type": "hold",
+      "time": 212
+    },
+    {
+      "angle1": 0,
+      "duration": 4,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": -360,
+      
+      "type": "hold",
+      "time": 208
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 207
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 206
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 205
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 204
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 203
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 202
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 201
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 200
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 199
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 198
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 197
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 196
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 195
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 194
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 190
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 189
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 187
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 186
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 185
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 212
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 211.5
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 211
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 210.5
+    },
+    {
+      "angle": 0,
+      
+      "endangle": 0,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 210
+    },
+    {
+      "angle": 45,
+      
+      "endangle": 45,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 209.5
+    },
+    {
+      "angle": 90,
+      
+      "endangle": 90,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 209
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "mine",
+      "speedmult": 1,
+      
+      "time": 208.5
+    },
+    {
+      "angle": 315,
+      
+      "endangle": 315,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 193
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 192
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 191
+    },
+    {
+      "angle": 270,
+      
+      "endangle": 270,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 184
+    },
+    {
+      "angle2": 180,
+      "angle1": 180,
+      "duration": 8,
+      "speedmult": 1,
+      "type": "minehold",
+      "time": 200,
+      
+      "played": false
+    },
+    {
+      "angle2": 135,
+      "angle1": 135,
+      "duration": 8,
+      "speedmult": 1,
+      "type": "minehold",
+      "time": 192,
+      
+      "played": false
+    },
+    {
+      "angle2": 225,
+      "angle1": 225,
+      "duration": 8,
+      "speedmult": 1,
+      "type": "minehold",
+      "time": 192,
+      
+      "played": false
+    },
+    {
+      "angle2": 315,
+      "angle1": 315,
+      "duration": 8,
+      "speedmult": 1,
+      "type": "minehold",
+      "time": 184,
+      
+      "played": false
+    },
+    {
+      "angle2": 45,
+      "angle1": 45,
+      "duration": 8,
+      "speedmult": 1,
+      "type": "minehold",
+      "time": 184,
+      
+      "played": false
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 183
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 182
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 181
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 180
+    },
+    {
+      "angle": 225,
+      
+      "endangle": 225,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 179
+    },
+    {
+      "angle": 180,
+      
+      "endangle": 180,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 178
+    },
+    {
+      "angle": 135,
+      
+      "endangle": 135,
+      "type": "beat",
+      "speedmult": 1,
+      
+      "time": 177
+    },
+    {
+      "angle1": 0,
+      "duration": 8,
+      "holdease": "nil",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 176
+    },
+    {
+      "angle1": 90,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 0,
+      
+      "type": "minehold",
+      "time": 175
+    },
+    {
+      "angle1": 202.5,
+      "duration": 4,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 180,
+      
+      "type": "hold",
+      "time": 172
+    },
+    {
+      "angle": 78.75,
+      
+      "time": 167,
+      "endangle": 78.75,
+      "speedmult": 1,
+      
+      "type": "mine"
+    },
+    {
+      "angle": 258.75,
+      
+      "time": 167,
+      "endangle": 258.75,
+      "speedmult": 1,
+      
+      "type": "side"
+    },
+    {
+      "angle": 157.5,
+      
+      "time": 171.5,
+      "endangle": 157.5,
+      "speedmult": 1,
+      
+      "type": "inverse"
+    },
+    {
+      "angle": 22.5,
+      
+      "time": 171,
+      "endangle": 22.5,
+      "speedmult": 1,
+      
+      "type": "inverse"
+    },
+    {
+      "angle": 337.5,
+      
+      "time": 170.5,
+      "endangle": 337.5,
+      "speedmult": 1,
+      
+      "type": "inverse"
+    },
+    {
+      "angle": 202.5,
+      
+      "time": 170,
+      "endangle": 202.5,
+      "speedmult": 1,
+      
+      "type": "inverse"
+    },
+    {
+      "angle": 157.5,
+      
+      "time": 169.5,
+      "endangle": 157.5,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 22.5,
+      
+      "time": 169,
+      "endangle": 22.5,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 337.5,
+      
+      "time": 168.5,
+      "endangle": 337.5,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 202.5,
+      
+      "time": 168,
+      "endangle": 202.5,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle1": 22.5,
+      "duration": 1,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": 90,
+      
+      "type": "minehold",
+      "time": 168
+    },
+    {
+      "angle2": 371.25,
+      "angle1": 348.75,
+      "duration": 1,
+      
+      "type": "minehold",
+      "speedmult": 1,
+      
+      "time": 159
+    },
+    {
+      "angle": 11.25,
+      
+      "time": 157,
+      "endangle": 11.25,
+      "speedmult": 1,
+      
+      "type": "mine"
+    },
+    {
+      "angle": 168.75,
+      
+      "time": 159,
+      "endangle": 168.75,
+      "speedmult": 1,
+      
+      "type": "side"
+    },
+    {
+      "angle": 191.25,
+      
+      "time": 157,
+      "endangle": 191.25,
+      "speedmult": 1,
+      
+      "type": "side"
+    },
+    {
+      "angle": 56.25,
+      
+      "time": 151,
+      "endangle": 56.25,
+      "speedmult": 1,
+      
+      "type": "mine"
+    },
+    {
+      "angle": 33.75,
+      
+      "time": 149,
+      "endangle": 33.75,
+      "speedmult": 1,
+      
+      "type": "mine"
+    },
+    {
+      "angle": 236.25,
+      
+      "time": 151,
+      "endangle": 236.25,
+      "speedmult": 1,
+      
+      "type": "side"
+    },
+    {
+      "angle": 213.75,
+      
+      "time": 149,
+      "endangle": 213.75,
+      "speedmult": 1,
+      
+      "type": "side"
+    },
+    {
+      "angle": 292.5,
+      
+      "type": "inverse",
+      "endangle": 292.5,
+      "time": 163.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 247.5,
+      
+      "type": "inverse",
+      "endangle": 247.5,
+      "time": 163,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 112.5,
+      
+      "type": "inverse",
+      "endangle": 112.5,
+      "time": 162.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 67.5,
+      
+      "type": "inverse",
+      "endangle": 67.5,
+      "time": 162,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 292.5,
+      
+      "type": "beat",
+      "endangle": 292.5,
+      "time": 161.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 247.5,
+      
+      "type": "beat",
+      "endangle": 247.5,
+      "time": 161,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 112.5,
+      
+      "type": "beat",
+      "endangle": 112.5,
+      "time": 160.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 67.5,
+      
+      "type": "beat",
+      "endangle": 67.5,
+      "time": 160,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "mine",
+      "endangle": 225,
+      "time": 154,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "inverse",
+      "endangle": 135,
+      "time": 155.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "inverse",
+      "endangle": 225,
+      "time": 155,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 315,
+      
+      "type": "inverse",
+      "endangle": 315,
+      "time": 154.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 45,
+      
+      "type": "inverse",
+      "endangle": 45,
+      "time": 154,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "beat",
+      "endangle": 135,
+      "time": 153.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "beat",
+      "endangle": 225,
+      "time": 153,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 315,
+      
+      "type": "beat",
+      "endangle": 315,
+      "time": 152.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 45,
+      
+      "type": "beat",
+      "endangle": 45,
+      "time": 152,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 180,
+      
+      "type": "mine",
+      "endangle": 180,
+      "time": 146,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "inverse",
+      "endangle": 270,
+      "time": 147.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "inverse",
+      "endangle": 90,
+      "time": 146.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 145.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 144.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 180,
+      
+      "type": "inverse",
+      "endangle": 180,
+      "time": 147,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 0,
+      
+      "type": "inverse",
+      "endangle": 0,
+      "time": 146,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 180,
+      
+      "type": "beat",
+      "endangle": 180,
+      "time": 145,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 0,
+      
+      "type": "beat",
+      "endangle": 0,
+      "time": 144,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 258.75,
+      
+      "type": "side",
+      "endangle": 258.75,
+      "time": 143,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 236.25,
+      
+      "type": "side",
+      "endangle": 236.25,
+      "time": 141,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 337.5,
+      
+      "type": "inverse",
+      "endangle": 337.5,
+      "time": 139.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 202.5,
+      
+      "type": "inverse",
+      "endangle": 202.5,
+      "time": 139,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 157.5,
+      
+      "type": "inverse",
+      "endangle": 157.5,
+      "time": 138.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 202.5,
+      
+      "type": "beat",
+      "endangle": 202.5,
+      "time": 137,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 157.5,
+      
+      "type": "beat",
+      "endangle": 157.5,
+      "time": 136.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 22.5,
+      
+      "type": "inverse",
+      "endangle": 22.5,
+      "time": 138,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 337.5,
+      
+      "type": "beat",
+      "endangle": 337.5,
+      "time": 137.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 22.5,
+      
+      "type": "beat",
+      "endangle": 22.5,
+      "time": 136,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 146.25,
+      
+      "type": "side",
+      "endangle": 146.25,
+      "time": 135,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 168.75,
+      
+      "type": "side",
+      "endangle": 168.75,
+      "time": 133,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 292.5,
+      
+      "type": "beat",
+      "endangle": 292.5,
+      "time": 130,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 247.5,
+      
+      "type": "inverse",
+      "endangle": 247.5,
+      "time": 130.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 112.5,
+      
+      "type": "inverse",
+      "endangle": 112.5,
+      "time": 131,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 67.5,
+      
+      "type": "inverse",
+      "endangle": 67.5,
+      "time": 131.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 67.5,
+      
+      "type": "beat",
+      "endangle": 67.5,
+      "time": 129.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 112.5,
+      
+      "type": "beat",
+      "endangle": 112.5,
+      "time": 129,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 247.5,
+      
+      "type": "beat",
+      "endangle": 247.5,
+      "time": 128.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 292.5,
+      
+      "type": "beat",
+      "endangle": 292.5,
+      "time": 128,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 191.25,
+      
+      "type": "side",
+      "endangle": 191.25,
+      "time": 127,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 168.75,
+      
+      "type": "side",
+      "endangle": 168.75,
+      "time": 125,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 123.75,
+      
+      "type": "side",
+      "endangle": 123.75,
+      "time": 119,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 146.25,
+      
+      "type": "side",
+      "endangle": 146.25,
+      "time": 117,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 45,
+      
+      "type": "inverse",
+      "endangle": 45,
+      "time": 122.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "beat",
+      "endangle": 135,
+      "time": 123,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 315,
+      
+      "type": "beat",
+      "endangle": 315,
+      "time": 122,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 180,
+      
+      "type": "beat",
+      "endangle": 180,
+      "time": 115,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 114.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 0,
+      
+      "type": "beat",
+      "endangle": 0,
+      "time": 114,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "inverse",
+      "endangle": 225,
+      "time": 123.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "beat",
+      "endangle": 225,
+      "time": 121.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "beat",
+      "endangle": 135,
+      "time": 121,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 45,
+      
+      "type": "beat",
+      "endangle": 45,
+      "time": 120.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 315,
+      
+      "type": "beat",
+      "endangle": 315,
+      "time": 120,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 113.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 180,
+      
+      "type": "beat",
+      "endangle": 180,
+      "time": 113,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 112.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 0,
+      
+      "type": "beat",
+      "endangle": 0,
+      "time": 112,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "inverse",
+      "endangle": 90,
+      "time": 115.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 0,
+      
+      "type": "beat",
+      "endangle": 0,
+      "time": 106,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 0,
+      
+      "type": "beat",
+      "endangle": 0,
+      "time": 111,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 110,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 180,
+      
+      "type": "beat",
+      "endangle": 180,
+      "time": 109,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 108,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 101.25,
+      
+      "type": "side",
+      "endangle": 101.25,
+      "time": 104,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 107,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 105,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 103,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 101,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 180,
+      
+      "type": "beat",
+      "endangle": 180,
+      "time": 102,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 0,
+      
+      "type": "beat",
+      "endangle": 0,
+      "time": 100,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 0,
+      
+      "type": "beat",
+      "endangle": 0,
+      "time": 99,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 98,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 180,
+      
+      "type": "beat",
+      "endangle": 180,
+      "time": 97,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 11.25,
+      
+      "type": "side",
+      "endangle": 11.25,
+      "time": 96,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 0,
+      
+      "type": "beat",
+      "endangle": 0,
+      "time": 95,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 94,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 180,
+      
+      "type": "beat",
+      "endangle": 180,
+      "time": 93,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 191.25,
+      
+      "type": "side",
+      "endangle": 191.25,
+      "time": 88,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 90,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 180,
+      
+      "type": "beat",
+      "endangle": 180,
+      "time": 91,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 0,
+      
+      "type": "beat",
+      "endangle": 0,
+      "time": 89,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 0,
+      
+      "type": "beat",
+      "endangle": 0,
+      "time": 85,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 180,
+      
+      "type": "beat",
+      "endangle": 180,
+      "time": 87,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 86,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 84,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 180,
+      
+      "type": "beat",
+      "endangle": 180,
+      "time": 83,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 82,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 0,
+      
+      "type": "beat",
+      "endangle": 0,
+      "time": 81,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "side",
+      "endangle": 270,
+      "time": 80,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 180,
+      
+      "type": "beat",
+      "endangle": 180,
+      "time": 79.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "beat",
+      "endangle": 135,
+      "time": 79,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 67.5,
+      
+      "type": "beat",
+      "endangle": 67.5,
+      "time": 78.25,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 45,
+      
+      "type": "beat",
+      "endangle": 45,
+      "time": 78,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 78.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 77,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "beat",
+      "endangle": 135,
+      "time": 76.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "beat",
+      "endangle": 135,
+      "time": 75.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 112.5,
+      
+      "type": "beat",
+      "endangle": 112.5,
+      "time": 75.25,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 75,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 74,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 112.5,
+      
+      "type": "beat",
+      "endangle": 112.5,
+      "time": 73.75,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "beat",
+      "endangle": 135,
+      "time": 73.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "beat",
+      "endangle": 135,
+      "time": 72.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 337.5,
+      
+      "type": "beat",
+      "endangle": 337.5,
+      "time": 71.75,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 315,
+      
+      "type": "beat",
+      "endangle": 315,
+      "time": 71.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 71,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "beat",
+      "endangle": 225,
+      "time": 70.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 45,
+      
+      "type": "side",
+      "endangle": 45,
+      "time": 72,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 45,
+      
+      "type": "side",
+      "endangle": 45,
+      "time": 56,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 315,
+      
+      "type": "beat",
+      "endangle": 315,
+      "time": 55.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 55,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "beat",
+      "endangle": 225,
+      "time": 54.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 67.5,
+      
+      "type": "beat",
+      "endangle": 67.5,
+      "time": 63.75,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 45,
+      
+      "type": "beat",
+      "endangle": 45,
+      "time": 63.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "side",
+      "endangle": 135,
+      "time": 64,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 69,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 247.5,
+      
+      "type": "beat",
+      "endangle": 247.5,
+      "time": 68.75,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "beat",
+      "endangle": 225,
+      "time": 68.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "beat",
+      "endangle": 225,
+      "time": 67.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 67,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "beat",
+      "endangle": 225,
+      "time": 64.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 66,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 247.5,
+      
+      "type": "beat",
+      "endangle": 247.5,
+      "time": 65.75,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "beat",
+      "endangle": 225,
+      "time": 65.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 62.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 61,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "beat",
+      "endangle": 135,
+      "time": 60.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "beat",
+      "endangle": 135,
+      "time": 59.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 59,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 58,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 112.5,
+      
+      "type": "beat",
+      "endangle": 112.5,
+      "time": 57.75,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "beat",
+      "endangle": 135,
+      "time": 57.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "beat",
+      "endangle": 135,
+      "time": 56.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 53,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 247.5,
+      
+      "type": "beat",
+      "endangle": 247.5,
+      "time": 52.75,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "beat",
+      "endangle": 225,
+      "time": 52.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "beat",
+      "endangle": 225,
+      "time": 51.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 51,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 50,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 247.5,
+      
+      "type": "beat",
+      "endangle": 247.5,
+      "time": 49.75,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "beat",
+      "endangle": 225,
+      "time": 49.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "beat",
+      "endangle": 225,
+      "time": 48.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 315,
+      
+      "type": "side",
+      "endangle": 315,
+      "time": 48,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 45,
+      
+      "type": "beat",
+      "endangle": 45,
+      "time": 47.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 30,
+      
+      "type": "beat",
+      "endangle": 30,
+      "time": 46.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 15,
+      
+      "type": "beat",
+      "endangle": 15,
+      "time": 45.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 30,
+      
+      "type": "beat",
+      "endangle": 30,
+      "time": 44.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 0,
+      
+      "type": "beat",
+      "endangle": 0,
+      "time": 47,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 345,
+      
+      "type": "beat",
+      "endangle": 345,
+      "time": 46,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 330,
+      
+      "type": "beat",
+      "endangle": 330,
+      "time": 45,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 345,
+      
+      "type": "beat",
+      "endangle": 345,
+      "time": 44,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 45,
+      
+      "type": "beat",
+      "endangle": 45,
+      "time": 43.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "beat",
+      "endangle": 135,
+      "time": 42.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "type": "beat",
+      "endangle": 90,
+      "time": 43,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 180,
+      
+      "type": "beat",
+      "endangle": 180,
+      "time": 42,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 135,
+      
+      "type": "beat",
+      "endangle": 135,
+      "time": 41.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 45,
+      
+      "type": "beat",
+      "endangle": 45,
+      "time": 40.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 225,
+      
+      "type": "beat",
+      "endangle": 225,
+      "time": 39.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 270,
+      
+      "type": "beat",
+      "endangle": 270,
+      "time": 39,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 240,
+      
+      "type": "beat",
+      "endangle": 240,
+      "time": 38.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 285,
+      
+      "type": "beat",
+      "endangle": 285,
+      "time": 38,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 255,
+      
+      "type": "beat",
+      "endangle": 255,
+      "time": 37.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 300,
+      
+      "type": "beat",
+      "endangle": 300,
+      "time": 37,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 240,
+      
+      "type": "beat",
+      "endangle": 240,
+      "time": 36.5,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 285,
+      
+      "type": "beat",
+      "endangle": 285,
+      "time": 36,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 315,
+      
+      "type": "side",
+      "endangle": 315,
+      "time": 40,
+      
+      "speedmult": 1
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 41,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 35.5,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 35,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 34.5,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 34,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 33.5,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 33,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 225,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 32.5,
+      
+      "endangle": 225
+    },
+    {
+      "angle": 315,
+      
+      "speedmult": 1,
+      "type": "side",
+      "time": 32,
+      
+      "endangle": 315
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 31.5,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 31,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 30.5,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 180,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 30,
+      
+      "endangle": 180
+    },
+    {
+      "angle": 135,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 29.5,
+      
+      "endangle": 135
+    },
+    {
+      "angle": 90,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 29,
+      
+      "endangle": 90
+    },
+    {
+      "angle": 45,
+      
+      "speedmult": 1,
+      "type": "beat",
+      "time": 28.5,
+      
+      "endangle": 45
+    },
+    {
+      "angle": 0,
+      
+      "time": 28,
+      "endangle": 0,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 315,
+      
+      "time": 27.5,
+      "endangle": 315,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 270,
+      
+      "time": 27,
+      "endangle": 270,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 225,
+      
+      "time": 26.5,
+      "endangle": 225,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 45,
+      
+      "time": 24,
+      "endangle": 45,
+      "speedmult": 1,
+      
+      "type": "side"
+    },
+    {
+      "angle": 135,
+      
+      "time": 23.5,
+      "endangle": 135,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle1": 90,
+      "duration": 5,
+      "holdease": "OutQuad",
+      "speedmult": 1,
+      
+      "angle2": -315,
+      
+      "type": "hold",
+      "time": 8
+    },
+    {
+      "angle1": 180,
+      "duration": 8,
+      "holdease": "InQuad",
+      "speedmult": 1,
+      
+      "angle2": 450,
+      
+      "type": "hold",
+      "time": 0
+    },
+    {
+      "angle": 225,
+      
+      "time": 25.5,
+      "endangle": 225,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 270,
+      
+      "time": 25,
+      "endangle": 270,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 315,
+      
+      "time": 24.5,
+      "endangle": 315,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 135,
+      
+      "time": 14,
+      "endangle": 135,
+      "speedmult": 1,
+      
+      "type": "side"
+    },
+    {
+      "angle": 180,
+      
+      "time": 26,
+      "endangle": 180,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 135,
+      
+      "time": 16,
+      "endangle": 135,
+      "speedmult": 1,
+      
+      "type": "side"
+    },
+    {
+      "angle": 180,
+      
+      "time": 23,
+      "endangle": 180,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 225,
+      
+      "time": 22.5,
+      "endangle": 225,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 270,
+      
+      "time": 22,
+      "endangle": 270,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 225,
+      
+      "time": 21.5,
+      "endangle": 225,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 180,
+      
+      "time": 21,
+      "endangle": 180,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 135,
+      
+      "time": 20.5,
+      "endangle": 135,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 90,
+      
+      "time": 20,
+      "endangle": 90,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 45,
+      
+      "time": 19.5,
+      "endangle": 45,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 0,
+      
+      "time": 19,
+      "endangle": 0,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 315,
+      
+      "time": 18.5,
+      "endangle": 315,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 270,
+      
+      "time": 18,
+      "endangle": 270,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 315,
+      
+      "time": 17.5,
+      "endangle": 315,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 0,
+      
+      "time": 17,
+      "endangle": 0,
+      "speedmult": 1,
+      
+      "type": "beat"
+    },
+    {
+      "angle": 45,
+      
+      "type": "beat",
+      "endangle": 45,
+      "time": 16.5,
+      
+      "speedmult": 1
+    }
+  ]

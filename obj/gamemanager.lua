@@ -45,6 +45,7 @@ end
 
 
 function Gamemanager:resetlevel()
+	pq = ""
   cs.offset = cs.level.properties.offset
 	cs.songoffset = 0
   cs.startbeat = cs.startbeat or project.startbeat or 0

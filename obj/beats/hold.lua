@@ -103,6 +103,7 @@ function Hold:draw(completion)
       self.segments = (math.abs(self.angle2 - self.endangle) + 1)
     end
   end
+
   for i = 0, self.segments do
     local t = i / self.segments
     local angle_t = t * (1 - completion) + completion
@@ -113,12 +114,6 @@ function Hold:draw(completion)
     points[#points+1] = math.sin(nextAngle) * nextDistance + self.oy
   end
 
-  -- idk why but sometimes the last point doesn't reach the end of the slider
-  -- so add it manually if needed
-  if (points[#points] ~= self.y2) then
-    points[#points+1] = self.x2
-    points[#points+1] = self.y2
-  end
 
   -- need at least 2 points to draw a line ,
   if #points >= 4 then
