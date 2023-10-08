@@ -5,26 +5,42 @@ Event.onload = {}
 Event.onoffset = {}
 Event.onbeat = {}
 
-local elist = love.filesystem.getDirectoryItems('levelformat/events/')
-for i,v in ipairs(elist) do
-	if v ~= '_TEMPLATE.lua' then
-			local einfo, eonload, eonoffset, eonbeat = dofile('levelformat/events/'..v)
-			local etype = ''
-			if eonload then
-				Event.onload[einfo.event] = eonload
-				etype = etype .. ' onload'
+local elist = {}
+
+local function findfiles(dir)
+	local files = love.filesystem.getDirectoryItems(dir)
+	for i,v in ipairs(files) do
+		if v ~= '_TEMPLATE.lua' then
+			local path = dir..'/'..v
+			local info = love.filesystem.getInfo(path)
+			if info.type == 'file' then
+				table.insert(elist,path)
+			elseif info.type == 'directory' then
+				findfiles(path)
 			end
-			if eonoffset then
-				Event.onoffset[einfo.event] = eonoffset
-				etype = etype .. ' onoffset'
-			end
-			if eonbeat then
-				Event.onbeat[einfo.event] = eonbeat
-				etype = etype .. ' onbeat'
-			end
-			
-			print('loaded event "'..einfo.name..'" ('..einfo.event..etype..')')
+		end
 	end
+end
+
+findfiles('levelformat/events')
+
+for i,v in ipairs(elist) do
+	local einfo, eonload, eonoffset, eonbeat = dofile(v)
+	local etype = ''
+	if eonload then
+		Event.onload[einfo.event] = eonload
+		etype = etype .. ' onload'
+	end
+	if eonoffset then
+		Event.onoffset[einfo.event] = eonoffset
+		etype = etype .. ' onoffset'
+	end
+	if eonbeat then
+		Event.onbeat[einfo.event] = eonbeat
+		etype = etype .. ' onbeat'
+	end
+	
+	print('loaded event "'..einfo.name..'" ('..einfo.event..etype..')')
 end
 
 function Gamemanager:initialize(params)
@@ -59,6 +75,7 @@ function Gamemanager:resetlevel()
   cs.hits = 0
   cs.combo = 0
   cs.maxhits = 0
+	cs.outline = -1
 	
 	--deal with new level format
 	cs.playevents = {}
@@ -89,6 +106,8 @@ function Gamemanager:resetlevel()
   end
   cs.vfx = {}
   cs.vfx.hom = false
+	cs.vfx.xscale = 1
+	cs.vfx.yscale = 1
   cs.vfx.bgnoise = {enable=false,image=nil,r=1,g=1,b=1,a=1}
   cs.lastsigbeat = math.floor(cs.cbeat)
 	
@@ -321,7 +340,9 @@ function Gamemanager:draw()
   --love.graphics.print(cs.hits.." / " .. (cs.misses+cs.hits),10,10)
   if cs.combo >= 10 then
     love.graphics.setFont(fonts.digitaldisco)
-    love.graphics.print(cs.combo..loc.get("combo"),10,220)
+		outline(function()
+			love.graphics.print(cs.combo..loc.get("combo"),10,220)
+		end, cs.outline)
   end
   color()
 	prof.pop("gamemanager draw")

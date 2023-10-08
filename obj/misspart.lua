@@ -31,8 +31,10 @@ end
 
 function Misspart:draw()
   prof.push('misspart draw')
-  love.graphics.setColor(1,1,1,1)
-  love.graphics.draw(self.spr,self.x,self.y,0,1,1,8,8)
+	outline(function()
+		color()
+		love.graphics.draw(self.spr,self.x,self.y,0,1,1,8,8)
+	end, cs.outline)
   prof.pop('misspart draw')
 end
 

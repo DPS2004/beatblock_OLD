@@ -15,3 +15,7 @@ em.new('obj/hitpart.lua','hitpart')
 em.new('obj/misspart.lua','misspart')
 
 em.new('obj/titleparticle.lua','titleparticle')
+
+--level specific
+em.new('obj/level/lawrence/lawrencebg.lua','lawrencebg')
+

@@ -71,8 +71,10 @@ end
 
 function Side:draw()
 	prof.push('side draw')
-	color()
-	love.graphics.draw(self.spr,self.x,self.y,math.rad(self.angle),1,1,12,10)
+	outline(function()
+		color()
+		love.graphics.draw(self.spr,self.x,self.y,math.rad(self.angle),1,1,12,10)
+	end, cs.outline)
 	prof.pop('side draw')
 end
 

@@ -238,8 +238,29 @@ function love.load()
     love.graphics.setColor(colors[c])    
   end
 
-  
-  
+  --outline helpers
+	outline_canvas = love.graphics.newCanvas(project.res.x,project.res.y)
+  function outline(func, col)
+		if col then
+			
+			local oldcanvas = love.graphics.getCanvas()
+			love.graphics.setCanvas(outline_canvas)
+			love.graphics.clear()
+			
+			func()
+			
+			love.graphics.setCanvas(oldcanvas)
+			
+			shaders.outline:send('gameWidth', project.res.x)
+			shaders.outline:send('gameHeight', project.res.y)
+			shaders.outline:send('c', col)
+			love.graphics.setShader(shaders.outline)
+			love.graphics.draw(outline_canvas)
+			love.graphics.setShader()
+		else
+			func()
+		end
+	end
   
   
   

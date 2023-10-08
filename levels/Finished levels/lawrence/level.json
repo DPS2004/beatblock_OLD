@@ -20,11 +20,242 @@
       "bpm": 151.17,
       "file": "Lawrence.ogg"
     },
+	
 	{
-		"time": -6,
+		"time": -99,
+		"type": "lawrence_init"
+	},
+	
+	{
+		"time": -99,
 		"type": "setbgcolor",
 		"color": 2
 	},
+	{
+		"time": -99,
+		"type": "setcolor",
+		"color": 2,
+		"r": 255,
+		"g": 255,
+		"b": 255,
+	},
+	{
+		"time": -99,
+		"type": "setcolor",
+		"color": 3,
+		"r": 255,
+		"g": 255,
+		"b": 255,
+	},
+	{
+		"time": -99,
+		"type": "outline",
+		"color": 0
+	},
+	
+	{
+		"time": 0,
+		"type": "setcolor",
+		"color": 2,
+		"r": 30,
+		"g": 0,
+		"b": 100,
+		"duration": 13
+	},
+	{
+		"time": 0,
+		"type": "setcolor",
+		"color": 3,
+		"r": 30,
+		"g": 0,
+		"b": 100,
+		"duration": 13
+	},
+	
+	{
+		"time": 14,
+		"type": "setcolor",
+		"color": 3,
+		"r": 77,
+		"g": 70,
+		"b": 163,
+		"duration": 1,
+		"ease": "outQuad"
+	},
+	
+	{
+		"time": 338,
+		"type": "ease",
+		"var": "vfx.yscale",
+		"start": 2,
+		"value": 1,
+		"duration": 2,
+		"ease": "outExpo"
+	},
+	{
+		"time": 342,
+		"type": "ease",
+		"var": "vfx.xscale",
+		"start": 2,
+		"value": 1,
+		"duration": 2,
+		"ease": "outExpo"
+	},
+	{
+		"time": 343.5,
+		"type": "ease",
+		"var": "vfx.yscale",
+		"start": 2,
+		"value": 1,
+		"duration": 2,
+		"ease": "outExpo"
+	},
+	
+	{
+		"time": 346,
+		"type": "ease",
+		"var": "vfx.xscale",
+		"start": 2,
+		"value": 1,
+		"duration": 2,
+		"ease": "outExpo"
+	},
+	{
+		"time": 350,
+		"type": "ease",
+		"var": "vfx.yscale",
+		"start": 2,
+		"value": 1,
+		"duration": 2,
+		"ease": "outExpo"
+	},
+	{
+		"time": 351,
+		"type": "ease",
+		"var": "vfx.xscale",
+		"value": 2.5,
+		"duration": 0.5,
+		"ease": "outQuad"
+	},
+	{
+		"time": 351.5,
+		"type": "ease",
+		"var": "vfx.xscale",
+		"value": 1,
+		"duration": 0.5,
+		"ease": "inQuad"
+	},
+	
+	{
+		"time": 354,
+		"type": "ease",
+		"var": "vfx.yscale",
+		"start": 2,
+		"value": 1,
+		"duration": 2,
+		"ease": "outExpo"
+	},
+	{
+		"time": 357,
+		"type": "ease",
+		"var": "vfx.xscale",
+		"start": 2,
+		"value": 1,
+		"duration": 2,
+		"ease": "outExpo"
+	},
+	{
+		"time": 358,
+		"type": "ease",
+		"var": "vfx.yscale",
+		"start": 2,
+		"value": 1,
+		"duration": 2,
+		"ease": "outExpo"
+	},
+	
+	{
+		"time": 359.5,
+		"type": "ease",
+		"var": "vfx.xscale",
+		"start": 2,
+		"value": 1,
+		"duration": 2,
+		"ease": "outExpo"
+	},
+	
+	{
+		"time": 360.5,
+		"type": "ease",
+		"var": "vfx.yscale",
+		"start": 2,
+		"value": 1,
+		"duration": 2,
+		"ease": "outExpo"
+	},
+	{
+		"time": 362,
+		"type": "ease",
+		"var": "vfx.xscale",
+		"start": 2,
+		"value": 1,
+		"duration": 2,
+		"ease": "outExpo"
+	},
+	{
+		"time": 363.5,
+		"type": "ease",
+		"var": "vfx.yscale",
+		"start": 2,
+		"value": 1,
+		"duration": 2,
+		"ease": "outExpo"
+	},
+	{
+		"time": 364.5,
+		"type": "ease",
+		"var": "vfx.xscale",
+		"start": 2,
+		"value": 1,
+		"duration": 2,
+		"ease": "outExpo"
+	},
+	
+	
+	{
+		"time": 366,
+		"type": "ease",
+		"var": "vfx.xscale",
+		"value": 2,
+		"duration": 1,
+		"ease": "outQuad"
+	},
+	{
+		"time": 366,
+		"type": "ease",
+		"var": "vfx.yscale",
+		"value": 2,
+		"duration": 0.5,
+		"ease": "outQuad"
+	},
+	
+	{
+		"time": 367,
+		"type": "ease",
+		"var": "vfx.xscale",
+		"value": 1,
+		"duration": 0.5,
+		"ease": "inQuad"
+	},
+	{
+		"time": 367.5,
+		"type": "ease",
+		"var": "vfx.yscale",
+		"value": 1,
+		"duration": 0.5,
+		"ease": "inQuad"
+	},
+	
     {
       "time": 701,
       "type": "showresults"

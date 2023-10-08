@@ -24,9 +24,12 @@ end
 
 function Hitpart:draw()
   prof.push('hitpart draw')
-  love.graphics.setLineWidth(1)
-  love.graphics.setColor(0,0,0,1)
-  love.graphics.circle("line",self.x,self.y,self.rad)
+	
+	outline(function()
+		love.graphics.setLineWidth(1)
+		color(1)
+		love.graphics.circle("line",self.x,self.y,self.rad)
+	end, cs.outline)
   prof.pop('hitpart draw')
 end
 

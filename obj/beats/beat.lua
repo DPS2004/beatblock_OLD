@@ -5,7 +5,7 @@ Beat = class('Beat',Entity)
 function Beat:initialize(params)
 	self.name = 'beat'
 	
-	self.layer = -1
+	self.layer = 1
 	self.uplayer = 3
 	
 	self.x = project.res.cx
@@ -207,8 +207,12 @@ end
 
 function Beat:draw()
   prof.push('beat (generic) draw')
-	color()
-	love.graphics.draw(self.spr,self.x,self.y,0,1,1,8,8)
+	outline(function()
+		color()
+		local xscale = cs.vfx.xscale or 1
+		local yscale = cs.vfx.yscale or 1
+		love.graphics.draw(self.spr,self.x,self.y,0,xscale,yscale,8,8)
+	end, cs.outline)
   prof.push('beat (generic) draw')
 end
 

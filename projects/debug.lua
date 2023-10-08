@@ -6,7 +6,7 @@ project.name = 'BeatBlock'
 
 project.initstate = 'songselect'
 --clevel = 'levels/Finished Levels/lawrence/'
---project.startbeat = 340
+--project.startbeat = 0
 --project.frameadvance = true
 
 project.res = {}
@@ -15,7 +15,7 @@ project.res.useshuv = true
 
 project.res.x = 400
 project.res.y = 240
-project.res.s = 2
+project.res.s = 3
 
 
 project.fullscreen = false

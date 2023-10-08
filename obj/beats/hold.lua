@@ -114,31 +114,35 @@ function Hold:draw(completion)
     points[#points+1] = math.sin(nextAngle) * nextDistance + self.oy
   end
 
-
-  -- need at least 2 points to draw a line ,
-  if #points >= 4 then
-    -- draw the black outline
-    color('black')
-    love.graphics.setLineWidth(16)
-    love.graphics.line(points)
-    -- draw a white line, to make the black actually look like an outline
-    color()
-    love.graphics.setLineWidth(12)
-    love.graphics.line(points)
-    --the added line for mine holds
-    if self.minestripe then
-      color('black')
-      love.graphics.setLineWidth(10)
-      love.graphics.line(points)
+	
+	outline(function()
+		-- need at least 2 points to draw a line ,
+		if #points >= 4 then
+			-- draw the black outline
+			color('black')
+			love.graphics.setLineWidth(16)
+			love.graphics.line(points)
+			-- draw a white line, to make the black actually look like an outline
 			color()
-    end
-  else
-		error('not enough points!')
-	end
+			love.graphics.setLineWidth(12)
+			love.graphics.line(points)
+			--the added line for mine holds
+			if self.minestripe then
+				color('black')
+				love.graphics.setLineWidth(10)
+				love.graphics.line(points)
+				color()
+			end
+		else
+			error('not enough points!')
+		end
 
-  -- draw beginning and end of hold
-  love.graphics.draw(self.spr,self.x,self.y,0,1,1,8,8)
-  love.graphics.draw(self.spr,self.x2,self.y2,0,1,1,8,8)
+		-- draw beginning and end of hold
+		local xscale = cs.vfx.xscale or 1
+		local yscale = cs.vfx.yscale or 1
+		love.graphics.draw(self.spr,self.x,self.y,0,xscale,yscale,8,8)
+		love.graphics.draw(self.spr,self.x2,self.y2,0,xscale,yscale,8,8)
+	end, cs.outline)
 	
   prof.pop('hold draw')
 end

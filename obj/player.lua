@@ -61,78 +61,82 @@ function Player:update(dt)
 end
 
 function Player:draw()
-  love.graphics.setLineWidth(2)
-  color('black')
-
-  -- draw the paddle
-  love.graphics.push()
-    love.graphics.translate(self.x, self.y)
-    love.graphics.rotate((self.angle - 90) * math.pi / 180)
-
-		--HANDLE
-		--fill in handle
-		color()
-		local dist = self.paddle_distance + cs.extend + self.paddle_width * 0.5
-		local x1 = dist * math.cos(self.handle_size * math.pi / 180)
-		local y1 = dist * math.sin(self.handle_size * math.pi / 180)
-		local x2 = dist * math.cos(-self.handle_size * math.pi / 180)
-		local y2 = dist * math.sin(-self.handle_size * math.pi / 180)
+	
 		
-		love.graphics.polygon('fill',0,0, x1,y1, x2,y2)
-		color('black')
-    -- draw handle lines
-    love.graphics.line(0,0, x1,y1)
-    love.graphics.line(0,0, x2,y2)
+	outline(function()
+		love.graphics.setLineWidth(2)
 
-		
-		
-		--PADDLE
-		local paddle_angle = self.paddle_size / 2
-		local paddlepoly = {}
-		local segments = 10
-		local function addvert(pos)
-			table.insert(paddlepoly,pos[1])
-			table.insert(paddlepoly,pos[2])
-		end
-		for i=0,segments-1 do
-			addvert(helpers.rotate((self.paddle_distance + cs.extend), helpers.lerp(paddle_angle, -paddle_angle, i/(segments-1))+90,0,0))
-		end
-		
-		for i=0,segments-1 do
-			addvert(helpers.rotate((self.paddle_distance + cs.extend)+ self.paddle_width, helpers.lerp(paddle_angle, -paddle_angle, 1-i/(segments-1))+90,0,0))
-		end
-		
-		color()
-		for i,v in ipairs(love.math.triangulate(paddlepoly)) do
-			love.graphics.polygon('fill',v)
-		end
-		
-		color('black')
-		love.graphics.polygon('line',paddlepoly)
-  love.graphics.pop()
+		-- draw the paddle
+		love.graphics.push()
+			love.graphics.translate(self.x, self.y)
+			love.graphics.rotate((self.angle - 90) * math.pi / 180)
 
-  love.graphics.push()
-    -- scaling circle and face for hurt animation
-    local ouchpulsescale = 1 + self.ouchpulse
-    love.graphics.scale(ouchpulsescale)
+			--HANDLE
+			--fill in handle
+			color()
+			local dist = self.paddle_distance + cs.extend + self.paddle_width * 0.5
+			local x1 = dist * math.cos(self.handle_size * math.pi / 180)
+			local y1 = dist * math.sin(self.handle_size * math.pi / 180)
+			local x2 = dist * math.cos(-self.handle_size * math.pi / 180)
+			local y2 = dist * math.sin(-self.handle_size * math.pi / 180)
+			
+			love.graphics.polygon('fill',0,0, x1,y1, x2,y2)
+			color('black')
+			-- draw handle lines
+			love.graphics.line(0,0, x1,y1)
+			love.graphics.line(0,0, x2,y2)
 
-    -- adjusting x and y so they're unaffected by scaling
-    local finalx = self.x / ouchpulsescale
-    local finaly = self.y / ouchpulsescale
+			
+			
+			--PADDLE
+			local paddle_angle = self.paddle_size / 2
+			local paddlepoly = {}
+			local segments = 10
+			local function addvert(pos)
+				table.insert(paddlepoly,pos[1])
+				table.insert(paddlepoly,pos[2])
+			end
+			for i=0,segments-1 do
+				addvert(helpers.rotate((self.paddle_distance + cs.extend), helpers.lerp(paddle_angle, -paddle_angle, i/(segments-1))+90,0,0))
+			end
+			
+			for i=0,segments-1 do
+				addvert(helpers.rotate((self.paddle_distance + cs.extend)+ self.paddle_width, helpers.lerp(paddle_angle, -paddle_angle, 1-i/(segments-1))+90,0,0))
+			end
+			
+			color()
+			for i,v in ipairs(love.math.triangulate(paddlepoly)) do
+				love.graphics.polygon('fill',v)
+			end
+			
+			color('black')
+			love.graphics.polygon('line',paddlepoly)
+		love.graphics.pop()
 
-    -- draw the circle
-    color('white')
-    love.graphics.circle("fill",finalx,finaly,16+cs.extend/2+(math.sin(self.bobi))/2)
-    color('black')
-    love.graphics.circle("line",finalx,finaly,16+cs.extend/2+(math.sin(self.bobi))/2)
+		love.graphics.push()
+			-- scaling circle and face for hurt animation
+			local ouchpulsescale = 1 + self.ouchpulse
+			love.graphics.scale(ouchpulsescale)
 
-    -- draw the eyes
-		color('white')
-    -- determine x and y offsets of the eyes
-    local eyex = (self.lookradius) * math.cos((self.angle - 90) * math.pi / 180)
-    local eyey = (self.lookradius) * math.sin((self.angle - 90) * math.pi / 180)
-    love.graphics.draw(self.spr[self.cemotion],finalx + eyex,finaly + eyey,0,1,1,16,16)
-  love.graphics.pop()
+			-- adjusting x and y so they're unaffected by scaling
+			local finalx = self.x / ouchpulsescale
+			local finaly = self.y / ouchpulsescale
+
+			-- draw the circle
+			color('white')
+			love.graphics.circle("fill",finalx,finaly,16+cs.extend/2+(math.sin(self.bobi))/2)
+			color('black')
+			love.graphics.circle("line",finalx,finaly,16+cs.extend/2+(math.sin(self.bobi))/2)
+
+			-- draw the eyes
+			color('white')
+			-- determine x and y offsets of the eyes
+			local eyex = (self.lookradius) * math.cos((self.angle - 90) * math.pi / 180)
+			local eyey = (self.lookradius) * math.sin((self.angle - 90) * math.pi / 180)
+			love.graphics.draw(self.spr[self.cemotion],finalx + eyex,finaly + eyey,0,1,1,16,16)
+		love.graphics.pop()
+	end, cs.outline)
+	
 end
 
 

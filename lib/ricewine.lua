@@ -10,17 +10,32 @@ if not ricewine.flux then
   error('flux.lua not found!')
 end
 
-function ricewine:easenow(start,length,easefn,val,obj,param)
+function ricewine:easenow(start,length,easefn,val,obj,param,startval)
+	
+	local kvtable = {}
+	local startkvtable = {}
+	if type(val) == 'table' then
+		kvtable = val
+		startkvtable = startval
+	else
+		kvtable[param] = val
+		startkvtable[param] = startval
+	end
+	
   if start < self.startbeat then
-    obj[param] = val
+		for k,v in pairs(kvtable) do
+			obj[k] = v
+		end
   else
   
     start = (start - self.startbeat)
     length = length
     
-    local kvtable = {}
-    kvtable[param] = val
-    table.insert(self.tweens,self.flux.to(obj, length, kvtable):ease(easefn):delay(start))
+		if not startval then
+			table.insert(self.tweens,self.flux.to(obj, length, kvtable):ease(easefn):delay(start))
+		else
+			table.insert(self.tweens,self.flux.to(obj, 0, startkvtable):delay(start):after(length, kvtable):ease(easefn))
+		end
   end
 end
 
@@ -33,8 +48,8 @@ function ricewine:funcnow(start,dofunc)
   end
 end
 
-function ricewine:ease(start,length,easefn,val,obj,param)
-  table.insert(self.queuedtweens,function() self:easenow(start,length,easefn,val,obj,param) end)
+function ricewine:ease(start,length,easefn,val,obj,param,startparam)
+  table.insert(self.queuedtweens,function() self:easenow(start,length,easefn,val,obj,param,startparam) end)
 end
 
 function ricewine:func(start,dofunc)
