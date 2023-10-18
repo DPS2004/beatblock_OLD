@@ -63,6 +63,18 @@ function helpers.angdistance(x,y)
   return 180 - math.abs(math.abs((x%360) - (y%360)) - 180)
 end
 
+function helpers.angdelta(x,y) --both must be from 0 to 360
+	local delta = y - x
+	local abs = math.abs(delta)
+	if math.abs(delta - 360) <= abs then
+		return delta - 360
+	elseif math.abs(delta + 360) <= abs then
+		return delta + 360
+	else
+		return delta
+	end
+end
+
 
 function helpers.swap(tsw)
   toswap = tsw

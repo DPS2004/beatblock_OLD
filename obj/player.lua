@@ -14,6 +14,7 @@ function Player:initialize(params)
   self.bobi=0
   self.angle = 0
   self.angleprevframe = 0
+	self.cumulativeangle = nil
   self.extend = 0
   self.paddle_size = 70
   self.handle_size = 10
@@ -56,6 +57,11 @@ function Player:update(dt)
 			
     end
   end
+	if self.cumulativeangle then
+		self.cumulativeangle = self.cumulativeangle + helpers.angdelta(self.angleprevframe,(self.angle+360)%360)
+	else
+		self.cumulativeangle = self.angle
+	end
   self.bobi = self.bobi + 0.03*dt
   prof.pop("player update")
 end

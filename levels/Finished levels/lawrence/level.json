@@ -84,6 +84,17 @@
 	},
 	
 	{
+		"time": 270,
+		"type": "lawrence_mode",
+		"followplayer": true,
+	},	
+	{
+		"time": 336,
+		"type": "lawrence_mode",
+		"followplayer": false,
+	},
+	
+	{
 		"time": 338,
 		"type": "ease",
 		"var": "vfx.yscale",
