@@ -4,6 +4,7 @@ Event = {}
 Event.onload = {}
 Event.onoffset = {}
 Event.onbeat = {}
+Event.info = {}
 
 local elist = {}
 
@@ -39,7 +40,7 @@ for i,v in ipairs(elist) do
 		Event.onbeat[einfo.event] = eonbeat
 		etype = etype .. ' onbeat'
 	end
-	
+	Event.info[einfo.event] = einfo
 	print('loaded event "'..einfo.name..'" ('..einfo.event..etype..')')
 end
 
@@ -79,22 +80,24 @@ function Gamemanager:resetlevel()
 	
 	--deal with new level format
 	cs.playevents = {}
+	--[[
 	if cs.chart then
 		for i,v in ipairs(cs.chart) do
 			table.insert(cs.playevents,v)
 		end
 	end
+	]]
 	for i,v in ipairs(cs.level.events) do
 		table.insert(cs.playevents,v)
 	end
 	--from now on cs.level.events should be cs.playevents
 	
   for i,v in ipairs(cs.playevents) do
-    if v.type == "beat" or v.type == "slice" or v.type == "sliceinvert" or v.type == "inverse" or v.type == "hold" or v.type == "mine" or v.type == "side" or v.type == "minehold" or v.type == "ringcw" or v.type == "ringccw" then
-      cs.maxhits = cs.maxhits + 1
+    --if v.type == "beat" or v.type == "slice" or v.type == "sliceinvert" or v.type == "inverse" or v.type == "hold" or v.type == "mine" or v.type == "side" or v.type == "minehold" or v.type == "ringcw" or v.type == "ringccw" then
+		if Event.info[v.type] and Event.info[v.type].hits then
+      cs.maxhits = cs.maxhits + Event.info[v.type].hits
     end
   end
-
   cs.on = true
 
   cs.beatsounds = true

@@ -6,12 +6,7 @@ st:setinit(function(self)
 
   self.canv = love.graphics.newCanvas(project.res.x,project.res.y)
 
-  self.level = dpf.loadjson(clevel .. "level.json")
-	if self.level.properties.formatversion then
-		if self.level.properties.formatversion >= 1 then
-			self.chart = dpf.loadjson(clevel .. "chart.json")
-		end
-	end
+  self.level = Levelmanager:loadlevel(clevel)
   self.gm:resetlevel()
 	
 	self.holdentitydraw = true

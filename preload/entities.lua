@@ -3,7 +3,11 @@
 em.new('obj/template.lua','templateobj')
 
 em.new('obj/gamemanager.lua','gamemanager')
+
+em.new('obj/levelmanager.lua','levelmanager')
+
 em.new('obj/player.lua','player')
+
 em.new('obj/beats/beat.lua','beat')
 	em.new('obj/beats/mine.lua','mine')
 	em.new('obj/beats/hold.lua','hold')

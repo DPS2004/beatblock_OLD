@@ -60,7 +60,13 @@ function em.draw()
     end
   end
   em.deep.execute()
-  for i,v in ipairs(entities) do
+	
+	em.dodelete()
+	
+end
+
+function em.dodelete()
+	for i,v in ipairs(entities) do
     if v.delete then
       if v.onDelete then
         v:onDelete()

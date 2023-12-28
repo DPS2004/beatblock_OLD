@@ -24,8 +24,8 @@ function Player:initialize(params)
   self.cemotion = "idle"
   self.emotimer = 0
   self.lookradius = 5
-  self.maxouchpulse = 0.2
-  self.ouchpulse = 0
+  self.maxbodypulse = 0.2
+  self.bodypulse = 0
   self.ouchtime = 15
 	
   Entity.initialize(self,params)
@@ -121,12 +121,12 @@ function Player:draw()
 
 		love.graphics.push()
 			-- scaling circle and face for hurt animation
-			local ouchpulsescale = 1 + self.ouchpulse
-			love.graphics.scale(ouchpulsescale)
+			local bodypulsescale = 1 + self.bodypulse
+			love.graphics.scale(bodypulsescale)
 
 			-- adjusting x and y so they're unaffected by scaling
-			local finalx = self.x / ouchpulsescale
-			local finaly = self.y / ouchpulsescale
+			local finalx = self.x / bodypulsescale
+			local finaly = self.y / bodypulsescale
 
 			-- draw the circle
 			color('white')
@@ -147,8 +147,8 @@ end
 
 
 function Player:hurtpulse()
-  self.ouchpulse = self.maxouchpulse
-  flux.to(self,self.ouchtime,{ouchpulse=0}):ease("outSine")
+  self.bodypulse = self.maxbodypulse
+  flux.to(self,self.ouchtime,{bodypulse=0}):ease("outSine")
 end
 
 
