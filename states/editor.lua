@@ -12,6 +12,31 @@ st:setinit(function(self)
   self.gm:resetlevel()
 	
 	self.holdentitydraw = true
+	
+	self.keybinds = {}
+	
+	--save
+	self:addkeybind(function()
+			if not maininput:down('alt') then
+				local upgraded = Levelmanager:savelevel(self.level,clevel)
+				if upgraded then
+					print("NOTICE: upgraded format of level.")
+				end
+			end
+		end,
+		'save',
+		'ctrl','s'
+	)
+	
+	--force both files save
+	self:addkeybind(function()
+			Levelmanager:savelevel(self.level,clevel,true)
+		end,
+		'save',
+		'ctrl','alt','s'
+	)
+	
+	
 end)
 
 
@@ -24,21 +49,47 @@ function st:leave()
   self.sounddata = nil
 end
 
-function st.resume()
-
+function st:addkeybind(func,name,k1,k2,k3)
+	table.insert(self.keybinds,{func = func, name = name, k1 = k1, k2 = k2, k3 = k3})
 end
 
+function st:checkkeybinds()
+	for i,v in ipairs(self.keybinds) do
+		if v.k1 and v.k2 and v.k3 then
+			if maininput:down(v.k1) and maininput:down(v.k2) and maininput:pressed(v.k3) then
+				print('pressed keybind ' .. v.name)
+				v.func()
+			end
+		elseif v.k1 and v.k2 then
+			if maininput:down(v.k1) and maininput:pressed(v.k2) then
+				print('pressed keybind ' .. v.name)
+				v.func()
+			end
+		else
+			if maininput:pressed(v.k1) then
+				print('pressed keybind ' .. v.name)
+				v.func()
+			end
+		end
+	end
+end
 
 st:setupdate(function(self,dt)
   if not paused then
-		--self.gm:update(dt)
 		
-		
-    if maininput:pressed("back") then
-			self:leave()
-      cs = bs.load('songselect')
-			cs:init()
-    end
+		if self.editmode then
+			self:checkkeybinds()
+		else
+			self.gm:update(dt)
+			
+			--[[
+			if maininput:pressed("back") then
+				self:leave()
+				cs = bs.load('songselect')
+				cs:init()
+			end
+			]]--
+		end
 		
 		
 		

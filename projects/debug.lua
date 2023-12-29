@@ -30,8 +30,11 @@ project.ctrls = {
 	down = {"key:down", "key:s", "axis:righty+", "button:dpdown"},
 	accept = {"key:space", "key:return", "button:a"},
 	back = {"key:escape", "button:b"},
-	ctrl = {},
+	
+	ctrl = {"key:lctrl", "key:rctrl"},
+	alt = {"key:lalt", "key:ralt"},
 	shift = {"key:lshift", "key:rshift"},
+	
 	backspace = {"key:backspace"},
 	plus = {"key:+", "key:="},
 	minus = {"key:-"},

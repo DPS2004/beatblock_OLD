@@ -37,17 +37,17 @@ function Levelmanager:loadlevel(filename)
 end
 
 function Levelmanager:upgradelevel(level)
-	
-	local upgraded = (level.properties.formatversion ~= currentversion)
+	local saveboth = false
 	if level.properties.formatversion == nil then
 		level.properties.formatversion = 1
+		saveboth = true -- this changes format significantly, so it requires a resave. for minor revisions, this is not needed.
 	end
 	--[[
 	if level.properties.formatversion == 1 then
 		--format 2 goes here, etc, etc
 	end
 	]]--
-	return level, upgraded -- return if it got upgraded to force savebothfiles
+	return level, saveboth -- return if it got upgraded to force savebothfiles
 	
 	
 	
@@ -56,7 +56,7 @@ end
 function Levelmanager:savelevel(level,filename,savebothfiles)
 	filename = filename or clevel
 	
-	local upgraded = nil
+	local upgraded = false
 	level, upgraded = self:upgradelevel(level)
 	
 	savebothfiles = savebothfiles or upgraded
@@ -73,8 +73,11 @@ function Levelmanager:savelevel(level,filename,savebothfiles)
     v.play_onload = nil
 		v.play_onoffset = nil
 		v.play_onbeat = nil
+		--may appear in legacy levels
+		v.autoplayed = nil
+		v.played = nil
 		
-		if Event.info[v.type].storeinchart then
+		if Event.info[v.type] and Event.info[v.type].storeinchart then
 			table.insert(chart_export, v)
 		else
 			table.insert(level_export.events, v)
@@ -87,6 +90,7 @@ function Levelmanager:savelevel(level,filename,savebothfiles)
 	end
 	dpf.savejson(filename .. "chart.json",chart_export)
 	
+	return upgraded
 	
 end
 
