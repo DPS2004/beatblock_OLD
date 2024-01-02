@@ -1,7 +1,7 @@
 local sprites = {}
 
 
-sprites.beat= {
+sprites.note= {
 	square = love.graphics.newImage("assets/game/square.png"),
 	inverse = love.graphics.newImage("assets/game/inverse.png"),
 	hold = love.graphics.newImage("assets/game/hold.png"),

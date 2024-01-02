@@ -1028,12 +1028,12 @@ st:setfgdraw(function(self)
             if v.type == "beat" then
               local angle = v.endangle or v.angle
               local pos = helpers.rotate(evrad, angle, project.res.cx, project.res.cy)
-              love.graphics.draw(sprites.beat.square,pos[1],pos[2],0,1,1,8,8)
+              love.graphics.draw(sprites.note.square,pos[1],pos[2],0,1,1,8,8)
   
             elseif v.type == "inverse" then
               local angle = v.endangle or v.angle
               local pos = helpers.rotate(evrad, angle, project.res.cx, project.res.cy)
-              love.graphics.draw(sprites.beat.inverse,pos[1],pos[2],0,1,1,8,8)
+              love.graphics.draw(sprites.note.inverse,pos[1],pos[2],0,1,1,8,8)
   
             elseif v.type == "slice" or v.type == "sliceinvert" then
               local angle = v.endangle or v.angle
@@ -1043,12 +1043,12 @@ st:setfgdraw(function(self)
             elseif v.type == "mine" then
               local angle = v.endangle or v.angle
               local pos = helpers.rotate(evrad, angle, project.res.cx, project.res.cy)
-              love.graphics.draw(sprites.beat.mine,pos[1],pos[2],0,1,1,8,8)
+              love.graphics.draw(sprites.note.mine,pos[1],pos[2],0,1,1,8,8)
 
             elseif v.type == "side" then
               local angle = v.endangle or v.angle
               local pos = helpers.rotate(evrad, angle, project.res.cx, project.res.cy)
-              love.graphics.draw(sprites.beat.side,pos[1],pos[2],0,1,1,12,10)
+              love.graphics.draw(sprites.note.side,pos[1],pos[2],0,1,1,12,10)
 
             end
           end
@@ -1063,9 +1063,9 @@ st:setfgdraw(function(self)
               local pos2 = helpers.rotate(evrad2, angle2, project.res.cx, project.res.cy)
               local completion = math.max(0, (cs.cbeat - 0 ) / v.duration)
               if v.type == "hold" then
-                Hold.drawhold(project.res.cx, project.res.cy, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, sprites.beat.hold, v.holdease, v.type)
+                Hold.drawhold(project.res.cx, project.res.cy, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, sprites.note.hold, v.holdease, v.type)
               else
-                Hold.drawhold(project.res.cx, project.res.cy, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, sprites.beat.minehold, v.holdease, v.type)
+                Hold.drawhold(project.res.cx, project.res.cy, pos1[1], pos1[2], pos2[1], pos2[2], completion, angle1, angle2, v.segments, sprites.note.minehold, v.holdease, v.type)
               end
             end
           end
@@ -1080,17 +1080,17 @@ st:setfgdraw(function(self)
         local pos = helpers.rotate(cursorrad, angle, project.res.cx, project.res.cy)
         
         if self.cursortype == "beat" then
-          love.graphics.draw(sprites.beat.square, pos[1], pos[2],0,1,1,8,8)
+          love.graphics.draw(sprites.note.square, pos[1], pos[2],0,1,1,8,8)
         elseif self.cursortype == "inverse" then
-          love.graphics.draw(sprites.beat.inverse, pos[1], pos[2],0,1,1,8,8)
+          love.graphics.draw(sprites.note.inverse, pos[1], pos[2],0,1,1,8,8)
         elseif self.cursortype == "mine" then
-          love.graphics.draw(sprites.beat.mine, pos[1], pos[2],0,1,1,8,8)
+          love.graphics.draw(sprites.note.mine, pos[1], pos[2],0,1,1,8,8)
         elseif self.cursortype == "side" then
-          love.graphics.draw(sprites.beat.side, pos[1], pos[2],0,1,1,12,10)
+          love.graphics.draw(sprites.note.side, pos[1], pos[2],0,1,1,12,10)
         elseif self.cursortype == "hold" then
-          love.graphics.draw(sprites.beat.hold, pos[1], pos[2],0,1,1,8,8)
+          love.graphics.draw(sprites.note.hold, pos[1], pos[2],0,1,1,8,8)
         elseif self.cursortype == "minehold" then
-          love.graphics.draw(sprites.beat.minehold, pos[1], pos[2],0,1,1,8,8)
+          love.graphics.draw(sprites.note.minehold, pos[1], pos[2],0,1,1,8,8)
         elseif self.cursortype == "slice" or self.cursortype == "sliceinvert" then
           local sliceangle = angle
           local invert = self.cursortype == "sliceinvert"
@@ -1152,18 +1152,18 @@ st:setfgdraw(function(self)
       end
       
       --TABS AND PALETTE (drawing)
-      love.graphics.draw(sprites.beat.square,39,14,0,1,1,8,8)
+      love.graphics.draw(sprites.note.square,39,14,0,1,1,8,8)
         --Events on tab 1
         if self.currenttab == "tab1" then
 
         --Events on tab 2
         elseif self.currenttab == "tab2" then
-          love.graphics.draw(sprites.beat.square,14,39,0,1,1,8,8)
-          love.graphics.draw(sprites.beat.inverse,39,39,0,1,1,8,8)
-          love.graphics.draw(sprites.beat.side,14,64,0,1,1,12,10)
-          love.graphics.draw(sprites.beat.mine,39,64,0,1,1,8,8)
-          love.graphics.draw(sprites.beat.hold,14,89,0,1,1,8,8)
-          love.graphics.draw(sprites.beat.minehold,39,89,0,1,1,8,8)
+          love.graphics.draw(sprites.note.square,14,39,0,1,1,8,8)
+          love.graphics.draw(sprites.note.inverse,39,39,0,1,1,8,8)
+          love.graphics.draw(sprites.note.side,14,64,0,1,1,12,10)
+          love.graphics.draw(sprites.note.mine,39,64,0,1,1,8,8)
+          love.graphics.draw(sprites.note.hold,14,89,0,1,1,8,8)
+          love.graphics.draw(sprites.note.minehold,39,89,0,1,1,8,8)
         elseif self.currenttab == "tab3" then
         elseif self.currenttab == "tab4" then
         end
@@ -1171,17 +1171,17 @@ st:setfgdraw(function(self)
       --modules
       if self.selectedeventindex ~= nil then
         if self.level.events[self.selectedeventindex].type == "beat" then
-          love.graphics.draw(sprites.beat.square,373,14,0,1,1,8,8)
+          love.graphics.draw(sprites.note.square,373,14,0,1,1,8,8)
         elseif self.level.events[self.selectedeventindex].type == "inverse" then
-          love.graphics.draw(sprites.beat.inverse,373,14,0,1,1,8,8)
+          love.graphics.draw(sprites.note.inverse,373,14,0,1,1,8,8)
         elseif self.level.events[self.selectedeventindex].type == "side" then
-          love.graphics.draw(sprites.beat.side,373,14,0,1,1,12,10)
+          love.graphics.draw(sprites.note.side,373,14,0,1,1,12,10)
         elseif self.level.events[self.selectedeventindex].type == "mine" then
-          love.graphics.draw(sprites.beat.mine,373,14,0,1,1,8,8)
+          love.graphics.draw(sprites.note.mine,373,14,0,1,1,8,8)
         elseif self.level.events[self.selectedeventindex].type == "hold" then
-          love.graphics.draw(sprites.beat.hold,373,14,0,1,1,8,8)
+          love.graphics.draw(sprites.note.hold,373,14,0,1,1,8,8)
         elseif self.level.events[self.selectedeventindex].type == "minehold" then
-          love.graphics.draw(sprites.beat.minehold,373,14,0,1,1,8,8)
+          love.graphics.draw(sprites.note.minehold,373,14,0,1,1,8,8)
         end
       end
       

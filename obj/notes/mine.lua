@@ -1,13 +1,13 @@
-Mine = class ('Mine', Beat)
+Mine = class ('Mine', Block)
 
 function Mine:initialize(params)
 	
 	
-	Beat.initialize(self,params)
+	Block.initialize(self,params)
 	
 	self.name = 'mine'
 	
-	self.spr = sprites.beat.mine
+	self.spr = sprites.note.mine
 end
 
 function Mine:update(dt)

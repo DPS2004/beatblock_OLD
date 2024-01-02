@@ -1,4 +1,4 @@
-Hold = class ('Hold', Beat)
+Hold = class ('Hold', Block)
 
 function Hold:initialize(params)
 	
@@ -7,16 +7,16 @@ function Hold:initialize(params)
 	self.smult2 = 1
 	self.minestripe = false
 	
-	Beat.initialize(self,params)
+	Block.initialize(self,params)
 	self.name = 'hold'
 	self.x2 = self.x
 	self.y2 = self.y
 	
-	self.spr = sprites.beat.hold
+	self.spr = sprites.note.hold
 end
 
 function Hold:getpositions()
-	return Beat.getpositions(self), helpers.rotate((self.hb - cs.cbeat+self.duration)*cs.level.properties.speed*self.smult*self.smult2+cs.extend+cs.length,self.angle2,self.ox,self.oy)
+	return Block.getpositions(self), helpers.rotate((self.hb - cs.cbeat+self.duration)*cs.level.properties.speed*self.smult*self.smult2+cs.extend+cs.length,self.angle2,self.ox,self.oy)
 end
 
 function Hold:updateduringhit()
@@ -76,10 +76,10 @@ function Hold.drawhold(ox, oy, x, y, x2, y2, completion, endangle, angle2, segme
 	}
 	if htype == 'hold' then
 		newhold.minestripe = false
-		newhold.spr = sprites.beat.hold
+		newhold.spr = sprites.note.hold
 	else
 		newhold.minestripe = true
-		newhold.spr = sprites.beat.minehold
+		newhold.spr = sprites.note.minehold
 	end
 	
 	Hold.draw(newhold, completion)

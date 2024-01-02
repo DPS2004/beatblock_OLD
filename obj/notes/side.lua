@@ -1,4 +1,4 @@
-Side = class ('Side', Beat)
+Side = class ('Side', Block)
 
 function Side:initialize(params)
 	
@@ -6,11 +6,11 @@ function Side:initialize(params)
 	self.timingwindow = 200
 	self.skipoverwindow = 90 -- changed from 60, now you simply have to be on the same side
 	
-	Beat.initialize(self,params)
+	Block.initialize(self,params)
 	
 	self.name = 'side'
 	self.positionoffset = 10
-	self.spr = sprites.beat.side
+	self.spr = sprites.note.side
 end
 
 function Side:update(dt) --todo: split this into functions, so other beat types can use this code

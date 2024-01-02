@@ -14,11 +14,11 @@ function Titleparticle:initialize(params)
 	
 	local sprv = math.random(0,7)
 	if sprv <= 5 then
-		self.spr = sprites.beat.square
+		self.spr = sprites.note.square
 	elseif sprv <= 6 then
-		self.spr = sprites.beat.inverse
+		self.spr = sprites.note.inverse
 	else
-		self.spr = sprites.beat.hold
+		self.spr = sprites.note.hold
 	end
 end
 

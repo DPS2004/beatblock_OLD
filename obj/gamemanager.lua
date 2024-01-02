@@ -68,7 +68,7 @@ function Gamemanager:resetlevel()
   cs.startbeat = cs.startbeat or project.startbeat or 0
   cs.cbeat = 0-cs.offset +cs.startbeat
   cs.autoplay = false
-  cs.length = 42
+  cs.length = 42 --TODO: remove this and rely only on player size
   cs.pt = 0
   cs.bg = love.graphics.newImage("assets/bgs/nothing.png")  
 	cs.bgcolor = 'white'

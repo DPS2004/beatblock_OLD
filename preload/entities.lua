@@ -8,11 +8,11 @@ em.new('obj/levelmanager.lua','levelmanager')
 
 em.new('obj/player.lua','player')
 
-em.new('obj/beats/beat.lua','beat')
-	em.new('obj/beats/mine.lua','mine')
-	em.new('obj/beats/hold.lua','hold')
-		em.new('obj/beats/minehold.lua','minehold')
-	em.new('obj/beats/side.lua','side')
+em.new('obj/notes/block.lua','block')
+	em.new('obj/notes/mine.lua','mine')
+	em.new('obj/notes/hold.lua','hold')
+		em.new('obj/notes/minehold.lua','minehold')
+	em.new('obj/notes/side.lua','side')
 
 
 em.new('obj/hitpart.lua','hitpart')

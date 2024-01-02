@@ -12,7 +12,9 @@ st:setinit(function(self)
   self.gm:resetlevel()
 	
 	self.holdentitydraw = true
-	
+
+	self.zoom = self.level.properties.speed or 40
+
 	self.keybinds = {}
 	
 	--save
@@ -22,6 +24,7 @@ st:setinit(function(self)
 				if upgraded then
 					print("NOTICE: upgraded format of level.")
 				end
+				self.p:hurtpulse()
 			end
 		end,
 		'save',
@@ -31,13 +34,20 @@ st:setinit(function(self)
 	--force both files save
 	self:addkeybind(function()
 			Levelmanager:savelevel(self.level,clevel,true)
+			self.p:hurtpulse()
 		end,
-		'save',
+		'force both files save',
 		'ctrl','alt','s'
 	)
 	
 	
 end)
+
+function st:beattoradius(b)
+	local currentbeat = 0
+	return ((b - currentbeat)*self.zoom)+self.extend+self.length
+	
+end
 
 
 function st:leave()
@@ -79,6 +89,13 @@ st:setupdate(function(self,dt)
 		
 		if self.editmode then
 			self:checkkeybinds()
+			
+			if maininput:pressed("back") then
+				self:leave()
+				cs = bs.load('songselect')
+				cs:init()
+			end
+			
 		else
 			self.gm:update(dt)
 			

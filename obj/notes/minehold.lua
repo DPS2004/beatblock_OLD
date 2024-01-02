@@ -9,7 +9,7 @@ function Minehold:initialize(params)
 	
 	self.name = 'mine'
 	
-	self.spr = sprites.beat.minehold
+	self.spr = sprites.note.minehold
 end
 
 

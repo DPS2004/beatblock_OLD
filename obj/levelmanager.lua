@@ -1,7 +1,12 @@
 Levelmanager = class('Levelmanager',Entity)
 
-local currentversion = 1
-
+local currentversion = 2
+--[[
+FORMAT CHANGELOG:
+- Version 0: initial version
+- Version 1: Split chart and vfx+metadata into two separate files, chart.json and level.json
+- Version 2: Replace "beat" event type with "block". "beat" still exists as a legacy event type.
+]]--
 function Levelmanager:initialize(params)
 	
 	self.skiprender = true
@@ -32,21 +37,26 @@ function Levelmanager:loadlevel(filename)
 		end
 	end
 	
+	
 	return level
 	
 end
 
 function Levelmanager:upgradelevel(level)
 	local saveboth = false
+	--format 1
 	if level.properties.formatversion == nil then
 		level.properties.formatversion = 1
 		saveboth = true -- this changes format significantly, so it requires a resave. for minor revisions, this is not needed.
 	end
-	--[[
+	--format 2
 	if level.properties.formatversion == 1 then
-		--format 2 goes here, etc, etc
+		for i,v in ipairs(level.events) do
+			if v.type == 'beat' then
+				v.type = 'block'
+			end
+		end
 	end
-	]]--
 	return level, saveboth -- return if it got upgraded to force savebothfiles
 	
 	

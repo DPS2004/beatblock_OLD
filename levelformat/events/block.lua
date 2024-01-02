@@ -1,6 +1,6 @@
 local info = {
-	event = 'beat',
-	name = 'Spawn Block (LEGACY)',
+	event = 'block',
+	name = 'Spawn Block',
 	storeinchart = true,
 	hits = 1,
 	description = [[Parameters:
@@ -14,7 +14,18 @@ speedmult: (Optional) Speed multiplier for approach
 
 --onload, onoffset, onbeat
 local function onoffset(event)
-	Event.onoffset['block'](event)
+	
+	local newbeat = em.init("block",{
+		x=project.res.cx,
+		y=project.res.cy,
+		angle = event.angle,
+		endangle = event.endangle,
+		spinease = event.spinease,
+		hb = event.time,
+		smult = event.speedmult
+	})
+	pq = pq .. "    ".. "spawn here!"
+	newbeat:update(dt)
 	
 end
 

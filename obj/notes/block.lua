@@ -1,9 +1,9 @@
-Beat = class('Beat',Entity)
+Block = class('Block',Entity)
 
 --all other beat types will now be separate selfects.
 
-function Beat:initialize(params)
-	self.name = 'beat'
+function Block:initialize(params)
+	self.name = 'block'
 	
 	self.layer = 1
 	self.uplayer = 3
@@ -23,7 +23,7 @@ function Beat:initialize(params)
 	
 	self.hityet = false
 	
-  self.spr = sprites.beat.square
+  self.spr = sprites.note.square
 	
 	self.spinease = 'linear'
 	
@@ -33,7 +33,7 @@ function Beat:initialize(params)
 	
 	if self.inverse then
 		self.positionoffset = 24
-		self.spr = sprites.beat.inverse
+		self.spr = sprites.note.inverse
 		self.layer = 1
 	else
 		self.positionoffset = 0
@@ -74,27 +74,27 @@ local self = {
   minehold = false,
   ringcw = false,
   ringccw = false,
-  spr = sprites.beat.square,
-  spr2 = sprites.beat.inverse,
-  spr3 = sprites.beat.hold,
-  spr4 = sprites.beat.mine,
-  spr5 = sprites.beat.side,
-  spr6 = sprites.beat.minehold,
-  spr7 = sprites.beat.ringcw,
-  spr8 = sprites.beat.ringccw
+  spr = sprites.note.square,
+  spr2 = sprites.note.inverse,
+  spr3 = sprites.note.hold,
+  spr4 = sprites.note.mine,
+  spr5 = sprites.note.side,
+  spr6 = sprites.note.minehold,
+  spr7 = sprites.note.ringcw,
+  spr8 = sprites.note.ringccw
 }
 self.ox = self.x
 self.oy = self.y
 ]]--
 
 
-function Beat:updateprogress()
+function Block:updateprogress()
   -- Progress is a number from 0 (spawn) to 1 (paddle)
   self.progress = 1 - ((self.hb - cs.cbeat) / self.movetime)
 end
 
-function Beat:updateangle()
-	-- Interpolate angle between startangle and endangle based on progress. Beat should be at endangle when it hits the paddle.
+function Block:updateangle()
+	-- Interpolate angle between startangle and endangle based on progress. Block should be at endangle when it hits the paddle.
   if (self.hb - cs.cbeat) > 0 then --only clamp when moving towards point
     if self.spinease == "linear" then --haha wow this should not be using an if statement???
       self.angle = helpers.clamp(helpers.lerp(self.startangle, self.endangle, self.progress), self.startangle, self.endangle) % 360
@@ -105,7 +105,7 @@ function Beat:updateangle()
   end
 end
 
-function Beat:getpositions()
+function Block:getpositions()
 	local invmul = 1
 	if self.inverse then
 		invmul = -1
@@ -113,7 +113,7 @@ function Beat:getpositions()
 	return helpers.rotate(((self.hb - cs.cbeat)*cs.level.properties.speed*self.smult*invmul)+cs.extend+cs.length-self.positionoffset,self.angle,self.ox,self.oy)
 end
 
-function Beat:updatepositions()
+function Block:updatepositions()
 	local p1, p2 = self:getpositions()
 	
   self.x = p1[1]
@@ -124,16 +124,16 @@ function Beat:updatepositions()
 	end
 end
 
-function Beat:checkifactive()
+function Block:checkifactive()
 	return ((self.hb - cs.cbeat) <= 0)
 end
 
-function Beat:checktouchingpaddle(a)
+function Block:checktouchingpaddle(a)
 	return (helpers.angdistance(a,cs.p.angle) <= cs.p.paddle_size / 2)
 end
 
 
-function Beat:onhit(mine)
+function Block:onhit(mine)
 	self:makeparticles(true)
 	if mine then
 		pq = pq .. "   player dodged " ..self.name.."!"
@@ -152,7 +152,7 @@ function Beat:onhit(mine)
 	self.delete = true
 end
 
-function Beat:onmiss(mine)
+function Block:onmiss(mine)
 	self:makeparticles(false)
 	if mine then
 		pq = pq .. "   player hit " ..self.name.."!"
@@ -172,7 +172,7 @@ function Beat:onmiss(mine)
 	self.delete = true
 end
 
-function Beat:makeparticles(hit)
+function Block:makeparticles(hit)
 	if hit then
 		em.init("hitpart",{x=self.x,y=self.y})
 	else
@@ -186,7 +186,7 @@ function Beat:makeparticles(hit)
 	end
 end
 
-function Beat:update(dt)
+function Block:update(dt)
   prof.push('beat update')
 	
   self:updateprogress()
@@ -205,7 +205,7 @@ function Beat:update(dt)
   prof.pop('beat update')
 end
 
-function Beat:draw()
+function Block:draw()
   prof.push('beat (generic) draw')
 	outline(function()
 		color()
@@ -216,4 +216,4 @@ function Beat:draw()
   prof.push('beat (generic) draw')
 end
 
-return Beat
+return Block
