@@ -5,7 +5,7 @@ local info = {
 	hits = 1,
 	description = [[Parameters:
 time: Beat to spawn on
-angle1: First Angle to spawn at
+angle: First Angle to spawn at
 angle2: Second Angle to spawn at
 duration: How many beats the Hold will last
 segments: (Optional) Force a certain number of line segments
@@ -25,7 +25,7 @@ local function onoffset(event)
 		segments = event.segments,
 		duration = event.duration,
 		holdease = event.holdease,
-		angle = event.angle1,
+		angle = event.angle,
 		angle2 = event.angle2,
 		endangle = event.endangle,
 		spinease = event.spinease,

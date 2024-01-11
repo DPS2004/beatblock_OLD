@@ -1,11 +1,12 @@
 Levelmanager = class('Levelmanager',Entity)
 
-local currentversion = 2
+local currentversion = 3
 --[[
 FORMAT CHANGELOG:
 - Version 0: initial version
 - Version 1: Split chart and vfx+metadata into two separate files, chart.json and level.json
 - Version 2: Replace "beat" event type with "block". "beat" still exists as a legacy event type.
+- Version 3: all events have an "angle" parameter for editor display. "hold" event's angle1 parameter has been renamed to angle
 ]]--
 function Levelmanager:initialize(params)
 	
@@ -38,7 +39,10 @@ function Levelmanager:loadlevel(filename)
 	end
 	
 	
-	return level
+	
+	
+	return self:upgradelevel(level)
+	
 	
 end
 
@@ -49,16 +53,32 @@ function Levelmanager:upgradelevel(level)
 		level.properties.formatversion = 1
 		saveboth = true -- this changes format significantly, so it requires a resave. for minor revisions, this is not needed.
 	end
+	
 	--format 2
-	if level.properties.formatversion == 1 then
+	if level.properties.formatversion < 2 then
+		level.properties.formatversion = 2
 		for i,v in ipairs(level.events) do
 			if v.type == 'beat' then
 				v.type = 'block'
 			end
 		end
 	end
-	return level, saveboth -- return if it got upgraded to force savebothfiles
 	
+	--format 3
+	if level.properties.formatversion < 3 then
+		level.properties.formatversion = 3
+		for i,v in ipairs(level.events) do
+			if v.type == 'hold' then
+				v.angle = v.angle1
+				v.angle1 = nil
+			else
+				v.angle = v.angle or 0
+			end
+		end
+	end
+	
+	
+	return level, saveboth -- return if it got upgraded to force savebothfiles
 	
 	
 end

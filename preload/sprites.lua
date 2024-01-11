@@ -56,6 +56,7 @@ sprites.title = {
 }
 
 sprites.editor = {
+	--[[
 	Square = love.graphics.newImage("assets/editor/editorSquare.png"),
   Palette = love.graphics.newImage("assets/editor/editorPalette.png"),
   Rect51x26 = love.graphics.newImage("assets/editor/editorRect51x26.png"),
@@ -63,6 +64,9 @@ sprites.editor = {
   Selected = love.graphics.newImage("assets/editor/editorSelected.png"),
   PlaySymbol = love.graphics.newImage("assets/editor/editorPlaySymbol.png"),
   TextBox = love.graphics.newImage("assets/editor/editorTextBox.png")
+	]]
+	genericevent = love.graphics.newImage("assets/editor/genericevent.png")
+	
 }
 
 return sprites

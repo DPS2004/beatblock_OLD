@@ -15,7 +15,7 @@ speedmult: (Optional) Speed multiplier for approach
 --onload, onoffset, onbeat
 local function onoffset(event)
 	
-	local newbeat = em.init("beat",{
+	local newbeat = em.init("block",{
 		x=project.res.cx,
 		y=project.res.cy,
 		angle = event.angle,
