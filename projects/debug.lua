@@ -22,6 +22,7 @@ project.fullscreen = false
 
 project.intscale = 1
 
+project.useimgui = true
 
 project.ctrls = {
 	left = {"key:left",  "axis:rightx-", "button:dpleft"},

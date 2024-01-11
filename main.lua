@@ -27,7 +27,12 @@ function love.load()
   
   -- import libraries
   
-	
+	--imgui
+	if project.useimgui then
+		print('importing imgui')
+		imgui = require "imgui"
+	end
+
   -- lovebpm, syncs stuff to music
   lovebpm = require "lib.lovebpm"
 
@@ -132,9 +137,19 @@ function love.load()
   end
   
   function Gamestate:update(dt)
-    maininput:update()
+		if project.useimgui then
+			if not imgui.GetWantCaptureKeyboard() then
+				maininput:update()
+			end
+			if not imgui.GetWantCaptureMouse() then
+				helpers.updatemouse()
+			end
+		else
+			
+			maininput:update()
+			helpers.updatemouse()
+		end
     lovebird.update()
-    helpers.updatemouse()
     
     prof.push("gamestate update")
     self:updatefunc(dt)
@@ -328,9 +343,6 @@ function love.load()
   
 end
 
-function love.textinput(t)
-  tinput = t
-end
 
 function love.update(d)
   prof.push("frame")
@@ -365,11 +377,57 @@ function love.update(d)
 end
 
 function love.draw()
+	if project.useimgui then
+		imgui.NewFrame()
+	end
+	
   cs:draw()
   debugprint = false
   prof.pop("frame")
+	if project.useimgui then
+		imgui.End()
+		imgui.Render()
+	end
 end
 
+
+---IMGUI STUFF
+function love.textinput(t)
+	if project.useimgui then
+		imgui.TextInput(t)
+		if not imgui.GetWantCaptureKeyboard() then
+			tinput = t
+		end
+	else
+		tinput = t
+	end
+end
+
+if project.useimgui then
+	function love.keypressed(key)
+			imgui.KeyPressed(key)
+	end
+
+	function love.keyreleased(key)
+			imgui.KeyReleased(key)
+	end
+
+	function love.mousemoved(x, y)
+		imgui.MouseMoved(x, y)
+	end
+
+	function love.mousepressed(x, y, button)
+		imgui.MousePressed(button)
+	end
+
+	function love.mousereleased(x, y, button)
+		imgui.MouseReleased(button)
+	end
+
+	function love.wheelmoved(x, y)
+		imgui.WheelMoved(y)
+	end
+end
 
 
 function love.quit()
@@ -377,4 +435,7 @@ function love.quit()
     print('saving profile')
     prof.write("prof.mpack")
   end
+	if project.useimgui then
+		imgui.ShutDown()
+	end
 end

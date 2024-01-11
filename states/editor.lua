@@ -15,6 +15,7 @@ st:setinit(function(self)
 
 	self.zoom = self.level.properties.speed or 40
 	self.editorbeat = 0
+	self.drawdistance = 10
 
 	self.keybinds = {}
 	
@@ -49,7 +50,7 @@ end)
 
 function st:beattoradius(b)
 	local currentbeat = self.editorbeat
-	return ((b - currentbeat)*self.zoom)+self.extend+self.length
+	return ((b - currentbeat)*self.zoom)+cs.p.paddle_width + cs.p.paddle_distance
 	
 end
 
@@ -125,7 +126,16 @@ end)
 
 
 st:setfgdraw(function(self)
-
+	--imgui
+	if project.useimgui then
+		imgui.SetNextWindowPos(950, 50, "ImGuiCond_Once")
+		imgui.SetNextWindowSize(250, 600, "ImGuiCond_Once")
+		imgui.Begin("Event Editor")
+			imgui.Text("Select an event to edit it")
+			--self.zoom = imgui.SliderInt("Zoom level", self.zoom, 0, 100);
+		
+		imgui.End()
+	end
   color('white')
   love.graphics.rectangle('fill',0,0,project.res.x,project.res.y)
   love.graphics.setCanvas(self.canv)
@@ -133,14 +143,30 @@ st:setfgdraw(function(self)
 	if self.editmode then
 		love.graphics.rectangle('fill',0,0,project.res.x,project.res.y)
 		
-		for i,v in ipairs(self.level.events) do
-			local pos = self:getposition(v.angle,v.time)
-			
-			love.graphics.draw(sprites.editor.genericevent,pos[1],pos[2],0,1,1,8,8)
-			
-		end
+		--draw beat lines
+		color('black')
 		
-		em.draw()
+		love.graphics.setLineWidth(2)
+		
+		for i=0, self.drawdistance do
+			love.graphics.circle("line",project.res.cx,project.res.cy,self:beattoradius(math.ceil(self.editorbeat) + i))
+		end
+		color()
+		
+		em.draw() --draw player
+		
+		for i,v in ipairs(self.level.events) do --draw events
+			if v.time >= self.editorbeat and v.time <= self.editorbeat + self.drawdistance then
+				if Event.editordraw[v.type] then
+					Event.editordraw[v.type](v)
+				else
+					--fallback
+					local pos = self:getposition(v.angle,v.time)
+					
+					love.graphics.draw(sprites.editor.genericevent,pos[1],pos[2],0,1,1,8,8)
+				end
+			end
+		end
 	else
 		
 		self.gm:draw()

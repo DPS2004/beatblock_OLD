@@ -6,6 +6,11 @@ Event.onoffset = {}
 Event.onbeat = {}
 Event.info = {}
 
+Event.editordraw = {}
+Event.editorproperties = {}
+
+
+
 local elist = {}
 
 local function findfiles(dir)
@@ -26,22 +31,26 @@ end
 findfiles('levelformat/events')
 
 for i,v in ipairs(elist) do
-	local einfo, eonload, eonoffset, eonbeat = dofile(v)
+	local info, onload, onoffset, onbeat, editordraw, editorproperties = dofile(v)
 	local etype = ''
-	if eonload then
-		Event.onload[einfo.event] = eonload
+	if onload then
+		Event.onload[info.event] = onload
 		etype = etype .. ' onload'
 	end
-	if eonoffset then
-		Event.onoffset[einfo.event] = eonoffset
+	if onoffset then
+		Event.onoffset[info.event] = onoffset
 		etype = etype .. ' onoffset'
 	end
-	if eonbeat then
-		Event.onbeat[einfo.event] = eonbeat
+	if onbeat then
+		Event.onbeat[info.event] = onbeat
 		etype = etype .. ' onbeat'
 	end
-	Event.info[einfo.event] = einfo
-	print('loaded event "'..einfo.name..'" ('..einfo.event..etype..')')
+	
+	Event.editordraw[info.event] = editordraw
+	Event.editorproperties[info.event] = editorproperties
+	
+	Event.info[info.event] = info
+	print('loaded event "'..info.name..'" ('..info.event..etype..')')
 end
 
 function Gamemanager:initialize(params)

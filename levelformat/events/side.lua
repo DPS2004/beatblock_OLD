@@ -29,5 +29,12 @@ local function onoffset(event)
 	
 end
 
+local function editordraw(event)
+	--todo: actual hold drawing logic
+	local pos = cs:getposition(event.angle,event.time)
+	
+	love.graphics.draw(sprites.note.side,pos[1],pos[2],math.rad(event.angle),1,1,12,10)
+end
 
-return info, onload, onoffset, onbeat
+
+return info, onload, onoffset, onbeat, editordraw, editorproperties

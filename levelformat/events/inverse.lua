@@ -31,4 +31,11 @@ local function onoffset(event)
 end
 
 
-return info, onload, onoffset, onbeat
+local function editordraw(event)
+	local pos = cs:getposition(event.angle,event.time)
+	
+	love.graphics.draw(sprites.note.inverse,pos[1],pos[2],0,1,1,8,8)
+end
+
+
+return info, onload, onoffset, onbeat, editordraw, editorproperties
