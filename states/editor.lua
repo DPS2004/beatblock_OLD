@@ -16,6 +16,11 @@ st:setinit(function(self)
 	self.zoom = self.level.properties.speed or 40
 	self.editorbeat = 0
 	self.drawdistance = 10
+	
+	self.selectedevent = nil
+	self.overlappingevents = nil
+	
+	self.overlappingeventsdialogue = false
 
 	self.keybinds = {}
 	
@@ -107,6 +112,35 @@ st:setupdate(function(self,dt)
 				end
 			end
 			
+			if mouse.pressed == -1 then -- on mouse release
+				self.overlappingevents = {}
+				for i,v in ipairs(self.level.events) do
+					if v.time >= self.editorbeat and v.time <= self.editorbeat + self.drawdistance then
+						--this should be customizable per-event type like editordraw and editorproperties for holds
+						
+						local pos = self:getposition(v.angle,v.time)
+						if helpers.collide(
+							{x = mouse.rx, y = mouse.ry, width = 0, height = 0},
+							{x = pos[1] - 8, y = pos[2] - 8, width = 16, height = 16}
+						) then
+						
+							table.insert(self.overlappingevents,i)
+							
+						end
+						
+					end
+				end
+				if #self.overlappingevents == 1 then
+					self.selectedevent = self.level.events[self.overlappingevents[1]]
+					print('selected ' .. Event.info[self.selectedevent.type].name .. ' event. ' .. self.selectedevent.angle .. '|'.. self.selectedevent.time)
+					self.overlappingeventsdialogue = false
+				elseif #self.overlappingevents >= 2 then
+					print('overlapping events!!')
+					self.overlappingeventsdialogue = true
+				end
+				
+			end
+			
 			if maininput:pressed("back") then
 				self:leave()
 				cs = bs.load('songselect')
@@ -139,8 +173,39 @@ st:setfgdraw(function(self)
 		imgui.SetNextWindowPos(950, 50, "ImGuiCond_Once")
 		imgui.SetNextWindowSize(250, 600, "ImGuiCond_Once")
 		imgui.Begin("Event Editor")
-			imgui.Text("Select an event to edit it")
-			--self.zoom = imgui.SliderInt("Zoom level", self.zoom, 0, 100);
+			if not self.selectedevent then
+				imgui.Text("Select an event to edit it")
+				
+				--self.zoom = imgui.SliderInt("Zoom level", self.zoom, 0, 100);
+			else
+				imgui.Text("Editing " .. Event.info[self.selectedevent.type].name)
+				imgui.Separator()
+				
+				--default properties that all events have
+				Event.property(self.selectedevent, 'decimal', 'time', 'Beat to activate on', {step = 0.01}) --(eventually should be snap based)
+				Event.property(self.selectedevent, 'decimal', 'angle', 'Angle to activate at', {step = 1}) --(eventually should be snap based)
+				
+				if Event.editorproperties[self.selectedevent.type] then
+					--Event.editorproperties[self.selectedevent.type](self.selectedevent)
+				else
+					
+				end
+			
+			end
+		if self.overlappingeventsdialogue then
+			self.overlappingeventsdialogue = imgui.Begin("Overlapping events!",true)
+			
+			imgui.Text("Select which event to edit:")
+			imgui.Separator()
+			for i,v in ipairs(self.overlappingevents) do
+				local e = self.level.events[v]
+				if imgui.Selectable(Event.info[e.type].name .. ' (ID '.. v..')') then
+					self.overlappingeventsdialogue = false
+					self.selectedevent = self.level.events[v]
+				end
+			end
+		end
+		
 		
 		imgui.End()
 	end
@@ -156,6 +221,8 @@ st:setfgdraw(function(self)
 		
 		love.graphics.setLineWidth(2)
 		
+		
+		love.graphics.circle("line",project.res.cx,project.res.cy,self:beattoradius(self.editorbeat))
 		for i=0, self.drawdistance do
 			love.graphics.circle("line",project.res.cx,project.res.cy,self:beattoradius(math.ceil(self.editorbeat) + i))
 		end
@@ -175,6 +242,18 @@ st:setfgdraw(function(self)
 				end
 			end
 		end
+		--redraw selected event on top
+		if self.selectedevent and self.editorbeat <= self.selectedevent.time then
+			local pos = self:getposition(self.selectedevent.angle,self.selectedevent.time)
+			if Event.editordraw[self.selectedevent.type] then
+				Event.editordraw[self.selectedevent.type](self.selectedevent)
+			else
+				--fallback
+				love.graphics.draw(sprites.editor.genericevent,pos[1],pos[2],0,1,1,8,8)
+			end
+			love.graphics.draw(sprites.editor.selected,pos[1],pos[2],0,1,1,11,11)
+		end
+		
 	else
 		
 		self.gm:draw()

@@ -35,5 +35,9 @@ local function editordraw(event)
 	love.graphics.draw(sprites.note.square,pos[1],pos[2],0,1,1,8,8)
 end
 
+local function editorproperties(event)
+
+end
+
 
 return info, onload, onoffset, onbeat, editordraw, editorproperties

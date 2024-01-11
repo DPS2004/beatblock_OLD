@@ -390,4 +390,17 @@ function helpers.startswith(str,start)
   end
 end
 
+function helpers.imguihelpmarker(text)
+	
+	imgui.SameLine()
+	imgui.TextDisabled('(?)')
+	if imgui.IsItemHovered() then
+		imgui.BeginTooltip()
+		imgui.PushTextWrapPos(imgui.GetFontSize() * 35)
+		imgui.TextUnformatted(text)
+		imgui.PopTextWrapPos()
+		imgui.EndTooltip()
+	end
+end
+
 return helpers

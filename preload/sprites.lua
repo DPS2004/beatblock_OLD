@@ -65,7 +65,8 @@ sprites.editor = {
   PlaySymbol = love.graphics.newImage("assets/editor/editorPlaySymbol.png"),
   TextBox = love.graphics.newImage("assets/editor/editorTextBox.png")
 	]]
-	genericevent = love.graphics.newImage("assets/editor/genericevent.png")
+	genericevent = love.graphics.newImage("assets/editor/genericevent.png"),
+	selected = love.graphics.newImage("assets/editor/selected.png")
 	
 }
 

@@ -9,6 +9,15 @@ Event.info = {}
 Event.editordraw = {}
 Event.editorproperties = {}
 
+function Event.property(event,propertytype, propertyname, tooltip, properties)
+	properties = properties or {}
+	
+	if propertytype == 'decimal' then
+		event[propertyname] = imgui.InputFloat(propertyname, event[propertyname], properties.step or 0.01, properties.stepspeed or 1, properties.decimalsize or 3)
+	end
+	
+	helpers.imguihelpmarker(tooltip)
+end
 
 
 local elist = {}
