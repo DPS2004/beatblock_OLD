@@ -99,6 +99,14 @@ st:setupdate(function(self,dt)
 		if self.editmode then
 			self:checkkeybinds()
 			
+			if mouse.sy ~= 0 then
+				if maininput:down('ctrl') then
+					self.zoom = math.min(math.max(self.zoom+mouse.sy*2,20),100)
+				else
+					self.editorbeat = math.max(self.editorbeat + (mouse.sy * 2) / self.zoom,0)
+				end
+			end
+			
 			if maininput:pressed("back") then
 				self:leave()
 				cs = bs.load('songselect')

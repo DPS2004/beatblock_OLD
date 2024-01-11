@@ -168,6 +168,8 @@ function love.load()
     em.update(dt)
     prof.pop("entityman update")
     
+		mouse.sx, mouse.sy = 0,0
+		
     te.cleanup()
   end
   
@@ -425,6 +427,7 @@ if project.useimgui then
 	end
 
 	function love.wheelmoved(x, y)
+		mouse.sx, mouse.sy = x, y
 		imgui.WheelMoved(y)
 	end
 end
