@@ -186,7 +186,7 @@ st:setfgdraw(function(self)
 				Event.property(self.selectedevent, 'decimal', 'angle', 'Angle to activate at', {step = 1}) --(eventually should be snap based)
 				
 				if Event.editorproperties[self.selectedevent.type] then
-					--Event.editorproperties[self.selectedevent.type](self.selectedevent)
+					Event.editorproperties[self.selectedevent.type](self.selectedevent)
 				else
 					
 				end

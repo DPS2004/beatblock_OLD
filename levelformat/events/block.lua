@@ -36,7 +36,9 @@ local function editordraw(event)
 end
 
 local function editorproperties(event)
-
+	Event.property(event,'decimal', 'endangle', 'Angle to end up at', {step = 1, optional = true, default = 0})
+	Event.property(event,'ease', 'spinease', 'Ease to use while rotating', {optional = true, default = 'linear'})
+	Event.property(event,'decimal', 'speedmult', 'Speed multiplier for approach', {step = 0.01, optional = true, default = 1})
 end
 
 

@@ -9,11 +9,67 @@ Event.info = {}
 Event.editordraw = {}
 Event.editorproperties = {}
 
+Event.eases = {
+	'linear',
+	'inSine', 'outSine', 'inOutSine',
+	'inQuad', 'outQuad', 'inOutQuad', 
+	'inCubic', 'outCubic', 'inOutCubic',
+	'inQuart', 'outQuart', 'inOutQuart',
+	'inQuint', 'outQuint', 'inOutQuint',
+	'inExpo', 'outExpo', 'inOutExpo',
+	'inCirc', 'outCirc', 'inOutCirc',
+	'inElastic', 'outElastic', 'inOutElastic',
+	'inBack', 'outBack', 'inOutBack'
+}
+
 function Event.property(event,propertytype, propertyname, tooltip, properties)
 	properties = properties or {}
+	local enabled = true
 	
-	if propertytype == 'decimal' then
-		event[propertyname] = imgui.InputFloat(propertyname, event[propertyname], properties.step or 0.01, properties.stepspeed or 1, properties.decimalsize or 3)
+	if properties.optional then
+		enabled = imgui.Checkbox('##checkbox'..propertyname,(event[propertyname] ~= nil))
+		imgui.SameLine()
+		
+		if enabled then
+			if event[propertyname] == nil then
+				event[propertyname] = properties.default
+			end
+		else
+			event[propertyname] = nil
+		end
+	end
+	
+	if enabled then
+		if propertytype == 'decimal' then
+			imgui.PushItemWidth(100)
+			event[propertyname] = imgui.InputFloat(propertyname, event[propertyname], properties.step or 0.01, properties.stepspeed or 1, properties.decimalsize or 3)
+			imgui.PopItemWidth()
+		end
+		if propertytype == 'string' then
+			imgui.PushItemWidth(100)
+			event[propertyname] = imgui.InputText(propertyname, event[propertyname],9999)
+			imgui.PopItemWidth()
+		end
+		if propertytype == 'ease' then
+			local comboselection = 0
+			for i,v in ipairs(Event.eases) do
+				if v == event[propertyname] then
+					comboselection = i
+				end
+			end
+			
+			imgui.PushItemWidth(100)
+			comboselection = imgui.Combo(propertyname, comboselection, Event.eases, #Event.eases);
+			event[propertyname] = Event.eases[comboselection]
+			imgui.PopItemWidth()
+		end
+	else
+		imgui.Text(propertyname)
+	end
+	
+	
+	if properties.default then
+		tooltip = tooltip .. '\nDefault value: ' .. properties.default
 	end
 	
 	helpers.imguihelpmarker(tooltip)

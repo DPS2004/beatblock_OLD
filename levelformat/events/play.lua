@@ -29,5 +29,15 @@ local function onbeat(event)
 	
 end
 
+local function editordraw(event)
+	local pos = cs:getposition(event.angle,event.time)
+	
+	love.graphics.draw(sprites.editor.events.play,pos[1],pos[2],0,1,1,8,8)
+end
 
-return info, onload, onoffset, onbeat
+local function editorproperties(event)
+	Event.property(event,'string', 'file', 'Filename of song')
+	Event.property(event,'decimal', 'bpm', 'BPM of song', {step = 1})
+end
+
+return info, onload, onoffset, onbeat, editordraw, editorproperties
