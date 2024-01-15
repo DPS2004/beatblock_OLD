@@ -172,7 +172,7 @@ function Gamemanager:resetlevel()
       cs.maxhits = cs.maxhits + Event.info[v.type].hits
     end
   end
-  cs.on = true
+  --cs.on = true
 
   cs.beatsounds = true
   cs.extend = 0

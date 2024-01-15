@@ -141,6 +141,23 @@ st:setinit(function(self)
 		'ctrl','v'
 	)
 	
+	self:addkeybind(function()
+			self.startbeat = 0
+			self:playlevel()
+		end,
+		'play level from start',
+		'ctrl','p'
+	)
+	
+	self:addkeybind(function()
+			if not maininput:down('ctrl') then
+				self.startbeat = self.editorbeat + self.offset - 1
+				self:playlevel()
+			end
+		end,
+		'play level from editorbeat',
+		'p'
+	)
 	
 end)
 
@@ -168,6 +185,27 @@ function st:getposition(a,b)
 	return helpers.rotate(self:beattoradius(b),a,project.res.cx,project.res.cy)
 end
 
+function st:playlevel()
+  self.editmode = false
+	shuv.showbadcolors = false
+  self.gm:resetlevel()
+  --self.gm.on = true
+end
+
+function st:stoplevel()
+  self.editmode = true
+	shuv.showbadcolors = true
+  self.startbeat = 0
+  self.gm:resetlevel()
+  --self.gm.on = false
+  
+  entities = {self.p}
+  if self.source ~= nil then
+    self.source:stop()
+    self.source = nil
+  end
+  self.sounddata = nil
+end
 
 function st:leave()
   entities = {}
@@ -309,13 +347,9 @@ st:setupdate(function(self,dt)
 		else
 			self.gm:update(dt)
 			
-			--[[
 			if maininput:pressed("back") then
-				self:leave()
-				cs = bs.load('songselect')
-				cs:init()
+				self:stoplevel()
 			end
-			]]--
 		end
 		
 		
@@ -324,9 +358,8 @@ st:setupdate(function(self,dt)
   end
 end)
 
+function st:imgui()
 
-
-st:setfgdraw(function(self)
 	--imgui
 	if project.useimgui then
 		imgui.SetNextWindowPos(950, 50, "ImGuiCond_Once")
@@ -582,13 +615,18 @@ st:setfgdraw(function(self)
 			imgui.Text("Beat: " .. beatsnaptext)
 		imgui.End()
 	end
+	
+	
+end
+
+st:setfgdraw(function(self)
   color('white')
   love.graphics.rectangle('fill',0,0,project.res.x,project.res.y)
   love.graphics.setCanvas(self.canv)
   
 	if self.editmode then
 		love.graphics.rectangle('fill',0,0,project.res.x,project.res.y)
-		
+		self:imgui()
 		
 		love.graphics.setLineWidth(2)
 		love.graphics.setColor(0.75,0.75,0.75,1)
