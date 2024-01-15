@@ -1,6 +1,6 @@
 local info = {
 	event = 'hold',
-	name = 'Spawn Hold',
+	name = 'Hold',
 	storeinchart = true,
 	hits = 1,
 	description = [[Parameters:

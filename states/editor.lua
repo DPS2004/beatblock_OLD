@@ -12,15 +12,55 @@ st:setinit(function(self)
   self.gm:resetlevel()
 	
 	self.holdentitydraw = true
+	
+	shuv.showbadcolors = true
 
 	self.zoom = self.level.properties.speed or 40
 	self.editorbeat = 0
 	self.drawdistance = 10
 	
+	self.anglesnapvalues = {8,12,16,24,32}
+	self.anglesnap = 3
+	
+	self.beatsnapvalues = {1,2,3,4,6,8,12,16}
+	self.beatsnap = 2
+	
 	self.selectedevent = nil
 	self.overlappingevents = nil
 	
 	self.overlappingeventsdialogue = false
+	
+	self.placeevent = ""
+	
+	self.eventpalette = {
+		{
+			name = 'Notes',
+			content = {
+				'block',
+				'hold',
+				'inverse',
+				'mine',
+				'minehold',
+			}
+		},
+		{
+			name = 'VFX',
+			content = {
+			}
+		},
+		{
+			name = 'Other',
+			content = {
+				'play',
+				'showresults'
+			}
+		},
+	}
+	
+	for i,v in pairs(self.eventpalette) do
+		table.insert(v.content,1,'')
+	end
+	
 
 	self.keybinds = {}
 	
@@ -182,8 +222,16 @@ st:setfgdraw(function(self)
 				imgui.Separator()
 				
 				--default properties that all events have
-				Event.property(self.selectedevent, 'decimal', 'time', 'Beat to activate on', {step = 0.01}) --(eventually should be snap based)
-				Event.property(self.selectedevent, 'decimal', 'angle', 'Angle to activate at', {step = 1}) --(eventually should be snap based)
+				local beatstep = 0.01
+				local anglestep = 1
+				if self.beatsnap ~= 0 then
+					beatstep = 1/self.beatsnapvalues[self.beatsnap]
+				end
+				if self.anglesnap ~= 0 then
+					anglestep = 360/self.anglesnapvalues[self.anglesnap]
+				end
+				Event.property(self.selectedevent, 'decimal', 'time', 'Beat to activate on', {step = beatstep})
+				Event.property(self.selectedevent, 'decimal', 'angle', 'Angle to activate at', {step = anglestep})
 				
 				if Event.editorproperties[self.selectedevent.type] then
 					Event.editorproperties[self.selectedevent.type](self.selectedevent)
@@ -191,7 +239,50 @@ st:setfgdraw(function(self)
 					
 				end
 			
+		end
+		
+		
+		imgui.SetNextWindowPos(0, 50, "ImGuiCond_Once")
+		imgui.SetNextWindowSize(150, 300, "ImGuiCond_Once")
+		imgui.Begin("Event palette")
+			self.placeevent = imgui.InputText("##placeevent",self.placeevent,9999)
+			if imgui.BeginTabBar("Event Type") then
+
+				for i, tab in pairs(self.eventpalette) do
+					
+					if imgui.BeginTabItem(tab.name) then
+						
+						
+						if imgui.ListBoxHeader('##tab'..tab.name) then
+							for ii, v in ipairs(tab.content) do
+								local displayeventname = 'None'
+								local eventname = v
+								if v ~= '' then
+									displayeventname = Event.info[v].name
+								end
+								
+								local selected = (self.placeevent == eventname)
+								
+								if imgui.Selectable(displayeventname, selected) then
+									self.placeevent = eventname
+								end
+								
+								if selected then
+									imgui.SetItemDefaultFocus()
+								end
+								
+							end
+							imgui.ListBoxFooter()
+						end
+						
+						
+						imgui.EndTabItem()
+					end
+				end
+			
+				imgui.EndTabBar()
 			end
+		
 		if self.overlappingeventsdialogue then
 			self.overlappingeventsdialogue = imgui.Begin("Overlapping events!",true)
 			
@@ -208,6 +299,59 @@ st:setfgdraw(function(self)
 		
 		
 		imgui.End()
+		
+		imgui.SetNextWindowPos(0, 630, "ImGuiCond_Once")
+		imgui.SetNextWindowSize(150, 90, "ImGuiCond_Once")
+		imgui.Begin("Snap")
+			--angle
+			local anglesnaptext = 'None'
+			
+			if imgui.Button('-##angleminus') then
+				self.anglesnap = self.anglesnap - 1 
+			end
+			imgui.SameLine()
+			if imgui.Button('+##angleplus')  then
+				self.anglesnap = self.anglesnap + 1 
+			end
+			
+			if self.anglesnap == -1 then
+				self.anglesnap = #self.anglesnapvalues
+			elseif self.anglesnap > #self.anglesnapvalues then
+				self.anglesnap = 0
+			end
+			
+			if self.anglesnap ~= 0 then
+				anglesnaptext = '1/' .. self.anglesnapvalues[self.anglesnap]
+			end
+			
+			imgui.SameLine()
+			imgui.Text("Angle: " .. anglesnaptext)
+			imgui.Separator()
+			
+			--beat
+			local beatsnaptext = 'None'
+			
+			if imgui.Button('-##beatminus') then
+				self.beatsnap = self.beatsnap - 1 
+			end
+			imgui.SameLine()
+			if imgui.Button('+##beatplus')  then
+				self.beatsnap = self.beatsnap + 1 
+			end
+			
+			if self.beatsnap == -1 then
+				self.beatsnap = #self.beatsnapvalues
+			elseif self.beatsnap > #self.beatsnapvalues then
+				self.beatsnap = 0
+			end
+			
+			if self.beatsnap ~= 0 then
+				beatsnaptext = '1/' .. self.beatsnapvalues[self.beatsnap]
+			end
+			
+			imgui.SameLine()
+			imgui.Text("Beat: " .. beatsnaptext)
+		imgui.End()
 	end
   color('white')
   love.graphics.rectangle('fill',0,0,project.res.x,project.res.y)
@@ -216,10 +360,20 @@ st:setfgdraw(function(self)
 	if self.editmode then
 		love.graphics.rectangle('fill',0,0,project.res.x,project.res.y)
 		
+		
+		love.graphics.setLineWidth(2)
+		love.graphics.setColor(0.75,0.75,0.75,1)
+		--draw snap lines
+		if self.anglesnap ~= 0 then
+			for i=0,self.anglesnapvalues[self.anglesnap] - 1 do
+				local pos = helpers.rotate(400,i*(360/self.anglesnapvalues[self.anglesnap]),project.res.cx,project.res.cy)
+				love.graphics.line(project.res.cx,project.res.cy,pos[1],pos[2])
+			end
+		end
+		
 		--draw beat lines
 		color('black')
 		
-		love.graphics.setLineWidth(2)
 		
 		
 		love.graphics.circle("line",project.res.cx,project.res.cy,self:beattoradius(self.editorbeat))

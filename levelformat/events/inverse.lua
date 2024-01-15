@@ -1,6 +1,6 @@
 local info = {
 	event = 'inverse',
-	name = 'Spawn Inverse Beat',
+	name = 'Inverse Block',
 	storeinchart = true,
 	hits = 1,
 	description = [[Parameters:

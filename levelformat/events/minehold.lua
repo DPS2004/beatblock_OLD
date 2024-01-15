@@ -1,6 +1,6 @@
 local info = {
 	event = 'minehold',
-	name = 'Spawn Minehold',
+	name = 'Minehold',
 	storeinchart = true,
 	hits = 1,
 	description = [[Parameters:

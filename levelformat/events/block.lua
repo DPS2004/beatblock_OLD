@@ -1,6 +1,6 @@
 local info = {
 	event = 'block',
-	name = 'Spawn Block',
+	name = 'Block',
 	storeinchart = true,
 	hits = 1,
 	description = [[Parameters:

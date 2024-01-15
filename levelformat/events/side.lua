@@ -1,6 +1,6 @@
 local info = {
 	event = 'side',
-	name = 'Spawn Side',
+	name = 'Side',
 	storeinchart = true,
 	hits = 1,
 	description = [[Parameters:
