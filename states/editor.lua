@@ -37,6 +37,9 @@ st:setinit(function(self)
 	self.multiselectend = nil
 	self.multiselect = nil
 	
+	self.copy = nil
+	self.copysize = nil
+	
 	self.overlappingeventsdialogue = false
 	
 	self.placeevent = ""
@@ -97,6 +100,45 @@ st:setinit(function(self)
 		end,
 		'save both files',
 		'ctrl','s'
+	)
+	--copy
+	self:addkeybind(function()
+			if self.multiselect then
+				self.copy = helpers.copy(self.multiselect.events)
+				for i,v in ipairs(self.copy) do
+					v.time = v.time - self.multiselectstart
+				end
+				self.copysize = self.multiselectend - self.multiselectstart
+				self.p:hurtpulse()
+			end
+		end,
+		'copy',
+		'ctrl','c'
+	)
+	--paste
+	self:addkeybind(function()
+			if self.copy then
+				local newevents = helpers.copy(self.copy)
+				
+				self.selectedevent = nil
+				self.multiselect = {}
+				self.multiselect.events = {}
+				self.multiselect.eventtypes = {}
+				
+				for i,v in ipairs(newevents) do
+					v.time = v.time + self.cursorbeat
+					table.insert(self.level.events,v)
+					table.insert(self.multiselect.events,v)
+					self.multiselect.eventtypes[v.type] = true
+				end
+				self.multiselectstart = self.cursorbeat
+				self.multiselectend = self.cursorbeat + self.copysize
+				
+				self.p:hurtpulse()
+			end
+		end,
+		'paste',
+		'ctrl','v'
 	)
 	
 	
@@ -341,7 +383,7 @@ st:setfgdraw(function(self)
 				
 				local deltaangle = 0
 				local deltabeat = 0
-				
+				local deltascale = 1
 				imgui.Text('Rotate all')
 				imgui.SameLine()
 				if imgui.Button('-##angleminus') then
@@ -362,9 +404,21 @@ st:setfgdraw(function(self)
 					deltabeat = deltabeat + beatstep
 				end
 				
-				if deltaangle ~= 0 or deltabeat ~= 0 then
+				imgui.Separator()
+				
+				if imgui.Button('Flip Horiz') then
+					deltascale = -1
+				end
+				imgui.SameLine()
+				if imgui.Button('Flip Vert') then
+					deltascale = -1
+					deltaangle = -180
+				end
+				
+				
+				if deltaangle ~= 0 or deltabeat ~= 0 or deltascale ~= 1 then
 					for i,v in ipairs(self.multiselect.events) do
-						v.angle = v.angle + deltaangle
+						v.angle = v.angle * deltascale + deltaangle
 						v.time = v.time + deltabeat
 					end
 					self.multiselectstart = self.multiselectstart + deltabeat

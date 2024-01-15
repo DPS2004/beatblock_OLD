@@ -48,6 +48,7 @@ project.ctrls = {
 	x = {"key:x"},
 	a = {"key:a"},
 	c = {"key:c"},
+	v = {"key:v"},
 	e = {"key:e"},
 	p = {"key:p"},
 	r = {"key:r"},
