@@ -33,6 +33,10 @@ st:setinit(function(self)
 	self.selectedevent = nil
 	self.overlappingevents = nil
 	
+	self.multiselectstart = nil
+	self.multiselectend = nil
+	self.multiselect = nil
+	
 	self.overlappingeventsdialogue = false
 	
 	self.placeevent = ""
@@ -188,37 +192,67 @@ st:setupdate(function(self,dt)
 			end
 			
 			if mouse.pressed == -1 then -- on mouse release
-				self.overlappingevents = {}
-				for i,v in ipairs(self.level.events) do
-					if v.time >= self.editorbeat and v.time <= self.editorbeat + self.drawdistance then
-						--this should be customizable per-event type like editordraw and editorproperties for holds
-						
-						local pos = self:getposition(v.angle,v.time)
-						if helpers.collide(
-							{x = mouse.rx, y = mouse.ry, width = 0, height = 0},
-							{x = pos[1] - 8, y = pos[2] - 8, width = 16, height = 16}
-						) then
-						
-							table.insert(self.overlappingevents,i)
+				if maininput:down('shift') then --multiselect 
+					if (not self.multiselectstart) and (not self.multiselectend) then
+						self.multiselectstart = self.cursorbeat
+					else
+						if not self.multiselectend then
+							self.multiselectend = self.cursorbeat
+							if self.multiselectend < self.multiselectstart then
+								self.multiselectstart, self.multiselectend = self.multiselectend, self.multiselectstart
+							end
+							
+							self.selectedevent = nil
+							self.multiselect = {}
+							self.multiselect.events = {}
+							self.multiselect.eventtypes = {}
+							for i,v in ipairs(self.level.events) do
+								if v.time >= self.multiselectstart and v.time <= self.multiselectend then 
+									table.insert(self.multiselect.events,v)
+									self.multiselect.eventtypes[v.type] = true
+								end
+							end
+							
+						else
+							self.multiselectstart = self.cursorbeat
+							self.multiselectend = nil
+							self.multiselect = nil
+						end
+					end
+				else --select/place
+					self.multiselectstart, self.multiselectend, self.multiselect = nil,nil,nil
+					self.overlappingevents = {}
+					for i,v in ipairs(self.level.events) do
+						if v.time >= self.editorbeat and v.time <= self.editorbeat + self.drawdistance then
+							--this should be customizable per-event type like editordraw and editorproperties for holds
+							
+							local pos = self:getposition(v.angle,v.time)
+							if helpers.collide(
+								{x = mouse.rx, y = mouse.ry, width = 0, height = 0},
+								{x = pos[1] - 8, y = pos[2] - 8, width = 16, height = 16}
+							) then
+							
+								table.insert(self.overlappingevents,i)
+								
+							end
 							
 						end
-						
 					end
-				end
-				if #self.overlappingevents == 1 then
-					self.selectedevent = self.level.events[self.overlappingevents[1]]
-					print('selected ' .. Event.info[self.selectedevent.type].name .. ' event. ' .. self.selectedevent.angle .. '|'.. self.selectedevent.time)
-					self.overlappingeventsdialogue = false
-				elseif #self.overlappingevents >= 2 then
-					print('overlapping events!!')
-					self.overlappingeventsdialogue = true
-				end
-				
-				if #self.overlappingevents == 0 then
-					--place new event
-					if self.placeevent ~= '' then
-						table.insert(self.level.events,{type = self.placeevent, time = self.cursorbeat, angle = self.cursorangle})
-						self.selectedevent = self.level.events[#self.level.events]
+					if #self.overlappingevents == 1 then
+						self.selectedevent = self.level.events[self.overlappingevents[1]]
+						print('selected ' .. Event.info[self.selectedevent.type].name .. ' event. ' .. self.selectedevent.angle .. '|'.. self.selectedevent.time)
+						self.overlappingeventsdialogue = false
+					elseif #self.overlappingevents >= 2 then
+						print('overlapping events!!')
+						self.overlappingeventsdialogue = true
+					end
+					
+					if #self.overlappingevents == 0 then
+						--place new event
+						if self.placeevent ~= '' then
+							table.insert(self.level.events,{type = self.placeevent, time = self.cursorbeat, angle = self.cursorangle})
+							self.selectedevent = self.level.events[#self.level.events]
+						end
 					end
 				end
 				
@@ -256,11 +290,94 @@ st:setfgdraw(function(self)
 		imgui.SetNextWindowPos(950, 50, "ImGuiCond_Once")
 		imgui.SetNextWindowSize(250, 600, "ImGuiCond_Once")
 		imgui.Begin("Event Editor")
-			if not self.selectedevent then
-				imgui.Text("Select an event to edit it")
+			
+			if self.multiselect then
+				imgui.Text('Selecting ' .. #self.multiselect.events .. ' events')
+				imgui.Separator()
+				imgui.Text('Types:')
+				for k,_ in pairs(self.multiselect.eventtypes) do
+					if imgui.Button('Only##'..k) then
+						
+						local newevents = {}
+						for i,v in ipairs(self.multiselect.events) do
+							if v.type == k then
+								table.insert(newevents,v)
+							end
+						end
+						
+						self.multiselect.events = newevents
+						
+						self.multiselect.eventtypes = {}
+						self.multiselect.eventtypes[k] = true
+					end
+					imgui.SameLine()
+					if imgui.Button('Remove##'..k) then
+						
+						local newevents = {}
+						for i,v in ipairs(self.multiselect.events) do
+							if v.type ~= k then
+								table.insert(newevents,v)
+							end
+						end
+						
+						self.multiselect.events = newevents
+						
+						self.multiselect.eventtypes[k] = nil
+					end
+					imgui.SameLine()
+					imgui.Text(Event.info[k].name)
+					
+				end
 				
-				--self.zoom = imgui.SliderInt("Zoom level", self.zoom, 0, 100);
-			else
+				imgui.Separator()
+				local beatstep = 0.01
+				local anglestep = 1
+				if self.beatsnap ~= 0 then
+					beatstep = 1/self.beatsnapvalues[self.beatsnap]
+				end
+				if self.anglesnap ~= 0 then
+					anglestep = 360/self.anglesnapvalues[self.anglesnap]
+				end
+				
+				local deltaangle = 0
+				local deltabeat = 0
+				
+				imgui.Text('Rotate all')
+				imgui.SameLine()
+				if imgui.Button('-##angleminus') then
+					deltaangle = deltaangle - anglestep
+				end
+				imgui.SameLine()
+				if imgui.Button('+##angleplus')  then
+					deltaangle = deltaangle + anglestep
+				end
+				
+				imgui.Text('Retime all')
+				imgui.SameLine()
+				if imgui.Button('-##beatminus') then
+					deltabeat = deltabeat - beatstep
+				end
+				imgui.SameLine()
+				if imgui.Button('+##beatplus')  then
+					deltabeat = deltabeat + beatstep
+				end
+				
+				if deltaangle ~= 0 or deltabeat ~= 0 then
+					for i,v in ipairs(self.multiselect.events) do
+						v.angle = v.angle + deltaangle
+						v.time = v.time + deltabeat
+					end
+					self.multiselectstart = self.multiselectstart + deltabeat
+					self.multiselectend = self.multiselectend + deltabeat
+				end
+				
+				if #self.multiselect.events == 0 then
+					self.multiselect = nil
+					self.multiselectstart = nil
+					self.multiselectend = nil
+				end
+				
+			elseif self.selectedevent then
 				imgui.Text("Editing " .. Event.info[self.selectedevent.type].name)
 				imgui.Separator()
 				
@@ -291,6 +408,10 @@ st:setfgdraw(function(self)
 					end
 				end
 				
+			else
+				imgui.Text("Select an event to edit it")
+				
+				--self.zoom = imgui.SliderInt("Zoom level", self.zoom, 0, 100);
 				
 				
 			end
@@ -446,19 +567,38 @@ st:setfgdraw(function(self)
 		
 		color('black')
 		love.graphics.circle("line",project.res.cx,project.res.cy,self:beattoradius(self.editorbeat))
-		color()
 		
+		
+		--multiselect
+		love.graphics.setColor(0,1,0,1)
+		if self.multiselectstart then
+			love.graphics.circle("line",project.res.cx,project.res.cy,self:beattoradius(math.max(self.multiselectstart, self.editorbeat)))
+		end
+		if self.multiselectend then
+			love.graphics.circle("line",project.res.cx,project.res.cy,self:beattoradius(math.max(self.multiselectend, self.editorbeat)))
+		end
+		
+		
+		color()
 		em.draw() --draw player
 		
 		for i,v in ipairs(self.level.events) do --draw events
 			if v.time >= self.editorbeat and v.time <= self.editorbeat + self.drawdistance then
+				
+				local pos = self:getposition(v.angle,v.time)
 				if Event.editordraw[v.type] then
 					Event.editordraw[v.type](v)
 				else
 					--fallback
-					local pos = self:getposition(v.angle,v.time)
 					
 					love.graphics.draw(sprites.editor.genericevent,pos[1],pos[2],0,1,1,8,8)
+				end
+				if self.multiselect then
+					for ii,vv in ipairs(self.multiselect.events) do
+						if v == vv then
+							love.graphics.draw(sprites.editor.selected,pos[1],pos[2],0,1,1,11,11)
+						end
+					end
 				end
 			end
 		end
