@@ -16,6 +16,8 @@ st:setinit(function(self)
 	shuv.showbadcolors = true
 
 	self.zoom = self.level.properties.speed or 40
+	
+	self.lasteditorbeat = 0
 	self.editorbeat = 0
 	self.drawdistance = 10
 	
@@ -24,6 +26,9 @@ st:setinit(function(self)
 	
 	self.beatsnapvalues = {1,2,3,4,6,8,12,16}
 	self.beatsnap = 2
+	
+	self.cursorbeat = 0
+	self.cursorangle = 0
 	
 	self.selectedevent = nil
 	self.overlappingevents = nil
@@ -99,6 +104,14 @@ function st:beattoradius(b)
 	
 end
 
+function st:snapbeat(b)
+	if self.beatsnap == 0 then
+		return b
+	end
+	return helpers.round(b*self.beatsnapvalues[self.beatsnap]) / self.beatsnapvalues[self.beatsnap]
+	
+end
+
 function st:getposition(a,b)
 	return helpers.rotate(self:beattoradius(b),a,project.res.cx,project.res.cy)
 end
@@ -144,11 +157,21 @@ st:setupdate(function(self,dt)
 		if self.editmode then
 			self:checkkeybinds()
 			
+			self.cursorangle = (helpers.anglepoints(project.res.cx,project.res.cy,mouse.rx,mouse.ry) + 360) % 360
+			self.cursorbeat = math.max((math.sqrt((mouse.rx-project.res.cx)^2+(mouse.ry-project.res.cy)^2) - self:beattoradius(self.editorbeat))/self.zoom, 0) + self.editorbeat
+			
 			if mouse.sy ~= 0 then
 				if maininput:down('ctrl') then
 					self.zoom = math.min(math.max(self.zoom+mouse.sy*2,20),100)
 				else
+					self.lasteditorbeat = self.editorbeat
 					self.editorbeat = math.max(self.editorbeat + (mouse.sy * 2) / self.zoom,0)
+					if self.beatsnap ~= 0 then
+						local snappedbeat = self:snapbeat(self.editorbeat)
+						if math.abs(self.editorbeat-snappedbeat) <= 0.05 and math.abs(self.editorbeat-snappedbeat) <= math.abs(self.lasteditorbeat-snappedbeat)then
+							self.editorbeat = snappedbeat
+						end
+					end
 				end
 			end
 			
@@ -363,7 +386,7 @@ st:setfgdraw(function(self)
 		
 		love.graphics.setLineWidth(2)
 		love.graphics.setColor(0.75,0.75,0.75,1)
-		--draw snap lines
+		--draw angle snap lines
 		if self.anglesnap ~= 0 then
 			for i=0,self.anglesnapvalues[self.anglesnap] - 1 do
 				local pos = helpers.rotate(400,i*(360/self.anglesnapvalues[self.anglesnap]),project.res.cx,project.res.cy)
@@ -371,15 +394,27 @@ st:setfgdraw(function(self)
 			end
 		end
 		
-		--draw beat lines
-		color('black')
+		--draw beat lines / beat snap
 		
 		
 		
-		love.graphics.circle("line",project.res.cx,project.res.cy,self:beattoradius(self.editorbeat))
 		for i=0, self.drawdistance do
+			color('black')
 			love.graphics.circle("line",project.res.cx,project.res.cy,self:beattoradius(math.ceil(self.editorbeat) + i))
+			if self.beatsnap ~= 0 then
+				
+				love.graphics.setColor(0.75,0.75,0.75,1)
+				for ii=1,self.beatsnapvalues[self.beatsnap]-1 do
+					local snaprad = self:beattoradius(math.floor(self.editorbeat) + i + (ii / self.beatsnapvalues[self.beatsnap]))
+					if snaprad > self:beattoradius(self.editorbeat) then
+						love.graphics.circle("line",project.res.cx,project.res.cy,snaprad)
+					end
+				end
+			end
 		end
+		
+		color('black')
+		love.graphics.circle("line",project.res.cx,project.res.cy,self:beattoradius(self.editorbeat))
 		color()
 		
 		em.draw() --draw player
