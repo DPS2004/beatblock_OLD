@@ -109,7 +109,13 @@ function st:snapbeat(b)
 		return b
 	end
 	return helpers.round(b*self.beatsnapvalues[self.beatsnap]) / self.beatsnapvalues[self.beatsnap]
-	
+end
+
+function st:snapangle(a)
+	if self.anglesnap == 0 then
+		return a
+	end
+	return helpers.round(a/(360/self.anglesnapvalues[self.anglesnap])) * (360/self.anglesnapvalues[self.anglesnap])
 end
 
 function st:getposition(a,b)
@@ -160,6 +166,12 @@ st:setupdate(function(self,dt)
 			self.cursorangle = (helpers.anglepoints(project.res.cx,project.res.cy,mouse.rx,mouse.ry) + 360) % 360
 			self.cursorbeat = math.max((math.sqrt((mouse.rx-project.res.cx)^2+(mouse.ry-project.res.cy)^2) - self:beattoradius(self.editorbeat))/self.zoom, 0) + self.editorbeat
 			
+			self.cursorangle = self:snapangle(self.cursorangle)
+			self.cursorbeat = self:snapbeat(self.cursorbeat)
+			if self.cursorbeat < self.editorbeat then
+				self.cursorbeat = self.cursorbeat + (1/self.beatsnapvalues[self.beatsnap])
+			end
+			
 			if mouse.sy ~= 0 then
 				if maininput:down('ctrl') then
 					self.zoom = math.min(math.max(self.zoom+mouse.sy*2,20),100)
@@ -200,6 +212,14 @@ st:setupdate(function(self,dt)
 				elseif #self.overlappingevents >= 2 then
 					print('overlapping events!!')
 					self.overlappingeventsdialogue = true
+				end
+				
+				if #self.overlappingevents == 0 then
+					--place new event
+					if self.placeevent ~= '' then
+						table.insert(self.level.events,{type = self.placeevent, time = self.cursorbeat, angle = self.cursorangle})
+						self.selectedevent = self.level.events[#self.level.events]
+					end
 				end
 				
 			end
@@ -258,11 +278,22 @@ st:setfgdraw(function(self)
 				
 				if Event.editorproperties[self.selectedevent.type] then
 					Event.editorproperties[self.selectedevent.type](self.selectedevent)
-				else
-					
 				end
-			
-		end
+				imgui.Separator()
+				if imgui.Button('Delete event') then
+					for i,v in ipairs(self.level.events) do
+						if v == self.selectedevent then
+							table.remove(self.level.events,i)
+							print('deleted event')
+							self.selectedevent = nil
+							break
+						end
+					end
+				end
+				
+				
+				
+			end
 		
 		
 		imgui.SetNextWindowPos(0, 50, "ImGuiCond_Once")
@@ -441,6 +472,19 @@ st:setfgdraw(function(self)
 				love.graphics.draw(sprites.editor.genericevent,pos[1],pos[2],0,1,1,8,8)
 			end
 			love.graphics.draw(sprites.editor.selected,pos[1],pos[2],0,1,1,11,11)
+		end
+		
+		
+		--draw cursor event
+		if self.placeevent ~= '' and not imgui.GetWantCaptureMouse() then
+			love.graphics.setColor(1,1,1,0.5)
+			local pos = self:getposition(self.cursorangle,self.cursorbeat)
+			if Event.editordraw[self.placeevent] then
+				Event.editordraw[self.placeevent]({time = self.cursorbeat, angle = self.cursorangle, iscursor = true})
+			else
+				--fallback
+				love.graphics.draw(sprites.editor.genericevent,pos[1],pos[2],0,1,1,8,8)
+			end
 		end
 		
 	else
