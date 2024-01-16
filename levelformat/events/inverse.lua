@@ -37,5 +37,11 @@ local function editordraw(event)
 	love.graphics.draw(sprites.note.inverse,pos[1],pos[2],0,1,1,8,8)
 end
 
+local function editorproperties(event)
+	Event.property(event,'decimal', 'endangle', 'Angle to end up at', {step = cs:getanglestep(), optional = true, default = 0})
+	Event.property(event,'ease', 'spinease', 'Ease to use while rotating', {optional = true, default = 'linear'})
+	Event.property(event,'decimal', 'speedmult', 'Speed multiplier for approach', {step = 0.01, optional = true, default = 1})
+end
+
 
 return info, onload, onoffset, onbeat, editordraw, editorproperties

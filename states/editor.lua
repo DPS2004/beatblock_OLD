@@ -42,6 +42,8 @@ st:setinit(function(self)
 	
 	self.overlappingeventsdialogue = false
 	
+	self.gotobeatdialogue = false
+	
 	self.placeevent = ""
 	
 	self.eventpalette = {
@@ -64,7 +66,8 @@ st:setinit(function(self)
 			name = 'Other',
 			content = {
 				'play',
-				'showresults'
+				'showresults',
+				'width'
 			}
 		},
 	}
@@ -141,6 +144,7 @@ st:setinit(function(self)
 		'ctrl','v'
 	)
 	
+	--play from start
 	self:addkeybind(function()
 			self.startbeat = 0
 			self:playlevel()
@@ -148,7 +152,7 @@ st:setinit(function(self)
 		'play level from start',
 		'ctrl','p'
 	)
-	
+	--play
 	self:addkeybind(function()
 			if not maininput:down('ctrl') then
 				self.startbeat = self.editorbeat + self.offset - 1
@@ -157,6 +161,14 @@ st:setinit(function(self)
 		end,
 		'play level from editorbeat',
 		'p'
+	)
+	
+	--go to beat
+		self:addkeybind(function()
+			self.gotobeatdialogue = true
+		end,
+		'go to beat',
+		'ctrl','g'
 	)
 	
 end)
@@ -183,6 +195,23 @@ end
 
 function st:getposition(a,b)
 	return helpers.rotate(self:beattoradius(b),a,project.res.cx,project.res.cy)
+end
+
+function st:getanglestep()
+	local anglestep = 1
+	if self.anglesnap ~= 0 then
+		anglestep = 360/self.anglesnapvalues[self.anglesnap]
+	end
+	return anglestep
+end
+
+
+function st:getbeatstep()
+	local anglestep = 1
+	if self.beatsnap ~= 0 then
+		beatstep = 1/self.beatsnapvalues[self.beatsnap]
+	end
+	return beatstep
 end
 
 function st:playlevel()
@@ -452,6 +481,9 @@ function st:imgui()
 				if deltaangle ~= 0 or deltabeat ~= 0 or deltascale ~= 1 then
 					for i,v in ipairs(self.multiselect.events) do
 						v.angle = v.angle * deltascale + deltaangle
+						if v.angle2 then
+							v.angle2 = v.angle2 * deltascale + deltaangle
+						end
 						v.time = v.time + deltabeat
 					end
 					self.multiselectstart = self.multiselectstart + deltabeat
@@ -545,21 +577,6 @@ function st:imgui()
 				imgui.EndTabBar()
 			end
 		
-		if self.overlappingeventsdialogue then
-			self.overlappingeventsdialogue = imgui.Begin("Overlapping events!",true)
-			
-			imgui.Text("Select which event to edit:")
-			imgui.Separator()
-			for i,v in ipairs(self.overlappingevents) do
-				local e = self.level.events[v]
-				if imgui.Selectable(Event.info[e.type].name .. ' (ID '.. v..')') then
-					self.overlappingeventsdialogue = false
-					self.selectedevent = self.level.events[v]
-				end
-			end
-		end
-		
-		
 		imgui.End()
 		
 		imgui.SetNextWindowPos(0, 630, "ImGuiCond_Once")
@@ -614,6 +631,27 @@ function st:imgui()
 			imgui.SameLine()
 			imgui.Text("Beat: " .. beatsnaptext)
 		imgui.End()
+		
+		if self.overlappingeventsdialogue then
+			self.overlappingeventsdialogue = imgui.Begin("Overlapping events!",true)
+			
+			imgui.Text("Select which event to edit:")
+			imgui.Separator()
+			for i,v in ipairs(self.overlappingevents) do
+				local e = self.level.events[v]
+				if imgui.Selectable(Event.info[e.type].name .. ' (ID '.. v..')') then
+					self.overlappingeventsdialogue = false
+					self.selectedevent = self.level.events[v]
+				end
+			end
+			imgui.End()
+		end
+		if self.gotobeatdialogue then
+			self.gotobeatdialogue = imgui.Begin("Go to beat",true)
+			self.editorbeat = imgui.InputFloat("", self.editorbeat, self:getbeatstep(), 1, 3)
+			imgui.End()
+		end
+		
 	end
 	
 	

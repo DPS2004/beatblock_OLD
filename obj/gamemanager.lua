@@ -37,12 +37,21 @@ function Event.property(event,propertytype, propertyname, tooltip, properties)
 		else
 			event[propertyname] = nil
 		end
+	else
+		if event[propertyname] == nil then
+			event[propertyname] = properties.default
+		end
 	end
 	
 	if enabled then
 		if propertytype == 'decimal' then
 			imgui.PushItemWidth(100)
 			event[propertyname] = imgui.InputFloat(propertyname, event[propertyname], properties.step or 0.01, properties.stepspeed or 1, properties.decimalsize or 3)
+			imgui.PopItemWidth()
+		end
+		if propertytype == 'int' then
+			imgui.PushItemWidth(100)
+			event[propertyname] = imgui.InputInt(propertyname, event[propertyname])
 			imgui.PopItemWidth()
 		end
 		if propertytype == 'string' then
@@ -151,6 +160,7 @@ function Gamemanager:resetlevel()
   cs.combo = 0
   cs.maxhits = 0
 	cs.outline = -1
+	cs.p.paddle_size = 70
 	
 	--deal with new level format
 	cs.playevents = {}

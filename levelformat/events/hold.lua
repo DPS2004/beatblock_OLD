@@ -42,6 +42,25 @@ local function editordraw(event)
 	local pos = cs:getposition(event.angle,event.time)
 	
 	love.graphics.draw(sprites.note.hold,pos[1],pos[2],0,1,1,8,8)
+	if not event.iscursor then
+		pos = cs:getposition(event.angle2,event.time+event.duration)
+		
+		love.graphics.draw(sprites.note.hold,pos[1],pos[2],0,1,1,8,8)
+	end
+end
+
+local function editorproperties(event)
+	
+	Event.property(event,'decimal', 'angle2', 'Angle for end of the hold', {step = cs:getanglestep(), default = event.angle})
+	Event.property(event,'decimal', 'duration', 'How many beats the hold lasts', {step = cs:getbeatstep(), default = 1})
+
+	
+	
+	Event.property(event,'int', 'segments', 'Force a certain number of line segments', {optional = true, default = 1})
+	Event.property(event,'ease', 'holdease', 'Change ease from angle1 to angle2', {optional = true, default = 'linear'})
+	Event.property(event,'decimal', 'endangle', 'Angle to end up at', {step = cs:getanglestep(), optional = true, default = 0})
+	Event.property(event,'ease', 'spinease', 'Ease to use while rotating', {optional = true, default = 'linear'})
+	Event.property(event,'decimal', 'speedmult', 'Speed multiplier for approach', {step = 0.01, optional = true, default = 1})
 end
 
 

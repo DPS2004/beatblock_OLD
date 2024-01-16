@@ -97,10 +97,11 @@ function Block:updateangle()
 	-- Interpolate angle between startangle and endangle based on progress. Block should be at endangle when it hits the paddle.
   if (self.hb - cs.cbeat) > 0 then --only clamp when moving towards point
     if self.spinease == "linear" then --haha wow this should not be using an if statement???
-      self.angle = helpers.clamp(helpers.lerp(self.startangle, self.endangle, self.progress), self.startangle, self.endangle) % 360
+			--todo: all the other eases
+      self.angle = helpers.clamp(helpers.lerp(self.startangle, self.endangle, self.progress), self.startangle, self.endangle)
     elseif self.spinease == "inExpo"  then
       --print(2 ^ (10 * (progress - 1)))
-      self.angle = helpers.clamp(helpers.lerp(self.startangle, self.endangle, 2 ^ (10 * (self.progress - 1))), self.startangle, self.endangle) % 360
+      self.angle = helpers.clamp(helpers.lerp(self.startangle, self.endangle, 2 ^ (10 * (self.progress - 1))), self.startangle, self.endangle)
     end
   end
 end

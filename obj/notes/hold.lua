@@ -108,7 +108,11 @@ function Hold:draw(completion)
     local t = i / self.segments
     local angle_t = t * (1 - completion) + completion
     -- coordinates of the next point
-    local nextAngle = math.rad(helpers.interpolate(self.endangle, self.angle2, angle_t, self.holdease) - 90)
+		local firstpoint = self.angle
+		if completion ~= 0 then
+			firstpoint = self.endangle
+		end
+    local nextAngle = math.rad(helpers.interpolate(firstpoint, self.angle2, angle_t, self.holdease) - 90)
     local nextDistance = helpers.lerp(len1, len2, t)
     points[#points+1] = math.cos(nextAngle) * nextDistance + self.ox
     points[#points+1] = math.sin(nextAngle) * nextDistance + self.oy
